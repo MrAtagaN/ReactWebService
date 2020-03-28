@@ -1,25 +1,27 @@
-import React from 'react'
-
-export default LeftMenu
+import React, {Component} from 'react'
 
 /**
  * Левое меню
  */
-function LeftMenu() {
-    return (
-        <div className="leftMenu">
-            <a className="homeLink"> Домой </a>
-            <ol>
-                <ul>
-                    <li>
-                        <a> Страница 1 </a>
-                    </li>
-                    <li>
-                        <a> Страница 2 </a>
-                    </li>
-                </ul>
-            </ol>
+class LeftMenu extends Component {
 
-        </div>
-    )
+    render() {
+        return (
+            <div className="leftMenu">
+                <a className="homeLink"> Домой </a>
+                <ol>
+                    <ul>
+                        <li>
+                            <a> Страница 1 </a>
+                        </li>
+                        <li>
+                            <a> Страница 2 </a>
+                        </li>
+                    </ul>
+                </ol>
+            </div>
+        )
+    }
 }
+
+export default LeftMenu

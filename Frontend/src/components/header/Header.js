@@ -1,21 +1,31 @@
-import React from 'react'
-
-export default Header
+import React, {Component} from 'react'
 
 /**
  * Заголовок сайта сайта
  */
-function Header() {
-    const pageName = "Имя сайта";
-    const title = "Заголовок";
-    return (
-        <div className="header">
+class Header extends Component {
+
+    constructor(props) {
+        super(props);
+
+        this.pageName = "Имя сайта";
+        this.title = "Заголовок";
+    }
+
+
+    render() {
+        return (
+            <div className="header">
             <span>
-                {pageName}
+                {this.pageName}
             </span>
-            <span>
-                Welcome to {title}!
+                <span>
+                Welcome to {this.title}!
             </span>
-        </div>
-    )
+            </div>
+        )
+    }
+
 }
+
+export default Header

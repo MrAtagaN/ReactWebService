@@ -1,19 +1,23 @@
-import React from 'react'
+import React, {Component} from 'react'
 import ContentContainer from "./content_container/ContentContainer";
 import LeftMenu from "./left_menu/LeftMenu";
 import Header from "./header/Header";
 
-export default Main
-
 /**
- * Главный компонент
+ * Главный компонент (весь сайт)
  */
-function Main() {
-    return (
-        <div>
-            <Header/>
-            <LeftMenu/>
-            <ContentContainer/>
-        </div>
-    )
+class Main extends Component {
+
+    render() {
+        return (
+            <div>
+                <Header/>
+                <LeftMenu/>
+                <ContentContainer/>
+            </div>
+        )
+    }
+
 }
+
+export default Main
