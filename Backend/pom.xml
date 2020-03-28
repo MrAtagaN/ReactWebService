@@ -12,7 +12,7 @@
     <artifactId>Backend</artifactId>
 
     <build>
-        <finalName>React_web_service</finalName>
+        <finalName>ReactWebService</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
