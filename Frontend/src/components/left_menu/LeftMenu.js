@@ -4,7 +4,7 @@ import './LeftMenu.css'
 /**
  * Левое меню
  */
-class LeftMenu extends Component {
+export default class LeftMenu extends Component {
 
     render() {
         return (
@@ -24,5 +24,3 @@ class LeftMenu extends Component {
         )
     }
 }
-
-export default LeftMenu

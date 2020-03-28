@@ -3,7 +3,7 @@ import React, {Component} from 'react'
 /**
  * Контейнер с контентом сайта
  */
-class ContentContainer extends Component {
+export default class ContentContainer extends Component {
 
     render() {
         return (
@@ -13,5 +13,3 @@ class ContentContainer extends Component {
         )
     }
 }
-
-export default ContentContainer
