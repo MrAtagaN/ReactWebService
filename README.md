@@ -16,3 +16,9 @@ react (установка: npm install -g create-react-app )
 1 Запустить программу  java -jar React_web_service-spring-boot.jar
 2 Сервис будет доступен по адресу http://localhost/  (Возможно нужно будет очистить кэш браузера)
 
+
+
+Разработка:
+
+В директории Frontend выполнить команду: npm start
+
