@@ -1,6 +1,8 @@
 Установка необходимых программ:
 
-maven, java
+maven, java, 
+npm
+react (установка: npm install -g create-react-app ) 
 
 
 Сборка проекта:
