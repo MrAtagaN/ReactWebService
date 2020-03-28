@@ -6,7 +6,7 @@ react (установка: npm install -g create-react-app )
 ===================================================
 
 Сборка проекта:
-1 В директории Frontend выполнить команду: 'npm install'
+1 В директории Frontend выполнить команду: 'npm install' (Выполняется один раз)
 2 В корневой директории (ReactWebService) выполнить комманду: 'mvn clean install'
 
 Результатом сборки будет ReactWebService-spring-boot.jar в корневой директории
@@ -14,7 +14,7 @@ react (установка: npm install -g create-react-app )
 ===================================================
 
 Запуск:
-1 Выполнить команду:  'java -jar React_web_service-spring-boot.jar'
+1 Выполнить команду:  'java -jar ReactWebService-spring-boot.jar'
 2 Сервис будет доступен по адресу 'http://localhost/'  (Возможно нужно будет очистить кэш браузера)
 
 ===================================================

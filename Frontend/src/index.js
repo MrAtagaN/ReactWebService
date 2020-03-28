@@ -1,13 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import Main from './components/Main'
 
-ReactDOM.render(<Article/>, document.getElementById('root'))
+ReactDOM.render(<App/>, document.getElementById('root'));
 
 
-function Article() {
+function App() {
     return (
         <div>
-            <h1>Hello</h1>
+            <Main/>
         </div>
     )
 }
