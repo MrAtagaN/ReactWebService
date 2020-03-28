@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
+import './Header.css'
 
 /**
- * Заголовок сайта сайта
+ * Заголовок сайта
  */
 class Header extends Component {
 
@@ -16,12 +17,12 @@ class Header extends Component {
     render() {
         return (
             <div className="header">
-            <span>
-                {this.pageName}
-            </span>
                 <span>
-                Welcome to {this.title}!
-            </span>
+                  {this.pageName}
+                </span>
+                <span>
+                    Welcome to {this.title}!
+                </span>
             </div>
         )
     }

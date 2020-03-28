@@ -1,0 +1,24 @@
+.leftMenu {
+    float: left; /*Задаем обтекание*/
+    line-height: 50px; /*Высота строки +  верт. центрирования текста*/
+    /*font-size: 40px;*/
+    margin-left: -8px;
+    padding-top: 40px;
+
+    width: 110px;
+    height: 1000px;
+
+    text-align: center;
+    background: #172a39;
+}
+
+li {
+    list-style-type: none; /* Убираем маркеры */
+    margin: 10px;
+}
+
+ol li {
+    padding-top: 40px;
+    margin-left: -80px;
+
+}

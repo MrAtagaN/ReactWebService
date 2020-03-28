@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 
 /**
- * Контейнер с контентом страницы
+ * Контейнер с контентом сайта
  */
 class ContentContainer extends Component {
 

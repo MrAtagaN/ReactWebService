@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import './LeftMenu.css'
 
 /**
  * Левое меню

@@ -1,0 +1,19 @@
+.header {
+    background-image: linear-gradient(to right, #071a29, #172a39 46%, #172a39 56%, #071a29);
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-left: 0;
+    width: auto;
+    padding-left: 100px;
+
+}
+
+span {
+    margin-right: 30px;
+    margin-left: 50px;
+}
+
+A {
+    text-decoration: none;
+    color: #bcbec1; /* Цвет ссылок */
+}
