@@ -1,5 +1,5 @@
 import React from 'react'
-import MainContent from "./main_content/MainContent";
+import ContentContainer from "./content_container/ContentContainer";
 import LeftMenu from "./left_menu/LeftMenu";
 import Header from "./header/Header";
 
@@ -13,7 +13,7 @@ function Main() {
         <div>
             <Header/>
             <LeftMenu/>
-            <MainContent/>
+            <ContentContainer/>
         </div>
     )
 }
