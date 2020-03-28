@@ -5,12 +5,10 @@ import Main from './components/Main'
 ReactDOM.render(<App/>, document.getElementById('root'));
 
 /**
- * Точка входа
+ * Точка входа, рендерит Main компонент
  */
 function App() {
     return (
-        <div>
-            <Main/>
-        </div>
+        <Main/>
     )
 }
