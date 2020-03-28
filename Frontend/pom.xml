@@ -11,5 +11,71 @@
 
     <artifactId>Frontend</artifactId>
 
+    <build>
+        <plugins>
+
+<!--            <plugin>-->
+<!--                <groupId>org.codehaus.mojo</groupId>-->
+<!--                <artifactId>exec-maven-plugin</artifactId>-->
+<!--                <version>1.6.0</version>-->
+<!--                <executions>-->
+<!--                    &lt;!&ndash;          <execution>&ndash;&gt;-->
+<!--                    &lt;!&ndash;            <id>angularbuild</id>&ndash;&gt;-->
+<!--                    &lt;!&ndash;            <configuration>&ndash;&gt;-->
+<!--                    &lt;!&ndash;              <executable>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                ${basedir}/node_modules/.bin/webpack.cmd&ndash;&gt;-->
+<!--                    &lt;!&ndash;              </executable>&ndash;&gt;-->
+<!--                    &lt;!&ndash;            </configuration>&ndash;&gt;-->
+<!--                    &lt;!&ndash;            <phase>generate-resources</phase>&ndash;&gt;-->
+<!--                    &lt;!&ndash;            <goals>&ndash;&gt;-->
+<!--                    &lt;!&ndash;              <goal>exec</goal>&ndash;&gt;-->
+<!--                    &lt;!&ndash;            </goals>&ndash;&gt;-->
+<!--                    &lt;!&ndash;          </execution>&ndash;&gt;-->
+
+<!--                    <execution>-->
+<!--                        <id>exec-npm-ng-build</id>-->
+<!--                        <phase>generate-sources</phase>-->
+<!--                        <configuration>-->
+<!--                            <workingDirectory>${basedir}</workingDirectory>-->
+<!--                            <executable>ng</executable>-->
+<!--                            <arguments>-->
+<!--                                <argument>build</argument>-->
+<!--                                &lt;!&ndash;                <argument>&#45;&#45;base-href=/web</argument>&ndash;&gt;-->
+<!--                            </arguments>-->
+<!--                        </configuration>-->
+<!--                        <goals>-->
+<!--                            <goal>exec</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
+
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>../Backend/src/main/resources/static</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${basedir}/dist/ui</directory>
+                                    <excludes>
+                                        <exclude>*.map</exclude>
+                                    </excludes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
 
 </project>
