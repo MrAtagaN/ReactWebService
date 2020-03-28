@@ -1,27 +1,25 @@
 body {
-    background: #19191f;
+    background: #ffffff;
 
-    color: #bcbec1;
+    color: #333333;
 
     margin: 0;
     padding: 0;
+    text-align: center;
 }
 
 A {
     text-decoration: none;
-    color: #bcbec1; /* Цвет ссылок */
+    color: #FFFFFF; /* Цвет ссылок */
 }
 A:visited {
-    color: #bcbec1; /* Цвет посещенных ссылок */
+    color: #FFFFFF; /* Цвет посещенных ссылок */
 }
 A:active {
-    color: #bcbec1; /* Цвет активных ссылок */
+    color: #FFFFFF; /* Цвет активных ссылок */
 }
 
 .lineBlock {
     display:inline
 }
 
-h1 {
-    text-align:center
-}

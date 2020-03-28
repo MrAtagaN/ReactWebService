@@ -1,3 +1,5 @@
+/* https://www.palettable.io/8D889B-156D7D-E1D8CF-806086-782444 */
+
 .leftMenu {
     float: left; /*Задаем обтекание*/
     line-height: 50px; /*Высота строки +  верт. центрирования текста*/
@@ -8,8 +10,12 @@
     width: 110px;
     height: 1000px;
 
-    text-align: center;
-    background: #172a39;
+    color: #FFFFFF;
+    background: #63b175;
+}
+
+A {
+    color: #FFFFFF;
 }
 
 li {
