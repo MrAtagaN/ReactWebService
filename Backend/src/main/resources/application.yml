@@ -1,2 +1,6 @@
 server:
   port: 80
+
+spring:
+  datasource:
+    url: src/main/resources/webService.db
