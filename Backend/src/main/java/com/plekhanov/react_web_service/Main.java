@@ -3,12 +3,13 @@ package com.plekhanov.react_web_service;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.boot.autoconfigure.jdbc.XADataSourceAutoConfiguration;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 
 /**
  * http://localhost:80/
  */
-@SpringBootApplication(exclude = {SecurityAutoConfiguration.class, DataSourceAutoConfiguration.class} )
+@SpringBootApplication(exclude = {SecurityAutoConfiguration.class} )
 public class Main {
 
     public static void main(String[] args) {

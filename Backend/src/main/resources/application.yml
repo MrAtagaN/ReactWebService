@@ -3,4 +3,7 @@ server:
 
 spring:
   datasource:
-    url: src/main/resources/webService.db
+    url: jdbc:sqlite:Backend/src/main/resources/webService.db
+    driver-class-name: org.sqlite.JDBC
+
+

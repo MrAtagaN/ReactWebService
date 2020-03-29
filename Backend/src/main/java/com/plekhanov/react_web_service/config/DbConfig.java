@@ -17,15 +17,16 @@ public class DbConfig {
     private String url;
 
 
-    @Bean("SQLite")
-    public DataSource getDataSourceSqLite() {
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("org.sqlite.JDBC");
-        dataSource.setUrl(url);
-        dataSource.setUsername("");
-        dataSource.setPassword("");
-        return dataSource;
-    }
+//    @Bean("SQLite")
+//    public DataSource getDataSourceSqLite() {
+//        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+//        dataSource.setDriverClassName("org.sqlite.JDBC");
+//        dataSource.setUrl(url);
+//        dataSource.setUsername("");
+//        dataSource.setPassword("");
+//        return dataSource;
+//    }
+
 
     @Bean
     public JdbcTemplate getJdbcTemplate(DataSource getDataSource) {

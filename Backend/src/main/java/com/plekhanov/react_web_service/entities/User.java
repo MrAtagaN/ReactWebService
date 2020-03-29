@@ -21,7 +21,7 @@ public class User {
     private String password;
 
     @ElementCollection
-    @CollectionTable(name = "roles", joinColumns = @JoinColumn(name = "user_id"))
+    @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
     @Column(name = "name")
     private Set<Role> roles;
 }
