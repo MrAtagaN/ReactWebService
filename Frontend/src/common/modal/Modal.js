@@ -1,55 +1,43 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import Portal from "./Portal";
 import './Modal.css'
-import PropTypes from 'prop-types';
 
 /**
- * Модальное окео
+ * Модальное окно
+ *
  * https://github.com/YauhenKavalchuk/react-components/tree/12_modal
  */
-const Modal = ({
-                   title, isOpen, onCancel, onSubmit, children,
-               }) => {
+export default class Modal extends Component {
 
-    return (
-        <>
-            { isOpen &&
-            <Portal>
-                <div className="modalOverlay">
-                    <div className="modalWindow">
-                        <div className="modalHeader">
-                            <div className="modalTitle">{title}</div>
+    constructor(props) {
+        super(props);
+    }
 
-                        </div>
-                        <div className="modalBody">
-                            {children}
-                        </div>
-                        <div className="modalFooter">
-                            <button onClick={onCancel}>Cancel</button>
-                            <button onClick={onSubmit}>Submit</button>
+    render() {
+        return (
+            <>
+                {this.props.isOpen &&
+                <Portal>
+                    <div className="modalOverlay">
+                        <div className="modalWindow">
+                            <div className="modalHeader">
+                                <div className="modalTitle">{this.props.title}</div>
+
+                            </div>
+                            <div className="modalBody">
+                                {this.props.children}
+                            </div>
+                            <div className="modalFooter">
+                                <button onClick={this.props.onCancel}>Cancel</button>
+                                <button onClick={this.props.onSubmit}>Submit</button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </Portal>
-            }
-        </>
-    );
-};
+                </Portal>
+                }
+            </>
+        );
+    };
+}
 
-Modal.propTypes = {
-    title: PropTypes.string,
-    isOpen: PropTypes.bool,
-    onCancel: PropTypes.func,
-    onSubmit: PropTypes.func,
-    children: PropTypes.node,
-};
 
-Modal.defaultProps = {
-    title: 'Modal title',
-    isOpen: false,
-    onCancel: () => {},
-    onSubmit: () => {},
-    children: null,
-};
-
-export default Modal;
