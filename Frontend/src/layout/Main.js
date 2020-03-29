@@ -3,7 +3,7 @@ import ContentContainer from "./content_container/ContentContainer";
 import LeftMenu from "./left_menu/LeftMenu";
 import Header from "./header/Header";
 import './Main.css'
-import Modal from "../common/modal/Modal";
+import Modal from "../components/modal/Modal";
 
 /**
  * Главный компонент (весь сайт)
