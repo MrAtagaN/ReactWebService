@@ -87,7 +87,7 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
                 .loginProcessingUrl("/login")
                 .defaultSuccessUrl("/", true)
                 //.failureUrl("/login.html?error=true") //редирект на эндпойнт при ошибке логина
-                //.failureHandler(authenticationFailureHandler())
+                //.failureHandler(authenticationFailureHandler())  //TODO cделать
                 .and()
                 .logout()
                 .logoutUrl("/logout")
@@ -101,7 +101,6 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-
         auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
     }
 }
