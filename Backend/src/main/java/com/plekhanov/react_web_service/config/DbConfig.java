@@ -20,9 +20,9 @@ import static org.hibernate.cfg.AvailableSettings.*;
 public class DbConfig {
 
     /**
-     * SessionFactory
+     * Создает бин {@link SessionFactory}, он должен создаваться после бина {@link FlywayMigrationInitializer}
      */
-    @Bean                                                             //SessionFactory должен создаваться после FlywayMigrationInitializer
+    @Bean
     public SessionFactory getSessionFactory(DataSource getDataSource, FlywayMigrationInitializer flywayMigrationInitializer) {
         org.hibernate.cfg.Configuration configuration = new org.hibernate.cfg.Configuration();
         configuration.addAnnotatedClass(User.class);

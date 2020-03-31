@@ -5,8 +5,14 @@ import org.springframework.validation.annotation.Validated;
 
 import javax.validation.constraints.NotBlank;
 
+/**
+ * Dao для {@link User}
+ */
 @Validated
 public interface UserDao {
 
-    User findByName(@NotBlank String userName);
+    /**
+     * Ищет {@link User} по полю username
+     */
+    User findByName(@NotBlank String username);
 }

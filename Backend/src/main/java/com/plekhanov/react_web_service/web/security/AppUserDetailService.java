@@ -18,7 +18,7 @@ public class AppUserDetailService implements UserDetailsService {
     final UserDao userDao;
 
     /**
-     *
+     * Возвращает Права и доступы пользователя по имени
      */
     @Override
     public UserDetails loadUserByUsername(String userName) {
