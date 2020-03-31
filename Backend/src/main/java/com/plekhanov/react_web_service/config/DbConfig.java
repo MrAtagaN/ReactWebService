@@ -11,10 +11,11 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import javax.sql.DataSource;
-
 import static org.hibernate.cfg.AvailableSettings.*;
 
-
+/**
+ * Конфиг подключения к базе данных
+ */
 @Configuration
 public class DbConfig {
 

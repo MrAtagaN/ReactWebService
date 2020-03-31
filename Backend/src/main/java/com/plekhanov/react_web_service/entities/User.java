@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import java.util.Set;
 
 /**
- *
+ * Пользователь сервиса
  */
 @Data
 @Entity(name = "User")
