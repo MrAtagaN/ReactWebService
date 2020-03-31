@@ -1,35 +1,40 @@
 package com.plekhanov.react_web_service.web.security;
 
 
+import com.plekhanov.react_web_service.dao.UserDao;
+import com.plekhanov.react_web_service.entities.*;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
+
 
 /**
  * Сервис возвращающий Права и доступы пользователя по имени
  */
-//@Service("AppUserDetailService")
-//public class AppUserDetailService implements UserDetailsService {
-//
-//    @Autowired
-//    UserDao userDao;
-//    @Autowired
-//    UserRoleDao userRoleDao;
-//
-//
-//    @Override
-//    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-//        User user = userDao.findByName(userName);
-//        if (user == null) {
-//            throw new UsernameNotFoundException("User " + userName + " not found!");
-//        }
-//
-//        user.setAuthorities(userRoleDao.findRolesByUserId(user.getId()));
-//        return user;
-//    }
-//
-//
-//}
+@RequiredArgsConstructor
+@Service("AppUserDetailService")
+public class AppUserDetailService implements UserDetailsService {
+
+    final UserDao userDao;
+
+    /**
+     *
+     */
+    @Override
+    public UserDetails loadUserByUsername(String userName) {
+        User user = userDao.findByName(userName);
+        if (user == null) {
+            throw new UsernameNotFoundException("User " + userName + " not found!");
+        }
+        return user;
+    }
+
+
+}

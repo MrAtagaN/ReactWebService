@@ -1,7 +1,8 @@
-CREATE TABLE user_roles
+CREATE TABLE authorities
 (
-    user_id     bigint REFERENCES users (id),
+    user_id     integer REFERENCES users (id),
     name        text
 );
 
-CREATE INDEX user_roles_user_id_index ON user_roles (user_id);
+CREATE INDEX authorities_user_id_index ON authorities (user_id);
+--TODO add uniq
