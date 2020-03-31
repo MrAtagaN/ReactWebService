@@ -105,8 +105,4 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
     }
 
-    public static void main(String[] args) {
-        String admin = new BCryptPasswordEncoder().encode("admin");
-        System.out.println(admin);
-    }
 }
