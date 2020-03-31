@@ -3,7 +3,6 @@ package com.plekhanov.react_web_service.dao.impl;
 import com.plekhanov.react_web_service.dao.UserDao;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;

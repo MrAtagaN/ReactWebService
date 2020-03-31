@@ -15,6 +15,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.servlet.Filter;
+import java.util.jar.JarOutputStream;
 
 /**
  * antMatchers() - маска URL
@@ -85,7 +86,7 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/login.html")//TODO поменять
                 .loginProcessingUrl("/login")
-                .defaultSuccessUrl("/", true)
+                .defaultSuccessUrl("/api/v1/user/test-user", true) //TODO поменять на /
                 //.failureUrl("/login.html?error=true") //редирект на эндпойнт при ошибке логина
                 //.failureHandler(authenticationFailureHandler())  //TODO cделать
                 .and()
@@ -102,5 +103,10 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
+    }
+
+    public static void main(String[] args) {
+        String admin = new BCryptPasswordEncoder().encode("admin");
+        System.out.println(admin);
     }
 }

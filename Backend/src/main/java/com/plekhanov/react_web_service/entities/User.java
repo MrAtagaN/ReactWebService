@@ -27,7 +27,7 @@ public class User implements UserDetails {
     @Column(name = "password")
     private String password;
 
-    @ElementCollection()
+    @ElementCollection(fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)
     @CollectionTable(name = "authorities", joinColumns = @JoinColumn(name = "user_id"))
     @Column(name = "name")

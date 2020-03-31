@@ -1,12 +1,12 @@
 CREATE TABLE users
 (
     id                      INTEGER PRIMARY KEY AUTOINCREMENT,
-    username                text,
-    password                text,
-    account_non_expired     boolean,
-    account_non_locked      boolean,
-    credentials_non_expired boolean,
-    enabled                 boolean,
-    last_enter              timestamp
+    username                TEXT NOT NULL,
+    password                TEXT NOT NULL,
+    account_non_expired     BOOLEAN NOT NULL,
+    account_non_locked      BOOLEAN NOT NULL,
+    credentials_non_expired BOOLEAN NOT NULL,
+    enabled                 BOOLEAN NOT NULL,
+    last_enter              TIMESTAMP
 );
 
