@@ -1,4 +1,6 @@
 package com.plekhanov.react_web_service.dao.impl;
 
-public class UserDaoImpl {
+import com.plekhanov.react_web_service.dao.UserDao;
+
+public class UserDaoImpl implements UserDao {
 }
