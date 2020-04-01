@@ -21,4 +21,11 @@ public class Main {
     // FlyWay
     // Ошибки записывать в отдельный файл
     // Swagger
+
+
+    /**
+     * Требования к Pull Request:
+     *
+     */
+
 }

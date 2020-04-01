@@ -9,22 +9,23 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 /**
- * Сервис возвращающий Права и доступы пользователя по имени
+ * Сервис возвращающий Информацию о правах доступа пользователя по имени.
+ * Нужен для авторизации и аутентификации пользователя фреймворком spring.security
  */
 @RequiredArgsConstructor
-@Service("AppUserDetailService")
+@Service
 public class AppUserDetailService implements UserDetailsService {
 
     final UserDao userDao;
 
     /**
-     * Возвращает Права и доступы пользователя по имени
+     * Возвращает Информацию о правах доступа пользователя по имени
      */
     @Override
-    public UserDetails loadUserByUsername(String userName) {
-        User user = userDao.findByName(userName);
+    public UserDetails loadUserByUsername(String username) {
+        User user = userDao.findByName(username);
         if (user == null) {
-            throw new UsernameNotFoundException("User " + userName + " not found!");
+            throw new UsernameNotFoundException("User " + username + " not found!");
         }
         return user;
     }

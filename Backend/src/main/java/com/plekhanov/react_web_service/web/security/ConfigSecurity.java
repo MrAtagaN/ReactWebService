@@ -18,53 +18,19 @@ import javax.servlet.Filter;
 import java.util.jar.JarOutputStream;
 
 /**
- * antMatchers() - маска URL
- * permitAll - разрешено всем
- *
- * loginPage - URL для аутентификации
- * loginProcessingUrl - URL для принятия логина и пароля
- * defaultSuccessUrl - URL после авторизации
- *
- * loginPage("/login.html") - редирект на эндпойнт при неодходимости авторизации (должен быть доступен всем)
- * failureUrl("/login.html?error=true") - редирект на эндпойнт при ошибке логина (должен быть доступен всем)
- * logoutUrl("/logout") - эндпойнт для разлогина
- *
- *
- * auth.userDetailsService(UserDetailsService) - Поменять UserDetailsService
- * {@link UserDetailsService} - Сервис, который находит информацию о правах и доступах пользователя по его имени
- *
- * UserDetails - Права и доступы пользователя
- * GrantedAuthority - Роли пользователя
- *
- *
- * auth.authenticationProvider(AuthenticationProvider) - Добавить AuthenticationProvider
- * {@link AuthenticationProvider} - Интерфейс для кастомной аунтефикации
- * Если метод authenticate() возвращает null, то обработка передается следующему AuthenticationProvider
- *
- *
- * {@link Authentication} - Информация об аунтефикации пользователя. После успешной аутентификации кладется в контекст
- * SecurityContextHolder
- * Если метод isAuthenticated() возвращает true, то запрос не будет проверяться другими AuthenticationProvider
- * SecurityContextHolder.getContext().setAuthentication(Authentication) - Явно поместить Authentication в контекст
- *
- *
- * http.addFilter(Filter) - Добавить кастомный фильтр
- * {@link Filter}- Интерфейс для кастомного фильтра
- *
- *
- * Хабр https://habr.com/ru/post/346628/
- * Видео https://www.youtube.com/watch?v=vSwJoHTkl_o&list=PLaWfw53gNyzaDTEmrlCCj1jjqr6770Nnp&index=18
- * Enable HTTPS/SSL  https://www.youtube.com/watch?v=HLSmjZ5vN0w
- * Справка: https://www.baeldung.com/spring-security-login
+ * Конфигурация Security
  */
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class ConfigSecurity extends WebSecurityConfigurerAdapter {
 
-    @Qualifier("AppUserDetailService")
     final UserDetailsService userDetailsService;
 
+    /**
+     * Настройка открытых эндпойнтов
+     *
+     */
     public void configure(WebSecurity webSecurity) {
         webSecurity.ignoring()
                 .antMatchers("/")
