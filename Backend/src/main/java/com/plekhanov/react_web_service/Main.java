@@ -20,4 +20,5 @@ public class Main {
     // Тесты controllers
     // FlyWay
     // Ошибки записывать в отдельный файл
+    // Swagger
 }

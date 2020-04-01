@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
+import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.stereotype.Repository;
 import com.plekhanov.react_web_service.entities.*;
 
@@ -20,7 +21,7 @@ public class UserDaoImpl implements UserDao {
         try (Session session = sessionFactory.openSession()) {
             Query<User> query = session.createQuery("FROM User u where u.username = :username", User.class);
             query.setParameter("username", username);
-            return query.list().get(0); //TODO;
+            return DataAccessUtils.singleResult(query.list());
         }
     }
 }

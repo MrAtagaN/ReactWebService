@@ -30,7 +30,7 @@ public class User implements UserDetails {
     @ElementCollection(fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)
     @CollectionTable(name = "authorities", joinColumns = @JoinColumn(name = "user_id"))
-    @Column(name = "name")
+    @Column(name = "role")
     private Set<Role> authorities;
 
     @Column(name = "account_non_expired")
