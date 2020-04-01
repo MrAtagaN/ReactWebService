@@ -18,7 +18,6 @@ public class Main {
     //TODO:
     // Тест базы
     // Тесты controllers
-    // FlyWay
     // Ошибки записывать в отдельный файл
     // Swagger
 

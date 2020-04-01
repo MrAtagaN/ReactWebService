@@ -34,10 +34,12 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity webSecurity) {
         webSecurity.ignoring()
                 .antMatchers("/")
-                .antMatchers("/*.js")
-                .antMatchers("/*.html")
-                .antMatchers("/*.css")
-                .antMatchers("/*.ico");
+                .antMatchers("/static/**")
+                .antMatchers("*.js")
+                .antMatchers("*.html")
+                .antMatchers("*.css")
+                .antMatchers("*.png")
+                .antMatchers("*.ico");
     }
 
     /**
