@@ -37,6 +37,7 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
                 .antMatchers("/static/**")
                 .antMatchers("*.js")
                 .antMatchers("*.html")
+                .antMatchers("/login.html")
                 .antMatchers("*.css")
                 .antMatchers("*.png")
                 .antMatchers("*.ico");

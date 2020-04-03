@@ -1,13 +1,11 @@
 import React, {Component} from "react";
-import Portal from "../portal/Portal";
-import './Modal.css'
+import Portal from "../../components/portal/Portal";
+import './AuthModal.css'
 
 /**
- * Модальное окно
  *
- * https://github.com/YauhenKavalchuk/react-components/tree/12_modal
  */
-export default class Modal extends Component {
+export default class AuthModal extends Component {
 
     constructor(props) {
         super(props);
@@ -16,16 +14,16 @@ export default class Modal extends Component {
     render() {
         return (
             <>
-                {this.props.isOpen &&
+                {this.props.state.isOpenAuth &&
                 <Portal>
                     <div className="modalOverlay">
                         <div className="modalWindow">
                             <div className="modalHeader">
-                                <div className="modalTitle">{this.props.title}</div>
+                                <div className="modalTitle">Авторизация</div>
 
                             </div>
                             <div className="modalBody">
-                                {this.props.children}
+                                <div>Введите логин и пароль</div>
                             </div>
                             <div className="modalFooter">
                                 <button onClick={this.props.onCancel}>Cancel</button>
@@ -38,6 +36,18 @@ export default class Modal extends Component {
             </>
         );
     };
+
+    handleSubmit = () => {
+        console.log('Submit function!');
+        this.props.state.isOpenAuth = false;
+    };
+
+    handleCancel = () => {
+        console.log('Cancel function!');
+        this.props.state.isOpenAuth = false;
+    };
+
+
 }
 
 
