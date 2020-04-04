@@ -1,13 +1,12 @@
 const initialState = {
-    isOpenAuth: true
+    isOpenAuth: true //открыто модальное окно авторизации
 };
 
-export const rootReducer = (state = initialState, action) => {
-
+export const rootReducer = (store = initialState, action) => {
     switch (action.type) {
         case 'isOpenAuth':
-            return {...state, isOpenAuth: action.value};
+            return {...store, isOpenAuth: action.value};
     }
 
-    return state;
+    return store;
 };

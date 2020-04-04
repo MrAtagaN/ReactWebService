@@ -9,7 +9,7 @@ import {BrowserRouter} from "react-router-dom";
 
 
 /**
- * Точка входа, рендерит Main компонент
+ * Точка входа. Подключает react-router, redux
  */
 class App extends Component {
 

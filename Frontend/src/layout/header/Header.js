@@ -18,10 +18,10 @@ export default class Header extends Component {
         return (
             <div className="header">
                 <span>
-                  {this.pageName}
+                  {this.title}
                 </span>
                 <span>
-                    Welcome to {this.title}!
+                    Welcome to {this.pageName}!
                 </span>
             </div>
         )

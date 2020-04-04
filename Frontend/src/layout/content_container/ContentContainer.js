@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {Component} from 'react';
 import Page_1 from "./page_1/Page_1";
 import Page_2 from "./page_2/Page_2";
 import {Route} from "react-router-dom";

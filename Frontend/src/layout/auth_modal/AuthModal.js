@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import Portal from '../../components/portal/Portal';
-import './AuthModal.css';
+import '../../components/modal/Modal.css';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {changeIsOpenAuth} from '../../store/actions';
@@ -49,16 +49,17 @@ class AuthModal extends Component {
 
 
 /**
- * Из state Store копирует поля в props данного компонента
+ * Кладет значение isOpenAuth из store в props данного компонента
  */
-const putStateFieldsToProps = (state) => {
+const putIsOpenAuthToProps = (store) => {
     return {
-        isOpenAuth: state.isOpenAuth
+        isOpenAuth: store.isOpenAuth
     };
 };
 
 /**
- * Кладет функции, возвращающие action в props
+ * Кладет функцию changeIsOpenAuth в props данного компонента.
+ * Функция changeIsOpenAuth будет отправлять action в dispatch
  */
 const putActionsToProps = (dispatch) => {
     return {
@@ -66,5 +67,5 @@ const putActionsToProps = (dispatch) => {
     };
 };
 
-export default connect(putStateFieldsToProps, putActionsToProps)(AuthModal);
+export default connect(putIsOpenAuthToProps, putActionsToProps)(AuthModal);
 
