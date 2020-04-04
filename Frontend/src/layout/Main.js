@@ -14,8 +14,8 @@ export default class Main extends Component {
         return (
             <div>
                 <AuthModal/>
-                <Header/>
                 <LeftMenu/>
+                <Header/>
                 <ContentContainer/>
             </div>
         )

@@ -1,12 +1,12 @@
 .header {
-    background-image: linear-gradient(to right, #287d2f, #538c5a 46%, #538c5a 56%, #287d2f);
+    background-image: linear-gradient(to right, #26343a, #064f6f 46%, #064f6f 56%, #26343a);
     padding-top: 30px;
     padding-bottom: 30px;
     margin-left: 0;
     width: auto;
     padding-left: 100px;
 
-    color: #FFFFFF
+    color: #ddd
 
 }
 
