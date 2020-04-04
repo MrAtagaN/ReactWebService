@@ -1,13 +1,12 @@
 import React, {Component} from 'react'
 import './Header.css';
-import {connect} from "react-redux";
+import {connectToStore} from "../../store/connect";
 
 
 /**
  * Заголовок сайта
  */
 class Header extends Component {
-
 
     render() {
         return (
@@ -25,15 +24,4 @@ class Header extends Component {
 }
 
 
-
-/**
- * Кладет значение title из store в props данного компонента
- */
-const putPageNameToProps = (store) => {
-    return {
-        title: store.title
-    };
-};
-
-
-export default connect(putPageNameToProps)(Header);
+export default connectToStore()(Header);

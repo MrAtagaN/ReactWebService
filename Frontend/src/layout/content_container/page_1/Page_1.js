@@ -1,6 +1,5 @@
 import React, {Component} from "react";
-import {connect} from 'react-redux';
-import {putActionsToProps} from "../../../store/connect";
+import {connectToStore} from "../../../store/connect";
 
 
 class Page_1 extends Component {
@@ -18,5 +17,4 @@ class Page_1 extends Component {
     }
 }
 
-
-export default connect(putActionsToProps, putActionsToProps)(Page_1);
+export default connectToStore()(Page_1);

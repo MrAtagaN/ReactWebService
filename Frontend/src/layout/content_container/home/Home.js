@@ -1,6 +1,5 @@
 import React, {Component} from "react";
-import {connect} from 'react-redux';
-import {putActionsToProps} from "../../../store/connect";
+import {connectToStore} from "../../../store/connect";
 
 
 class Home extends Component {
@@ -19,5 +18,4 @@ class Home extends Component {
 }
 
 
-
-export default connect(putActionsToProps, putActionsToProps)(Home);
+export default connectToStore()(Home);

@@ -1,9 +1,8 @@
 import React, {Component} from "react";
 import Portal from '../../components/portal/Portal';
 import '../../components/modal/Modal.css';
-import {connect} from 'react-redux';
 
-import {putActionsToProps, putStoreFieldsToProps} from "../../store/connect";
+import {connectToStore} from "../../store/connect";
 
 /**
  * Окно авторизации
@@ -48,5 +47,5 @@ class AuthModal extends Component {
 }
 
 
-export default connect(putStoreFieldsToProps, putActionsToProps)(AuthModal);
+export default connectToStore()(AuthModal);
 
