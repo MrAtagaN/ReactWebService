@@ -7,8 +7,6 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.springframework.boot.autoconfigure.flyway.FlywayMigrationInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import javax.sql.DataSource;
 
@@ -38,20 +36,5 @@ public class DbConfig {
         return configuration.buildSessionFactory(registry);
     }
 
-    //    @Bean
-//    public HibernateTransactionManager getTransactionManager(SessionFactory sessionFactory) {
-//        HibernateTransactionManager manager = new HibernateTransactionManager();
-//        manager.setSessionFactory(sessionFactory);
-//        return manager;
-//    }
 
-    @Bean
-    public JdbcTemplate getJdbcTemplate(DataSource getDataSource) {
-        return new JdbcTemplate(getDataSource);
-    }
-
-    @Bean
-    public NamedParameterJdbcTemplate getNamedParameterJdbcTemplate(DataSource getDataSource) {
-        return new NamedParameterJdbcTemplate(getDataSource);
-    }
 }
