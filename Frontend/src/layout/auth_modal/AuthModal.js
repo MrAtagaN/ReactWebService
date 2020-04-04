@@ -1,22 +1,19 @@
 import React, {Component} from "react";
-import Portal from "../../components/portal/Portal";
-import './AuthModal.css'
+import Portal from '../../components/portal/Portal';
+import './AuthModal.css';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {changeIsOpenAuth} from '../../store/actions';
 
 /**
  * Окно авторизации
  */
-export default class AuthModal extends Component {
-
-    constructor(props) {
-        super(props);
-        this.parentComponent = props.parentComponent; //TODO сделать состояние в обзем компоненте
-
-    }
+class AuthModal extends Component {
 
     render() {
         return (
             <>
-                {this.parentComponent.state.isOpenAuth &&
+                {this.props.isOpenAuth &&
                 <Portal>
                     <div className="modalOverlay">
                         <div className="modalWindow">
@@ -41,15 +38,35 @@ export default class AuthModal extends Component {
 
     handleSubmitAuth = () => {
         console.log('Submit function!');
-        this.parentComponent.setState({ isOpenAuth: false });
+        this.props.changeIsOpenAuth(false);
 
     };
 
     handleCancelAuth = () => {
         console.log('Cancel function!');
-        this.parentComponent.setState({ isOpenAuth: false });
+        this.props.changeIsOpenAuth(false);
     };
 
 }
 
+
+/**
+ * Из state Store копирует поля в props данного компонента
+ */
+const putStateFieldsToProps = (state) => {
+    return {
+        isOpenAuth: state.isOpenAuth
+    };
+};
+
+/**
+ * Кладет функции, возвращающие action в props
+ */
+const putActionsToProps = (dispatch) => {
+    return {
+        changeIsOpenAuth: bindActionCreators(changeIsOpenAuth, dispatch)
+    };
+};
+
+export default connect(putStateFieldsToProps, putActionsToProps)(AuthModal);
 
