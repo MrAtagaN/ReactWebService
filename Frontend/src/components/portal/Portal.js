@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import ReactDOM from 'react-dom';
 
 /**
- *
+ * Компонент, создающийся вне DOM дерева
+ * Нужен для модальных окон
  */
 export default class Portal extends Component {
 

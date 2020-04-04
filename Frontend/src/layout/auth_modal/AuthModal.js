@@ -3,7 +3,7 @@ import Portal from "../../components/portal/Portal";
 import './AuthModal.css'
 
 /**
- *
+ * Окно авторизации
  */
 export default class AuthModal extends Component {
 
@@ -35,16 +35,6 @@ export default class AuthModal extends Component {
                 }
             </>
         );
-    };
-
-    handleSubmit = () => {
-        console.log('Submit function!');
-        this.props.state.isOpenAuth = false;
-    };
-
-    handleCancel = () => {
-        console.log('Cancel function!');
-        this.props.state.isOpenAuth = false;
     };
 
 
