@@ -10,7 +10,7 @@ import AuthModal from "./auth_modal/AuthModal";
  */
 export default class Main extends Component {
     state = {
-        isOpenAuth: false
+        isOpenAuth: true
     };
 
     constructor(props) {
@@ -18,20 +18,10 @@ export default class Main extends Component {
     }
 
 
-    handleSubmitAuth = () => {
-        console.log('Submit function!');
-        this.setState({ isOpenAuth: false });
-    };
-
-    handleCancelAuth = () => {
-        console.log('Cancel function!');
-        this.setState({ isOpenAuth: false });
-    };
-
     render() {
         return (
             <div>
-                <AuthModal state ={this.state} onCancel={this.handleCancelAuth} onSubmit={this.handleSubmitAuth}/>
+                <AuthModal parentComponent = {this}/>
                 <Header/>
                 <LeftMenu/>
                 <ContentContainer/>
