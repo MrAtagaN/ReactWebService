@@ -37,13 +37,11 @@ class AuthModal extends Component {
     };
 
     handleSubmitAuth = () => {
-        console.log('Submit function!');
         this.props.changeIsOpenAuth(false);
 
     };
 
     handleCancelAuth = () => {
-        console.log('Cancel function!');
         this.props.changeIsOpenAuth(false);
     };
 
