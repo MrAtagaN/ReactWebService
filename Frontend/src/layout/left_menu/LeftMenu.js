@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import './LeftMenu.css'
+import {Link} from 'react-router-dom';
 
 /**
  * Левое меню
@@ -9,14 +10,14 @@ export default class LeftMenu extends Component {
     render() {
         return (
             <div className="leftMenu">
-                <a className="homeLink"> Домой </a>
+                <Link to="/" className="homeLink"> Домой </Link>
                 <ol>
                     <ul>
                         <li>
-                            <a> Страница 1 </a>
+                            <Link to="/page1"> Страница 1 </Link>
                         </li>
                         <li>
-                            <a> Страница 2 </a>
+                            <Link to='/page2'> Страница 2 </Link>
                         </li>
                     </ul>
                 </ol>
