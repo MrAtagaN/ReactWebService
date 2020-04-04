@@ -1,30 +1,39 @@
 import React, {Component} from 'react'
-import './Header.css'
+import './Header.css';
+import {connect} from "react-redux";
+
 
 /**
  * Заголовок сайта
  */
-export default class Header extends Component {
-
-    constructor(props) {
-        super(props);
-
-        this.pageName = "Имя сайта";
-        this.title = "Заголовок";
-    }
+class Header extends Component {
 
 
     render() {
         return (
             <div className="header">
                 <span>
-                  {this.title}
+                  {this.props.title}
                 </span>
                 <span>
-                    Welcome to {this.pageName}!
+                    Welcome to Site!
                 </span>
             </div>
         )
     }
 
 }
+
+
+
+/**
+ * Кладет значение title из store в props данного компонента
+ */
+const putPageNameToProps = (store) => {
+    return {
+        title: store.title
+    };
+};
+
+
+export default connect(putPageNameToProps)(Header);

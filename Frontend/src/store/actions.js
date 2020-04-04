@@ -4,3 +4,10 @@ export const changeIsOpenAuth = (newValue) => {
         value: newValue
     }
 };
+
+export const changeTitle = (newValue) => {
+    return {
+        type: 'title',
+        value: newValue
+    }
+};
