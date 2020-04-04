@@ -18,4 +18,4 @@ class Home extends Component {
 }
 
 
-export default connectToStore()(Home);
+export default connectToStore(Home);

@@ -24,6 +24,7 @@ export const putActionsToProps = (dispatch) => {
 };
 
 
-export const connectToStore = () => {
-    return connect(putStoreFieldsToProps, putActionsToProps);
-};
+/**
+ * Функция кладет в props компонента переменные Store
+ */
+export const connectToStore = connect(putStoreFieldsToProps, putActionsToProps);

@@ -47,5 +47,5 @@ class AuthModal extends Component {
 }
 
 
-export default connectToStore()(AuthModal);
+export default connectToStore(AuthModal);
 

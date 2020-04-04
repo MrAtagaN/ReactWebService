@@ -19,4 +19,4 @@ class Page_2 extends Component {
 }
 
 
-export default connectToStore()(Page_2);
+export default connectToStore(Page_2);
