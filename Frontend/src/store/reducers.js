@@ -1,6 +1,6 @@
 const initialState = {
     isOpenAuth: true, //открыто модальное окно авторизации
-    pageName: ''
+    title: ''
 };
 
 export const rootReducer = (store = initialState, action) => {
