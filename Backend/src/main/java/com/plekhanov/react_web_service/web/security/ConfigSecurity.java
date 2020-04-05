@@ -106,10 +106,7 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
         return (httpServletRequest, httpServletResponse, e) -> {
             httpServletResponse.setStatus(401);
 
-            ApiResponseBody apiResponseBody = new ApiResponseBody();
-            apiResponseBody.setCode(AUTHENTICATION_FAILURE.getValue());
-            apiResponseBody.setErrorMessage("Authentication failure");
-
+            ApiResponseBody apiResponseBody = ApiResponseBody.error(AUTHENTICATION_FAILURE, "Authentication failure");
             putApiResponseBodyInResponse(apiResponseBody, httpServletResponse);
         };
     }
@@ -121,10 +118,7 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
         return (httpServletRequest, httpServletResponse, e) -> {
             httpServletResponse.setStatus(403);
 
-            ApiResponseBody apiResponseBody = new ApiResponseBody();
-            apiResponseBody.setCode(ACCESS_DENIED.getValue());
-            apiResponseBody.setErrorMessage("Access denied");
-
+            ApiResponseBody apiResponseBody = ApiResponseBody.error(ACCESS_DENIED, "Access denied");
             putApiResponseBodyInResponse(apiResponseBody, httpServletResponse);
         };
     }
@@ -136,10 +130,7 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
         return (httpServletRequest, httpServletResponse, e) -> {
             httpServletResponse.setStatus(401);
 
-            ApiResponseBody apiResponseBody = new ApiResponseBody();
-            apiResponseBody.setCode(NOT_AUTHENTICATED.getValue());
-            apiResponseBody.setErrorMessage("Not authenticated");
-
+            ApiResponseBody apiResponseBody = ApiResponseBody.error(NOT_AUTHENTICATED, "Not authenticated");
             putApiResponseBodyInResponse(apiResponseBody, httpServletResponse);
         };
     }
