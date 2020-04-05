@@ -1,24 +1,33 @@
 package com.plekhanov.react_web_service.web.security;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.plekhanov.react_web_service.web.dto.ApiResponseBody;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.Authentication;
+
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.AuthenticationEntryPoint;
+import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
-import javax.servlet.Filter;
-import java.util.jar.JarOutputStream;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import static com.plekhanov.react_web_service.web.dto.ApiResponseBody.ResponseCode.*;
+
 
 /**
  * Конфигурация Security
+ *
+ * https://stackoverflow.com/questions/32498868/custom-login-form-configure-spring-security-to-get-a-json-response
  */
 @Configuration
 @EnableWebSecurity
@@ -26,10 +35,10 @@ import java.util.jar.JarOutputStream;
 public class ConfigSecurity extends WebSecurityConfigurerAdapter {
 
     final UserDetailsService userDetailsService;
+    final ObjectMapper objectMapper;
 
     /**
      * Настройка открытых эндпойнтов
-     *
      */
     public void configure(WebSecurity webSecurity) {
         webSecurity.ignoring()
@@ -53,17 +62,18 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/api/v1/login/singin")//TODO поменять
-                .loginProcessingUrl("/login")
-                .defaultSuccessUrl("/api/v1/user/test-user", true) //TODO поменять на /
-                //.failureUrl("/login.html?error=true") //редирект на эндпойнт при ошибке логина
-                //.failureHandler(authenticationFailureHandler())  //TODO cделать
+                .successHandler(successHandler())
+                .failureHandler(failureHandler())
+                .and()
+                .exceptionHandling()
+                .accessDeniedHandler(accessDeniedHandler())
+                .authenticationEntryPoint(authenticationEntryPoint())
                 .and()
                 .logout()
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/")
                 .deleteCookies("JSESSIONID");
-                //.logoutSuccessHandler(logoutSuccessHandler());
+        //.logoutSuccessHandler(logoutSuccessHandler());
     }
 
     /**
@@ -73,5 +83,105 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
     }
+
+
+    /**
+     * Обработчик успешного логина
+     */
+    private AuthenticationSuccessHandler successHandler() {
+        return (httpServletRequest, httpServletResponse, authentication) -> {
+            httpServletResponse.setStatus(200);
+
+            ApiResponseBody apiResponseBody = new ApiResponseBody();
+            apiResponseBody.setCode(OK.getValue());
+
+            putApiResponseBodyInResponse(apiResponseBody, httpServletResponse);
+        };
+    }
+
+    /**
+     * Обработчик ошибки логина
+     */
+    private AuthenticationFailureHandler failureHandler() {
+        return (httpServletRequest, httpServletResponse, e) -> {
+            httpServletResponse.setStatus(401);
+
+            ApiResponseBody apiResponseBody = new ApiResponseBody();
+            apiResponseBody.setCode(AUTHENTICATION_FAILURE.getValue());
+            apiResponseBody.setErrorMessage("Authentication failure");
+
+            putApiResponseBodyInResponse(apiResponseBody, httpServletResponse);
+        };
+    }
+
+    /**
+     * Обработчик запрета доступа для пользователя
+     */
+    private AccessDeniedHandler accessDeniedHandler() {
+        return (httpServletRequest, httpServletResponse, e) -> {
+            httpServletResponse.setStatus(403);
+
+            ApiResponseBody apiResponseBody = new ApiResponseBody();
+            apiResponseBody.setCode(ACCESS_DENIED.getValue());
+            apiResponseBody.setErrorMessage("Access denied");
+
+            putApiResponseBodyInResponse(apiResponseBody, httpServletResponse);
+        };
+    }
+
+    /**
+     * Обработчик необходимости залогинится
+     */
+    private AuthenticationEntryPoint authenticationEntryPoint() {
+        return (httpServletRequest, httpServletResponse, e) -> {
+            httpServletResponse.setStatus(401);
+
+            ApiResponseBody apiResponseBody = new ApiResponseBody();
+            apiResponseBody.setCode(NOT_AUTHENTICATED.getValue());
+            apiResponseBody.setErrorMessage("Not authenticated");
+
+            putApiResponseBodyInResponse(apiResponseBody, httpServletResponse);
+        };
+    }
+
+    /**
+     *
+     */
+    private void putApiResponseBodyInResponse(ApiResponseBody apiResponseBody, HttpServletResponse httpServletResponse) throws IOException {
+        PrintWriter out = httpServletResponse.getWriter();
+        httpServletResponse.setContentType("application/json");
+        httpServletResponse.setCharacterEncoding("UTF-8");
+        out.print(objectMapper.writeValueAsString(apiResponseBody));
+        out.flush();
+    }
+
+//    private Filter csrfHeaderFilter() {
+//        return new OncePerRequestFilter() {
+//            @Override
+//            protected void doFilterInternal(HttpServletRequest request,
+//                                            HttpServletResponse response, FilterChain filterChain)
+//                    throws ServletException, IOException {
+//                CsrfToken csrf = (CsrfToken) request.getAttribute(CsrfToken.class
+//                        .getName());
+//                if (csrf != null) {
+//                    Cookie cookie = WebUtils.getCookie(request, "XSRF-TOKEN");
+//                    String token = csrf.getToken();
+//                    if (cookie == null || token != null
+//                            && !token.equals(cookie.getValue())) {
+//                        cookie = new Cookie("XSRF-TOKEN", token);
+//                        cookie.setPath("/");
+//                        response.addCookie(cookie);
+//                    }
+//                }
+//                filterChain.doFilter(request, response);
+//            }
+//        };
+//    }
+//
+//    private CsrfTokenRepository csrfTokenRepository() {
+//        HttpSessionCsrfTokenRepository repository = new HttpSessionCsrfTokenRepository();
+//        repository.setHeaderName("X-XSRF-TOKEN");
+//        return repository;
+//    }
 
 }
