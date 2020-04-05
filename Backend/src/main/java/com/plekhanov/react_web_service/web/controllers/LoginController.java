@@ -16,9 +16,20 @@ public class LoginController {
      *
      *
      */
+//    @GetMapping("singin")
+//    public ResponseEntity<ApiResponse> getTestUser() {
+//        ApiResponse apiResponse = new ApiResponse();
+//        apiResponse.setCode(2);
+//        apiResponse.setErrorMessage("you need login");
+//
+//        return ResponseEntity
+//                .status(HttpStatus.OK)
+//                .header("Content-Type", "text/plain; charset=UTF-8")
+//                .body(apiResponse);
+//    }
+
     @GetMapping("singin")
     public String getTestUser() {
-
-        return "Singin";
+        return "Login page";
     }
 }

@@ -15,6 +15,7 @@ class ErrorHandlerControllerAdvice {
     @ExceptionHandler({Exception.class})
     public ResponseEntity<String> onExceptionHandler(Exception e, WebRequest webRequest) {
         log.error("Internal error during handling request {}.", webRequest, e);
+        e.printStackTrace();
 
         return ResponseEntity
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)
