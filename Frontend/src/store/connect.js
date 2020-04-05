@@ -1,5 +1,5 @@
 import {bindActionCreators} from 'redux';
-import {changeIsOpenAuth, changeTitle} from '../store/actions';
+import {changeIsOpenAuthModal, changeTitle} from '../store/actions';
 import {connect} from "react-redux";
 
 /**
@@ -7,7 +7,7 @@ import {connect} from "react-redux";
  */
 export const putStoreFieldsToProps = (store) => {
     return {
-        isOpenAuth: store.isOpenAuth,
+        isOpenAuthModal: store.isOpenAuthModal,
         title: store.title
     };
 };
@@ -18,7 +18,7 @@ export const putStoreFieldsToProps = (store) => {
  */
 export const putActionsToProps = (dispatch) => {
     return {
-        changeIsOpenAuth: bindActionCreators(changeIsOpenAuth, dispatch),
+        changeIsOpenAuthModal: bindActionCreators(changeIsOpenAuthModal, dispatch),
         changeTitle: bindActionCreators(changeTitle, dispatch)
     };
 };

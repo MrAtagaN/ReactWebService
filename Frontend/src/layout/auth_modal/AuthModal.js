@@ -12,7 +12,7 @@ class AuthModal extends Component {
     render() {
         return (
             <>
-                {this.props.isOpenAuth &&
+                {this.props.isOpenAuthModal &&
                 <Portal>
                     <div className="modalOverlay">
                         <div className="modalWindow">
@@ -36,12 +36,12 @@ class AuthModal extends Component {
     };
 
     handleSubmitAuth = () => {
-        this.props.changeIsOpenAuth(false);
+        this.props.changeIsOpenAuthModal(false);
 
     };
 
     handleCancelAuth = () => {
-        this.props.changeIsOpenAuth(false);
+        this.props.changeIsOpenAuthModal(false);
     };
 
 }

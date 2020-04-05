@@ -1,6 +1,6 @@
-export const changeIsOpenAuth = (newValue) => {
+export const changeIsOpenAuthModal = (newValue) => {
     return {
-        type: 'isOpenAuth',
+        type: 'isOpenAuthModal',
         value: newValue
     }
 };
