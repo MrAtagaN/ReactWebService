@@ -3,7 +3,7 @@ package com.plekhanov.react_web_service.web.dto;
 import lombok.Data;
 
 @Data
-public class ApiResponse<T> {
+public class ApiResponseBody<T> {
 
     private T data;
     private int code;

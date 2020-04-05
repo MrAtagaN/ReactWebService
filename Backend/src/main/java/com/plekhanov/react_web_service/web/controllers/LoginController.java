@@ -1,6 +1,6 @@
 package com.plekhanov.react_web_service.web.controllers;
 
-import com.plekhanov.react_web_service.web.dto.ApiResponse;
+import com.plekhanov.react_web_service.web.dto.ApiResponseBody;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,20 +19,16 @@ public class LoginController {
      *
      *
      */
-//    @GetMapping("singin")
-//    public ResponseEntity<ApiResponse> getTestUser() {
-//        ApiResponse apiResponse = new ApiResponse();
-//        apiResponse.setCode(2);
-//        apiResponse.setErrorMessage("you need login");
-//
-//        return ResponseEntity
-//                .status(HttpStatus.OK)
-//                .header("Content-Type", "text/plain; charset=UTF-8")
-//                .body(apiResponse);
-//    }
+    @GetMapping(value = "singin")
+    public ResponseEntity<ApiResponseBody> getTestUser() {
+        ApiResponseBody apiResponseBody = new ApiResponseBody();
+        apiResponseBody.setCode(2);
+        apiResponseBody.setErrorMessage("you need login");
 
-    @GetMapping("singin")
-    public String getTestUser() {
-        return "Login page";
+        return ResponseEntity
+                .status(HttpStatus.FORBIDDEN)
+                .header("Content-Type", "application/json; charset=UTF-8")
+                .body(apiResponseBody);
     }
+
 }
