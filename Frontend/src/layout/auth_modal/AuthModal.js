@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import Portal from '../../components/portal/Portal';
 import '../../components/modal/Modal.css';
 
-import {connectToStore} from "../../store/connect";
+import {connectToStore} from "../../store/Connect";
 
 /**
  * Окно авторизации

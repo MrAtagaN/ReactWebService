@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import './Header.css';
-import {connectToStore} from "../../store/connect";
+import {connectToStore} from "../../store/Connect";
 
 
 /**

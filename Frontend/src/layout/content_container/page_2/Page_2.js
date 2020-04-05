@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {connectToStore} from "../../../store/connect";
+import {connectToStore} from "../../../store/Connect";
 
 
 class Page_2 extends Component {

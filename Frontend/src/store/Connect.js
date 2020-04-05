@@ -1,5 +1,5 @@
 import {bindActionCreators} from 'redux';
-import {changeIsOpenAuthModal, changeTitle} from '../store/actions';
+import {changeIsOpenAuthModal, changeTitle} from './Actions';
 import {connect} from "react-redux";
 
 /**

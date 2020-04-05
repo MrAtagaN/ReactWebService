@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import Main from './layout/Main';
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
-import {rootReducer} from "./store/reducers";
+import {rootReducer} from "./store/Reducers";
 import createBrowserHistory from "history/createBrowserHistory";
 import {BrowserRouter} from "react-router-dom";
 
