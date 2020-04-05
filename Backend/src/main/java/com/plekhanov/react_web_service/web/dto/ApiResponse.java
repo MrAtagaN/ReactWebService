@@ -10,15 +10,15 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ApiResponseBody<T> {
+public class ApiResponse<T> {
 
     private T data;
     private int code;
     private String errorMessage;
 
 
-    public static ApiResponseBody error(ResponseCode code, String errorMessage) {
-        return ApiResponseBody.builder()
+    public static ApiResponse error(ResponseCode code, String errorMessage) {
+        return ApiResponse.builder()
                 .code(code.getValue())
                 .errorMessage(errorMessage)
                 .build();

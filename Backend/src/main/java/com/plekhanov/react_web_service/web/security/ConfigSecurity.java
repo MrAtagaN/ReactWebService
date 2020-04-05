@@ -1,7 +1,7 @@
 package com.plekhanov.react_web_service.web.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.plekhanov.react_web_service.web.dto.ApiResponseBody;
+import com.plekhanov.react_web_service.web.dto.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import static com.plekhanov.react_web_service.web.dto.ApiResponseBody.ResponseCode.*;
+import static com.plekhanov.react_web_service.web.dto.ApiResponse.ResponseCode.*;
 
 
 /**
@@ -92,10 +92,10 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
         return (httpServletRequest, httpServletResponse, authentication) -> {
             httpServletResponse.setStatus(200);
 
-            ApiResponseBody apiResponseBody = new ApiResponseBody();
-            apiResponseBody.setCode(OK.getValue());
+            ApiResponse apiResponse = new ApiResponse();
+            apiResponse.setCode(OK.getValue());
 
-            putApiResponseBodyInResponse(apiResponseBody, httpServletResponse);
+            putApiResponseBodyInResponse(apiResponse, httpServletResponse);
         };
     }
 
@@ -106,8 +106,8 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
         return (httpServletRequest, httpServletResponse, e) -> {
             httpServletResponse.setStatus(401);
 
-            ApiResponseBody apiResponseBody = ApiResponseBody.error(AUTHENTICATION_FAILURE, "Authentication failure");
-            putApiResponseBodyInResponse(apiResponseBody, httpServletResponse);
+            ApiResponse apiResponse = ApiResponse.error(AUTHENTICATION_FAILURE, "Authentication failure");
+            putApiResponseBodyInResponse(apiResponse, httpServletResponse);
         };
     }
 
@@ -118,8 +118,8 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
         return (httpServletRequest, httpServletResponse, e) -> {
             httpServletResponse.setStatus(403);
 
-            ApiResponseBody apiResponseBody = ApiResponseBody.error(ACCESS_DENIED, "Access denied");
-            putApiResponseBodyInResponse(apiResponseBody, httpServletResponse);
+            ApiResponse apiResponse = ApiResponse.error(ACCESS_DENIED, "Access denied");
+            putApiResponseBodyInResponse(apiResponse, httpServletResponse);
         };
     }
 
@@ -130,19 +130,19 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
         return (httpServletRequest, httpServletResponse, e) -> {
             httpServletResponse.setStatus(401);
 
-            ApiResponseBody apiResponseBody = ApiResponseBody.error(NOT_AUTHENTICATED, "Not authenticated");
-            putApiResponseBodyInResponse(apiResponseBody, httpServletResponse);
+            ApiResponse apiResponse = ApiResponse.error(NOT_AUTHENTICATED, "Not authenticated");
+            putApiResponseBodyInResponse(apiResponse, httpServletResponse);
         };
     }
 
     /**
      *
      */
-    private void putApiResponseBodyInResponse(ApiResponseBody apiResponseBody, HttpServletResponse httpServletResponse) throws IOException {
+    private void putApiResponseBodyInResponse(ApiResponse apiResponse, HttpServletResponse httpServletResponse) throws IOException {
         PrintWriter out = httpServletResponse.getWriter();
         httpServletResponse.setContentType("application/json");
         httpServletResponse.setCharacterEncoding("UTF-8");
-        out.print(objectMapper.writeValueAsString(apiResponseBody));
+        out.print(objectMapper.writeValueAsString(apiResponse));
         out.flush();
     }
 
