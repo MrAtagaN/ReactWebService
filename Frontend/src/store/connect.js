@@ -3,7 +3,7 @@ import {changeIsOpenAuth, changeTitle} from '../store/actions';
 import {connect} from "react-redux";
 
 /**
- * Кладет значения из store в props данного компонента
+ * Кладет значения переменных из store в props
  */
 export const putStoreFieldsToProps = (store) => {
     return {
@@ -14,7 +14,7 @@ export const putStoreFieldsToProps = (store) => {
 
 
 /**
- * Кладет функции на изменения переменных в props данного компонента.
+ * Кладет функции для изменения переменных store в props
  */
 export const putActionsToProps = (dispatch) => {
     return {
@@ -25,6 +25,6 @@ export const putActionsToProps = (dispatch) => {
 
 
 /**
- * Функция кладет в props компонента переменные Store
+ * Кладет в props компонента переменные store и функции для изменения переменных store
  */
 export const connectToStore = connect(putStoreFieldsToProps, putActionsToProps);
