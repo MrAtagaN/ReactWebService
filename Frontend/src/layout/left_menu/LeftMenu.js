@@ -10,14 +10,17 @@ export default class LeftMenu extends Component {
     render() {
         return (
             <div className="leftMenu">
-                <Link to="/" className="homeLink"> Домой </Link>
+                <Link to="/" className="homeLink">Домой</Link>
                 <ol>
                     <ul>
                         <li>
-                            <Link to="/page1"> Страница 1 </Link>
+                            <Link to="/page1">Страница 1</Link>
                         </li>
                         <li>
-                            <Link to='/page2'> Страница 2 </Link>
+                            <Link to='/page2'>Страница 2</Link>
+                        </li>
+                        <li>
+                            <Link to='/secure-page'>Приватная страница</Link>
                         </li>
                     </ul>
                 </ol>
