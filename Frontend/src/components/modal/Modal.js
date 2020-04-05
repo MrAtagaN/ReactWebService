@@ -16,20 +16,20 @@ export default class Modal extends Component {
     render() {
         return (
             <>
-                {this.props.isOpen &&
+                {this.props.isOpenModal &&
                 <Portal>
                     <div className="modalOverlay">
                         <div className="modalWindow">
                             <div className="modalHeader">
-                                <div className="modalTitle">{this.props.title}</div>
+                                <div className="modalTitle">{this.props.titleModal}</div>
 
                             </div>
                             <div className="modalBody">
                                 {this.props.children}
                             </div>
                             <div className="modalFooter">
-                                <button onClick={this.props.onCancel}>Cancel</button>
-                                <button onClick={this.props.onSubmit}>Submit</button>
+                                <button onClick={this.props.onCancelModal}>Cancel</button>
+                                <button onClick={this.props.onSubmitModal}>Submit</button>
                             </div>
                         </div>
                     </div>
