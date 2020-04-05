@@ -37,7 +37,7 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
                 .antMatchers("/static/**")
                 .antMatchers("*.js")
                 .antMatchers("*.html")
-                .antMatchers("/login.html")
+                .antMatchers("/api/v1/login/singin")
                 .antMatchers("*.css")
                 .antMatchers("*.png")
                 .antMatchers("*.ico");
@@ -53,7 +53,7 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/login.html")//TODO поменять
+                .loginPage("/api/v1/login/singin")//TODO поменять
                 .loginProcessingUrl("/login")
                 .defaultSuccessUrl("/api/v1/user/test-user", true) //TODO поменять на /
                 //.failureUrl("/login.html?error=true") //редирект на эндпойнт при ошибке логина

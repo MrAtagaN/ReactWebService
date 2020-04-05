@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import {connectToStore} from "../../../store/connect";
+import instance from "../../../services/RestClient";
 
 
 class SecurePage extends Component {
