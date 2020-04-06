@@ -1,4 +1,4 @@
-package com.plekhanov.react_web_service.web.controllers;
+package com.plekhanov.react_web_service.web.advice;
 
 import com.plekhanov.react_web_service.web.dto.ApiResponse;
 import lombok.extern.slf4j.Slf4j;

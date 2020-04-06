@@ -7,7 +7,9 @@ import lombok.NoArgsConstructor;
 
 import static com.plekhanov.react_web_service.web.dto.ApiResponse.ResponseCode.OK;
 
-
+/**
+ * Обертка ответа контроллера на rest запрос
+ */
 @Data
 @Builder
 @NoArgsConstructor
@@ -26,7 +28,7 @@ public class ApiResponse<T> {
                 .build();
     }
 
-    public static <T> ApiResponse<T>  ok(T data) {
+    public static <T> ApiResponse<T> ok(T data) {
         return ApiResponse.<T>builder()
                 .code(OK.getValue())
                 .data(data)
