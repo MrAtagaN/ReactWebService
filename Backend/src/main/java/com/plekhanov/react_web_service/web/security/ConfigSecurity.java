@@ -46,7 +46,7 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
                 .antMatchers("/static/**")
                 .antMatchers("*.js")
                 .antMatchers("*.html")
-                .antMatchers("/api/v1/login/singin")
+                .antMatchers("/api/v1/login")
                 .antMatchers("*.css")
                 .antMatchers("*.png")
                 .antMatchers("*.ico");
@@ -64,6 +64,7 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .successHandler(successHandler())
                 .failureHandler(failureHandler())
+                .loginProcessingUrl("/api/v1/login")
                 .and()
                 .exceptionHandling()
                 .accessDeniedHandler(accessDeniedHandler())
