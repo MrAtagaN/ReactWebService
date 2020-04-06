@@ -3,7 +3,7 @@ import {changeIsOpenAuthModal, changeTitle} from './Actions';
 import {connect} from "react-redux";
 
 /**
- * Кладет значения переменных из state в props.appState
+ * Возвращает объект с переменными state.
  */
 export const putStateFieldsToProps = (state) => {
     return {
@@ -16,7 +16,7 @@ export const putStateFieldsToProps = (state) => {
 
 
 /**
- * Кладет функции для изменения переменных state в props.changeAppState
+ * Возвращает объект с функциями для изменения переменных state.
  */
 export const putActionsToProps = (dispatch) => {
     return {
@@ -30,5 +30,7 @@ export const putActionsToProps = (dispatch) => {
 
 /**
  * Кладет в props компонента объекты appState, changeAppState
+ * appState - переменные state
+ * changeAppState - функции для изменения переменных state
  */
 export const connectToStore = connect(putStateFieldsToProps, putActionsToProps);
