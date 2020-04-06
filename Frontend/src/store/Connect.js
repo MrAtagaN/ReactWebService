@@ -3,28 +3,32 @@ import {changeIsOpenAuthModal, changeTitle} from './Actions';
 import {connect} from "react-redux";
 
 /**
- * Кладет значения переменных из state в props
+ * Кладет значения переменных из state в props.appState
  */
-export const putStateFieldsToProps = (store) => {
+export const putStateFieldsToProps = (state) => {
     return {
-        isOpenAuthModal: store.isOpenAuthModal,
-        title: store.title
+        appState : {
+            isOpenAuthModal: state.isOpenAuthModal,
+            title: state.title
+        }
     };
 };
 
 
 /**
- * Кладет функции для изменения переменных state в props
+ * Кладет функции для изменения переменных state в props.changeAppState
  */
 export const putActionsToProps = (dispatch) => {
     return {
-        changeIsOpenAuthModal: bindActionCreators(changeIsOpenAuthModal, dispatch),
-        changeTitle: bindActionCreators(changeTitle, dispatch)
+        changeAppState : {
+            changeIsOpenAuthModal: bindActionCreators(changeIsOpenAuthModal, dispatch),
+            changeTitle: bindActionCreators(changeTitle, dispatch)
+        }
     };
 };
 
 
 /**
- * Кладет в props компонента переменные state и функции для изменения переменных state
+ * Кладет в props компонента объекты appState, changeAppState
  */
 export const connectToStore = connect(putStateFieldsToProps, putActionsToProps);

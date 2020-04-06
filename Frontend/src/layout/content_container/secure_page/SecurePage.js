@@ -7,7 +7,7 @@ class SecurePage extends Component {
 
     constructor(props) {
         super(props);
-        this.props.changeTitle('SecurePage');
+        this.props.changeAppState.changeTitle('SecurePage');
     }
 
     render() {

@@ -9,10 +9,15 @@ import {connectToStore} from "../../store/Connect";
  */
 class AuthModal extends Component {
 
+    constructor(props) {
+        super(props);
+        console.log(props);
+    }
+
     render() {
         return (
             <>
-                {this.props.isOpenAuthModal &&
+                {this.props.appState.isOpenAuthModal &&
                 <Portal>
                     <div className="modalOverlay">
                         <div className="modalWindow">
@@ -36,12 +41,12 @@ class AuthModal extends Component {
     };
 
     handleSubmitAuth = () => {
-        this.props.changeIsOpenAuthModal(false);
+        this.props.changeAppState.changeIsOpenAuthModal(false);
 
     };
 
     handleCancelAuth = () => {
-        this.props.changeIsOpenAuthModal(false);
+        this.props.changeAppState.changeIsOpenAuthModal(false);
     };
 
 }

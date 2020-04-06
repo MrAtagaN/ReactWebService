@@ -6,7 +6,7 @@ class Page_1 extends Component {
 
     constructor(props) {
         super(props);
-        this.props.changeTitle('Page_1');
+        this.props.changeAppState.changeTitle('Page_1');
     }
 
     render() {

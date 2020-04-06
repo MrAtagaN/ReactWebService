@@ -12,7 +12,7 @@ class Header extends Component {
         return (
             <div className="header">
                 <span>
-                  {this.props.title}
+                  {this.props.appState.title}
                 </span>
                 <span>
                     Welcome to Site!

@@ -3,13 +3,13 @@ const initialState = {
     title: ''
 };
 
-export const rootReducer = (store = initialState, action) => {
+export const rootReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'isOpenAuthModal':
-            return {...store, isOpenAuthModal: action.value};
+            return {...state, isOpenAuthModal: action.value};
         case 'title':
-            return {...store, title: action.value};
+            return {...state, title: action.value};
     }
 
-    return store;
+    return state;
 };
