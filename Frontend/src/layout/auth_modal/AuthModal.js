@@ -3,6 +3,7 @@ import Portal from '../../components/portal/Portal';
 import '../../components/modal/Modal.css';
 
 import {connectToStore} from "../../store/Connect";
+import Button from "../../components/button/Button";
 
 /**
  * Окно авторизации
@@ -29,8 +30,8 @@ class AuthModal extends Component {
                                 <div>Введите логин и пароль</div>
                             </div>
                             <div className="modalFooter">
-                                <button onClick={this.handleCancelAuth}>Cancel</button>
-                                <button onClick={this.handleSubmitAuth}>Submit</button>
+                                <Button onClickAction={this.handleCancelAuth}>Cancel</Button>
+                                <Button onClickAction={this.handleSubmitAuth}>Submit</Button>
                             </div>
                         </div>
                     </div>

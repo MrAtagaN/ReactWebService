@@ -24,7 +24,6 @@ import java.io.PrintWriter;
 
 import static com.plekhanov.react_web_service.web.dto.ApiResponse.ResponseCode.*;
 
-
 /**
  * Конфигурация Security
  * https://stackoverflow.com/questions/32498868/custom-login-form-configure-spring-security-to-get-a-json-response

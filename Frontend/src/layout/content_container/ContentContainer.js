@@ -7,7 +7,8 @@ import Home from "./home/Home";
 import SecurePage from "./secure_page/SecurePage";
 
 /**
- * Контейнер с контентом сайта
+ * Контейнер с контентом сайта.
+ * Содержимое переключается в зависимости от выбранной ссылки в компоненте LeftMenu
  */
 export default class ContentContainer extends Component {
 
