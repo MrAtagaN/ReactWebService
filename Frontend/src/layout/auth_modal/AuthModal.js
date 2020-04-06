@@ -13,7 +13,6 @@ class AuthModal extends Component {
 
     constructor(props) {
         super(props);
-        console.log(props);
     }
 
     render() {
@@ -29,7 +28,8 @@ class AuthModal extends Component {
                             </div>
                             <div className="modalBody">
                                 <div>Введите логин и пароль</div>
-                                <Input/>
+                                <Input id={'username'}/>
+                                <Input id={'password'}/>
                             </div>
                             <div className="modalFooter">
                                 <Button onClickAction={this.handleCancelAuth}>Cancel</Button>
@@ -45,6 +45,10 @@ class AuthModal extends Component {
 
     handleSubmitAuth = () => {
         this.props.changeAppState.setIsOpenAuthModal(false);
+        let username = document.getElementById('username').value;
+        let password = document.getElementById('password').value;
+        console.log(username);
+        console.log(password);
 
     };
 
