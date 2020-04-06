@@ -1,11 +1,11 @@
-export const changeIsOpenAuthModal = (newValue) => {
+export const setIsOpenAuthModal = (newValue) => {
     return {
         type: 'isOpenAuthModal',
         value: newValue
     }
 };
 
-export const changeTitle = (newValue) => {
+export const setTitle = (newValue) => {
     return {
         type: 'title',
         value: newValue

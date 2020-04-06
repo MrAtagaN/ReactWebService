@@ -46,7 +46,6 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
                 .antMatchers("/static/**")
                 .antMatchers("*.js")
                 .antMatchers("*.html")
-                .antMatchers("/api/v1/login")
                 .antMatchers("*.css")
                 .antMatchers("*.png")
                 .antMatchers("*.ico");
@@ -71,7 +70,7 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
                 .authenticationEntryPoint(authenticationEntryPoint())
                 .and()
                 .logout()
-                .logoutUrl("/logout")
+                .logoutUrl("/api/v1/logout")
                 .logoutSuccessUrl("/")
                 .deleteCookies("JSESSIONID");
         //.logoutSuccessHandler(logoutSuccessHandler());

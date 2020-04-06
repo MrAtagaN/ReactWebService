@@ -1,5 +1,5 @@
 import {bindActionCreators} from 'redux';
-import {changeIsOpenAuthModal, changeTitle} from './Actions';
+import {setIsOpenAuthModal, setTitle} from './Actions';
 import {connect} from "react-redux";
 
 /**
@@ -21,8 +21,8 @@ export const putStateFieldsToProps = (state) => {
 export const putActionsToProps = (dispatch) => {
     return {
         changeAppState : {
-            changeIsOpenAuthModal: bindActionCreators(changeIsOpenAuthModal, dispatch),
-            changeTitle: bindActionCreators(changeTitle, dispatch)
+            setIsOpenAuthModal: bindActionCreators(setIsOpenAuthModal, dispatch),
+            setTitle: bindActionCreators(setTitle, dispatch)
         }
     };
 };

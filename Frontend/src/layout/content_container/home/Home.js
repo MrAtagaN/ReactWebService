@@ -6,7 +6,7 @@ class Home extends Component {
 
     constructor(props) {
         super(props);
-        this.props.changeAppState.changeTitle('Home');
+        this.props.changeAppState.setTitle('Home');
     }
 
     render() {
