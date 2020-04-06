@@ -4,6 +4,7 @@ import '../../components/modal/Modal.css';
 
 import {connectToStore} from "../../store/Connect";
 import Button from "../../components/button/Button";
+import Input from "../../components/input/Input";
 
 /**
  * Окно авторизации
@@ -28,6 +29,7 @@ class AuthModal extends Component {
                             </div>
                             <div className="modalBody">
                                 <div>Введите логин и пароль</div>
+                                <Input/>
                             </div>
                             <div className="modalFooter">
                                 <Button onClickAction={this.handleCancelAuth}>Cancel</Button>

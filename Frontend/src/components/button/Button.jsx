@@ -20,7 +20,7 @@ export default class Button extends Component {
             onClick={this.onClickAction}
         >
             {this.children}
-        </button>)
+        </button>);
     }
 
 };
