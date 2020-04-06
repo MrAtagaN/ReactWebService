@@ -16,6 +16,7 @@ import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -26,7 +27,7 @@ import static com.plekhanov.react_web_service.web.dto.ApiResponse.ResponseCode.*
 
 /**
  * Конфигурация Security
- *
+ * <p>
  * https://stackoverflow.com/questions/32498868/custom-login-form-configure-spring-security-to-get-a-json-response
  */
 @Configuration
@@ -34,8 +35,8 @@ import static com.plekhanov.react_web_service.web.dto.ApiResponse.ResponseCode.*
 @RequiredArgsConstructor
 public class ConfigSecurity extends WebSecurityConfigurerAdapter {
 
-    final UserDetailsService userDetailsService;
-    final ObjectMapper objectMapper;
+    private final UserDetailsService userDetailsService;
+    private final ObjectMapper objectMapper;
 
     /**
      * Настройка открытых эндпойнтов
@@ -72,12 +73,13 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
                 .logout()
                 .logoutUrl("/api/v1/logout")
                 .logoutSuccessUrl("/")
-                .deleteCookies("JSESSIONID");
-        //.logoutSuccessHandler(logoutSuccessHandler());
+                .deleteCookies("JSESSIONID")
+                .logoutSuccessHandler(logoutSuccessHandler());
     }
 
     /**
      * Конфигурация AuthenticationManager
+     * Нужен для авторизации и аутентификации пользователя фреймворком spring.security
      */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -91,11 +93,7 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
     private AuthenticationSuccessHandler successHandler() {
         return (httpServletRequest, httpServletResponse, authentication) -> {
             httpServletResponse.setStatus(200);
-
-            ApiResponse apiResponse = new ApiResponse();
-            apiResponse.setCode(OK.getValue());
-
-            putApiResponseBodyInResponse(apiResponse, httpServletResponse);
+            putApiResponseInServletResponse(ApiResponse.ok(null), httpServletResponse);
         };
     }
 
@@ -107,7 +105,7 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
             httpServletResponse.setStatus(401);
 
             ApiResponse apiResponse = ApiResponse.error(AUTHENTICATION_FAILURE, "Authentication failure");
-            putApiResponseBodyInResponse(apiResponse, httpServletResponse);
+            putApiResponseInServletResponse(apiResponse, httpServletResponse);
         };
     }
 
@@ -119,7 +117,7 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
             httpServletResponse.setStatus(403);
 
             ApiResponse apiResponse = ApiResponse.error(ACCESS_DENIED, "Access denied");
-            putApiResponseBodyInResponse(apiResponse, httpServletResponse);
+            putApiResponseInServletResponse(apiResponse, httpServletResponse);
         };
     }
 
@@ -131,14 +129,24 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
             httpServletResponse.setStatus(401);
 
             ApiResponse apiResponse = ApiResponse.error(NOT_AUTHENTICATED, "Not authenticated");
-            putApiResponseBodyInResponse(apiResponse, httpServletResponse);
+            putApiResponseInServletResponse(apiResponse, httpServletResponse);
         };
     }
 
     /**
-     *
+     * Обработчик успешного разлогина
      */
-    private void putApiResponseBodyInResponse(ApiResponse apiResponse, HttpServletResponse httpServletResponse) throws IOException {
+    private LogoutSuccessHandler logoutSuccessHandler() {
+        return (httpServletRequest, httpServletResponse, e) -> {
+            httpServletResponse.setStatus(200);
+            putApiResponseInServletResponse(ApiResponse.ok(null), httpServletResponse);
+        };
+    }
+
+    /**
+     * Кладет {@link ApiResponse} в {@link HttpServletResponse}
+     */
+    private void putApiResponseInServletResponse(ApiResponse apiResponse, HttpServletResponse httpServletResponse) throws IOException {
         PrintWriter out = httpServletResponse.getWriter();
         httpServletResponse.setContentType("application/json");
         httpServletResponse.setCharacterEncoding("UTF-8");
@@ -146,33 +154,5 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
         out.flush();
     }
 
-//    private Filter csrfHeaderFilter() {
-//        return new OncePerRequestFilter() {
-//            @Override
-//            protected void doFilterInternal(HttpServletRequest request,
-//                                            HttpServletResponse response, FilterChain filterChain)
-//                    throws ServletException, IOException {
-//                CsrfToken csrf = (CsrfToken) request.getAttribute(CsrfToken.class
-//                        .getName());
-//                if (csrf != null) {
-//                    Cookie cookie = WebUtils.getCookie(request, "XSRF-TOKEN");
-//                    String token = csrf.getToken();
-//                    if (cookie == null || token != null
-//                            && !token.equals(cookie.getValue())) {
-//                        cookie = new Cookie("XSRF-TOKEN", token);
-//                        cookie.setPath("/");
-//                        response.addCookie(cookie);
-//                    }
-//                }
-//                filterChain.doFilter(request, response);
-//            }
-//        };
-//    }
-//
-//    private CsrfTokenRepository csrfTokenRepository() {
-//        HttpSessionCsrfTokenRepository repository = new HttpSessionCsrfTokenRepository();
-//        repository.setHeaderName("X-XSRF-TOKEN");
-//        return repository;
-//    }
 
 }

@@ -15,7 +15,7 @@ import com.plekhanov.react_web_service.entities.*;
 @Repository
 public class UserDaoImpl implements UserDao {
 
-    final SessionFactory sessionFactory;
+    private final SessionFactory sessionFactory;
 
     public User findByName(final String username) {
         try (Session session = sessionFactory.openSession()) {

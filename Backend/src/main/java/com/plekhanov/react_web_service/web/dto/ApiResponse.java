@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import static com.plekhanov.react_web_service.web.dto.ApiResponse.ResponseCode.OK;
+
 
 @Data
 @Builder
@@ -21,6 +23,13 @@ public class ApiResponse<T> {
         return ApiResponse.builder()
                 .code(code.getValue())
                 .errorMessage(errorMessage)
+                .build();
+    }
+
+    public static <T> ApiResponse<T>  ok(T data) {
+        return ApiResponse.<T>builder()
+                .code(OK.getValue())
+                .data(data)
                 .build();
     }
 
