@@ -24,7 +24,7 @@ class AuthModal extends Component {
     render() {
         return (
             <>
-                {this.props.appState.isOpenAuthModal &&
+                {this.props.isOpenModal &&
                 <Portal>
                     <div className="modalOverlay">
                         <div className="modalWindow">
@@ -51,14 +51,13 @@ class AuthModal extends Component {
     };
 
     handleSubmitAuth = async () => {
-
         let username = document.getElementById('username').value;
         let password = document.getElementById('password').value;
 
         let response = await RestClient.sendForm(LOGIN_URL, {username: username, password: password});
 
         if (response.code === OK) {
-            this.props.changeAppState.setIsOpenAuthModal(false);
+            this.props.onSuccessAuth();
         } else if (response.code === AUTHENTICATION_FAILURE) {
             this.setState({message: 'неверный логин или пароль'});
         } else {
@@ -70,7 +69,7 @@ class AuthModal extends Component {
 
 
     handleCancelAuth = () => {
-        this.props.changeAppState.setIsOpenAuthModal(false);
+        this.props.onCancelModal();
     };
 
 }
