@@ -10,6 +10,10 @@ import org.springframework.web.context.request.WebRequest;
 
 import static com.plekhanov.react_web_service.web.dto.ApiResponse.ResponseCode.UNKNOWN_ERROR;
 
+
+/**
+ * Обработчик ошибок контроллеров
+ */
 @Slf4j
 @ControllerAdvice
 class ErrorHandlerControllerAdvice {

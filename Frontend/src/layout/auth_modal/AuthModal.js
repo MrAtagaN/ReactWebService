@@ -5,6 +5,7 @@ import '../../components/modal/Modal.css';
 import {connectToStore} from "../../store/Connect";
 import Button from "../../components/button/Button";
 import Input from "../../components/input/Input";
+import RestClient from "../../services/RestClient";
 
 /**
  * Окно авторизации
@@ -43,14 +44,18 @@ class AuthModal extends Component {
         );
     };
 
-    handleSubmitAuth = () => {
+    handleSubmitAuth = async () => {
         this.props.changeAppState.setIsOpenAuthModal(false);
         let username = document.getElementById('username').value;
         let password = document.getElementById('password').value;
         console.log(username);
         console.log(password);
 
+        let a = await RestClient.sendForm('api/v1/login', {username: username, password: password});
+
     };
+
+
 
     handleCancelAuth = () => {
         this.props.changeAppState.setIsOpenAuthModal(false);
