@@ -4,6 +4,7 @@ import './Modal.css'
 
 /**
  * Модальное окно
+ * В props нужно передавать: isOpenModal, onSubmitModal, onCancelModal, titleModal, children
  *
  * https://github.com/YauhenKavalchuk/react-components/tree/12_modal
  */

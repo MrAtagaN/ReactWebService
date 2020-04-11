@@ -8,7 +8,7 @@ import AuthModal from "../../auth_modal/AuthModal";
 class SecurePage extends Component {
 
     state = {
-        message: '',
+        data: '',
         isOpenModal: false
     };
 
@@ -19,13 +19,12 @@ class SecurePage extends Component {
 
     render() {
         return (<h1>
-            <AuthModal isOpenModal={this.state.isOpenModal} onSuccessAuth={this.onSuccessAuth}
-                       onCancelModal={this.onCancelModal}/>
+            <AuthModal isOpenModal={this.state.isOpenModal} onSuccessAuth={this.onSuccessAuth} onCancelModal={this.onCancelModal}/>
             <div>
                 Secure Content
             </div>
             <div>
-                {this.state.message}
+                {this.state.data}
             </div>
 
         </h1>);
@@ -41,9 +40,9 @@ class SecurePage extends Component {
      * Получение данных с сервера
      */
     fetchData = async () => {
-        let response = await RestClient.get('api/v1/user/test-user');
+        let response = await RestClient.get('api/v1/user/test-user'); //TODO
         if (response.code === OK) {
-            this.setState({...this.state, message: response.data});
+            this.setState({...this.state, data: response.data});
 
         } else if (response.code === NOT_AUTHENTICATED) {
             this.setState({...this.state, isOpenModal: true})
@@ -58,7 +57,7 @@ class SecurePage extends Component {
     };
 
     /**
-     * Выполняется при закрытии окна авторизации
+     * Выполняется при успешной авторизации
      */
     onSuccessAuth = () => {
         this.setState({...this.state, isOpenModal: false});

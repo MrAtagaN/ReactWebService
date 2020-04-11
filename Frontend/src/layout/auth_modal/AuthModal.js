@@ -10,6 +10,7 @@ import {AUTHENTICATION_FAILURE, LOGIN_URL, OK} from "../../constants/RestConstan
 
 /**
  * Окно авторизации
+ * В props нужно передавать: isOpenModal, onSuccessAuth, onCancelModal
  */
 class AuthModal extends Component {
 
