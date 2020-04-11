@@ -34,7 +34,7 @@ export default class RestClient {
             credentials: 'include'
         })
             .then(response => {return response.json();})
-            .catch(err => {return {code: UNKNOWN_ERROR}});
+            .catch(err => {return {code: UNKNOWN_ERROR};});
     };
 
 
