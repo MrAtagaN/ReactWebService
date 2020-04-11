@@ -1,3 +1,8 @@
+import {IS_OPEN_AUTH_MODAL, TITLE} from "../constants/ActionConstants";
+
+/**
+ * Начальное состояние переменных
+ */
 const initialState = {
     isOpenAuthModal: true, //открыто модальное окно авторизации
     title: ''
@@ -6,9 +11,9 @@ const initialState = {
 
 export const rootReducer = (state = initialState, action) => {
     switch (action.type) {
-        case 'isOpenAuthModal':
+        case IS_OPEN_AUTH_MODAL:
             return {...state, isOpenAuthModal: action.value};
-        case 'title':
+        case TITLE:
             return {...state, title: action.value};
     }
 

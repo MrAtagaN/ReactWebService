@@ -1,10 +1,10 @@
+import {SERVER_URL} from "../constants/RestConstants";
+
 /**
- *
+ * Rest клиент
+ * Нужен для отправки запросов на сервер, обработки ответов
  */
 export default class RestClient {
-
-    static SERVER_URL = 'http://localhost:80/';
-
 
     // static post = async () => {
     //     fetch('http://localhost:80/api/v1/login', {
@@ -27,14 +27,15 @@ export default class RestClient {
             formData.append(name, data[name]);
         }
 
-        fetch(this.SERVER_URL + url, {
+        await fetch(SERVER_URL + url, {
             body: formData,
             method: 'post',
-            url: this.SERVER_URL,
+            url: SERVER_URL,
             credentials: 'include'
         })
-            .then(response => {return response.json()})
-            .then(res => {console.log(res)} )
+            .then(response => {
+                console.log(response.json());
+                return response.json()})
             .catch(err => {});
     };
 
