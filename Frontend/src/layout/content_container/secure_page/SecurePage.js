@@ -26,8 +26,9 @@ class SecurePage extends Component {
 
             </div>
             <div>
-                {this.state.data}
+                {this.state.data.username}
             </div>
+
 
         </h1>);
 
