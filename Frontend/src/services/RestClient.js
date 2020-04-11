@@ -1,4 +1,4 @@
-import {SERVER_URL} from "../constants/RestConstants";
+import {SERVER_URL, UNKNOWN_ERROR} from "../constants/RestConstants";
 
 /**
  * Rest клиент
@@ -27,16 +27,14 @@ export default class RestClient {
             formData.append(name, data[name]);
         }
 
-        await fetch(SERVER_URL + url, {
+        return  await fetch(SERVER_URL + url, {
             body: formData,
             method: 'post',
             url: SERVER_URL,
             credentials: 'include'
         })
-            .then(response => {
-                console.log(response.json());
-                return response.json()})
-            .catch(err => {});
+            .then(response => {return response.json();})
+            .catch(err => {return {code: UNKNOWN_ERROR}});
     };
 
 

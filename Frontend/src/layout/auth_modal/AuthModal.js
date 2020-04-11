@@ -50,9 +50,8 @@ class AuthModal extends Component {
         let username = document.getElementById('username').value;
         let password = document.getElementById('password').value;
 
-        let a =  RestClient.sendForm(LOGIN_URL, {username: username, password: password});
+        let response = await RestClient.sendForm(LOGIN_URL, {username: username, password: password});
 
-        alert(a);
     };
 
 
