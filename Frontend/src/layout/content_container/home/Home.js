@@ -13,7 +13,7 @@ class Home extends Component {
 
     render() {
         return (<h1>
-            Home
+            Home page content
         </h1>);
 
     }

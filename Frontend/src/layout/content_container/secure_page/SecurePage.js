@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {connectToStore} from "../../../store/Connect";
 import RestClient from "../../../services/RestClient";
 import {NOT_AUTHENTICATED, OK} from "../../../constants/RestConstants";
-import AuthModal from "../../auth_modal/AuthModal";
+import AuthModal from "../../../components/auth_modal/AuthModal";
 
 /**
  *
@@ -23,7 +23,7 @@ class SecurePage extends Component {
         return (<h1>
             <AuthModal isOpenModal={this.state.isOpenModal} onSuccessAuth={this.onSuccessAuth} onCancelModal={this.onCancelModal}/>
             <div>
-                Secure Content
+
             </div>
             <div>
                 {this.state.data}

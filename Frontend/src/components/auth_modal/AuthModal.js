@@ -1,6 +1,6 @@
 import React, {Component} from "react";
-import Portal from '../../components/portal/Portal';
-import '../../components/modal/Modal.css';
+import Portal from '../portal/Portal';
+import '../modal/Modal.css';
 
 import {connectToStore} from "../../store/Connect";
 import Button from "../../components/button/Button";

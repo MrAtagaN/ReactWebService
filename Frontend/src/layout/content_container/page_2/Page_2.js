@@ -13,7 +13,7 @@ class Page_2 extends Component {
 
     render() {
         return (<h1>
-            page 2
+            page 2 content
         </h1>);
 
     }
