@@ -1,7 +1,9 @@
 import React, {Component} from "react";
 import {connectToStore} from "../../../store/Connect";
 
-
+/**
+ *
+ */
 class Page_2 extends Component {
 
     constructor(props) {

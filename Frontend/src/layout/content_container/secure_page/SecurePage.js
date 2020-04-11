@@ -4,7 +4,9 @@ import RestClient from "../../../services/RestClient";
 import {NOT_AUTHENTICATED, OK} from "../../../constants/RestConstants";
 import AuthModal from "../../auth_modal/AuthModal";
 
-
+/**
+ *
+ */
 class SecurePage extends Component {
 
     state = {
