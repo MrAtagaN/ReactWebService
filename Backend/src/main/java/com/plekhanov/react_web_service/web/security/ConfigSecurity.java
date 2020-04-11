@@ -159,7 +159,8 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
     }
 
     /**
-     * CORS конфигурация для возможности запускать фронт на другом сервере (для отладки)
+     * CORS конфигурация.
+     * Нужна для возможности запускать фронт на другом сервере (для отладки)
      */
     private CorsConfigurationSource corsConfiguration() {
         return (httpServletRequest) -> {
