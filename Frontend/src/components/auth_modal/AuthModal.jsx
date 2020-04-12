@@ -64,6 +64,7 @@ class AuthModal extends Component {
             this.props.changeAppState.setUserInfo(response.data);
             this.props.appState.onSuccessAuth();
             this.props.changeAppState.setIsOpenAuthModal(false);
+            this.setState({message: ''});
         } else if (response.code === AUTHENTICATION_FAILURE) {
             this.setState({message: 'неверный логин или пароль'});
         } else {
@@ -78,6 +79,7 @@ class AuthModal extends Component {
      */
     handleCancelAuth = () => {
         this.props.changeAppState.setIsOpenAuthModal(false);
+        this.setState({message: ''});
     };
 
 }

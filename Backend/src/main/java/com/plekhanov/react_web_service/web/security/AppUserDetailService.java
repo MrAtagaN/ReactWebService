@@ -3,6 +3,7 @@ package com.plekhanov.react_web_service.web.security;
 import com.plekhanov.react_web_service.dao.UserDao;
 import com.plekhanov.react_web_service.entities.*;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -24,7 +25,10 @@ public class AppUserDetailService implements UserDetailsService {
      */
     @Override
     public UserDetails loadUserByUsername(String username) {
-        User user = userDao.findByName(username);
+        User user = null;
+        if (StringUtils.isNotBlank(username)) {
+            user = userDao.findByName(username);
+        }
         if (user == null) {
             throw new UsernameNotFoundException("User " + username + " not found!");
         }
