@@ -35,21 +35,26 @@ class SecurePage extends Component {
     }
 
     componentDidMount() {
+        this.props.changeAppState.setOnSuccessAuth(this.onSuccessAuth);
         this.fetchData();
     }
+
+
+    onSuccessAuth = () => {
+        this.fetchData();
+    };
 
 
     /**
      * Получение данных с сервера
      */
     fetchData = async () => {
-        let response = await RestClient.get(USER_URL + 'info');
+        const response = await RestClient.get(USER_URL + 'info');
         if (response.code === OK) {
             this.setState({...this.state, data: response.data});
 
         } else if (response.code === NOT_AUTHENTICATED) {
             this.props.changeAppState.setIsOpenAuthModal(true);
-            this.props.changeAppState.setOnSuccessAuth(this.fetchData);
         }
     };
 

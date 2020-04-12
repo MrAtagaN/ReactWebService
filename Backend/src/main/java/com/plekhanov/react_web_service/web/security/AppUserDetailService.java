@@ -10,6 +10,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * Сервис возвращающий Информацию о правах доступа пользователя по имени.
  * Нужен для {@link AuthenticationManager} фремворка spring.security
@@ -24,7 +26,7 @@ public class AppUserDetailService implements UserDetailsService {
      * Возвращает Информацию о правах доступа пользователя по имени
      */
     @Override
-    public UserDetails loadUserByUsername(String username) {
+    public UserDetails loadUserByUsername(@NotNull String username) {
         User user = null;
         if (StringUtils.isNotBlank(username)) {
             user = userDao.findByName(username);

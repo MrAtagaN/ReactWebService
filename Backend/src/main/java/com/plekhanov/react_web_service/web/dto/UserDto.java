@@ -2,12 +2,12 @@ package com.plekhanov.react_web_service.web.dto;
 
 import com.plekhanov.react_web_service.entities.User;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Value;
 
 /**
  * Dto для {@link User}
  */
-@Data
+@Value
 @Builder
 public class UserDto {
 

@@ -20,23 +20,23 @@ import static org.hibernate.cfg.AvailableSettings.*;
 public class DbConfig {
 
     @Value("${hibernate.dialect}")
-    String sqlDialect;
+    private String sqlDialect;
 
     /**
      * Создает бин {@link SessionFactory}, он должен создаваться после бина {@link FlywayMigrationInitializer}
      */
     @Bean
-    public SessionFactory getSessionFactory(DataSource getDataSource, FlywayMigrationInitializer flywayMigrationInitializer) {
-        org.hibernate.cfg.Configuration configuration = new org.hibernate.cfg.Configuration();
+    public SessionFactory getSessionFactory(final DataSource getDataSource, final FlywayMigrationInitializer flywayMigrationInitializer) {
+        final org.hibernate.cfg.Configuration configuration = new org.hibernate.cfg.Configuration();
         configuration.addAnnotatedClass(User.class);
 
-        StandardServiceRegistryBuilder standardServiceRegistryBuilder = new StandardServiceRegistryBuilder()
+        final StandardServiceRegistryBuilder standardServiceRegistryBuilder = new StandardServiceRegistryBuilder()
                 .applySetting(DIALECT, sqlDialect)
                 .applySetting(HBM2DDL_AUTO, "validate")
                 .applySetting(DATASOURCE, getDataSource)
                 .applySettings(configuration.getProperties());
 
-        StandardServiceRegistry registry = standardServiceRegistryBuilder.build();
+        final StandardServiceRegistry registry = standardServiceRegistryBuilder.build();
         return configuration.buildSessionFactory(registry);
     }
 

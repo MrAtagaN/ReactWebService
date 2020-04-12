@@ -8,6 +8,7 @@ import com.plekhanov.react_web_service.web.dto.UserDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -86,7 +87,7 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
 
     /**
      * Конфигурация AuthenticationManager
-     * Нужен для авторизации и аутентификации пользователя фреймворком spring.security
+     * Нужен для авторизации и аутентификации пользователя классом {@link AuthenticationManager} фреймворка spring.security
      */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {

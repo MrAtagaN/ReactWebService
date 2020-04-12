@@ -54,10 +54,10 @@ class AuthModal extends Component {
      * Выполняется при нажатии на кнопку Submit
      */
     handleSubmitAuth = async () => {
-        let username = document.getElementById('username').value;
-        let password = document.getElementById('password').value;
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
 
-        let response = await RestClient.sendForm(LOGIN_URL, {username: username, password: password});
+        const response = await RestClient.sendForm(LOGIN_URL, {username: username, password: password});
 
         if (response.code === OK) {
             this.props.changeAppState.setIsAuthenticated(true);

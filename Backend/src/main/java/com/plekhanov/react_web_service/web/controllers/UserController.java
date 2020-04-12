@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class UserController {
 
-
     private final UserDao userDao;
 
     /**
@@ -26,7 +25,7 @@ public class UserController {
      */
     @GetMapping("info")
     public ApiResponse<UserDto> getTestUser() {
-        User currentUser = SecurityUtils.getCurrentUser();
+        final User currentUser = SecurityUtils.getCurrentUser();
         return ApiResponse.ok(UserDto.fromUser(currentUser));
     }
 

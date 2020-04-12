@@ -1,19 +1,14 @@
 package com.plekhanov.react_web_service.web.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import static com.plekhanov.react_web_service.web.dto.ApiResponse.ResponseCode.OK;
 
 /**
  * Обертка ответа контроллера на rest запрос
  */
-@Data
+@Value
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
 public class ApiResponse<T> {
 
     private T data;
