@@ -1,5 +1,5 @@
 import {bindActionCreators} from 'redux';
-import {setIsAuthenticated, setTitle} from './Actions';
+import {setIsAuthenticated, setTitle, setUsername} from './Actions';
 import {connect} from "react-redux";
 
 /**
@@ -9,7 +9,8 @@ export const putStateFieldsToProps = (state) => {
     return {
         appState : {
             isAuthenticated: state.isAuthenticated,
-            title: state.title
+            title: state.title,
+            username: state.username
         }
     };
 };
@@ -22,7 +23,9 @@ export const putActionsToProps = (dispatch) => {
     return {
         changeAppState : {
             setIsAuthenticated: bindActionCreators(setIsAuthenticated, dispatch),
-            setTitle: bindActionCreators(setTitle, dispatch)
+            setTitle: bindActionCreators(setTitle, dispatch),
+            setUsername: bindActionCreators(setUsername, dispatch)
+
         }
     };
 };

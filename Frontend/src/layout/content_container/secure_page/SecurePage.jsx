@@ -30,7 +30,6 @@ class SecurePage extends Component {
                 <br/>
                 Your username: {this.state.data.username}
                 <br/>
-                Your password: {this.state.data.password}
             </div>
 
 

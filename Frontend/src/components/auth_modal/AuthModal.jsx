@@ -59,6 +59,7 @@ class AuthModal extends Component {
 
         if (response.code === OK) {
             this.props.changeAppState.setIsAuthenticated(true);
+            this.props.changeAppState.setUsername(response.data.username);
             this.props.onSuccessAuth();
         } else if (response.code === AUTHENTICATION_FAILURE) {
             this.setState({message: 'неверный логин или пароль'});

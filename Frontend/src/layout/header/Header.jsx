@@ -32,7 +32,7 @@ class Header extends Component {
                 <span>
                     Welcome to Site!
                 </span>
-                {this.props.appState.isAuthenticated && <span> залогинин</span>}
+                {this.props.appState.isAuthenticated && <span> {this.props.appState.username}</span>}
 
                 <AuthModal isOpenModal={this.state.isOpenModal} onSuccessAuth={this.onSuccessAuth} onCancelModal={this.onCancelModal}/>
                 {this.props.appState.isAuthenticated && <Button onClickAction={this.onClickLogout}>Logout</Button>}

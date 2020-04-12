@@ -13,7 +13,6 @@ public class UserDto {
 
     private Integer id;
     private String username;
-    private String password;
 
     /**
      * Фабричный метод. Возвращает {@link UserDto} из переданного {@link User}
@@ -22,7 +21,6 @@ public class UserDto {
         return UserDto.builder()
                 .id(user.getId())
                 .username(user.getUsername())
-                .password(user.getPassword())
                 .build();
     }
 }

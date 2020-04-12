@@ -33,6 +33,7 @@ class Main extends Component {
         let response = await RestClient.get(USER_URL + 'info');
         if (response.code === OK) {
             this.props.changeAppState.setIsAuthenticated(true);
+            this.props.changeAppState.setUsername(response.data.username);
         }
     };
 

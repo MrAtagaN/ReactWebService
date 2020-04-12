@@ -1,7 +1,10 @@
 package com.plekhanov.react_web_service.web.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.plekhanov.react_web_service.entities.User;
+import com.plekhanov.react_web_service.utils.SecurityUtils;
 import com.plekhanov.react_web_service.web.dto.ApiResponse;
+import com.plekhanov.react_web_service.web.dto.UserDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -97,7 +100,8 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
     private AuthenticationSuccessHandler successHandler() {
         return (httpServletRequest, httpServletResponse, authentication) -> {
             httpServletResponse.setStatus(200);
-            putApiResponseInServletResponse(ApiResponse.ok(null), httpServletResponse);
+            User currentUser = SecurityUtils.getCurrentUser();
+            putApiResponseInServletResponse(ApiResponse.ok(UserDto.fromUser(currentUser)), httpServletResponse);
         };
     }
 
