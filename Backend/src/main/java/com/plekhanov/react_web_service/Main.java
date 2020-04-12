@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
+ * Запуск приложения
  * http://localhost:80/
  */
 @SpringBootApplication
@@ -21,6 +22,7 @@ public class Main {
     // Ошибки записывать в отдельный файл
     // Swagger
     // Настроить бин валидацию
+    // Добавить регистрацию пользователя
 
 
     /**

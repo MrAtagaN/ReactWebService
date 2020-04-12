@@ -1,9 +1,13 @@
 server:
   port: 80 # порт на котором работает приложение
 
+hibernate:
+  dialect: org.hibernate.dialect.SQLiteDialect # диалект sql для подключения hibernate
+
 spring:
   datasource:
     url: jdbc:sqlite:Backend/src/main/resources/webService.db # путь до базы данных
     driver-class-name: org.sqlite.JDBC # класс драйвера для базы данных
+
 
 

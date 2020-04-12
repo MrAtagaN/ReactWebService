@@ -4,6 +4,7 @@ import com.plekhanov.react_web_service.entities.User;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.flyway.FlywayMigrationInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,6 +19,9 @@ import static org.hibernate.cfg.AvailableSettings.*;
 @Configuration
 public class DbConfig {
 
+    @Value("${hibernate.dialect}")
+    String sqlDialect;
+
     /**
      * Создает бин {@link SessionFactory}, он должен создаваться после бина {@link FlywayMigrationInitializer}
      */
@@ -27,7 +31,7 @@ public class DbConfig {
         configuration.addAnnotatedClass(User.class);
 
         StandardServiceRegistryBuilder standardServiceRegistryBuilder = new StandardServiceRegistryBuilder()
-                .applySetting(DIALECT, "org.hibernate.dialect.SQLiteDialect")
+                .applySetting(DIALECT, sqlDialect)
                 .applySetting(HBM2DDL_AUTO, "validate")
                 .applySetting(DATASOURCE, getDataSource)
                 .applySettings(configuration.getProperties());
