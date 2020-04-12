@@ -1,11 +1,11 @@
-import {IS_OPEN_AUTH_MODAL, TITLE} from "../constants/ActionConstants";
+import {IS_AUTHENTICATED, TITLE} from "../constants/ActionConstants";
 
 /**
- * Возвращает объект Action. Нужен для изменения переменной isOpenAuthModal в appState
+ * Возвращает объект Action. Нужен для изменения переменной isAuthenticated в appState
  */
-export const setIsOpenAuthModal = (newValue) => {
+export const setIsAuthenticated = (newValue) => {
     return {
-        type: IS_OPEN_AUTH_MODAL,
+        type: IS_AUTHENTICATED,
         value: newValue
     }
 };

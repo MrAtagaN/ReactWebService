@@ -58,6 +58,7 @@ class AuthModal extends Component {
         let response = await RestClient.sendForm(LOGIN_URL, {username: username, password: password});
 
         if (response.code === OK) {
+            this.props.changeAppState.setIsAuthenticated(true);
             this.props.onSuccessAuth();
         } else if (response.code === AUTHENTICATION_FAILURE) {
             this.setState({message: 'неверный логин или пароль'});
