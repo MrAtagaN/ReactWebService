@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {connectToStore} from "../../../store/Connect";
 import RestClient from "../../../services/RestClient";
-import {NOT_AUTHENTICATED, OK} from "../../../constants/RestConstants";
+import {NOT_AUTHENTICATED, OK, USER_URL} from "../../../constants/RestConstants";
 import AuthModal from "../../../components/auth_modal/AuthModal";
 
 /**
@@ -26,7 +26,11 @@ class SecurePage extends Component {
 
             </div>
             <div>
-                {this.state.data.username}
+                Your id: {this.state.data.id}
+                <br/>
+                Your username: {this.state.data.username}
+                <br/>
+                Your password: {this.state.data.password}
             </div>
 
 
@@ -43,7 +47,7 @@ class SecurePage extends Component {
      * Получение данных с сервера
      */
     fetchData = async () => {
-        let response = await RestClient.get('api/v1/user/test-user'); //TODO
+        let response = await RestClient.get(USER_URL + 'info');
         if (response.code === OK) {
             this.setState({...this.state, data: response.data});
 

@@ -1,6 +1,7 @@
 export const SERVER_URL = 'http://localhost:80/';
 export const LOGIN_URL = 'api/v1/login';
 export const LOGOUT_URL = 'api/v1/logout';
+export const USER_URL = 'api/v1/user/';
 
 export const OK = 0;
 export const NOT_AUTHENTICATED = 1;
