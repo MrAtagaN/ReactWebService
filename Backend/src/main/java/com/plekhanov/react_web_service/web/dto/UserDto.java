@@ -4,6 +4,9 @@ import com.plekhanov.react_web_service.entities.User;
 import lombok.Builder;
 import lombok.Data;
 
+/**
+ * Dto для {@link User}
+ */
 @Data
 @Builder
 public class UserDto {
