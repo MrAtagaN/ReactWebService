@@ -1,4 +1,4 @@
-import {IS_AUTHENTICATED, IS_OPEN_AUTH_MODAL, ON_SUCCESS_AUTH, TITLE, USERNAME} from "../constants/ActionConstants";
+import {IS_AUTHENTICATED, IS_OPEN_AUTH_MODAL, ON_SUCCESS_AUTH, TITLE, USER_INFO} from "../constants/ActionConstants";
 
 /**
  * Начальное состояние переменных
@@ -8,7 +8,7 @@ const initialState = {
     isOpenAuthModal: false,         //открыто модальное окно авторизации
     onSuccessAuth: ()=>{},
     title: '',
-    username: ''
+    userInfo: ''
 };
 
 
@@ -22,8 +22,8 @@ export const rootReducer = (state = initialState, action) => {
             return {...state, onSuccessAuth: action.value};
         case TITLE:
             return {...state, title: action.value};
-        case USERNAME:
-            return {...state, username: action.value};
+        case USER_INFO:
+            return {...state, userInfo: action.value};
     }
 
     return state;

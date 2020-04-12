@@ -1,8 +1,5 @@
-import {IS_AUTHENTICATED, IS_OPEN_AUTH_MODAL, ON_SUCCESS_AUTH, TITLE, USERNAME} from "../constants/ActionConstants";
+import {IS_AUTHENTICATED, IS_OPEN_AUTH_MODAL, ON_SUCCESS_AUTH, TITLE, USER_INFO} from "../constants/ActionConstants";
 
-/**
- * Возвращает объект Action. Нужен для изменения переменной isAuthenticated в appState
- */
 export const setIsAuthenticated = (newValue) => {
     return {
         type: IS_AUTHENTICATED,
@@ -17,7 +14,6 @@ export const setIsOpenAuthModal = (newValue) => {
     }
 };
 
-
 export const setOnSuccessAuth = (newValue) => {
     return {
         type: ON_SUCCESS_AUTH,
@@ -25,9 +21,6 @@ export const setOnSuccessAuth = (newValue) => {
     }
 };
 
-/**
- * Возвращает объект Action. Нужен для изменения переменной title в appState
- */
 export const setTitle = (newValue) => {
     return {
         type: TITLE,
@@ -35,12 +28,9 @@ export const setTitle = (newValue) => {
     }
 };
 
-/**
- * Возвращает объект Action. Нужен для изменения переменной username в appState
- */
-export const setUsername = (newValue) => {
+export const setUserInfo = (newValue) => {
     return {
-        type: USERNAME,
+        type: USER_INFO,
         value: newValue
     }
 };

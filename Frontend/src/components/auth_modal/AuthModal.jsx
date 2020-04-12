@@ -61,7 +61,7 @@ class AuthModal extends Component {
 
         if (response.code === OK) {
             this.props.changeAppState.setIsAuthenticated(true);
-            this.props.changeAppState.setUsername(response.data.username);
+            this.props.changeAppState.setUserInfo(response.data);
             this.props.appState.onSuccessAuth();
             this.props.changeAppState.setIsOpenAuthModal(false);
         } else if (response.code === AUTHENTICATION_FAILURE) {

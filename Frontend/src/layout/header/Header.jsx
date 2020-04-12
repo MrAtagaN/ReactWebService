@@ -17,6 +17,7 @@ class Header extends Component {
     };
 
     render() {
+        //редирект на домашнюю страницу
         if (this.state.redirect) {
             this.setState({redirect: false});
             return <Redirect to="/" />;
@@ -30,7 +31,7 @@ class Header extends Component {
                 <span>
                     Welcome to Site!
                 </span>
-                {this.props.appState.isAuthenticated && <span> {this.props.appState.username}</span>}
+                {this.props.appState.isAuthenticated && <span> {this.props.appState.userInfo.username}</span>}
 
                 {this.props.appState.isAuthenticated && <Button onClickAction={this.onClickLogout}>Logout</Button>}
                 {!this.props.appState.isAuthenticated && <Button onClickAction={this.onClickLogin}>Login</Button>}
@@ -40,11 +41,12 @@ class Header extends Component {
     }
 
     /**
-     * Выполняется при разлогине
+     * Выполняется при нажатии на кнопку Logout
      */
     onClickLogout = () => {
         RestClient.get(LOGOUT_URL);
         this.props.changeAppState.setIsAuthenticated(false);
+        this.props.changeAppState.setUserInfo({});
         this.setState({...this.state, redirect: true});
     };
 
