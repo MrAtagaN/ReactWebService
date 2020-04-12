@@ -1,10 +1,12 @@
-import {IS_AUTHENTICATED, TITLE, USERNAME} from "../constants/ActionConstants";
+import {IS_AUTHENTICATED, IS_OPEN_AUTH_MODAL, ON_SUCCESS_AUTH, TITLE, USERNAME} from "../constants/ActionConstants";
 
 /**
  * Начальное состояние переменных
  */
 const initialState = {
-    isAuthenticated: false, //открыто модальное окно авторизации
+    isAuthenticated: false,
+    isOpenAuthModal: false,         //открыто модальное окно авторизации
+    onSuccessAuth: ()=>{},
     title: '',
     username: ''
 };
@@ -14,6 +16,10 @@ export const rootReducer = (state = initialState, action) => {
     switch (action.type) {
         case IS_AUTHENTICATED:
             return {...state, isAuthenticated: action.value};
+        case IS_OPEN_AUTH_MODAL:
+            return {...state, isOpenAuthModal: action.value};
+        case ON_SUCCESS_AUTH:
+            return {...state, onSuccessAuth: action.value};
         case TITLE:
             return {...state, title: action.value};
         case USERNAME:

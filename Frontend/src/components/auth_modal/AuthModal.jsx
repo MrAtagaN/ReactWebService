@@ -10,7 +10,6 @@ import {AUTHENTICATION_FAILURE, LOGIN_URL, OK} from "../../constants/RestConstan
 
 /**
  * Окно авторизации
- * В props нужно передавать: isOpenModal, onSuccessAuth, onCancelModal
  */
 class AuthModal extends Component {
 
@@ -25,7 +24,7 @@ class AuthModal extends Component {
     render() {
         return (
             <>
-                {this.props.isOpenModal &&
+                {this.props.appState.isOpenAuthModal &&
                 <Portal>
                     <div className="modalOverlay">
                         <div className="modalWindow">
@@ -51,6 +50,9 @@ class AuthModal extends Component {
         );
     };
 
+    /**
+     * Выполняется при нажатии на кнопку Submit
+     */
     handleSubmitAuth = async () => {
         let username = document.getElementById('username').value;
         let password = document.getElementById('password').value;
@@ -60,7 +62,8 @@ class AuthModal extends Component {
         if (response.code === OK) {
             this.props.changeAppState.setIsAuthenticated(true);
             this.props.changeAppState.setUsername(response.data.username);
-            this.props.onSuccessAuth();
+            this.props.appState.onSuccessAuth();
+            this.props.changeAppState.setIsOpenAuthModal(false);
         } else if (response.code === AUTHENTICATION_FAILURE) {
             this.setState({message: 'неверный логин или пароль'});
         } else {
@@ -70,9 +73,11 @@ class AuthModal extends Component {
     };
 
 
-
+    /**
+     * Выполняется при нажатии на кнопку Cancel
+     */
     handleCancelAuth = () => {
-        this.props.onCancelModal();
+        this.props.changeAppState.setIsOpenAuthModal(false);
     };
 
 }

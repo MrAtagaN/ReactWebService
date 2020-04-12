@@ -5,7 +5,6 @@ import Button from "../../components/button/Button";
 import RestClient from "../../services/RestClient";
 import {LOGOUT_URL} from "../../constants/RestConstants";
 import Redirect from "react-router-dom/es/Redirect";
-import AuthModal from "../../components/auth_modal/AuthModal";
 
 
 /**
@@ -14,8 +13,7 @@ import AuthModal from "../../components/auth_modal/AuthModal";
 class Header extends Component {
 
     state = {
-        redirect: false,
-        isOpenModal: false
+        redirect: false
     };
 
     render() {
@@ -34,7 +32,6 @@ class Header extends Component {
                 </span>
                 {this.props.appState.isAuthenticated && <span> {this.props.appState.username}</span>}
 
-                <AuthModal isOpenModal={this.state.isOpenModal} onSuccessAuth={this.onSuccessAuth} onCancelModal={this.onCancelModal}/>
                 {this.props.appState.isAuthenticated && <Button onClickAction={this.onClickLogout}>Logout</Button>}
                 {!this.props.appState.isAuthenticated && <Button onClickAction={this.onClickLogin}>Login</Button>}
 
@@ -55,22 +52,10 @@ class Header extends Component {
      * Выполняется при нажатии на кнопку Login
      */
     onClickLogin = () => {
-        this.setState({...this.state, isOpenModal: true});
+        this.props.changeAppState.setIsOpenAuthModal(true);
+        this.props.changeAppState.setOnSuccessAuth(()=>{});
     };
 
-    /**
-     * Выполняется при закрытии окна авторизации
-     */
-    onCancelModal = () => {
-        this.setState({...this.state, isOpenModal: false});
-    };
-
-    /**
-     * Выполняется при успешной авторизации
-     */
-    onSuccessAuth = () => {
-        this.setState({...this.state, isOpenModal: false});
-    }
 
 
 

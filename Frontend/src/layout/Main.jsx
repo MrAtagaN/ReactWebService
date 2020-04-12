@@ -6,6 +6,7 @@ import './Main.css';
 import {OK, USER_URL} from "../constants/RestConstants";
 import {connectToStore} from "../store/Connect";
 import RestClient from "../services/RestClient";
+import AuthModal from "../components/auth_modal/AuthModal";
 
 /**
  * Главный компонент (весь сайт)
@@ -15,6 +16,7 @@ class Main extends Component {
     render() {
         return (
             <div>
+                <AuthModal/>
                 <LeftMenu/>
                 <Header/>
                 <ContentContainer/>

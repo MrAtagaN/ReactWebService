@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {connectToStore} from "../../../store/Connect";
 import RestClient from "../../../services/RestClient";
 import {NOT_AUTHENTICATED, OK, USER_URL} from "../../../constants/RestConstants";
-import AuthModal from "../../../components/auth_modal/AuthModal";
+
 
 /**
  *
@@ -10,8 +10,7 @@ import AuthModal from "../../../components/auth_modal/AuthModal";
 class SecurePage extends Component {
 
     state = {
-        data: '',
-        isOpenModal: false
+        data: ''
     };
 
     constructor(props) {
@@ -21,7 +20,6 @@ class SecurePage extends Component {
 
     render() {
         return (<h1>
-            <AuthModal isOpenModal={this.state.isOpenModal} onSuccessAuth={this.onSuccessAuth} onCancelModal={this.onCancelModal}/>
             <div>
 
             </div>
@@ -31,7 +29,6 @@ class SecurePage extends Component {
                 Your username: {this.state.data.username}
                 <br/>
             </div>
-
 
         </h1>);
 
@@ -51,24 +48,11 @@ class SecurePage extends Component {
             this.setState({...this.state, data: response.data});
 
         } else if (response.code === NOT_AUTHENTICATED) {
-            this.setState({...this.state, isOpenModal: true})
+            this.props.changeAppState.setIsOpenAuthModal(true);
+            this.props.changeAppState.setOnSuccessAuth(this.fetchData);
         }
     };
 
-    /**
-     * Выполняется при закрытии окна авторизации
-     */
-    onCancelModal = () => {
-        this.setState({...this.state, isOpenModal: false});
-    };
-
-    /**
-     * Выполняется при успешной авторизации
-     */
-    onSuccessAuth = () => {
-        this.setState({...this.state, isOpenModal: false});
-        this.fetchData();
-    }
 
 }
 

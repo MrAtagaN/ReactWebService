@@ -1,4 +1,4 @@
-import {IS_AUTHENTICATED, TITLE, USERNAME} from "../constants/ActionConstants";
+import {IS_AUTHENTICATED, IS_OPEN_AUTH_MODAL, ON_SUCCESS_AUTH, TITLE, USERNAME} from "../constants/ActionConstants";
 
 /**
  * Возвращает объект Action. Нужен для изменения переменной isAuthenticated в appState
@@ -6,6 +6,21 @@ import {IS_AUTHENTICATED, TITLE, USERNAME} from "../constants/ActionConstants";
 export const setIsAuthenticated = (newValue) => {
     return {
         type: IS_AUTHENTICATED,
+        value: newValue
+    }
+};
+
+export const setIsOpenAuthModal = (newValue) => {
+    return {
+        type: IS_OPEN_AUTH_MODAL,
+        value: newValue
+    }
+};
+
+
+export const setOnSuccessAuth = (newValue) => {
+    return {
+        type: ON_SUCCESS_AUTH,
         value: newValue
     }
 };
