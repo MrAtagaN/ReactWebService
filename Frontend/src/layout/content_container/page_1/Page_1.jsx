@@ -1,21 +1,22 @@
 import React, {Component} from "react";
 import {connectToStore} from "../../../store/Connect";
 
-
-class Home extends Component {
+/**
+ *
+ */
+class Page_1 extends Component {
 
     constructor(props) {
         super(props);
-        this.props.changeAppState.setTitle('Home');
+        this.props.changeAppState.setTitle('Page_1');
     }
 
     render() {
         return (<h1>
-            Home
+            page 1 content
         </h1>);
 
     }
 }
 
-
-export default connectToStore(Home);
+export default connectToStore(Page_1);

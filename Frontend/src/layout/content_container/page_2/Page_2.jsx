@@ -1,7 +1,9 @@
 import React, {Component} from "react";
 import {connectToStore} from "../../../store/Connect";
 
-
+/**
+ *
+ */
 class Page_2 extends Component {
 
     constructor(props) {
@@ -11,7 +13,7 @@ class Page_2 extends Component {
 
     render() {
         return (<h1>
-            page 2
+            page 2 content
         </h1>);
 
     }

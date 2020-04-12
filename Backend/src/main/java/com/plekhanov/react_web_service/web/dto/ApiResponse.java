@@ -21,6 +21,9 @@ public class ApiResponse<T> {
     private String errorMessage;
 
 
+    /**
+     * Фабричный метод. Возвращает {@link ApiResponse} с кодом и сообщинием ошибки
+     */
     public static ApiResponse error(ResponseCode code, String errorMessage) {
         return ApiResponse.builder()
                 .code(code.getValue())
@@ -28,6 +31,9 @@ public class ApiResponse<T> {
                 .build();
     }
 
+    /**
+     * Фабричный метод. Возвращает {@link ApiResponse} с кодом OK и данными
+     */
     public static <T> ApiResponse<T> ok(T data) {
         return ApiResponse.<T>builder()
                 .code(OK.getValue())
