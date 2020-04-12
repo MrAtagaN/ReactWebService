@@ -27,12 +27,7 @@ public class UserController {
     @GetMapping("info")
     public ApiResponse<UserDto> getTestUser() {
         User currentUser = SecurityUtils.getCurrentUser();
-        UserDto userDto = UserDto.builder()
-                .id(currentUser.getId())
-                .username(currentUser.getUsername())
-                .password(currentUser.getPassword())
-                .build();
-        return ApiResponse.ok(userDto);
+        return ApiResponse.ok(UserDto.fromUser(currentUser));
     }
 
 
