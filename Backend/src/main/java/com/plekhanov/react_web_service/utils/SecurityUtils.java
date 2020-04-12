@@ -8,6 +8,9 @@ public class SecurityUtils {
 
     private SecurityUtils() {}
 
+    /**
+     * Получить текущего пользователя
+     */
     public static User getCurrentUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return (User) authentication.getPrincipal();

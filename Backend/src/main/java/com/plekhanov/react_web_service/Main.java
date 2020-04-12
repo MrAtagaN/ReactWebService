@@ -15,6 +15,7 @@ public class Main {
 
 
     //TODO:
+    // сделать csrf
     // Тест базы
     // Тесты controllers
     // Ошибки записывать в отдельный файл
