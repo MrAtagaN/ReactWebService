@@ -67,8 +67,10 @@ class AuthModal extends Component {
             this.setState({message: ''});
         } else if (response.code === AUTHENTICATION_FAILURE) {
             this.setState({message: 'неверный логин или пароль'});
+            this.props.changeAppState.setIsAuthenticated(false);
         } else {
             this.setState({message: 'неизвестная ошибка'});
+            this.props.changeAppState.setIsAuthenticated(false);
         }
 
     };

@@ -50,6 +50,7 @@ class SecurePage extends Component {
 
         } else if (response.code === NOT_AUTHENTICATED) {
             this.props.changeAppState.setIsOpenAuthModal(true);
+            this.props.changeAppState.setIsAuthenticated(false);
         }
     };
 
