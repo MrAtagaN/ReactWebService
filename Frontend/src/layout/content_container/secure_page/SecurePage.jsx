@@ -35,14 +35,9 @@ class SecurePage extends Component {
     }
 
     componentDidMount() {
-        this.props.changeAppState.setOnSuccessAuth(this.onSuccessAuth);
+        this.props.changeAppState.setOnSuccessAuth(this.fetchData);
         this.fetchData();
     }
-
-
-    onSuccessAuth = () => {
-        this.fetchData();
-    };
 
 
     /**

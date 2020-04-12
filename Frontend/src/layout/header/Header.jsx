@@ -55,7 +55,6 @@ class Header extends Component {
      */
     onClickLogin = () => {
         this.props.changeAppState.setIsOpenAuthModal(true);
-        this.props.changeAppState.setOnSuccessAuth(()=>{});
     };
 
 
