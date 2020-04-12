@@ -4,6 +4,7 @@ import com.plekhanov.react_web_service.dao.UserDao;
 import com.plekhanov.react_web_service.entities.User;
 import com.plekhanov.react_web_service.utils.SecurityUtils;
 import com.plekhanov.react_web_service.web.dto.ApiResponse;
+import com.plekhanov.react_web_service.web.dto.UserDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,13 +22,17 @@ public class UserController {
     private final UserDao userDao;
 
     /**
-     * http://localhost/api/v1/user/info
+     * Информация о текущем пользователе
      */
     @GetMapping("info")
-    public ApiResponse<User> getTestUser() {
-
+    public ApiResponse<UserDto> getTestUser() {
         User currentUser = SecurityUtils.getCurrentUser();
-        return ApiResponse.ok(currentUser);
+        UserDto userDto = UserDto.builder()
+                .id(currentUser.getId())
+                .username(currentUser.getUsername())
+                .password(currentUser.getPassword())
+                .build();
+        return ApiResponse.ok(userDto);
     }
 
 
