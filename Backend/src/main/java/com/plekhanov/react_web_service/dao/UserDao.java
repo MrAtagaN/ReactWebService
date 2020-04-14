@@ -17,5 +17,5 @@ public interface UserDao {
      */
     User findByName(@NotBlank String username);
 
-    User findUser(@NotNull Integer id);
+    User findById(@NotNull Integer id);
 }
