@@ -8,4 +8,5 @@ export const NOT_AUTHENTICATED = 1;
 export const AUTHENTICATION_FAILURE = 2;
 export const ACCESS_DENIED = 3;
 export const UNKNOWN_ERROR = 4;
+export const VALIDATION_ERROR = 5;
 

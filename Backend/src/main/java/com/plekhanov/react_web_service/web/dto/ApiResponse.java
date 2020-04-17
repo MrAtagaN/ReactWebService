@@ -5,7 +5,7 @@ import lombok.*;
 import static com.plekhanov.react_web_service.web.dto.ApiResponse.ResponseCode.OK;
 
 /**
- * Обертка ответа контроллера на rest запрос
+ * Ответ контроллера на rest запрос
  */
 @Value
 @Builder
@@ -43,8 +43,8 @@ public class ApiResponse<T> {
         NOT_AUTHENTICATED(1),
         AUTHENTICATION_FAILURE(2),
         ACCESS_DENIED(3),
-        UNKNOWN_ERROR(4);
-
+        UNKNOWN_ERROR(4),
+        VALIDATION_ERROR(5);
 
         ResponseCode(int value) {
             this.value = value;

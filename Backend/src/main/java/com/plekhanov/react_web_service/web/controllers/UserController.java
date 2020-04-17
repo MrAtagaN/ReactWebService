@@ -6,9 +6,10 @@ import com.plekhanov.react_web_service.utils.SecurityUtils;
 import com.plekhanov.react_web_service.web.dto.ApiResponse;
 import com.plekhanov.react_web_service.web.dto.UserDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("api/v1/user")
 @RequiredArgsConstructor
+@Validated
 public class UserController {
 
     private final UserDao userDao;
@@ -27,6 +29,17 @@ public class UserController {
     public ApiResponse<UserDto> getTestUser() {
         final User currentUser = SecurityUtils.getCurrentUser();
         return ApiResponse.ok(UserDto.fromUser(currentUser));
+    }
+
+
+    /**
+     * Убрать !!
+     */
+    @PostMapping("test")
+    public ApiResponse<?> getTestUser2(@Size(min=3) @RequestBody String s) {
+        System.out.println(s);
+
+        return ApiResponse.ok(null);
     }
 
 

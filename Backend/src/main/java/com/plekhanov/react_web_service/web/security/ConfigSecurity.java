@@ -119,7 +119,7 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
     }
 
     /**
-     * Обработчик отказа доступа для пользователя
+     * Обработчик отказа доступа
      */
     private AccessDeniedHandler accessDeniedHandler() {
         return (httpServletRequest, httpServletResponse, e) -> {

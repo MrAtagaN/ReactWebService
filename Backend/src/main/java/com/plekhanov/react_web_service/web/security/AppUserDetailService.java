@@ -10,8 +10,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import javax.validation.constraints.NotNull;
-
 /**
  * Сервис возвращающий Информацию о правах доступа пользователя по имени.
  * Нужен для {@link AuthenticationManager} фремворка spring.security
