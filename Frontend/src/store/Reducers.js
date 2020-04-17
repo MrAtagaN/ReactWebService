@@ -1,12 +1,12 @@
 import {IS_AUTHENTICATED, IS_OPEN_AUTH_MODAL, ON_SUCCESS_AUTH, TITLE, USER_INFO} from "../constants/ActionConstants";
 
 /**
- * Начальное состояние переменных
+ * Начальное состояние переменных приложения
  */
 const initialState = {
     isAuthenticated: false,
-    isOpenAuthModal: false,         //открыто модальное окно авторизации
-    onSuccessAuth: ()=>{},
+    isOpenAuthModal: false, //открыто модальное окно авторизации
+    onSuccessAuth: ()=>{}, //действие при успешной авторизации
     title: '',
     userInfo: ''
 };

@@ -26,7 +26,7 @@ public class AppUserDetailService implements UserDetailsService {
      * Возвращает Информацию о правах доступа пользователя по имени
      */
     @Override
-    public UserDetails loadUserByUsername(@NotNull String username) {
+    public UserDetails loadUserByUsername(String username) {
         User user = null;
         if (StringUtils.isNotBlank(username)) {
             user = userDao.findByName(username);
