@@ -31,10 +31,9 @@ class Header extends Component {
                   {this.props.appState.title}
                 </span>
 
-                {this.props.appState.isAuthenticated && <span> {this.props.appState.userInfo.username}</span>}
-
                 <span className={"userBlock"}>
-                    <Button classes={"button"}><img src="images/search.svg"/><br/>Поиск</Button>
+                    <Button classes={"button search"}><img src="images/search.svg"/><br/>Поиск</Button>
+                    {this.props.appState.isAuthenticated && <span className={"username"}> {this.props.appState.userInfo.username}</span>}
                     {this.props.appState.isAuthenticated && <Button onClickAction={this.onClickLogout} classes={"button"}><img src="images/user.svg"/><br/>Выход</Button>}
                     {!this.props.appState.isAuthenticated && <Button onClickAction={this.onClickLogin} classes={"button"}><img src="images/user.svg"/><br/>Вход</Button>}
                     <Button classes={"button"}><img src="images/favorite.svg"/><br/>Избранное</Button>

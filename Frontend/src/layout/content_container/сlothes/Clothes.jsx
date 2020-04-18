@@ -18,7 +18,7 @@ class Clothes extends Component {
                         Одежда
                     </h1>
                     <div className={"filters"}>
-                        фильтры
+                        контент
                     </div>
                 </div>
         );

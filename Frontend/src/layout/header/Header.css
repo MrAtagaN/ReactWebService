@@ -15,10 +15,16 @@
     margin-left: 107px;
 }
 
+.search {
+    float: left;
+}
+
 .userBlock {
     position:relative;
-    width:400px;
+    width:600px;
     float: right;
+    text-align: right;
+    padding-right: 30px;
 }
 
 .button {
