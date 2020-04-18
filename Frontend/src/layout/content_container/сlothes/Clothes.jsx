@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import {connectToStore} from "../../../store/Connect";
+import './Clothes.css';
 
 /**
  *

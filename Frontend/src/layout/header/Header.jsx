@@ -27,7 +27,7 @@ class Header extends Component {
         return (
             <div className="header">
                 <Link to="/" className="homeLink"><img width={170} src="images/logo-lamoda.png"/></Link>
-                <span>
+                <span className={"clothesGender"}>
                   {this.props.appState.title}
                 </span>
 

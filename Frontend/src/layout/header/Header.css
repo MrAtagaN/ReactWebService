@@ -11,6 +11,10 @@
     color: #ddd
 }
 
+.clothesGender {
+    position:absolute;
+    margin-left: 107px;
+}
 
 .userBlock {
     position:relative;

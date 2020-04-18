@@ -5,6 +5,7 @@ import {Route} from "react-router-dom";
 import Switch from "react-bootstrap/esm/Switch";
 import Home from "./home/Home";
 import SecurePage from "./secure_page/SecurePage";
+import './ContentContainer.css';
 
 /**
  * Контейнер с контентом сайта.
@@ -14,7 +15,7 @@ export default class ContentContainer extends Component {
 
     render() {
         return (
-            <div>
+            <div className={"contentContainer"}>
                 <Switch>
                     <Route exact path='/' component={Home}/>
                     <Route path='/page1' component={Page_1}/>
