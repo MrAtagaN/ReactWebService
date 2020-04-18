@@ -6,6 +6,7 @@ import RestClient from "../../services/RestClient";
 import {LOGOUT_URL} from "../../constants/RestConstants";
 import Redirect from "react-router-dom/es/Redirect";
 import {Link} from "react-router-dom";
+import {BOY, FEMALE, GIRL, MALE} from "../../constants/AppConstants";
 
 
 /**
@@ -30,10 +31,10 @@ class Header extends Component {
                 <Link to="/" className="homeLink"><img className='logo' src="images/logo-lamoda.png"/></Link>
 
                 <span className={"chooseGender"}>
-                    <Button classes={"gender"} onClickAction={this.onClickFemale} chosen={this.state.chosenGender === 'FEMALE'}>Женская</Button>
-                    <Button classes={"gender"} onClickAction={this.onClickMale} chosen={this.state.chosenGender === 'MALE'}>Мужская</Button>
-                    <Button classes={"gender"} onClickAction={this.onClickGirl} chosen={this.state.chosenGender === 'GIRL'}>Девочки</Button>
-                    <Button classes={"gender"} onClickAction={this.onClickBoy} chosen={this.state.chosenGender === 'BOY'}>Мальчики</Button>
+                    <Button classes={"gender"} onClickAction={this.onClickFemale} chosen={this.props.appState.chosenGender === FEMALE}>Женская</Button>
+                    <Button classes={"gender"} onClickAction={this.onClickMale} chosen={this.props.appState.chosenGender === MALE}>Мужская</Button>
+                    <Button classes={"gender"} onClickAction={this.onClickGirl} chosen={this.props.appState.chosenGender === GIRL}>Девочки</Button>
+                    <Button classes={"gender"} onClickAction={this.onClickBoy} chosen={this.props.appState.chosenGender === BOY}>Мальчики</Button>
                 </span>
 
                 <span className={"userBlock"}>
@@ -69,22 +70,20 @@ class Header extends Component {
 
 
     onClickFemale = () => {
-        this.setState({...this.state, chosenGender: 'FEMALE'});
+        this.props.changeAppState.setChosenGender(FEMALE);
     };
 
     onClickMale = () => {
-        this.setState({...this.state, chosenGender: 'MALE'});
+        this.props.changeAppState.setChosenGender(MALE);
     };
 
     onClickGirl = () => {
-        this.setState({...this.state, chosenGender: 'GIRL'});
+        this.props.changeAppState.setChosenGender(GIRL);
     };
 
     onClickBoy = () => {
-        this.setState({...this.state, chosenGender: 'BOY'});
+        this.props.changeAppState.setChosenGender(BOY);
     };
-
-
 
 
 }

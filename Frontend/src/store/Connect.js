@@ -1,5 +1,12 @@
 import {bindActionCreators} from 'redux';
-import {setIsAuthenticated, setIsOpenAuthModal, setOnSuccessAuth, setTitle, setUserInfo} from './Actions';
+import {
+    setChosenGender,
+    setIsAuthenticated,
+    setIsOpenAuthModal,
+    setOnSuccessAuth,
+    setTitle,
+    setUserInfo
+} from './Actions';
 import {connect} from "react-redux";
 
 /**
@@ -12,7 +19,8 @@ export const putStateFieldsToProps = (state) => {
             title: state.title,
             userInfo: state.userInfo,
             isOpenAuthModal: state.isOpenAuthModal,
-            onSuccessAuth: state.onSuccessAuth
+            onSuccessAuth: state.onSuccessAuth,
+            chosenGender: state.chosenGender
         }
     };
 };
@@ -28,7 +36,9 @@ export const putActionsToProps = (dispatch) => {
             setTitle: bindActionCreators(setTitle, dispatch),
             setUserInfo: bindActionCreators(setUserInfo, dispatch),
             setIsOpenAuthModal: bindActionCreators(setIsOpenAuthModal, dispatch),
-            setOnSuccessAuth: bindActionCreators(setOnSuccessAuth, dispatch)
+            setOnSuccessAuth: bindActionCreators(setOnSuccessAuth, dispatch),
+            setChosenGender: bindActionCreators(setChosenGender, dispatch)
+
 
         }
     };

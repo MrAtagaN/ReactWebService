@@ -1,4 +1,12 @@
-import {IS_AUTHENTICATED, IS_OPEN_AUTH_MODAL, ON_SUCCESS_AUTH, TITLE, USER_INFO} from "../constants/ActionConstants";
+import {
+    CHOSEN_GENDER,
+    IS_AUTHENTICATED,
+    IS_OPEN_AUTH_MODAL,
+    ON_SUCCESS_AUTH,
+    TITLE,
+    USER_INFO
+} from "../constants/ActionConstants";
+import {FEMALE} from "../constants/AppConstants";
 
 /**
  * Начальное состояние переменных приложения
@@ -8,7 +16,8 @@ const initialState = {
     isOpenAuthModal: false, //открыто модальное окно авторизации
     onSuccessAuth: ()=>{}, //действие при успешной авторизации
     title: '',
-    userInfo: ''
+    userInfo: '',
+    chosenGender: FEMALE
 };
 
 
@@ -24,6 +33,8 @@ export const rootReducer = (state = initialState, action) => {
             return {...state, title: action.value};
         case USER_INFO:
             return {...state, userInfo: action.value};
+        case CHOSEN_GENDER:
+            return {...state, chosenGender: action.value};
     }
 
     return state;

@@ -1,4 +1,11 @@
-import {IS_AUTHENTICATED, IS_OPEN_AUTH_MODAL, ON_SUCCESS_AUTH, TITLE, USER_INFO} from "../constants/ActionConstants";
+import {
+    CHOSEN_GENDER,
+    IS_AUTHENTICATED,
+    IS_OPEN_AUTH_MODAL,
+    ON_SUCCESS_AUTH,
+    TITLE,
+    USER_INFO
+} from "../constants/ActionConstants";
 
 export const setIsAuthenticated = (newValue) => {
     return {
@@ -31,6 +38,13 @@ export const setTitle = (newValue) => {
 export const setUserInfo = (newValue) => {
     return {
         type: USER_INFO,
+        value: newValue
+    }
+};
+
+export const setChosenGender = (newValue) => {
+    return {
+        type: CHOSEN_GENDER,
         value: newValue
     }
 };
