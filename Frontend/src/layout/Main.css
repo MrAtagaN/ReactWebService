@@ -1,7 +1,7 @@
 body {
     background: #ffffff;
 
-    color: #333333;
+    color: #343a40;
 
     margin: 0;
     padding: 0;
@@ -20,13 +20,13 @@ Button:hover {
 
 A {
     text-decoration: none;
-    color: #333333; /* Цвет ссылок */
+    color: #343a40; /* Цвет ссылок */
 }
 A:visited {
-    color: #333333; /* Цвет посещенных ссылок */
+    color: #343a40; /* Цвет посещенных ссылок */
 }
 A:active {
-    color: #333333; /* Цвет активных ссылок */
+    color: #343a40; /* Цвет активных ссылок */
 }
 
 /*.lineBlock {*/

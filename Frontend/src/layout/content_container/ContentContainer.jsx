@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import Page_1 from "./page_1/Page_1";
-import Page_2 from "./page_2/Page_2";
+import Page_1 from "./сlothes/Clothes";
+import Page_2 from "./shoes/Shoes";
 import {Route} from "react-router-dom";
 import Switch from "react-bootstrap/esm/Switch";
 import Home from "./home/Home";

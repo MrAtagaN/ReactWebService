@@ -4,21 +4,19 @@ import {connectToStore} from "../../../store/Connect";
 /**
  *
  */
-class Page_2 extends Component {
+class Clothes extends Component {
 
     constructor(props) {
         super(props);
-        this.props.changeAppState.setTitle('Page_2');
+        this.props.changeAppState.setTitle('Clothes');
     }
 
     render() {
         return (<h1>
-            page 2 content
+            Одежда content
         </h1>);
 
     }
-
 }
 
-
-export default connectToStore(Page_2);
+export default connectToStore(Clothes);
