@@ -15,8 +15,7 @@ import {BOY, FEMALE, GIRL, MALE} from "../../constants/AppConstants";
 class Header extends Component {
 
     state = {
-        redirect: false,
-        chosenGender: 'FEMALE'
+        redirect: false //при разлогине меняется на true
     };
 
     render() {
