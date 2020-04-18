@@ -5,14 +5,14 @@
 Демонстрационное приложение.
 
 Используемые технологии:
-Backend:
+##### Backend:
 - SpringBoot
 - SpringSecurity
 - Hibernate
 - Flyway
 - SQLite
 
-Frontend:
+##### Frontend:
 - React
 - Redux
 
