@@ -49,12 +49,15 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity webSecurity) {
         webSecurity.ignoring()
                 .antMatchers("/")
+                .antMatchers("/*")
                 .antMatchers("/static/**")
-                .antMatchers("*.js")
-                .antMatchers("*.html")
-                .antMatchers("*.css")
-                .antMatchers("*.png")
-                .antMatchers("*.ico");
+                .antMatchers("/images/**");
+//                .antMatchers("*.svg")
+//                .antMatchers("*.js")
+//                .antMatchers("*.html")
+//                .antMatchers("*.css")
+//                .antMatchers("*.png")
+//                .antMatchers("*.ico");
     }
 
     /**

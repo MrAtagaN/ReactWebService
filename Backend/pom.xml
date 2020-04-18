@@ -28,9 +28,11 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <executions>
                     <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
                         <configuration>
                             <outputDirectory>../</outputDirectory>
-                            <classifier>spring-boot</classifier>
                             <mainClass>
                                 com.plekhanov.react_web_service.Main
                             </mainClass>

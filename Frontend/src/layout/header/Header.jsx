@@ -33,8 +33,14 @@ class Header extends Component {
                 </span>
                 {this.props.appState.isAuthenticated && <span> {this.props.appState.userInfo.username}</span>}
 
-                {this.props.appState.isAuthenticated && <Button onClickAction={this.onClickLogout}>Logout</Button>}
-                {!this.props.appState.isAuthenticated && <Button onClickAction={this.onClickLogin}>Login</Button>}
+                <span className={"userBlock"}>
+                    <Button classes={"button"}><img src="images/search.svg"/><br/>Поиск</Button>
+                    {this.props.appState.isAuthenticated && <Button onClickAction={this.onClickLogout} classes={"button"}><img src="images/user.svg"/><br/>Выход</Button>}
+                    {!this.props.appState.isAuthenticated && <Button onClickAction={this.onClickLogin} classes={"button"}><img src="images/user.svg"/><br/>Вход</Button>}
+                    <Button classes={"button"}><img src="images/favorite.svg"/><br/>Избранное</Button>
+                    <Button classes={"button"}><img src="images/bag.svg"/><br/>Корзина</Button>
+                </span>
+
 
             </div>
         )
