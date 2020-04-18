@@ -13,10 +13,13 @@ export default class LeftMenu extends Component {
                 <ol>
                     <ul>
                         <li>
-                            <Link to="/page1"><div className={"link"}><img width={45} src="images/clothes.png"/>Одежда</div></Link>
+                            <Link to="/clothes"><div className={"link"}><img width={45} src="images/clothes.png"/>Одежда</div></Link>
                         </li>
                         <li>
-                            <Link to='/page2'><div className={"link"}><img  width={50} src="images/shoes.png"/>Обувь</div></Link>
+                            <Link to='/shoes'><div className={"link"}><img  width={50} src="images/shoes.png"/>Обувь</div></Link>
+                        </li>
+                        <li>
+                            <Link to='/accessories'><div className={"link"}><img  width={50} src="images/accessories.png"/>Аксесуары</div></Link>
                         </li>
                         <li>
                             <Link to='/secure-page'>Приватная страница</Link>
