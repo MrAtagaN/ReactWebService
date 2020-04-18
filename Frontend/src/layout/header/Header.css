@@ -10,9 +10,10 @@
     color: #ddd
 }
 
-.clothesGender {
+.chooseGender {
     position:absolute;
-    margin-left: 107px;
+    margin-left: 100px;
+    font-size: 30px;
 }
 
 .search {
@@ -24,14 +25,22 @@
     width:600px;
     float: right;
     text-align: right;
-    padding-right: 30px;
+    padding-right: 0px;
+}
+
+.gender {
+   font-size: 15px;
 }
 
 .button {
     color: #ddd;
     background: #343a40;
-    margin-right: 15px;
-    margin-left: 15px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.chosen {
+    color: #00871e;
 }
 
 span {

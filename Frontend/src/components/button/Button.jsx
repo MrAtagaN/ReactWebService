@@ -9,19 +9,15 @@ export default class Button extends Component {
 
     constructor(props) {
         super(props);
-        this.classes = props.classes;
-        this.disabled = props.disabled;
-        this.onClickAction = props.onClickAction;
-        this.children = props.children;
     }
 
     render() {
         return (<button
-            className={this.classes}
-            disabled={this.disabled}
-            onClick={this.onClickAction}
+            className={'button' + ' ' + this.props.classes + (this.props.chosen ? ' chosen': '')}
+            disabled={this.props.disabled}
+            onClick={this.props.onClickAction}
         >
-            {this.children}
+            {this.props.children}
         </button>);
     }
 

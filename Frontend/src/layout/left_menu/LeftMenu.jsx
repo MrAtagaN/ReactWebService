@@ -13,6 +13,9 @@ export default class LeftMenu extends Component {
                 <ol>
                     <ul>
                         <li>
+                            <Link to="/new-products"><div className={"link"}><img width={45} src="images/newProducts.png"/>Новинки</div></Link>
+                        </li>
+                        <li>
                             <Link to="/clothes"><div className={"link"}><img width={45} src="images/clothes.png"/>Одежда</div></Link>
                         </li>
                         <li>
@@ -20,6 +23,9 @@ export default class LeftMenu extends Component {
                         </li>
                         <li>
                             <Link to='/accessories'><div className={"link"}><img  width={50} src="images/accessories.png"/>Аксесуары</div></Link>
+                        </li>
+                        <li>
+                            <Link to='/sale'><div className={"link"}><img  width={50} src="images/sale.png"/>Распродажа</div></Link>
                         </li>
                         <li>
                             <Link to='/secure-page'>Приватная страница</Link>

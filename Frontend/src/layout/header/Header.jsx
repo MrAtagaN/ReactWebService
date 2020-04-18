@@ -14,7 +14,8 @@ import {Link} from "react-router-dom";
 class Header extends Component {
 
     state = {
-        redirect: false
+        redirect: false,
+        chosenGender: 'FEMALE'
     };
 
     render() {
@@ -27,17 +28,21 @@ class Header extends Component {
         return (
             <div className="header">
                 <Link to="/" className="homeLink"><img width={170} src="images/logo-lamoda.png"/></Link>
-                <span className={"clothesGender"}>
-                  {this.props.appState.title}
+
+                <span className={"chooseGender"}>
+                    <Button classes={"gender"} onClickAction={this.onClickFemale} chosen={this.state.chosenGender === 'FEMALE'}>Женская</Button>
+                    <Button classes={"gender"} onClickAction={this.onClickMale} chosen={this.state.chosenGender === 'MALE'}>Мужская</Button>
+                    <Button classes={"gender"} onClickAction={this.onClickGirl} chosen={this.state.chosenGender === 'GIRL'}>Девочки</Button>
+                    <Button classes={"gender"} onClickAction={this.onClickBoy} chosen={this.state.chosenGender === 'BOY'}>Мальчики</Button>
                 </span>
 
                 <span className={"userBlock"}>
-                    <Button classes={"button search"}><img src="images/search.svg"/><br/>Поиск</Button>
+                    <Button classes={"search"}><img src="images/search.svg"/><br/>Поиск</Button>
                     {this.props.appState.isAuthenticated && <span className={"username"}> {this.props.appState.userInfo.username}</span>}
-                    {this.props.appState.isAuthenticated && <Button onClickAction={this.onClickLogout} classes={"button"}><img src="images/user.svg"/><br/>Выход</Button>}
-                    {!this.props.appState.isAuthenticated && <Button onClickAction={this.onClickLogin} classes={"button"}><img src="images/user.svg"/><br/>Вход</Button>}
-                    <Button classes={"button"}><img src="images/favorite.svg"/><br/>Избранное</Button>
-                    <Button classes={"button"}><img src="images/bag.svg"/><br/>Корзина</Button>
+                    {this.props.appState.isAuthenticated && <Button onClickAction={this.onClickLogout}><img src="images/user.svg"/><br/>Выход</Button>}
+                    {!this.props.appState.isAuthenticated && <Button onClickAction={this.onClickLogin}><img src="images/user.svg"/><br/>Вход</Button>}
+                    <Button><img src="images/favorite.svg"/><br/>Избранное</Button>
+                    <Button><img src="images/bag.svg"/><br/>Корзина</Button>
                 </span>
 
 
@@ -60,6 +65,23 @@ class Header extends Component {
      */
     onClickLogin = () => {
         this.props.changeAppState.setIsOpenAuthModal(true);
+    };
+
+
+    onClickFemale = () => {
+        this.setState({...this.state, chosenGender: 'FEMALE'});
+    };
+
+    onClickMale = () => {
+        this.setState({...this.state, chosenGender: 'MALE'});
+    };
+
+    onClickGirl = () => {
+        this.setState({...this.state, chosenGender: 'GIRL'});
+    };
+
+    onClickBoy = () => {
+        this.setState({...this.state, chosenGender: 'BOY'});
     };
 
 
