@@ -13,9 +13,15 @@ class Clothes extends Component {
     }
 
     render() {
-        return (<h1>
-            Одежда content
-        </h1>);
+        return (<div>
+                    <h1>
+                        Одежда
+                    </h1>
+                    <div className={"filters"}>
+                        фильтры
+                    </div>
+                </div>
+        );
 
     }
 }

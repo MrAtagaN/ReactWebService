@@ -13,7 +13,7 @@ class Shoes extends Component {
 
     render() {
         return (<h1>
-            Обувь content
+            Обувь
         </h1>);
 
     }

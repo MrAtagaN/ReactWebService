@@ -2,7 +2,7 @@
 
 .leftMenu {
     float: left; /*Задаем обтекание*/
-    line-height: 20px; /*Высота строки +  верт. центрирования текста*/
+    line-height: 18px; /*Высота строки +  верт. центрирования текста*/
     /*font-size: 40px;*/
     margin-left: 0px;
     padding-top: 0px;
@@ -12,6 +12,7 @@
 
     color: #343a40;
     background: #ddd;
+    text-align: center;
 }
 
 A {
@@ -28,7 +29,7 @@ li {
 }
 
 ol li {
-    padding-top: 40px;
+    padding-top: 26px;
     margin-left: -75px;
 
 }

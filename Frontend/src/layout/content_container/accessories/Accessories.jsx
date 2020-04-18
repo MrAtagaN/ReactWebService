@@ -13,7 +13,7 @@ class Accessories extends Component {
 
     render() {
         return (<h1>
-            Аксесуары content
+            Аксесуары
         </h1>);
 
     }
