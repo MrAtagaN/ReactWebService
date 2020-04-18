@@ -14,7 +14,7 @@ export default class LeftMenu extends Component {
                 <ol>
                     <ul>
                         <li>
-                            <Link to="/page1">Страница 1</Link>
+                            <Link to="/page1"><div><img width={50}  src="images/clothes.png"/>Одежда</div></Link>
                         </li>
                         <li>
                             <Link to='/page2'>Страница 2</Link>

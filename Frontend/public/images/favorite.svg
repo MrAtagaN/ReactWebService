@@ -6,6 +6,6 @@
     </defs>
     <g fill="none" fill-rule="evenodd">
         <path d="M0 0h24v24H0z"/>
-        <use fill="#222" xlink:href="#prefix__a"/>
+        <use fill="#ddd" xlink:href="#prefix__a"/>
     </g>
 </svg>

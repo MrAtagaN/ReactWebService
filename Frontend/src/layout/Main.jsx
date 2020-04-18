@@ -17,8 +17,8 @@ class Main extends Component {
         return (
             <div>
                 <AuthModal/>
-                <LeftMenu/>
                 <Header/>
+                <LeftMenu/>
                 <ContentContainer/>
             </div>
         )
