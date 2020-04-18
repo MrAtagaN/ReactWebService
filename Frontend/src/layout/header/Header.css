@@ -32,6 +32,10 @@
    font-size: 15px;
 }
 
+.logo {
+    width: 170px;
+}
+
 .button {
     color: #ddd;
     background: #343a40;

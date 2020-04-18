@@ -27,7 +27,7 @@ class Header extends Component {
 
         return (
             <div className="header">
-                <Link to="/" className="homeLink"><img width={170} src="images/logo-lamoda.png"/></Link>
+                <Link to="/" className="homeLink"><img className='logo' src="images/logo-lamoda.png"/></Link>
 
                 <span className={"chooseGender"}>
                     <Button classes={"gender"} onClickAction={this.onClickFemale} chosen={this.state.chosenGender === 'FEMALE'}>Женская</Button>
