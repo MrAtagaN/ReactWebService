@@ -5,11 +5,12 @@
     margin-left: 0;
     width: auto;
     padding-left: 25px;
-    height: 50px;
+    height: 45px;
+    text-align: left;
 
     color: #ddd
-
 }
+
 
 .userBlock {
     position:relative;
@@ -31,5 +32,5 @@ span {
 
 A {
     text-decoration: none;
-    color: #bcbec1; /* Цвет ссылок */
+    color: #ddd; /* Цвет ссылок */
 }

@@ -10,7 +10,6 @@ export default class LeftMenu extends Component {
     render() {
         return (
             <div className="leftMenu">
-                <Link to="/" className="homeLink">Домой</Link>
                 <ol>
                     <ul>
                         <li>

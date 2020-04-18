@@ -5,6 +5,7 @@ import Button from "../../components/button/Button";
 import RestClient from "../../services/RestClient";
 import {LOGOUT_URL} from "../../constants/RestConstants";
 import Redirect from "react-router-dom/es/Redirect";
+import {Link} from "react-router-dom";
 
 
 /**
@@ -25,12 +26,11 @@ class Header extends Component {
 
         return (
             <div className="header">
+                <Link to="/" className="homeLink"><img width={170} src="images/logo-lamoda.png"/></Link>
                 <span>
                   {this.props.appState.title}
                 </span>
-                <span>
-                    Welcome to Site!
-                </span>
+
                 {this.props.appState.isAuthenticated && <span> {this.props.appState.userInfo.username}</span>}
 
                 <span className={"userBlock"}>

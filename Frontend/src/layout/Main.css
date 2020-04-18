@@ -13,6 +13,10 @@ body {
     border: none;
 }
 
+Button:hover {
+    cursor:pointer;
+}
+
 
 A {
     text-decoration: none;
@@ -25,7 +29,7 @@ A:active {
     color: #333333; /* Цвет активных ссылок */
 }
 
-.lineBlock {
-    display:inline
-}
+/*.lineBlock {*/
+/*    display:inline*/
+/*}*/
 
