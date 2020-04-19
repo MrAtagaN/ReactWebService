@@ -11,7 +11,7 @@
 }
 
 .chooseGender {
-    position:absolute;
+    position: absolute;
     margin-left: 100px;
     font-size: 30px;
 }
@@ -25,8 +25,8 @@
 }
 
 .userBlock {
-    position:relative;
-    width:600px;
+    position: relative;
+    width: 600px;
     float: right;
     text-align: right;
     padding-right: 0px;
@@ -37,7 +37,7 @@
 .gender {
     padding-top: 13px;
     padding-bottom: 13px;
-   font-size: 15px;
+    font-size: 15px;
 }
 
 .logo {
