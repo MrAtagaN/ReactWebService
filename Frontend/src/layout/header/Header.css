@@ -20,13 +20,23 @@
     float: left;
 }
 
+.login {
+    width: 45px;
+    text-align: center;
+}
+
+.logout{
+    width: 45px;
+    text-align: center;
+}
+
 .username {
     margin-right: 10px;
 }
 
 .userBlock {
     position: relative;
-    width: 500px;
+    width: 600px;
     float: right;
     text-align: right;
     padding-right: 0px;

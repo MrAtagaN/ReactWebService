@@ -39,10 +39,16 @@ class Header extends Component {
                 <span className={"userBlock"}>
                     <Button classes={"search"}><img src="images/search.svg"/><br/>Поиск</Button>
                     {this.props.appState.isAuthenticated && <span className={"username"}> {this.props.appState.userInfo.username}</span>}
-                    {this.props.appState.isAuthenticated && <Button onClickAction={this.onClickLogout} ><img src="images/user-green.svg"/><br/>Выход</Button>}
-                    {!this.props.appState.isAuthenticated && <Button onClickAction={this.onClickLogin}><img src="images/user.svg"/><br/>Вход</Button>}
+
+
+                    {this.props.appState.isAuthenticated && <Button><img src="images/user-green.svg"/><br/>Профиль</Button>}
+                    {!this.props.appState.isAuthenticated && <Button><img src="images/user.svg"/><br/>Профиль</Button>}
+
                     <Button><img src="images/favorite.svg"/><br/>Избранное</Button>
                     <Button><img src="images/bag.svg"/><br/>Корзина</Button>
+
+                    {this.props.appState.isAuthenticated && <Button classes={"logout"} onClickAction={this.onClickLogout} ><img src="images/login2.svg"/><br/>Выход</Button>}
+                    {!this.props.appState.isAuthenticated && <Button classes={"login"} onClickAction={this.onClickLogin}><img src="images/login2.svg"/><br/>Вход</Button>}
                 </span>
 
 

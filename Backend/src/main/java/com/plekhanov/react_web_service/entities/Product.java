@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Set;
 
 /**
  * Товар
@@ -26,22 +27,25 @@ public class Product {
     private BigDecimal price;
     private Integer size;
     private String namedSize;
-    private Gender gender;
-    private Age age;
+    private GenderCategory genderCategory;
+    private AgeCategory ageCategory;
     private String color;
     private Boolean isNew;
     private Boolean isSales;
+    private Set<byte[]> images;
 
 
 
 
 
-    public enum Gender {
+
+
+    public enum GenderCategory {
         MALE,
         FEMALE
     }
 
-    public enum Age {
+    public enum AgeCategory {
         ADULT,
         KIDS
     }

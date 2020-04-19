@@ -49,5 +49,6 @@ public class User {
     @Column(name = "email")
     private String email;
 
-    //TODO добавить поля: дата регистрации, избранные товары, выбранные товары
+    //TODO добавить поля: дата регистрации, избранные товары, выбранные товары,
+    // private List<Product> bagProducts, private List<Product> favoriteProducts, private List<Order> orders;
 }
