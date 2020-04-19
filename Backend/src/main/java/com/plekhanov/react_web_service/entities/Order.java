@@ -12,5 +12,11 @@ public class Order {
     private List<Product> products;
     private LocalDateTime createdAt;
     private Address address;
+    private Status status;
+
+
+    public enum Status {
+
+    }
 
 }
