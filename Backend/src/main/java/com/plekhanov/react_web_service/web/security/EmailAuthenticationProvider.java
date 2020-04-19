@@ -31,27 +31,22 @@ public class EmailAuthenticationProvider implements AuthenticationProvider {
      * В качестве логина выступает поле email
      */
     @Override
-    public Authentication authenticate(Authentication authentication) {
-        String username = (String) authentication.getPrincipal();
-        String password = (String) authentication.getCredentials();
+    public Authentication authenticate(final Authentication authentication) {
+        final String username = (String) authentication.getPrincipal();
+        final String password = (String) authentication.getCredentials();
 
-        User user = null;
-        if (isNotBlank(username)) {
-            user = userDao.findByEmail(username);
+        if (isNotBlank(username) && isNotBlank(password)) {
+            final User user = userDao.findByEmail(username);
+            if (user != null
+                    && user.isEnabled()
+                    && user.isAccountNonExpired()
+                    && user.isAccountNonLocked()
+                    && user.isCredentialsNonExpired()
+                    && bCryptPasswordEncoder.matches(password, user.getPassword())) {
+                return new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
+            }
         }
-
-        if (user == null) {
-            throw new UsernameNotFoundException("User " + username + " not found!");
-        }
-
-        if (user.isEnabled()
-                && user.isAccountNonExpired()
-                && user.isAccountNonLocked()
-                && user.isCredentialsNonExpired()
-                && bCryptPasswordEncoder.matches(password, user.getPassword())) {
-            return new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
-        }
-        return authentication;
+        throw new UsernameNotFoundException("User " + username + " not found!");
     }
 
 
