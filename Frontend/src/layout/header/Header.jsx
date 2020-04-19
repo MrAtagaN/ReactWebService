@@ -3,7 +3,7 @@ import './Header.css';
 import {connectToStore} from "../../store/Connect";
 import Button from "../../components/button/Button";
 import RestClient from "../../services/RestClient";
-import {LOGOUT_URL} from "../../constants/RestConstants";
+import {LOGOUT_URL, NOT_AUTHENTICATED, OK, USER_URL} from "../../constants/RestConstants";
 import Redirect from "react-router-dom/es/Redirect";
 import {Link} from "react-router-dom";
 import {BOY, FEMALE, GIRL, MALE} from "../../constants/AppConstants";
@@ -37,15 +37,15 @@ class Header extends Component {
                 </span>
 
                 <span className={"userBlock"}>
-                    <Button classes={"search"}><img src="images/search.svg"/><br/>Поиск</Button>
+                    <Button onClickAction={this.onClickSearch} classes={"search"}><img src="images/search.svg"/><br/>Поиск</Button>
+
                     {this.props.appState.isAuthenticated && <span className={"username"}> {this.props.appState.userInfo.username}</span>}
 
+                    {this.props.appState.isAuthenticated && <Button onClickAction={this.onClickProfile}><img src="images/user-green.svg"/><br/>Профиль</Button>}
+                    {!this.props.appState.isAuthenticated && <Button onClickAction={this.onClickProfile}><img src="images/user.svg"/><br/>Профиль</Button>}
 
-                    {this.props.appState.isAuthenticated && <Button><img src="images/user-green.svg"/><br/>Профиль</Button>}
-                    {!this.props.appState.isAuthenticated && <Button><img src="images/user.svg"/><br/>Профиль</Button>}
-
-                    <Button><img src="images/favorite.svg"/><br/>Избранное</Button>
-                    <Button><img src="images/bag.svg"/><br/>Корзина</Button>
+                    <Button onClickAction={this.onClickFavorite}><img src="images/favorite.svg"/><br/>Избранное</Button>
+                    <Button onClickAction={this.onClickBag}><img src="images/bag.svg"/><br/>Корзина</Button>
 
                     {this.props.appState.isAuthenticated && <Button classes={"logout"} onClickAction={this.onClickLogout} ><img src="images/login2.svg"/><br/>Выход</Button>}
                     {!this.props.appState.isAuthenticated && <Button classes={"login"} onClickAction={this.onClickLogin}><img src="images/login2.svg"/><br/>Вход</Button>}
@@ -56,9 +56,10 @@ class Header extends Component {
         )
     }
 
-    /**
-     * Выполняется при нажатии на кнопку Logout
-     */
+    onClickSearch = () => {
+
+    };
+
     onClickLogout = () => {
         RestClient.get(LOGOUT_URL);
         this.props.changeAppState.setIsAuthenticated(false);
@@ -66,11 +67,41 @@ class Header extends Component {
         this.setState({...this.state, redirect: true});
     };
 
-    /**
-     * Выполняется при нажатии на кнопку Login
-     */
     onClickLogin = () => {
         this.props.changeAppState.setIsOpenAuthModal(true);
+    };
+
+    onClickProfile = async () => {
+        const response = await RestClient.get(USER_URL + 'info');//TODO поменять
+        if (response.code === OK) {
+
+
+        } else if (response.code === NOT_AUTHENTICATED) {
+            this.props.changeAppState.setIsOpenAuthModal(true);
+            this.props.changeAppState.setIsAuthenticated(false);
+        }
+    };
+
+    onClickFavorite = async () => {
+        const response = await RestClient.get(USER_URL + 'info');//TODO поменять
+        if (response.code === OK) {
+
+
+        } else if (response.code === NOT_AUTHENTICATED) {
+            this.props.changeAppState.setIsOpenAuthModal(true);
+            this.props.changeAppState.setIsAuthenticated(false);
+        }
+    };
+
+    onClickBag = async () => {
+        const response = await RestClient.get(USER_URL + 'info');//TODO поменять
+        if (response.code === OK) {
+
+
+        } else if (response.code === NOT_AUTHENTICATED) {
+            this.props.changeAppState.setIsOpenAuthModal(true);
+            this.props.changeAppState.setIsAuthenticated(false);
+        }
     };
 
 
