@@ -38,7 +38,6 @@ public class ApiResponse<T> {
 
 
     public enum ResponseCode {
-
         OK(0),
         NOT_AUTHENTICATED(1),
         AUTHENTICATION_FAILURE(2),

@@ -2,7 +2,6 @@ package com.plekhanov.react_web_service.entities;
 
 import com.plekhanov.react_web_service.web.security.Role;
 import lombok.Data;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -14,7 +13,7 @@ import java.util.Set;
 @Data
 @Entity(name = "User")
 @Table(name = "users")
-public class User implements UserDetails {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,4 +48,6 @@ public class User implements UserDetails {
 
     @Column(name = "email")
     private String email;
+
+    //TODO добавить поля: дата регистрации, избранные товары, выбранные товары
 }

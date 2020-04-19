@@ -13,15 +13,9 @@ import java.util.List;
 @Validated
 public interface UserDao {
 
-    /**
-     * Ищет {@link User} по полю username
-     */
     List<User> findByName(@NotBlank String username);
 
-    /**
-     * Ищет {@link User} по полю email
-     */
     User findByEmail(@NotBlank String email);
 
-    User findById(@NotNull Integer id);
+    User findById(int id);
 }

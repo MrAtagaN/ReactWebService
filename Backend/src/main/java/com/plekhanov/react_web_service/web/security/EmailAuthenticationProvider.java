@@ -50,7 +50,7 @@ public class EmailAuthenticationProvider implements AuthenticationProvider {
                 if (!user.isCredentialsNonExpired()) {
                     throw new CredentialsExpiredException(MessageFormat.format("User {0} credentials is expired!", username));
                 }
-                String actualPassword = user.getPassword();
+                final String actualPassword = user.getPassword();
                 if (!bCryptPasswordEncoder.matches(password, actualPassword)) {
                     throw new BadCredentialsException(MessageFormat.format("User {0} bad credentials!", username));
                 }

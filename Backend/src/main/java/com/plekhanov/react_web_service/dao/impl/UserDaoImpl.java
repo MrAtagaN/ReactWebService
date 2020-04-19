@@ -19,7 +19,7 @@ public class UserDaoImpl implements UserDao {
 
     private final SessionFactory sessionFactory;
 
-    public User findById(final Integer id){
+    public User findById(final int id){
         try (Session session = sessionFactory.openSession()) {
             return session.find(User.class, id);
         }
