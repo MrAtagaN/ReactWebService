@@ -4,7 +4,7 @@ import Shoes from "./shoes/Shoes";
 import {Route} from "react-router-dom";
 import Switch from "react-bootstrap/esm/Switch";
 import Home from "./home/Home";
-import SecurePage from "./secure_page/SecurePage";
+import Profile from "./profile/Profile";
 import './ContentContainer.css';
 import Accessories from "./accessories/Accessories";
 import NewProducts from "./new_products/NewProducts";
@@ -26,7 +26,7 @@ export default class ContentContainer extends Component {
                     <Route path='/shoes' component={Shoes}/>
                     <Route path='/accessories' component={Accessories}/>
                     <Route path='/sale' component={Sale}/>
-                    <Route path='/secure-page' component={SecurePage}/>
+                    <Route path='/profile' component={Profile}/>
                 </Switch>
             </div>
         )

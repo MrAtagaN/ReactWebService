@@ -15,14 +15,16 @@ import {BOY, FEMALE, GIRL, MALE} from "../../constants/AppConstants";
 class Header extends Component {
 
     state = {
-        redirect: false //при разлогине меняется на true
+        redirectURL: false //меняется по нажатию кнопок, на url редиректа
+
     };
 
     render() {
-        //редирект на домашнюю страницу
-        if (this.state.redirect) {
-            this.setState({redirect: false});
-            return <Redirect to="/" />;
+        //механизм редиректа
+        const redirectURL = this.state.redirectURL;
+        if (redirectURL) {
+            this.setState({...this.state, redirectURL: false});
+            return <Redirect to={redirectURL} />;
         }
 
         return (
@@ -56,7 +58,7 @@ class Header extends Component {
         )
     }
 
-    onClickSearch = () => {
+    onClickSearch = () => {//TODO поменять
 
     };
 
@@ -64,7 +66,7 @@ class Header extends Component {
         RestClient.get(LOGOUT_URL);
         this.props.changeAppState.setIsAuthenticated(false);
         this.props.changeAppState.setUserInfo({});
-        this.setState({...this.state, redirect: true});
+        this.setState({...this.state, redirectURL: '/'});
     };
 
     onClickLogin = () => {
@@ -72,13 +74,11 @@ class Header extends Component {
     };
 
     onClickProfile = async () => {
-        const response = await RestClient.get(USER_URL + 'info');//TODO поменять
-        if (response.code === OK) {
-
-
-        } else if (response.code === NOT_AUTHENTICATED) {
+        if (this.props.appState.isAuthenticated) {
+            this.setState({...this.state, redirectURL: '/profile'});
+        } else {
+            this.props.changeAppState.setOnSuccessAuth(this.onClickProfile);
             this.props.changeAppState.setIsOpenAuthModal(true);
-            this.props.changeAppState.setIsAuthenticated(false);
         }
     };
 

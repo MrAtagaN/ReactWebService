@@ -7,7 +7,7 @@ import {NOT_AUTHENTICATED, OK, USER_URL} from "../../../constants/RestConstants"
 /**
  *
  */
-class SecurePage extends Component {
+class Profile extends Component {
 
     state = {
         data: ''
@@ -15,7 +15,7 @@ class SecurePage extends Component {
 
     constructor(props) {
         super(props);
-        this.props.changeAppState.setTitle('SecurePage');
+        this.props.changeAppState.setTitle('Profile');
     }
 
     render() {
@@ -58,4 +58,4 @@ class SecurePage extends Component {
 }
 
 
-export default connectToStore(SecurePage);
+export default connectToStore(Profile);
