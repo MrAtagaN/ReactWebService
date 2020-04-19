@@ -11,29 +11,34 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 /**
- * Сервис возвращающий Информацию о правах доступа пользователя по имени.
- * Нужен для {@link AuthenticationManager} фремворка spring.security
+ * В качестве логина выступает поле email. Мы не можем положить email в username интерфейса {@link UserDetails}.
+ *
+ * Для решения этой проблемы сделан {@link AppAuthenticationProvider}
  */
-@RequiredArgsConstructor
-@Service
-public class AppUserDetailService implements UserDetailsService {
 
-    private final UserDao userDao;
-
-    /**
-     * Возвращает Информацию о правах доступа пользователя по имени
-     */
-    @Override
-    public UserDetails loadUserByUsername(String username) {
-        User user = null;
-        if (StringUtils.isNotBlank(username)) {
-            user = userDao.findByName(username);
-        }
-        if (user == null) {
-            throw new UsernameNotFoundException("User " + username + " not found!");
-        }
-        return user;
-    }
-
-
-}
+///**
+// * Сервис возвращающий Информацию о правах доступа пользователя по имени.
+// * Нужен для {@link AuthenticationManager} фремворка spring.security
+// */
+//@RequiredArgsConstructor
+//@Service
+//public class AppUserDetailService implements UserDetailsService {
+//
+//    private final UserDao userDao;
+//
+//    /**
+//     * Возвращает Информацию о правах доступа пользователя по имени
+//     */
+//    @Override
+//    public UserDetails loadUserByUsername(String username) {
+//        User user = null;
+//        if (StringUtils.isNotBlank(username)) {
+//            user = userDao.findByName(username);
+//        }
+//        if (user == null) {
+//            throw new UsernameNotFoundException("User " + username + " not found!");
+//        }
+//        return user;
+//    }
+//
+//}

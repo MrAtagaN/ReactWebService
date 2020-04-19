@@ -9,7 +9,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.constraints.Size;
 
 /**
  *
@@ -20,8 +19,6 @@ import javax.validation.constraints.Size;
 @Validated
 public class UserController {
 
-    private final UserDao userDao;
-
     /**
      * Информация о текущем пользователе
      */
@@ -31,16 +28,6 @@ public class UserController {
         return ApiResponse.ok(UserDto.fromUser(currentUser));
     }
 
-
-    /**
-     * Убрать !!
-     */
-    @PostMapping("test")
-    public ApiResponse<?> getTestUser2(@Size(min=3) @RequestBody String s) {
-        System.out.println(s);
-
-        return ApiResponse.ok(null);
-    }
 
 
 }

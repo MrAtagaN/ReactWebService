@@ -10,6 +10,8 @@ import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.stereotype.Repository;
 import com.plekhanov.react_web_service.entities.*;
 
+import java.util.List;
+
 @Slf4j
 @RequiredArgsConstructor
 @Repository
@@ -23,10 +25,18 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
-    public User findByName(final String username) {
+    public List<User> findByName(final String username) {
         try (Session session = sessionFactory.openSession()) {
             final Query<User> query = session.createQuery("FROM User u where u.username = :username", User.class);
             query.setParameter("username", username);
+            return query.list();
+        }
+    }
+
+    public User findByEmail(final String email) {
+        try (Session session = sessionFactory.openSession()) {
+            final Query<User> query = session.createQuery("FROM User u where u.email = :email", User.class);
+            query.setParameter("email", email);
             return DataAccessUtils.singleResult(query.list());
         }
     }

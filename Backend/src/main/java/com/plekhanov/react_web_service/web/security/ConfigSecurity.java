@@ -10,13 +10,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
@@ -38,10 +37,11 @@ import static com.plekhanov.react_web_service.web.dto.ApiResponse.ResponseCode.*
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
+@EnableGlobalMethodSecurity(securedEnabled = true)
 public class ConfigSecurity extends WebSecurityConfigurerAdapter {
 
-    private final UserDetailsService userDetailsService;
     private final ObjectMapper objectMapper;
+    private final EmailAuthenticationProvider emailAuthenticationProvider;
 
     /**
      * Настройка открытых эндпойнтов
@@ -52,12 +52,6 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
                 .antMatchers("/*")
                 .antMatchers("/static/**")
                 .antMatchers("/images/**");
-//                .antMatchers("*.svg")
-//                .antMatchers("*.js")
-//                .antMatchers("*.html")
-//                .antMatchers("*.css")
-//                .antMatchers("*.png")
-//                .antMatchers("*.ico");
     }
 
     /**
@@ -93,8 +87,9 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
      * Нужен для авторизации и аутентификации пользователя классом {@link AuthenticationManager} фреймворка spring.security
      */
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
+    protected void configure(AuthenticationManagerBuilder auth) {
+        // auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
+        auth.authenticationProvider(emailAuthenticationProvider);
     }
 
 

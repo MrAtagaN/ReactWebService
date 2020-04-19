@@ -20,9 +20,8 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    //Security info
     @Column(name = "username")
-    private String username;
+    private String username; //аутентификация происходит по полю email
 
     @Column(name = "password")
     private String password;
@@ -45,8 +44,9 @@ public class User implements UserDetails {
     @Column(name = "enabled")
     private boolean enabled;
 
-    //Public info
     @Column(name = "last_enter", columnDefinition = "TIMESTAMP")
     private LocalDateTime lastEnter;
 
+    @Column(name = "email")
+    private String email;
 }
