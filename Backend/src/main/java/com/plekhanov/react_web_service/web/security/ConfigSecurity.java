@@ -37,7 +37,7 @@ import static com.plekhanov.react_web_service.web.dto.ApiResponse.ResponseCode.*
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
-@EnableGlobalMethodSecurity(securedEnabled = true)
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class ConfigSecurity extends WebSecurityConfigurerAdapter {
 
     private final ObjectMapper objectMapper;
