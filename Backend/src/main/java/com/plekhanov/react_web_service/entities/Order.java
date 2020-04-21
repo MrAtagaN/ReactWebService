@@ -1,9 +1,11 @@
 package com.plekhanov.react_web_service.entities;
 
-
 import java.time.LocalDateTime;
 import java.util.List;
 
+/**
+ * Заказ
+ */
 public class Order {
 
     private Long id;

@@ -5,6 +5,9 @@ import lombok.Data;
 import javax.annotation.Nullable;
 import javax.validation.constraints.Size;
 
+/**
+ * Адрес
+ */
 @Data
 public class Address {
 

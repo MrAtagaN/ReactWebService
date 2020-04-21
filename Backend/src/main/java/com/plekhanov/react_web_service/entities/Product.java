@@ -18,27 +18,61 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "description")
     private String description;
-    private String category;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "category")
+    private ProductCategory category;
+
+    @Column(name = "type")
     private String type;
+
+    @Column(name = "subType")
     private String subType;
+
+    @Column(name = "brand")
     private String brand;
+    @Column(name = "price")
     private BigDecimal price;
+
+    @Column(name = "size")
     private Integer size;
+
+    @Column(name = "namedSize")
     private String namedSize;
+
+    @Column(name = "genderCategory")
     private GenderCategory genderCategory;
+
+    @Column(name = "ageCategory")
     private AgeCategory ageCategory;
+
+    @Column(name = "color")
     private String color;
+
+    @Column(name = "isNew")
     private Boolean isNew;
+
+    @Column(name = "isSales")
     private Boolean isSales;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "image", joinColumns = @JoinColumn(name = "product_id"))
+    @Column(name = "data")
     private Set<byte[]> images;
 
 
 
 
-
-
+    public enum ProductCategory {
+        CLOTHES,
+        SHOES,
+        ACCESSORIES
+    }
 
     public enum GenderCategory {
         MALE,
