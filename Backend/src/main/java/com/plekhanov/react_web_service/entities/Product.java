@@ -16,7 +16,7 @@ public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @Column(name = "name")
     private String name;
@@ -25,47 +25,48 @@ public class Product {
     private String description;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "category")
-    private ProductCategory category;
+    @Column(name = "product_category")
+    private ProductCategory productCategory;
 
     @Column(name = "type")
     private String type;
 
-    @Column(name = "subType")
+    @Column(name = "sub_type")
     private String subType;
 
     @Column(name = "brand")
     private String brand;
+
     @Column(name = "price")
     private BigDecimal price;
 
     @Column(name = "size")
     private Integer size;
 
-    @Column(name = "namedSize")
+    @Column(name = "named_size")
     private String namedSize;
 
-    @Column(name = "genderCategory")
+    @Enumerated(EnumType.STRING)
+    @Column(name = "gender_category")
     private GenderCategory genderCategory;
 
-    @Column(name = "ageCategory")
+    @Enumerated(EnumType.STRING)
+    @Column(name = "age_category")
     private AgeCategory ageCategory;
 
     @Column(name = "color")
     private String color;
 
-    @Column(name = "isNew")
+    @Column(name = "is_new")
     private Boolean isNew;
 
-    @Column(name = "isSales")
+    @Column(name = "is_sales")
     private Boolean isSales;
 
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "image", joinColumns = @JoinColumn(name = "product_id"))
     @Column(name = "data")
     private Set<byte[]> images;
-
-
 
 
     public enum ProductCategory {
