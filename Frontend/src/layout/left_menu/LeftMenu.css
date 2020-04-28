@@ -10,7 +10,7 @@
     width: 100px;
     height: 1000px; /* //TODO сделать бесконечность */
 
-    color: #24292e;
+    color: #30383e;
     background: #ddd;
     text-align: center;
     font-size: 13px;
@@ -19,7 +19,7 @@
 }
 
 A {
-    color: #343a40;
+    color: #30383e;
 }
 
 li {
@@ -28,7 +28,7 @@ li {
 }
 
 .link {
-    color: #24292e;
+    color: #30383e;
 }
 
 ol li {
