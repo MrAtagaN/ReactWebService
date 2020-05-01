@@ -15,7 +15,6 @@ import java.math.BigDecimal;
 public class ProductSearchParams {
 
     String name;
-    //Category category;
     Integer typeId;
     String subType;
     String brand;

@@ -9,7 +9,6 @@ import java.util.Set;
 
 import static javax.persistence.CascadeType.ALL;
 import static javax.persistence.EnumType.STRING;
-import static javax.persistence.FetchType.EAGER;
 import static javax.persistence.FetchType.LAZY;
 import static javax.persistence.GenerationType.IDENTITY;
 import static org.hibernate.annotations.FetchMode.SELECT;
@@ -22,9 +21,6 @@ import static org.hibernate.annotations.FetchMode.SELECT;
 @Entity(name = "ProductType")
 @Table(name = "product_type")
 public class ProductType {
-
-    public ProductType() {
-    }
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -40,7 +36,6 @@ public class ProductType {
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @OneToMany(mappedBy = "type", cascade = ALL, orphanRemoval = true, fetch = LAZY)
-    @Fetch(value=SELECT)
     private Set<Product> products;
 
     public enum Category {

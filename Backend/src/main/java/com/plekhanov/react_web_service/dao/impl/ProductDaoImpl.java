@@ -51,28 +51,6 @@ public class ProductDaoImpl implements ProductDao {
         return id;
     }
 
-//    @Override
-//    public Set<Type> getTypesByParameters(Category category, Age age, Gender gender) {
-//        try (Session session = sessionFactory.openSession()) {
-//            Map<String, Object> params = new HashMap<>();
-//            params.put("category", category);
-//            StringBuilder stringQuery = new StringBuilder("select distinct p.type FROM Product p WHERE p.category = :category");
-//
-//            if (age != null) {
-//                stringQuery.append(" and p.age = :age");
-//                params.put("age", age);
-//            }
-//            if (gender != null) {
-//                stringQuery.append(" and p.gender = :gender");
-//                params.put("gender", gender);
-//            }
-//
-//            final Query<Type> query = session.createQuery(stringQuery.toString(), Type.class);
-//            query.setProperties(params);
-//            return new HashSet<>(query.list()) ;
-//        }
-//    }
-
 
     @Override
     public Set<Product> search(ProductSearchParams productSearchParams) {

@@ -19,7 +19,7 @@ public class ProductTypeDto {
     /**
      * Фабричный метод. Возвращает {@link ProductTypeDto} из переданного {@link ProductType}
      */
-    public static ProductTypeDto fromProduct(ProductType product) {
+    public static ProductTypeDto fromProductType(ProductType product) {
         return ProductTypeDto.builder()
                 .id(product.getId())
                 .name(product.getName())

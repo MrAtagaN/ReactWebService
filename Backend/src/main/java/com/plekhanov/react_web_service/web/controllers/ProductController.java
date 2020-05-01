@@ -26,18 +26,6 @@ public class ProductController {
 
     private final ProductService productService;
 
-//    /**
-//     * Возвращает типы Товаров, по выбранным параметрам
-//     */
-//    @GetMapping("types")
-//    public ApiResponse<Set<Type>> getTypes(
-//            @RequestParam("category") Category category,
-//            @RequestParam(value = "age", required = false) Age age,
-//            @RequestParam(value = "gender", required = false) Gender gender) {
-//
-//        Set<Type> productTypes = productService.getTypesByParameters(category, age, gender);//TODO поменять
-//        return ApiResponse.ok(productTypes);
-//    }
 
     /**
      * Возвращает Товары, по выбранным параметрам
@@ -45,7 +33,6 @@ public class ProductController {
     @GetMapping("search")
     public ApiResponse<Set<ProductDto>> search(
             @RequestParam(value = "name", required = false) String name,
-            //@RequestParam(value = "category", required = false) Category category,
             @RequestParam(value = "type", required = false) Integer type,
             @RequestParam(value = "subType", required = false) String subType,
             @RequestParam(value = "brand", required = false) String brand,
@@ -62,7 +49,6 @@ public class ProductController {
 
         ProductSearchParams productSearchParams = ProductSearchParams.builder()
                 .name(name)
-                //.category(category)
                 .typeId(type)
                 .subType(subType)
                 .brand(brand)
