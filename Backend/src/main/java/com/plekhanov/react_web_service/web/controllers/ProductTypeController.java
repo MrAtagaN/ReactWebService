@@ -29,9 +29,8 @@ public class ProductTypeController {
      */
     @GetMapping("all")
     public ApiResponse<Set<ProductTypeDto>> getTypes() {
-        Set<ProductType> all = productTypeService.getAll();
-        Set<ProductTypeDto> productTypeDtos = all.stream().map(ProductTypeDto::fromProductType).collect(Collectors.toSet());
-
+        final Set<ProductType> all = productTypeService.getAll();
+        final Set<ProductTypeDto> productTypeDtos = all.stream().map(ProductTypeDto::fromProductType).collect(Collectors.toSet());
         return ApiResponse.ok(productTypeDtos);
     }
 
