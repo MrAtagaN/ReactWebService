@@ -32,8 +32,9 @@ public class Product {
     @Column(name = "category")
     private Category category;
 
+    @Enumerated(STRING)
     @Column(name = "type")
-    private String type;
+    private Type type;
 
     @Column(name = "sub_type")
     private String subType;
@@ -82,14 +83,16 @@ public class Product {
 
     public enum Gender {
         male,
-        female,
-        any
+        female
     }
 
     public enum Age {
         adult,
-        kids,
-        any
+        kids
+    }
+
+    public enum Type {
+        jeans
     }
 
 }

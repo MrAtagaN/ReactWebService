@@ -16,4 +16,4 @@ INSERT INTO authorities (user_id, role) values (2, 'USER');
 -- Продукты
 
 INSERT INTO product (name, description, category, type, sub_type, brand, price, size, named_size, gender, age, color, is_new, is_sales)
-values ('модель 123', 'джинсы классические, прямые', 'clothes', 'джинсы', null, 'gap', 4999, 32, null, 'male', 'adult', 'синие', true, false);
+values ('модель 123', 'джинсы классические, прямые', 'clothes', 'jeans', null, 'gap', 4999, 32, null, 'male', 'adult', 'синие', true, false);

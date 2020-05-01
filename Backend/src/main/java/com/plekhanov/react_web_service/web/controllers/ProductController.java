@@ -1,6 +1,7 @@
 package com.plekhanov.react_web_service.web.controllers;
 
 import com.plekhanov.react_web_service.entities.Product;
+import com.plekhanov.react_web_service.entities.Product.Type;
 import com.plekhanov.react_web_service.entities.Product.Category;
 import com.plekhanov.react_web_service.entities.Product.Age;
 import com.plekhanov.react_web_service.entities.Product.Gender;
@@ -31,12 +32,12 @@ public class ProductController {
      * Возвращает типы Товаров, по выбранным параметрам
      */
     @GetMapping("types")
-    public ApiResponse<Set<String>> getTypes(
+    public ApiResponse<Set<Type>> getTypes(
             @RequestParam("category") Category category,
             @RequestParam(value = "age", required = false) Age age,
             @RequestParam(value = "gender", required = false) Gender gender) {
 
-        Set<String> productTypes = productService.getTypesByParameters(category, age, gender);
+        Set<Type> productTypes = productService.getTypesByParameters(category, age, gender);//TODO поменять
         return ApiResponse.ok(productTypes);
     }
 
@@ -47,7 +48,7 @@ public class ProductController {
     public ApiResponse<Set<ProductDto>> search(
             @RequestParam(value = "name", required = false) String name,
             @RequestParam(value = "category", required = false) Category category,
-            @RequestParam(value = "type", required = false) String type,
+            @RequestParam(value = "type", required = false) Type type,
             @RequestParam(value = "subType", required = false) String subType,
             @RequestParam(value = "brand", required = false) String brand,
             @RequestParam(value = "priceFrom", required = false) BigDecimal priceFrom,

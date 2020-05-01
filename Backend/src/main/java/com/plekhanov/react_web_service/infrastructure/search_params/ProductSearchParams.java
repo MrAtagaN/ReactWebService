@@ -16,7 +16,7 @@ public class ProductSearchParams {
 
     String name;
     Category category;
-    String type;
+    Type type;
     String subType;
     String brand;
     BigDecimal priceFrom;

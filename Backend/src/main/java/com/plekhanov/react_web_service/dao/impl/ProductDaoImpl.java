@@ -5,6 +5,7 @@ import com.plekhanov.react_web_service.entities.Product;
 import com.plekhanov.react_web_service.entities.Product.Category;
 import com.plekhanov.react_web_service.entities.Product.Age;
 import com.plekhanov.react_web_service.entities.Product.Gender;
+import com.plekhanov.react_web_service.entities.Product.Type;
 import com.plekhanov.react_web_service.infrastructure.search_params.ProductSearchParams;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -53,7 +54,7 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
-    public Set<String> getTypesByParameters(Category category, Age age, Gender gender) {
+    public Set<Type> getTypesByParameters(Category category, Age age, Gender gender) {
         try (Session session = sessionFactory.openSession()) {
             Map<String, Object> params = new HashMap<>();
             params.put("category", category);
@@ -68,7 +69,7 @@ public class ProductDaoImpl implements ProductDao {
                 params.put("gender", gender);
             }
 
-            final Query<String> query = session.createQuery(stringQuery.toString(), String.class);
+            final Query<Type> query = session.createQuery(stringQuery.toString(), Type.class);
             query.setProperties(params);
             return new HashSet<>(query.list()) ;
         }
@@ -92,7 +93,7 @@ public class ProductDaoImpl implements ProductDao {
                 stringQuery.append(" and p.category = :category");
                 params.put("category", category);
             }
-            String type = productSearchParams.getType();
+            Type type = productSearchParams.getType();
             if (type != null) {
                 stringQuery.append(" and p.type = :type");
                 params.put("type", type);

@@ -3,7 +3,7 @@ package com.plekhanov.react_web_service.dao;
 import com.plekhanov.react_web_service.entities.Product;
 import com.plekhanov.react_web_service.entities.Product.Category;
 import com.plekhanov.react_web_service.entities.Product.Age;
-import com.plekhanov.react_web_service.entities.Product.Gender;
+import com.plekhanov.react_web_service.entities.Product.*;
 import com.plekhanov.react_web_service.infrastructure.search_params.ProductSearchParams;
 import org.springframework.validation.annotation.Validated;
 
@@ -20,7 +20,7 @@ public interface ProductDao {
     /**
      * Возвращает типы Товаров, по выбранным параметрам
      */
-    Set<String> getTypesByParameters(@NotNull Category category, Age age, Gender gender);
+    Set<Type> getTypesByParameters(@NotNull Category category, Age age, Gender gender);
 
     /**
      * Возвращает Товары

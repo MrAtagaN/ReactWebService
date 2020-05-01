@@ -4,6 +4,7 @@ import com.plekhanov.react_web_service.entities.Product;
 import com.plekhanov.react_web_service.entities.Product.Category;
 import com.plekhanov.react_web_service.entities.Product.Age;
 import com.plekhanov.react_web_service.entities.Product.Gender;
+import com.plekhanov.react_web_service.entities.Product.Type;
 import com.plekhanov.react_web_service.infrastructure.search_params.ProductSearchParams;
 
 import java.util.Set;
@@ -13,7 +14,7 @@ public interface ProductService {
     /**
      * Возвращает типы Товаров, по выбранным параметрам
      */
-    Set<String> getTypesByParameters(Category category, Age age, Gender gender);
+    Set<Type> getTypesByParameters(Category category, Age age, Gender gender);
 
     /**
      * Возвращает Товары
