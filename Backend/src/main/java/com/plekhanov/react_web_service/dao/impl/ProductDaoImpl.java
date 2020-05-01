@@ -2,10 +2,8 @@ package com.plekhanov.react_web_service.dao.impl;
 
 import com.plekhanov.react_web_service.dao.ProductDao;
 import com.plekhanov.react_web_service.entities.Product;
-import com.plekhanov.react_web_service.entities.Product.Category;
 import com.plekhanov.react_web_service.entities.Product.Age;
 import com.plekhanov.react_web_service.entities.Product.Gender;
-import com.plekhanov.react_web_service.entities.Product.Type;
 import com.plekhanov.react_web_service.infrastructure.search_params.ProductSearchParams;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -53,27 +51,27 @@ public class ProductDaoImpl implements ProductDao {
         return id;
     }
 
-    @Override
-    public Set<Type> getTypesByParameters(Category category, Age age, Gender gender) {
-        try (Session session = sessionFactory.openSession()) {
-            Map<String, Object> params = new HashMap<>();
-            params.put("category", category);
-            StringBuilder stringQuery = new StringBuilder("select distinct p.type FROM Product p WHERE p.category = :category");
-
-            if (age != null) {
-                stringQuery.append(" and p.age = :age");
-                params.put("age", age);
-            }
-            if (gender != null) {
-                stringQuery.append(" and p.gender = :gender");
-                params.put("gender", gender);
-            }
-
-            final Query<Type> query = session.createQuery(stringQuery.toString(), Type.class);
-            query.setProperties(params);
-            return new HashSet<>(query.list()) ;
-        }
-    }
+//    @Override
+//    public Set<Type> getTypesByParameters(Category category, Age age, Gender gender) {
+//        try (Session session = sessionFactory.openSession()) {
+//            Map<String, Object> params = new HashMap<>();
+//            params.put("category", category);
+//            StringBuilder stringQuery = new StringBuilder("select distinct p.type FROM Product p WHERE p.category = :category");
+//
+//            if (age != null) {
+//                stringQuery.append(" and p.age = :age");
+//                params.put("age", age);
+//            }
+//            if (gender != null) {
+//                stringQuery.append(" and p.gender = :gender");
+//                params.put("gender", gender);
+//            }
+//
+//            final Query<Type> query = session.createQuery(stringQuery.toString(), Type.class);
+//            query.setProperties(params);
+//            return new HashSet<>(query.list()) ;
+//        }
+//    }
 
 
     @Override
@@ -88,15 +86,11 @@ public class ProductDaoImpl implements ProductDao {
                 stringQuery.append(" and p.name = :name");
                 params.put("name", name);
             }
-            Category category = productSearchParams.getCategory();
-            if (category != null) {
-                stringQuery.append(" and p.category = :category");
-                params.put("category", category);
-            }
-            Type type = productSearchParams.getType();
-            if (type != null) {
-                stringQuery.append(" and p.type = :type");
-                params.put("type", type);
+
+            Integer typeId = productSearchParams.getTypeId();
+            if (typeId != null) {
+                stringQuery.append(" and p.type.id = :typeId");
+                params.put("typeId", typeId);
             }
             String subType = productSearchParams.getSubType();
             if (subType != null) {

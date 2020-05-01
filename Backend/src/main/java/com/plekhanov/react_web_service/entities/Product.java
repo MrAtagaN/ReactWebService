@@ -1,6 +1,8 @@
 package com.plekhanov.react_web_service.entities;
 
 import lombok.Data;
+import lombok.ToString;
+import org.hibernate.annotations.Fetch;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -9,6 +11,7 @@ import java.util.Set;
 import static javax.persistence.EnumType.STRING;
 import static javax.persistence.FetchType.EAGER;
 import static javax.persistence.GenerationType.IDENTITY;
+import static org.hibernate.annotations.FetchMode.SELECT;
 
 /**
  * Товар
@@ -16,6 +19,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Data
 @Entity(name = "Product")
 @Table(name = "product")
+@ToString(exclude = { "type" })
 public class Product {
 
     @Id
@@ -28,13 +32,14 @@ public class Product {
     @Column(name = "description")
     private String description;
 
-    @Enumerated(STRING)
-    @Column(name = "category")
-    private Category category;
+//    @Enumerated(STRING)
+//    @Column(name = "category")
+//    private Category category;
 
-    @Enumerated(STRING)
-    @Column(name = "type")
-    private Type type;
+    @ManyToOne(fetch = EAGER)
+    @JoinColumn(name = "type_id")
+    @Fetch(SELECT)
+    private ProductType type;
 
     @Column(name = "sub_type")
     private String subType;
@@ -75,11 +80,11 @@ public class Product {
 
 
 
-    public enum Category {
-        clothes,
-        shoes,
-        accessories
-    }
+//    public enum Category {
+//        clothes,
+//        shoes,
+//        accessories
+//    }
 
     public enum Gender {
         male,
@@ -91,8 +96,8 @@ public class Product {
         kids
     }
 
-    public enum Type {
-        jeans
-    }
+//    public enum Type {
+//        jeans
+//    }
 
 }

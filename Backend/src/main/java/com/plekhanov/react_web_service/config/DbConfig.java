@@ -1,9 +1,6 @@
 package com.plekhanov.react_web_service.config;
 
-import com.plekhanov.react_web_service.entities.Product;
-import com.plekhanov.react_web_service.entities.User;
-import com.plekhanov.react_web_service.entities.UserBagProduct;
-import com.plekhanov.react_web_service.entities.UserFavoriteProduct;
+import com.plekhanov.react_web_service.entities.*;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -36,6 +33,7 @@ public class DbConfig {
         configuration.addAnnotatedClass(Product.class);
         configuration.addAnnotatedClass(UserBagProduct.class);
         configuration.addAnnotatedClass(UserFavoriteProduct.class);
+        configuration.addAnnotatedClass(ProductType.class);
 
         final StandardServiceRegistryBuilder standardServiceRegistryBuilder = new StandardServiceRegistryBuilder()
                 .applySetting(DIALECT, sqlDialect)

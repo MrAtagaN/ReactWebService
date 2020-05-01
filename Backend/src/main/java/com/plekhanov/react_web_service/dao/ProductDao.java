@@ -1,7 +1,6 @@
 package com.plekhanov.react_web_service.dao;
 
 import com.plekhanov.react_web_service.entities.Product;
-import com.plekhanov.react_web_service.entities.Product.Category;
 import com.plekhanov.react_web_service.entities.Product.Age;
 import com.plekhanov.react_web_service.entities.Product.*;
 import com.plekhanov.react_web_service.infrastructure.search_params.ProductSearchParams;
@@ -17,10 +16,10 @@ public interface ProductDao {
 
     Integer save(@NotNull Product product);
 
-    /**
-     * Возвращает типы Товаров, по выбранным параметрам
-     */
-    Set<Type> getTypesByParameters(@NotNull Category category, Age age, Gender gender);
+//    /**
+//     * Возвращает типы Товаров, по выбранным параметрам
+//     */
+//    Set<Type> getTypesByParameters(@NotNull Category category, Age age, Gender gender);
 
     /**
      * Возвращает Товары

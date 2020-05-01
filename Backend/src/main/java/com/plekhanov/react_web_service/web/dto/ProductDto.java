@@ -2,6 +2,7 @@ package com.plekhanov.react_web_service.web.dto;
 
 import com.plekhanov.react_web_service.entities.Product;
 import com.plekhanov.react_web_service.entities.Product.*;
+import com.plekhanov.react_web_service.entities.ProductType;
 import lombok.Builder;
 import lombok.Value;
 
@@ -18,8 +19,7 @@ public class ProductDto {
     private Integer id;
     private String name;
     private String description;
-    private Category category;
-    private Type type;
+    private ProductTypeDto type;
     private String subType;
     private String brand;
     private BigDecimal price;
@@ -40,8 +40,7 @@ public class ProductDto {
                 .id(product.getId())
                 .name(product.getName())
                 .description(product.getDescription())
-                .category(product.getCategory())
-                .type(product.getType())
+                .type(ProductTypeDto.fromProduct(product.getType()))
                 .subType(product.getSubType())
                 .brand(product.getBrand())
                 .price(product.getPrice())

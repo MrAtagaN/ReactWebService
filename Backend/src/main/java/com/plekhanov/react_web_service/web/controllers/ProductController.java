@@ -1,8 +1,6 @@
 package com.plekhanov.react_web_service.web.controllers;
 
 import com.plekhanov.react_web_service.entities.Product;
-import com.plekhanov.react_web_service.entities.Product.Type;
-import com.plekhanov.react_web_service.entities.Product.Category;
 import com.plekhanov.react_web_service.entities.Product.Age;
 import com.plekhanov.react_web_service.entities.Product.Gender;
 import com.plekhanov.react_web_service.infrastructure.search_params.ProductSearchParams;
@@ -28,18 +26,18 @@ public class ProductController {
 
     private final ProductService productService;
 
-    /**
-     * Возвращает типы Товаров, по выбранным параметрам
-     */
-    @GetMapping("types")
-    public ApiResponse<Set<Type>> getTypes(
-            @RequestParam("category") Category category,
-            @RequestParam(value = "age", required = false) Age age,
-            @RequestParam(value = "gender", required = false) Gender gender) {
-
-        Set<Type> productTypes = productService.getTypesByParameters(category, age, gender);//TODO поменять
-        return ApiResponse.ok(productTypes);
-    }
+//    /**
+//     * Возвращает типы Товаров, по выбранным параметрам
+//     */
+//    @GetMapping("types")
+//    public ApiResponse<Set<Type>> getTypes(
+//            @RequestParam("category") Category category,
+//            @RequestParam(value = "age", required = false) Age age,
+//            @RequestParam(value = "gender", required = false) Gender gender) {
+//
+//        Set<Type> productTypes = productService.getTypesByParameters(category, age, gender);//TODO поменять
+//        return ApiResponse.ok(productTypes);
+//    }
 
     /**
      * Возвращает Товары, по выбранным параметрам
@@ -47,8 +45,8 @@ public class ProductController {
     @GetMapping("search")
     public ApiResponse<Set<ProductDto>> search(
             @RequestParam(value = "name", required = false) String name,
-            @RequestParam(value = "category", required = false) Category category,
-            @RequestParam(value = "type", required = false) Type type,
+            //@RequestParam(value = "category", required = false) Category category,
+            @RequestParam(value = "type", required = false) Integer type,
             @RequestParam(value = "subType", required = false) String subType,
             @RequestParam(value = "brand", required = false) String brand,
             @RequestParam(value = "priceFrom", required = false) BigDecimal priceFrom,
@@ -64,8 +62,8 @@ public class ProductController {
 
         ProductSearchParams productSearchParams = ProductSearchParams.builder()
                 .name(name)
-                .category(category)
-                .type(type)
+                //.category(category)
+                .typeId(type)
                 .subType(subType)
                 .brand(brand)
                 .priceFrom(priceFrom)

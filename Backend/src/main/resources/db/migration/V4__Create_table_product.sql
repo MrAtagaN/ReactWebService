@@ -3,8 +3,7 @@ CREATE TABLE product
     id              INTEGER PRIMARY KEY AUTOINCREMENT,
     name            TEXT NOT NULL,
     description     TEXT,
-    category        TEXT NOT NULL,
-    type            TEXT NOT NULL,
+    type_id         INTEGER NOT NULL CONSTRAINT product_type_id_fk REFERENCES product_type (id),
     sub_type        TEXT,
     brand           TEXT,
     price           NUMERIC NOT NULL,
@@ -17,4 +16,4 @@ CREATE TABLE product
     is_sales        BOOLEAN
 );
 
-
+CREATE INDEX product_type_id_index ON product (type_id);
