@@ -23,17 +23,30 @@ public class ProductController {
     private final ProductService productService;
 
     /**
-     * Возвращает типы Товара, по выбранным параметрам
+     * Возвращает типы Товаров, по выбранным параметрам
      */
-    @GetMapping("type-list")
-    public ApiResponse<Set<String>> searchProducts(
+    @GetMapping("types")
+    public ApiResponse<Set<String>> getTypes(
             @RequestParam("category") Category category,
-            @RequestParam("age") Age age,
-            @RequestParam("gender") Gender gender) {
+            @RequestParam(value = "age", required = false) Age age,
+            @RequestParam(value = "gender", required = false) Gender gender) {
 
         Set<String> productTypesByCategory = productService.getTypesByParameters(category, age, gender);
         return ApiResponse.ok(productTypesByCategory);
     }
+
+//    /**
+//     * Возвращает Товары, по выбранным параметрам
+//     */
+//    @GetMapping("search")
+//    public ApiResponse<Set<String>> search(
+//            @RequestParam("category") Category category,
+//            @RequestParam(value = "age", required = false) Age age,
+//            @RequestParam(value = "gender", required = false) Gender gender) {
+//
+//        Set<String> productTypesByCategory = productService.getTypesByParameters(category, age, gender);
+//        return ApiResponse.ok(productTypesByCategory);
+//    }
 
 }
 

@@ -13,7 +13,9 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 @Slf4j
@@ -57,10 +59,21 @@ public class ProductDaoImpl implements ProductDao {
     @Override
     public Set<String> getTypesByParameters(Category category, Age age, Gender gender) {
         try (Session session = sessionFactory.openSession()) {
-            final Query<String> query = session.createQuery(SELECT_TYPES_BY_PARAMETERS_QUERY, String.class);
-            query.setParameter("category", category);
-            query.setParameter("age", age);
-            query.setParameter("gender", gender);
+            Map<String, Object> params = new HashMap<>();
+            params.put("category", category);
+            StringBuilder stringQuery = new StringBuilder("select distinct p.type FROM Product p where p.category = :category");
+
+            if (age != null) {
+                stringQuery.append(" and p.age = :age");
+                params.put("age", age);
+            }
+            if (gender != null) {
+                stringQuery.append(" and p.gender = :gender");
+                params.put("gender", gender);
+            }
+
+            final Query<String> query = session.createQuery(stringQuery.toString(), String.class);
+            query.setProperties(params);
             return new HashSet<>(query.list()) ;
         }
     }

@@ -9,7 +9,7 @@ import java.util.Set;
 public interface ProductService {
 
     /**
-     * Возвращает типы Товара, по выбранным параметрам
+     * Возвращает типы Товаров, по выбранным параметрам
      */
     Set<String> getTypesByParameters(Category category, Age age, Gender gender);
 }

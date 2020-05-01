@@ -17,9 +17,9 @@ public interface ProductDao {
     Integer save(@NotNull Product product);
 
     /**
-     * Возвращает типы Товара, по выбранным параметрам
+     * Возвращает типы Товаров, по выбранным параметрам
      */
-    Set<String> getTypesByParameters(@NotNull Category category, @NotNull Age age, @NotNull Gender gender);
+    Set<String> getTypesByParameters(@NotNull Category category, Age age, Gender gender);
 
 
 }
