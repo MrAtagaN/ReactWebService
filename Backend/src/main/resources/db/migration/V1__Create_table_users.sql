@@ -8,6 +8,7 @@ CREATE TABLE users
     credentials_non_expired BOOLEAN NOT NULL,
     enabled                 BOOLEAN NOT NULL,
     last_enter              TIMESTAMP,
+    creation_time           TIMESTAMP,
     email                   TEXT NOT NULL
 );
 

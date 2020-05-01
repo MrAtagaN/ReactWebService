@@ -5,3 +5,5 @@ CREATE TABLE image
 );
 
 CREATE INDEX image_product_id_index ON image (product_id);
+
+--TODO добавить проверку уникальности data

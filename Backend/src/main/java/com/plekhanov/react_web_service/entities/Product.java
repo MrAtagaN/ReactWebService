@@ -6,6 +6,10 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Set;
 
+import static javax.persistence.EnumType.STRING;
+import static javax.persistence.FetchType.EAGER;
+import static javax.persistence.GenerationType.IDENTITY;
+
 /**
  * Товар
  */
@@ -15,7 +19,7 @@ import java.util.Set;
 public class Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = IDENTITY)
     private Integer id;
 
     @Column(name = "name")
@@ -24,7 +28,7 @@ public class Product {
     @Column(name = "description")
     private String description;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(STRING)
     @Column(name = "product_category")
     private ProductCategory productCategory;
 
@@ -46,11 +50,11 @@ public class Product {
     @Column(name = "named_size")
     private String namedSize;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(STRING)
     @Column(name = "gender_category")
     private GenderCategory genderCategory;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(STRING)
     @Column(name = "age_category")
     private AgeCategory ageCategory;
 
@@ -63,10 +67,11 @@ public class Product {
     @Column(name = "is_sales")
     private Boolean isSales;
 
-    @ElementCollection(fetch = FetchType.EAGER)
+    @ElementCollection(fetch = EAGER)
     @CollectionTable(name = "image", joinColumns = @JoinColumn(name = "product_id"))
     @Column(name = "data")
     private Set<byte[]> images;
+
 
 
     public enum ProductCategory {

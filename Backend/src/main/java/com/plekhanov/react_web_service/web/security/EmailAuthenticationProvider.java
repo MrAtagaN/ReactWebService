@@ -8,8 +8,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import java.text.MessageFormat;
 
+import static java.text.MessageFormat.format;
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
 /**
@@ -39,26 +39,26 @@ public class EmailAuthenticationProvider implements AuthenticationProvider {
             final User user = userDao.findByEmail(username);
             if (user != null) {
                 if (!user.isEnabled()) {
-                    throw new DisabledException(MessageFormat.format("User {0} disabled!", username));
+                    throw new DisabledException(format("User {0} disabled!", username));
                 }
                 if (!user.isAccountNonExpired()) {
-                    throw new AccountExpiredException(MessageFormat.format("User {0} account expired!", username));
+                    throw new AccountExpiredException(format("User {0} account expired!", username));
                 }
                 if (!user.isAccountNonLocked()) {
-                    throw new LockedException(MessageFormat.format("User {0} account is locked!", username));
+                    throw new LockedException(format("User {0} account is locked!", username));
                 }
                 if (!user.isCredentialsNonExpired()) {
-                    throw new CredentialsExpiredException(MessageFormat.format("User {0} credentials is expired!", username));
+                    throw new CredentialsExpiredException(format("User {0} credentials is expired!", username));
                 }
                 final String actualPassword = user.getPassword();
                 if (!bCryptPasswordEncoder.matches(password, actualPassword)) {
-                    throw new BadCredentialsException(MessageFormat.format("User {0} bad credentials!", username));
+                    throw new BadCredentialsException(format("User {0} bad credentials!", username));
                 }
                 //после всех проверок, аутентифицируем пользователя
                 return new UsernamePasswordAuthenticationToken(user, actualPassword, user.getAuthorities());
             }
         }
-        throw new UsernameNotFoundException(MessageFormat.format("User {0} not found!", username));
+        throw new UsernameNotFoundException(format("User {0} not found!", username));
     }
 
 

@@ -2,10 +2,18 @@ package com.plekhanov.react_web_service.entities;
 
 import com.plekhanov.react_web_service.web.security.Role;
 import lombok.Data;
+import org.hibernate.annotations.Fetch;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Set;
+
+import static javax.persistence.CascadeType.ALL;
+import static javax.persistence.EnumType.STRING;
+import static javax.persistence.FetchType.EAGER;
+import static javax.persistence.GenerationType.IDENTITY;
+import static org.hibernate.annotations.FetchMode.SELECT;
 
 /**
  * Пользователь сервиса
@@ -16,7 +24,7 @@ import java.util.Set;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = IDENTITY)
     private Integer id;
 
     @Column(name = "username")
@@ -25,8 +33,8 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    @ElementCollection(fetch = FetchType.EAGER)
-    @Enumerated(EnumType.STRING)
+    @ElementCollection(fetch = EAGER)
+    @Enumerated(STRING)
     @CollectionTable(name = "authorities", joinColumns = @JoinColumn(name = "user_id"))
     @Column(name = "role")
     private Set<Role> authorities;
@@ -46,9 +54,19 @@ public class User {
     @Column(name = "last_enter", columnDefinition = "TIMESTAMP")
     private LocalDateTime lastEnter;
 
+    @Column(name = "creation_time", columnDefinition = "TIMESTAMP")
+    private LocalDateTime creationTime;
+
     @Column(name = "email")
     private String email;
 
-    //TODO добавить поля: дата регистрации, избранные товары, выбранные товары,
-    // private List<Product> bagProducts, private List<Product> favoriteProducts, private List<Order> orders;
+    @OneToMany(mappedBy = "user", cascade = ALL, orphanRemoval = true, fetch = EAGER)
+    private List<UserBagProduct> bagProducts;
+
+    @OneToMany(mappedBy = "user", cascade = ALL, orphanRemoval = true, fetch = EAGER )
+    @Fetch(SELECT) // по умолчанию используется JOIN, но это не будет работать если есть две коллекции с fetch = EAGER
+    private Set<UserFavoriteProduct> favoriteProducts;
+
+    //TODO добавить поля: orders
+
 }

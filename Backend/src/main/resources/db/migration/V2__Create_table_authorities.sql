@@ -5,3 +5,5 @@ CREATE TABLE authorities
 );
 
 CREATE INDEX authorities_user_id_index ON authorities (user_id);
+
+--TODO добавить проверку уникальности role

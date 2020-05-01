@@ -2,6 +2,8 @@ package com.plekhanov.react_web_service.config;
 
 import com.plekhanov.react_web_service.entities.Product;
 import com.plekhanov.react_web_service.entities.User;
+import com.plekhanov.react_web_service.entities.UserBagProduct;
+import com.plekhanov.react_web_service.entities.UserFavoriteProduct;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -24,13 +26,16 @@ public class DbConfig {
     private String sqlDialect;
 
     /**
-     * Создает бин {@link SessionFactory}, он должен создаваться после бина {@link FlywayMigrationInitializer}
+     * Создает бин {@link SessionFactory}, он должен создаваться после бина {@link FlywayMigrationInitializer},
+     * чтобы Flyway сначала создал таблицы, а потом Hibernate к ним подключился
      */
     @Bean
     public SessionFactory getSessionFactory(final DataSource getDataSource, final FlywayMigrationInitializer flywayMigrationInitializer) {
         final org.hibernate.cfg.Configuration configuration = new org.hibernate.cfg.Configuration();
         configuration.addAnnotatedClass(User.class);
         configuration.addAnnotatedClass(Product.class);
+        configuration.addAnnotatedClass(UserBagProduct.class);
+        configuration.addAnnotatedClass(UserFavoriteProduct.class);
 
         final StandardServiceRegistryBuilder standardServiceRegistryBuilder = new StandardServiceRegistryBuilder()
                 .applySetting(DIALECT, sqlDialect)
