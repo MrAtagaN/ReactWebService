@@ -19,7 +19,6 @@ import static org.hibernate.annotations.FetchMode.SELECT;
 @Data
 @Entity(name = "Product")
 @Table(name = "product")
-@ToString(exclude = { "type" })
 public class Product {
 
     @Id
@@ -31,10 +30,6 @@ public class Product {
 
     @Column(name = "description")
     private String description;
-
-//    @Enumerated(STRING)
-//    @Column(name = "category")
-//    private Category category;
 
     @ManyToOne(fetch = EAGER)
     @JoinColumn(name = "type_id")
@@ -79,13 +74,6 @@ public class Product {
     private Set<byte[]> images;
 
 
-
-//    public enum Category {
-//        clothes,
-//        shoes,
-//        accessories
-//    }
-
     public enum Gender {
         male,
         female
@@ -95,9 +83,5 @@ public class Product {
         adult,
         kids
     }
-
-//    public enum Type {
-//        jeans
-//    }
 
 }
