@@ -56,7 +56,6 @@ public class ProductDaoImpl implements ProductDao {
     public Set<Product> search(ProductSearchParams productSearchParams) {
         try (Session session = sessionFactory.openSession()) {
             Map<String, Object> params = new HashMap<>();
-
             StringBuilder stringQuery = new StringBuilder("FROM Product p WHERE 1=1");
 
             String name = productSearchParams.getName();
@@ -64,7 +63,6 @@ public class ProductDaoImpl implements ProductDao {
                 stringQuery.append(" and p.name = :name");
                 params.put("name", name);
             }
-
             Integer typeId = productSearchParams.getTypeId();
             if (typeId != null) {
                 stringQuery.append(" and p.type.id = :typeId");
