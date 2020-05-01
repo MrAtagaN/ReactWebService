@@ -1,6 +1,6 @@
 package com.plekhanov.react_web_service.web.controllers;
 
-import com.plekhanov.react_web_service.entities.Product.ProductCategory;
+import com.plekhanov.react_web_service.entities.Product.Category;
 import com.plekhanov.react_web_service.services.ProductService;
 import com.plekhanov.react_web_service.web.dto.ApiResponse;
 import lombok.RequiredArgsConstructor;
@@ -24,9 +24,9 @@ public class ProductController {
      * Возвращает типы Товара, выбранной категории
      */
     @GetMapping("type-list")
-    public ApiResponse<Set<String>> searchProducts(@RequestParam("productCategory") ProductCategory productCategory) {
+    public ApiResponse<Set<String>> searchProducts(@RequestParam("category") Category category) {
 
-        Set<String> productTypesByCategory = productService.getTypesByCategory(productCategory);
+        Set<String> productTypesByCategory = productService.getTypesByCategory(category);
         return ApiResponse.ok(productTypesByCategory);
     }
 

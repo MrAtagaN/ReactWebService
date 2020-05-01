@@ -2,8 +2,7 @@ package com.plekhanov.react_web_service.dao.impl;
 
 import com.plekhanov.react_web_service.dao.ProductDao;
 import com.plekhanov.react_web_service.entities.Product;
-import com.plekhanov.react_web_service.entities.Product.ProductCategory;
-import com.plekhanov.react_web_service.entities.User;
+import com.plekhanov.react_web_service.entities.Product.Category;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Session;
@@ -12,9 +11,7 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
-import java.io.Serializable;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Slf4j
@@ -49,10 +46,10 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
-    public Set<String> getTypesByCategory(ProductCategory productCategory) {
+    public Set<String> getTypesByCategory(Category category) {
         try (Session session = sessionFactory.openSession()) {
-            final Query<String> query = session.createQuery("select distinct p.type FROM Product p where p.productCategory = :productCategory", String.class);
-            query.setParameter("productCategory", productCategory);
+            final Query<String> query = session.createQuery("select distinct p.type FROM Product p where p.category = :category", String.class);
+            query.setParameter("category", category);
             return new HashSet<>(query.list()) ;
         }
     }

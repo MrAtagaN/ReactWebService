@@ -29,8 +29,8 @@ public class Product {
     private String description;
 
     @Enumerated(STRING)
-    @Column(name = "product_category")
-    private ProductCategory productCategory;
+    @Column(name = "category")
+    private Category category;
 
     @Column(name = "type")
     private String type;
@@ -51,12 +51,12 @@ public class Product {
     private String namedSize;
 
     @Enumerated(STRING)
-    @Column(name = "gender_category")
-    private GenderCategory genderCategory;
+    @Column(name = "gender")
+    private Gender gender;
 
     @Enumerated(STRING)
-    @Column(name = "age_category")
-    private AgeCategory ageCategory;
+    @Column(name = "age")
+    private Age age;
 
     @Column(name = "color")
     private String color;
@@ -74,18 +74,18 @@ public class Product {
 
 
 
-    public enum ProductCategory {
+    public enum Category {
         CLOTHES,
         SHOES,
         ACCESSORIES
     }
 
-    public enum GenderCategory {
+    public enum Gender {
         MALE,
         FEMALE
     }
 
-    public enum AgeCategory {
+    public enum Age {
         ADULT,
         KIDS
     }
