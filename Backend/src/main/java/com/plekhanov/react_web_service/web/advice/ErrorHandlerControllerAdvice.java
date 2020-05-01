@@ -9,6 +9,7 @@ import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import javax.validation.ConstraintViolationException;
 
@@ -43,6 +44,20 @@ class ErrorHandlerControllerAdvice {
         String missingParameter = e.getParameterName();
         log.error("MissingServletRequestParameter: {}, in request {}.", missingParameter, webRequest);
         ApiResponse apiResponse = ApiResponse.error(VALIDATION_ERROR, "Missing request parameter: " + missingParameter);
+        return ResponseEntity
+                .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .header("Content-Type", "application/json; charset=UTF-8")
+                .body(apiResponse);
+    }
+
+    /**
+     * Неверный тип входящего параметра
+     */
+    @ExceptionHandler({MethodArgumentTypeMismatchException.class})
+    public ResponseEntity<ApiResponse> onMethodArgumentTypeMismatchExceptionHandler(MethodArgumentTypeMismatchException e, WebRequest webRequest) {
+        String invalidParameter = e.getName();
+        log.error("MissingServletRequestParameter: {}, in request {}.", invalidParameter, webRequest);
+        ApiResponse apiResponse = ApiResponse.error(VALIDATION_ERROR, "Invalid type in request parameter: " + invalidParameter);
         return ResponseEntity
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .header("Content-Type", "application/json; charset=UTF-8")

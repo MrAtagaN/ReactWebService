@@ -2,6 +2,8 @@ package com.plekhanov.react_web_service.dao;
 
 import com.plekhanov.react_web_service.entities.Product;
 import com.plekhanov.react_web_service.entities.Product.Category;
+import com.plekhanov.react_web_service.entities.Product.Age;
+import com.plekhanov.react_web_service.entities.Product.Gender;
 import org.springframework.validation.annotation.Validated;
 
 import javax.validation.constraints.NotNull;
@@ -14,8 +16,10 @@ public interface ProductDao {
 
     Integer save(@NotNull Product product);
 
-    Set<String> getTypesByCategory(@NotNull Category category);
-
+    /**
+     * Возвращает типы Товара, по выбранным параметрам
+     */
+    Set<String> getTypesByParameters(@NotNull Category category, @NotNull Age age, @NotNull Gender gender);
 
 
 }

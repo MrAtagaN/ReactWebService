@@ -3,6 +3,8 @@ package com.plekhanov.react_web_service.dao.impl;
 import com.plekhanov.react_web_service.dao.ProductDao;
 import com.plekhanov.react_web_service.entities.Product;
 import com.plekhanov.react_web_service.entities.Product.Category;
+import com.plekhanov.react_web_service.entities.Product.Age;
+import com.plekhanov.react_web_service.entities.Product.Gender;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Session;
@@ -20,6 +22,13 @@ import java.util.Set;
 public class ProductDaoImpl implements ProductDao {
 
     private final SessionFactory sessionFactory;
+
+    private final String SELECT_TYPES_BY_PARAMETERS_QUERY =
+            "select distinct p.type FROM Product p " +
+            "   where " +
+            "       p.category = :category and " +
+            "       p.age = :age and " +
+            "       p.gender = :gender";
 
     @Override
     public Product findById(final int id) {
@@ -46,10 +55,12 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
-    public Set<String> getTypesByCategory(Category category) {
+    public Set<String> getTypesByParameters(Category category, Age age, Gender gender) {
         try (Session session = sessionFactory.openSession()) {
-            final Query<String> query = session.createQuery("select distinct p.type FROM Product p where p.category = :category", String.class);
+            final Query<String> query = session.createQuery(SELECT_TYPES_BY_PARAMETERS_QUERY, String.class);
             query.setParameter("category", category);
+            query.setParameter("age", age);
+            query.setParameter("gender", gender);
             return new HashSet<>(query.list()) ;
         }
     }

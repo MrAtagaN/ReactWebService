@@ -75,19 +75,19 @@ public class Product {
 
 
     public enum Category {
-        CLOTHES,
-        SHOES,
-        ACCESSORIES
+        clothes,
+        shoes,
+        accessories
     }
 
     public enum Gender {
-        MALE,
-        FEMALE
+        male,
+        female
     }
 
     public enum Age {
-        ADULT,
-        KIDS
+        adult,
+        kids
     }
 
 }
