@@ -51,7 +51,8 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
                 .antMatchers("/")
                 .antMatchers("/*")
                 .antMatchers("/static/**")
-                .antMatchers("/images/**");
+                .antMatchers("/images/**")
+                .antMatchers("/public/**");
     }
 
     /**
