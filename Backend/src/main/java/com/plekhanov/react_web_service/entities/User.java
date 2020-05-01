@@ -63,7 +63,7 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = ALL, orphanRemoval = true, fetch = EAGER)
     private List<UserBagProduct> bagProducts;
 
-    @OneToMany(mappedBy = "user", cascade = ALL, orphanRemoval = true, fetch = EAGER )
+    @OneToMany(mappedBy = "user", cascade = ALL, orphanRemoval = true, fetch = EAGER)
     @Fetch(SELECT) // по умолчанию используется JOIN, но это не будет работать если есть две коллекции с fetch = EAGER
     private Set<UserFavoriteProduct> favoriteProducts;
 

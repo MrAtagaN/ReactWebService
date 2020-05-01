@@ -57,6 +57,7 @@ public class Main {
     // Добавить регистрацию пользователя
     // Https
     // Не функциональные:
+    // сделать Transactional
     // сделать csrf
     // Тест базы
     // Тесты controllers
