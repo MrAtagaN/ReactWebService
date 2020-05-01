@@ -13,7 +13,7 @@ import static javax.persistence.CascadeType.ALL;
 import static javax.persistence.EnumType.STRING;
 import static javax.persistence.FetchType.EAGER;
 import static javax.persistence.GenerationType.IDENTITY;
-import static org.hibernate.annotations.FetchMode.SELECT;
+import static org.hibernate.annotations.FetchMode.SUBSELECT;
 
 /**
  * Пользователь сервиса
@@ -64,7 +64,7 @@ public class User {
     private List<UserBagProduct> bagProducts;
 
     @OneToMany(mappedBy = "user", cascade = ALL, orphanRemoval = true, fetch = EAGER)
-    @Fetch(SELECT) // по умолчанию используется JOIN, но это не будет работать если есть две коллекции с fetch = EAGER
+    @Fetch(SUBSELECT) // по умолчанию используется JOIN, но это не будет работать если есть две коллекции с fetch = EAGER
     private Set<UserFavoriteProduct> favoriteProducts;
 
     //TODO добавить поля: orders

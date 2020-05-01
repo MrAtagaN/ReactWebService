@@ -1,9 +1,6 @@
 package com.plekhanov.react_web_service.entities;
 
 import lombok.Data;
-import lombok.ToString;
-import org.hibernate.annotations.Fetch;
-
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Set;
@@ -11,7 +8,6 @@ import java.util.Set;
 import static javax.persistence.EnumType.STRING;
 import static javax.persistence.FetchType.EAGER;
 import static javax.persistence.GenerationType.IDENTITY;
-import static org.hibernate.annotations.FetchMode.SELECT;
 
 /**
  * Товар
@@ -33,7 +29,6 @@ public class Product {
 
     @ManyToOne(fetch = EAGER)
     @JoinColumn(name = "type_id")
-    @Fetch(SELECT)
     private ProductType type;
 
     @Column(name = "sub_type")

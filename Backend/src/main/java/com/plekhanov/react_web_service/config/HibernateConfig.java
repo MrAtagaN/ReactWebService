@@ -17,7 +17,7 @@ import static org.hibernate.cfg.AvailableSettings.*;
  * Конфиг подключения к базе данных
  */
 @Configuration
-public class DbConfig {
+public class HibernateConfig {
 
     @Value("${hibernate.dialect}")
     private String sqlDialect;
