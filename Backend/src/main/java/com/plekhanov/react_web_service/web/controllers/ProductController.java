@@ -17,7 +17,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
- *
+ * Открытые эндпойты для получения {@link Product}
  */
 @RestController
 @RequestMapping("public/api/v1/product")
@@ -85,21 +85,7 @@ public class ProductController {
     }
 
 
-    /**
-     * Добавить товар в корзину
-     */
-    @PostMapping("add-to-bag")
-    public void addToBag() {
-        //TODO
-    }
 
-    /**
-     * Добавить товар в избранное
-     */
-    @PostMapping("add-to-favorite")
-    public void addToFavorite() {
-        //TODO
-    }
 
 }
 

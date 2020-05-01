@@ -28,6 +28,21 @@ public class UserController {
         return ApiResponse.ok(UserDto.fromUser(currentUser));
     }
 
+    /**
+     * Добавить товар в корзину
+     */
+    @PostMapping("add-to-bag")
+    public void addToBag() {
+        //TODO
+    }
+
+    /**
+     * Добавить товар в избранное
+     */
+    @PostMapping("add-to-favorite")
+    public void addToFavorite() {
+        //TODO
+    }
 
 
 }
