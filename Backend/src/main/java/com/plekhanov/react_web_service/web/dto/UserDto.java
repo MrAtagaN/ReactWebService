@@ -31,7 +31,7 @@ public class UserDto {
     /**
      * Фабричный метод. Возвращает {@link UserDto} из переданного {@link User}
      */
-    public static UserDto fromUser(User user) {
+    public static UserDto fromUser(final User user) {
         return UserDto.builder()
                 .id(user.getId())
                 .username(user.getUsername())
@@ -43,14 +43,14 @@ public class UserDto {
     }
 
     /**
-     * List<UserBagProduct> -> Map<Product, Integer>
+     * List<UserBagProductDao> -> Map<Product, Integer>
      */
-    private static Map<Product, Integer> fromBagProducts(List<UserBagProduct> userBagProducts) {
+    private static Map<Product, Integer> fromBagProducts(final List<UserBagProduct> userBagProducts) {
         List<Product> products = userBagProducts.stream()
                 .map(UserBagProduct::getProduct)
                 .collect(Collectors.toList());
 
-        Map<Product, Integer> map = new HashMap<>();
+        final Map<Product, Integer> map = new HashMap<>();
         products.forEach(product -> {
             if (map.containsKey(product)) {
                 Integer count = map.get(product);
@@ -65,7 +65,7 @@ public class UserDto {
     /**
      * Set<UserFavoriteProduct> -> Set<Product>
      */
-    private static Set<Product> fromFavoriteProducts(Set<UserFavoriteProduct> userFavoriteProducts) {
+    private static Set<Product> fromFavoriteProducts(final Set<UserFavoriteProduct> userFavoriteProducts) {
         return userFavoriteProducts.stream()
                 .map(UserFavoriteProduct::getProduct)
                 .collect(Collectors.toSet());

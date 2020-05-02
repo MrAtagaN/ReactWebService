@@ -45,6 +45,18 @@ public class UserController {
     }
 
     /**
+     * Удалить товар из корзины
+     */
+    @PostMapping("delete-product-from-bag")
+    public ApiResponse<String> deleteProductFromBag(
+            @RequestParam("productId") @NotNull final Integer productId) {
+
+        final User user = SecurityUtils.getCurrentUser();
+        productService.deleteProductFromBag(productId, user);
+        return ApiResponse.ok("product delete from bag");
+    }
+
+    /**
      * Добавить товар в избранное
      */
     @PostMapping("add-product-to-favorite")
@@ -54,6 +66,18 @@ public class UserController {
         final User user = SecurityUtils.getCurrentUser();
         productService.addProductToFavorite(productId, user);
         return ApiResponse.ok("product add to favorite");
+    }
+
+    /**
+     * Удалить товар из избранного
+     */
+    @PostMapping("delete-product-from-favorite")
+    public ApiResponse<String> deleteProductFromFavorite(
+            @RequestParam("productId") @NotNull final Integer productId) {
+
+        final User user = SecurityUtils.getCurrentUser();
+        //TODO
+        return ApiResponse.ok("product delete from favorite");
     }
 
 

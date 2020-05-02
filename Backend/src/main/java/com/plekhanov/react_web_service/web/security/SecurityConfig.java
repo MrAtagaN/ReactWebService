@@ -38,7 +38,7 @@ import static com.plekhanov.react_web_service.web.dto.ApiResponse.ResponseCode.*
 @EnableWebSecurity
 @RequiredArgsConstructor
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-public class ConfigSecurity extends WebSecurityConfigurerAdapter {
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final ObjectMapper objectMapper;
     private final EmailAuthenticationProvider emailAuthenticationProvider;
@@ -89,7 +89,6 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) {
-        // auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
         auth.authenticationProvider(emailAuthenticationProvider);
     }
 

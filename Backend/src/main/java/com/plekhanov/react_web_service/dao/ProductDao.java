@@ -17,9 +17,6 @@ public interface ProductDao {
 
     Product saveOrUpdate(@NotNull Product product);
 
-    /**
-     * Возвращает Товары
-     */
     Set<Product> search(ProductSearchParams productSearchParams);
 
 

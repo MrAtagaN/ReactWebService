@@ -15,5 +15,7 @@ public interface ProductService {
 
     void addProductToBag(@NotNull Integer productId, @NotNull User user);
 
+    void deleteProductFromBag(@NotNull Integer productId, @NotNull User user);
+
     void addProductToFavorite(@NotNull Integer productId, @NotNull User user);
 }
