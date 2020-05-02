@@ -6,7 +6,7 @@ import javax.annotation.Nullable;
 import javax.validation.constraints.Size;
 
 /**
- * Адрес
+ * Адрес //TODO
  */
 @Data
 public class Address {

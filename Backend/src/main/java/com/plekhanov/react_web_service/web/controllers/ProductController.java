@@ -65,7 +65,9 @@ public class ProductController {
                 .build();
 
         final Set<Product> products = productService.search(productSearchParams);
-        final Set<ProductDto> productsDto = products.stream().map(ProductDto::fromProduct).collect(Collectors.toSet());
+        final Set<ProductDto> productsDto = products.stream()
+                .map(ProductDto::fromProduct)
+                .collect(Collectors.toSet());
         return ApiResponse.ok(productsDto);
     }
 

@@ -26,7 +26,6 @@ public class ProductType {
     private Category category;
 
 
-
     public enum Category {
         clothes,
         shoes,
