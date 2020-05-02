@@ -13,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.validation.ValidationException;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -29,10 +30,19 @@ public class ProductServiceImpl implements ProductService {
 
 
     @Override
+    public Product saveOrUpdate(@NotNull Product product) {
+        return productDao.saveOrUpdate(product);
+    }
+
+    @Override
     public Set<Product> search(final ProductSearchParams productSearchParams) {
         return productDao.search(productSearchParams);
     }
 
+    @Override
+    public void delete(int id) {
+        productDao.delete(id);
+    }
 
     @Override
     public void addProductToBag(final Integer productId, final User user) {

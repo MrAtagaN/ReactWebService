@@ -23,23 +23,24 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User saveOrUpdate(final User user) {
-        User savedUsed = null;
+        User savedUsed;
         Transaction transaction = null;
         try (Session session = sessionFactory.openSession()) {
             transaction = session.beginTransaction();
             savedUsed = (User) session.merge(user);
             transaction.commit();
         } catch (Exception e) {
-            log.error("Error while save User", e);
+            log.error("Error while save User");
             if (transaction != null) {
                 transaction.rollback();
             }
+            throw e;
         }
         return savedUsed;
     }
 
 
-    public User findById(final int id){
+    public User findById(final int id) {
         try (Session session = sessionFactory.openSession()) {
             return session.find(User.class, id);
         }

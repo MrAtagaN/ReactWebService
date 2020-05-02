@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 @Slf4j
@@ -19,5 +20,15 @@ public class ProductTypeServiceImpl implements ProductTypeService {
     @Override
     public Set<ProductType> getAll() {
         return productTypeDao.getAll();
+    }
+
+    @Override
+    public void delete(int id) {
+        productTypeDao.delete(id);
+    }
+
+    @Override
+    public ProductType saveOrUpdate(ProductType productType) {
+        return productTypeDao.saveOrUpdate(productType);
     }
 }

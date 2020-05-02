@@ -15,6 +15,8 @@ public interface ProductDao {
 
     Product findById(int id);
 
+    void delete(int id);
+
     Product saveOrUpdate(@NotNull Product product);
 
     Set<Product> search(ProductSearchParams productSearchParams);

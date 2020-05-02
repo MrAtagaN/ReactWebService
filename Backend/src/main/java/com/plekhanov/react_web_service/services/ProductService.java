@@ -11,6 +11,10 @@ import java.util.Set;
 @Validated
 public interface ProductService {
 
+    Product saveOrUpdate(@NotNull Product product);
+
+    void delete(int id);
+
     Set<Product> search(@NotNull ProductSearchParams productSearchParams);
 
     void addProductToBag(@NotNull Integer productId, @NotNull User user);
