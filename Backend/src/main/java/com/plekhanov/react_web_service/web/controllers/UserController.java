@@ -37,7 +37,7 @@ public class UserController {
      * Добавить товар в корзину
      */
     @PostMapping("add-product-to-bag")
-    public ApiResponse<String> addToBag(@RequestParam("productId") @NotNull Integer productId) {
+    public ApiResponse<String> addProductToBag(@RequestParam("productId") @NotNull Integer productId) {
         User user = SecurityUtils.getCurrentUser();
         productService.addProductToBag(productId, user);
         return ApiResponse.ok("product add to bag");
@@ -46,9 +46,11 @@ public class UserController {
     /**
      * Добавить товар в избранное
      */
-    @PostMapping("add-to-favorite")
-    public void addToFavorite() {
-        //TODO
+    @PostMapping("add-product-to-favorite")
+    public ApiResponse<String> addProductToFavorite(@RequestParam("productId") @NotNull Integer productId) {
+        User user = SecurityUtils.getCurrentUser();
+        productService.addProductToFavorite(productId, user);
+        return ApiResponse.ok("product add to favorite");
     }
 
 

@@ -14,4 +14,6 @@ public interface ProductService {
     Set<Product> search(@NotNull ProductSearchParams productSearchParams);
 
     void addProductToBag(@NotNull Integer productId, @NotNull User user);
+
+    void addProductToFavorite(@NotNull Integer productId, @NotNull User user);
 }
