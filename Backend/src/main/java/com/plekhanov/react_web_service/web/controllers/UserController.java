@@ -1,7 +1,7 @@
 package com.plekhanov.react_web_service.web.controllers;
 
 import com.plekhanov.react_web_service.entities.User;
-import com.plekhanov.react_web_service.services.ProductService;
+import com.plekhanov.react_web_service.services.UserService;
 import com.plekhanov.react_web_service.utils.SecurityUtils;
 import com.plekhanov.react_web_service.web.dto.ApiResponse;
 import com.plekhanov.react_web_service.web.dto.UserDto;
@@ -21,7 +21,7 @@ import javax.validation.constraints.NotNull;
 @Validated
 public class UserController {
 
-    private final ProductService productService;
+    private final UserService userService;
 
     /**
      * Информация о текущем пользователе
@@ -40,7 +40,7 @@ public class UserController {
             @RequestParam("productId") @NotNull final Integer productId) {
 
         final User user = SecurityUtils.getCurrentUser();
-        productService.addProductToBag(productId, user);
+        userService.addProductToBag(productId, user);
         return ApiResponse.ok("product add to bag");
     }
 
@@ -52,7 +52,7 @@ public class UserController {
             @RequestParam("productId") @NotNull final Integer productId) {
 
         final User user = SecurityUtils.getCurrentUser();
-        productService.deleteProductFromBag(productId, user);
+        userService.deleteProductFromBag(productId, user);
         return ApiResponse.ok("product delete from bag");
     }
 
@@ -64,7 +64,7 @@ public class UserController {
             @RequestParam("productId") @NotNull final Integer productId) {
 
         final User user = SecurityUtils.getCurrentUser();
-        productService.addProductToFavorite(productId, user);
+        userService.addProductToFavorite(productId, user);
         return ApiResponse.ok("product add to favorite");
     }
 
@@ -76,7 +76,7 @@ public class UserController {
             @RequestParam("productId") @NotNull final Integer productId) {
 
         final User user = SecurityUtils.getCurrentUser();
-        productService.deleteProductFromFavorite(productId, user);
+        userService.deleteProductFromFavorite(productId, user);
         return ApiResponse.ok("product delete from favorite");
     }
 

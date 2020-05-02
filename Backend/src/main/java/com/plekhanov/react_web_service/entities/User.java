@@ -13,7 +13,6 @@ import static javax.persistence.CascadeType.ALL;
 import static javax.persistence.EnumType.STRING;
 import static javax.persistence.FetchType.EAGER;
 import static javax.persistence.GenerationType.IDENTITY;
-import static org.hibernate.annotations.FetchMode.SELECT;
 import static org.hibernate.annotations.FetchMode.SUBSELECT;
 
 /**

@@ -63,7 +63,7 @@ public class AdminController {
     /**
      * Удалить тип товара
      */
-    @PostMapping("delete-product")
+    @PostMapping("delete-productType")
     public ApiResponse<String> deleteProductType(
             @RequestParam("productId") @NotNull final Integer productTypeId) {
 
