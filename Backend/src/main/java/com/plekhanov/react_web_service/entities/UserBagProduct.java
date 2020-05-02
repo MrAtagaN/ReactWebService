@@ -1,6 +1,7 @@
 package com.plekhanov.react_web_service.entities;
 
-import lombok.Data;
+import lombok.*;
+
 import javax.persistence.*;
 
 import static javax.persistence.FetchType.EAGER;
@@ -11,6 +12,8 @@ import static javax.persistence.GenerationType.IDENTITY;
  * Нужно чтобы реализовать отношение многие ко многим
  */
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity(name = "UserBagProduct")
 @Table(name = "user_bag_product")
 public class UserBagProduct {
@@ -19,6 +22,8 @@ public class UserBagProduct {
     @GeneratedValue(strategy = IDENTITY)
     private Integer id;
 
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     @ManyToOne(fetch = EAGER)
     @JoinColumn(name = "user_id")
     private User user;

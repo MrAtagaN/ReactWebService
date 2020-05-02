@@ -2,12 +2,15 @@ package com.plekhanov.react_web_service.web.controllers;
 
 import com.plekhanov.react_web_service.dao.UserDao;
 import com.plekhanov.react_web_service.entities.User;
+import com.plekhanov.react_web_service.services.ProductService;
 import com.plekhanov.react_web_service.utils.SecurityUtils;
 import com.plekhanov.react_web_service.web.dto.ApiResponse;
 import com.plekhanov.react_web_service.web.dto.UserDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.constraints.NotNull;
 
 
 /**
@@ -18,6 +21,8 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @Validated
 public class UserController {
+
+    private final ProductService productService;
 
     /**
      * Информация о текущем пользователе
@@ -31,9 +36,11 @@ public class UserController {
     /**
      * Добавить товар в корзину
      */
-    @PostMapping("add-to-bag")
-    public void addToBag() {
-        //TODO
+    @PostMapping("add-product-to-bag")
+    public ApiResponse<String> addToBag(@RequestParam("productId") @NotNull Integer productId) {
+        User user = SecurityUtils.getCurrentUser();
+        productService.addProductToBag(productId, user);
+        return ApiResponse.ok("product add to bag");
     }
 
     /**

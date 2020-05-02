@@ -32,10 +32,6 @@ public class ProductType {
     @Column(name = "category")
     private Category category;
 
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
-    @OneToMany(mappedBy = "type", cascade = ALL, orphanRemoval = true, fetch = LAZY)
-    private Set<Product> products;
 
 
     public enum Category {

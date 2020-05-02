@@ -4,7 +4,7 @@ import com.plekhanov.react_web_service.dao.ProductDao;
 import com.plekhanov.react_web_service.entities.Product;
 import com.plekhanov.react_web_service.entities.Product.Age;
 import com.plekhanov.react_web_service.entities.Product.Gender;
-import com.plekhanov.react_web_service.infrastructure.search_params.ProductSearchParams;
+import com.plekhanov.react_web_service.entities.search_params.ProductSearchParams;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Session;

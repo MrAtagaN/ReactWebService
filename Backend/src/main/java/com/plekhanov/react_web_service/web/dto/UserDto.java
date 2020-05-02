@@ -8,7 +8,9 @@ import lombok.Builder;
 import lombok.Value;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -23,7 +25,7 @@ public class UserDto {
     private String username;
     private String email;
     private LocalDateTime lastEnter;
-    private List<Product> bagProducts;
+    private Map<Product, Integer> bagProducts;
     private Set<Product> favoriteProducts;
 
     /**
@@ -41,16 +43,31 @@ public class UserDto {
     }
 
     /**
-     * List<UserBagProduct> -> List<Product>
+     * List<UserBagProduct> -> Map<Product, Integer>
      */
-    private static List<Product> fromBagProducts(List<UserBagProduct> userBagProducts) {
-        return userBagProducts.stream().map(UserBagProduct::getProduct).collect(Collectors.toList());
+    private static Map<Product, Integer> fromBagProducts(List<UserBagProduct> userBagProducts) {
+        List<Product> products = userBagProducts.stream()
+                .map(UserBagProduct::getProduct)
+                .collect(Collectors.toList());
+
+        Map<Product, Integer> map = new HashMap<>();
+        products.forEach(product -> {
+            if (map.containsKey(product)) {
+                Integer count = map.get(product);
+                map.put(product, ++count);
+            } else {
+                map.put(product, 1);
+            }
+        });
+        return map;
     }
 
     /**
      * Set<UserFavoriteProduct> -> Set<Product>
      */
     private static Set<Product> fromFavoriteProducts(Set<UserFavoriteProduct> userFavoriteProducts) {
-        return userFavoriteProducts.stream().map(UserFavoriteProduct::getProduct).collect(Collectors.toSet());
+        return userFavoriteProducts.stream()
+                .map(UserFavoriteProduct::getProduct)
+                .collect(Collectors.toSet());
     }
 }
