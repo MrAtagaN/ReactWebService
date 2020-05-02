@@ -27,34 +27,34 @@ public class ProductServiceImpl implements ProductService {
     private final UserDao userDao;
 
     @Override
-    public Set<Product> search(ProductSearchParams productSearchParams) {
+    public Set<Product> search(final ProductSearchParams productSearchParams) {
         return productDao.search(productSearchParams);
     }
 
     @Override
-    public void addProductToBag(Integer productId, User user) {
+    public void addProductToBag(final Integer productId, final User user) {
         Product product = productDao.findById(productId);
         if (product == null) {
             throw new ValidationException(MessageFormat.format("No product with id: {0}", productId));
         }
-        UserBagProduct userBagProduct = new UserBagProduct(null, user, product);
+        final UserBagProduct userBagProduct = new UserBagProduct(null, user, product);
         user.getBagProducts().add(userBagProduct);
         userDao.saveOrUpdate(user);
     }
 
     @Override
-    public void addProductToFavorite(Integer productId, User user) {
-        Product product = productDao.findById(productId);
+    public void addProductToFavorite(final Integer productId, final User user) {
+        final Product product = productDao.findById(productId);
         if (product == null) {
             throw new ValidationException(MessageFormat.format("No product with id: {0}", productId));
         }
 
-        Set<Integer> productIds = user.getFavoriteProducts().stream()
-                .map(userFavoriteProduct -> {return userFavoriteProduct.getProduct().getId();})
+        final Set<Integer> productIds = user.getFavoriteProducts().stream()
+                .map(userFavoriteProduct -> userFavoriteProduct.getProduct().getId())
                 .collect(Collectors.toSet());
 
         if (!productIds.contains(productId)) {
-            UserFavoriteProduct userFavoriteProduct = new UserFavoriteProduct(null, user, product);
+            final UserFavoriteProduct userFavoriteProduct = new UserFavoriteProduct(null, user, product);
             user.getFavoriteProducts().add(userFavoriteProduct);
             userDao.saveOrUpdate(user);
         }
