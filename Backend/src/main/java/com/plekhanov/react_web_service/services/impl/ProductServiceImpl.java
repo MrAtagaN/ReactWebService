@@ -6,7 +6,7 @@ import com.plekhanov.react_web_service.entities.Product;
 import com.plekhanov.react_web_service.entities.User;
 import com.plekhanov.react_web_service.entities.UserBagProduct;
 import com.plekhanov.react_web_service.entities.UserFavoriteProduct;
-import com.plekhanov.react_web_service.entities.search_params.ProductSearchParams;
+import com.plekhanov.react_web_service.entities.search_params.*;
 import com.plekhanov.react_web_service.services.ProductService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -80,5 +80,22 @@ public class ProductServiceImpl implements ProductService {
             user.getFavoriteProducts().add(userFavoriteProduct);
             userDao.saveOrUpdate(user);
         }
+    }
+
+    @Override
+    public void deleteProductFromFavorite(final Integer productId, final User user) {
+        Set<UserFavoriteProduct> favoriteProducts = user.getFavoriteProducts();
+        UserFavoriteProduct toDelete = null;
+        for (UserFavoriteProduct favoriteProduct : favoriteProducts) {
+            Product product = favoriteProduct.getProduct();
+            if (product.getId().equals(productId)) {
+                toDelete = favoriteProduct;
+                break;
+            }
+        }
+        if (toDelete != null) {
+            favoriteProducts.remove(toDelete);
+        }
+        userDao.saveOrUpdate(user);
     }
 }

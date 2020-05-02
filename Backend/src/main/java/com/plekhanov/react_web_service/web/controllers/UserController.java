@@ -76,7 +76,7 @@ public class UserController {
             @RequestParam("productId") @NotNull final Integer productId) {
 
         final User user = SecurityUtils.getCurrentUser();
-        //TODO
+        productService.deleteProductFromFavorite(productId, user);
         return ApiResponse.ok("product delete from favorite");
     }
 
