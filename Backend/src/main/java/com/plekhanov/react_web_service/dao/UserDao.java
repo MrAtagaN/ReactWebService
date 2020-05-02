@@ -4,6 +4,7 @@ import com.plekhanov.react_web_service.entities.*;
 import org.springframework.validation.annotation.Validated;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
@@ -11,6 +12,8 @@ import java.util.List;
  */
 @Validated
 public interface UserDao {
+
+    User saveOrUpdate(@NotNull User user);
 
     List<User> findByName(@NotBlank String username);
 

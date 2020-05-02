@@ -9,6 +9,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+
 import static java.text.MessageFormat.format;
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
@@ -54,6 +56,10 @@ public class EmailAuthenticationProvider implements AuthenticationProvider {
                 if (!bCryptPasswordEncoder.matches(password, actualPassword)) {
                     throw new BadCredentialsException(format("User {0} bad credentials!", username));
                 }
+                LocalDateTime lastEnter = user.getLastEnter();
+                user.setLastEnter(LocalDateTime.now());
+                userDao.saveOrUpdate(user);
+                user.setLastEnter(lastEnter);
                 //после всех проверок, аутентифицируем пользователя
                 return new UsernamePasswordAuthenticationToken(user, actualPassword, user.getAuthorities());
             }

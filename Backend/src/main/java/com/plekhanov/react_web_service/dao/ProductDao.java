@@ -15,7 +15,7 @@ public interface ProductDao {
 
     Product findById(int id);
 
-    Integer save(@NotNull Product product);
+    Product saveOrUpdate(@NotNull Product product);
 
     /**
      * Возвращает Товары

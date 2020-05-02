@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.stereotype.Repository;
@@ -18,6 +19,25 @@ import java.util.List;
 public class UserDaoImpl implements UserDao {
 
     private final SessionFactory sessionFactory;
+
+
+    @Override
+    public User saveOrUpdate(final User user) {
+        User savedUsed = null;
+        Transaction transaction = null;
+        try (Session session = sessionFactory.openSession()) {
+            transaction = session.beginTransaction();
+            savedUsed = (User) session.merge(user);
+            transaction.commit();
+        } catch (Exception e) {
+            log.error("Error while save User", e);
+            if (transaction != null) {
+                transaction.rollback();
+            }
+        }
+        return savedUsed;
+    }
+
 
     public User findById(final int id){
         try (Session session = sessionFactory.openSession()) {
