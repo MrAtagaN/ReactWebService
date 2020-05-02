@@ -11,6 +11,7 @@
 - Hibernate
 - Flyway
 - SQLite
+- Swagger
 
 ##### Frontend:
 - React
@@ -27,7 +28,7 @@
 ## Сборка
 
 1. В директории Frontend выполнить команду: 'npm install' (Выполняется один раз)
-2. В корневой директории (ReactWebService) выполнить комманду: 'mvn clean install'
+2. В корневой директории проекта (ReactWebService) выполнить комманду: 'mvn clean install'
 
 Результатом сборки будет ReactWebService-spring-boot.jar в корневой директории
 
