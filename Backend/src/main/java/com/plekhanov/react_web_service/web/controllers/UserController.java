@@ -1,6 +1,5 @@
 package com.plekhanov.react_web_service.web.controllers;
 
-import com.plekhanov.react_web_service.dao.UserDao;
 import com.plekhanov.react_web_service.entities.User;
 import com.plekhanov.react_web_service.services.ProductService;
 import com.plekhanov.react_web_service.utils.SecurityUtils;
@@ -14,7 +13,7 @@ import javax.validation.constraints.NotNull;
 
 
 /**
- *
+ * Защищеные эндпойты действий пользователя
  */
 @RestController
 @RequestMapping("api/v1/user")
