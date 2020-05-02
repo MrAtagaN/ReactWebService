@@ -30,12 +30,12 @@
 1. В директории Frontend выполнить команду: 'npm install' (Выполняется один раз)
 2. В корневой директории проекта (ReactWebService) выполнить комманду: 'mvn clean install'
 
-Результатом сборки будет ReactWebService-spring-boot.jar в корневой директории
+Результатом сборки будет ReactWebService.jar в корневой директории
 
 
 ## Запуск
 
-1. Выполнить команду:  'java -jar ReactWebService-spring-boot.jar'
+1. Выполнить команду:  'java -jar ReactWebService.jar'
 
  Сервис будет доступен по адресу 'http://localhost:80/'  (Возможно нужно будет очистить кэш браузера)
 

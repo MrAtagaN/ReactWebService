@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.constraints.NotNull;
 
 /**
- * Доступ пользователям с ролью ADMIN
+ * Доступ пользователей с ролью ADMIN
  */
 @RestController
 @RequestMapping("api/v1/admin")
