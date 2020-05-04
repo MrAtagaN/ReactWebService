@@ -31,6 +31,9 @@ public class ProductDaoImpl implements ProductDao {
     public Product findById(final int id) {
         try (Session session = sessionFactory.openSession()) {
             return session.find(Product.class, id);
+        } catch (Exception e) {
+            log.error("Error while find Product, id: {}", id);
+            throw e;
         }
     }
 
@@ -40,11 +43,11 @@ public class ProductDaoImpl implements ProductDao {
         Transaction transaction = null;
         try (Session session = sessionFactory.openSession()) {
             transaction = session.beginTransaction();
-            Product product = session.load(Product.class, id);
+            final Product product = session.load(Product.class, id);
             session.delete(product);
             transaction.commit();
         } catch (Exception e) {
-            log.error("Error while save Product");
+            log.error("Error while delete Product, id: {}", id);
             if (transaction != null) {
                 transaction.rollback();
             }
@@ -73,10 +76,10 @@ public class ProductDaoImpl implements ProductDao {
 
 
     @Override
-    public Set<Product> search(ProductSearchParams productSearchParams) {
+    public Set<Product> search(final ProductSearchParams productSearchParams) {
         try (Session session = sessionFactory.openSession()) {
-            Map<String, Object> params = new HashMap<>();
-            StringBuilder stringQuery = new StringBuilder("FROM Product p WHERE 1=1");
+            final Map<String, Object> params = new HashMap<>();
+            final StringBuilder stringQuery = new StringBuilder("FROM Product p WHERE 1=1");
 
             final String name = productSearchParams.getName();
             if (name != null) {
@@ -152,6 +155,9 @@ public class ProductDaoImpl implements ProductDao {
             final Query<Product> query = session.createQuery(stringQuery.toString(), Product.class);
             query.setProperties(params);
             return new HashSet<>(query.list());
+        } catch (Exception e) {
+            log.error("Error while search Product");
+            throw e;
         }
     }
 }

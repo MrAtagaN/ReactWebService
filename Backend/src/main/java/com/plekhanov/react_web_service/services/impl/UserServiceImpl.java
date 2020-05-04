@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void addProductToBag(final Integer productId, final User user) {
-        Product product = productDao.findById(productId);
+        final Product product = productDao.findById(productId);
         if (product == null) {
             throw new ValidationException(format("No product with id: {0}", productId));
         }
@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteProductFromBag(final Integer productId, final User user) {
-        List<UserBagProduct> bagProducts = user.getBagProducts();
+        final List<UserBagProduct> bagProducts = user.getBagProducts();
         int index = -1;
         for (int i = 0; i < bagProducts.size(); i++) {
             Product product = bagProducts.get(i).getProduct();
@@ -79,7 +79,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteProductFromFavorite(final Integer productId, final User user) {
-        Set<UserFavoriteProduct> favoriteProducts = user.getFavoriteProducts();
+        final Set<UserFavoriteProduct> favoriteProducts = user.getFavoriteProducts();
         UserFavoriteProduct toDelete = null;
         for (UserFavoriteProduct favoriteProduct : favoriteProducts) {
             Product product = favoriteProduct.getProduct();

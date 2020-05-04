@@ -27,6 +27,9 @@ public class ProductTypeDaoImpl implements ProductTypeDao {
         try (Session session = sessionFactory.openSession()) {
             final Query<ProductType> query = session.createQuery("FROM ProductType p", ProductType.class);
             return new HashSet<>(query.list());
+        } catch (Exception e) {
+            log.error("Error while getAll ProductType");
+            throw e;
         }
     }
 
@@ -36,11 +39,11 @@ public class ProductTypeDaoImpl implements ProductTypeDao {
         Transaction transaction = null;
         try (Session session = sessionFactory.openSession()) {
             transaction = session.beginTransaction();
-            ProductType productType = session.load(ProductType.class, id);
+            final ProductType productType = session.load(ProductType.class, id);
             session.delete(productType);
             transaction.commit();
         } catch (Exception e) {
-            log.error("Error while save ProductType");
+            log.error("Error while delete ProductType, id: {}", id);
             if (transaction != null) {
                 transaction.rollback();
             }
