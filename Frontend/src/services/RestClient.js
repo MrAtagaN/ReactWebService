@@ -9,7 +9,11 @@ export default class RestClient {
     /**
      * Отправляет get запрос
      */
-    static get = async (url) => {
+    static get = async (url, params) => {
+        for (const name in params) {
+            url += (url.indexOf('?') === -1 ? '?' : '&');
+            url += name + '=' + params[name];
+        }
         return await fetch(SERVER_URL + url, {
             method: 'get',
             url: SERVER_URL,

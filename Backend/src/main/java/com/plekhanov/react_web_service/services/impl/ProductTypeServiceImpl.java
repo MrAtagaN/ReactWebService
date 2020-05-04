@@ -2,6 +2,7 @@ package com.plekhanov.react_web_service.services.impl;
 
 import com.plekhanov.react_web_service.dao.ProductTypeDao;
 import com.plekhanov.react_web_service.entities.ProductType;
+import com.plekhanov.react_web_service.entities.ProductType.Category;
 import com.plekhanov.react_web_service.services.ProductTypeService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,6 +20,11 @@ public class ProductTypeServiceImpl implements ProductTypeService {
     @Override
     public Set<ProductType> getAll() {
         return productTypeDao.getAll();
+    }
+
+    @Override
+    public Set<ProductType> findByCategory(final Category category) {
+        return productTypeDao.findByCategory(category);
     }
 
     @Override

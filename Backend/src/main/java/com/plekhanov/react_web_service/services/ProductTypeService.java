@@ -11,6 +11,8 @@ public interface ProductTypeService {
 
     Set<ProductType> getAll();
 
+    Set<ProductType> findByCategory(@NotNull ProductType.Category category);
+
     void delete(int id);
 
     ProductType saveOrUpdate(@NotNull ProductType productType);

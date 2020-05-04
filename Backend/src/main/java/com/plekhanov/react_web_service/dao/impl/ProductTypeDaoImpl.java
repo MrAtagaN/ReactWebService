@@ -1,7 +1,7 @@
 package com.plekhanov.react_web_service.dao.impl;
 
 import com.plekhanov.react_web_service.dao.ProductTypeDao;
-import com.plekhanov.react_web_service.entities.Product;
+import com.plekhanov.react_web_service.entities.ProductType.Category;
 import com.plekhanov.react_web_service.entities.ProductType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -11,7 +11,6 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
-import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -29,6 +28,19 @@ public class ProductTypeDaoImpl implements ProductTypeDao {
             return new HashSet<>(query.list());
         } catch (Exception e) {
             log.error("Error while getAll ProductType");
+            throw e;
+        }
+    }
+
+
+    @Override
+    public Set<ProductType> findByCategory(final Category category) {
+        try (Session session = sessionFactory.openSession()) {
+            final Query<ProductType> query = session.createQuery("FROM ProductType p WHERE p.category = :category", ProductType.class);
+            query.setParameter("category", category);
+            return new HashSet<>(query.list());
+        } catch (Exception e) {
+            log.error("Error while findByCategory ProductType");
             throw e;
         }
     }

@@ -29,7 +29,7 @@ class Main extends Component {
     }
 
     /**
-     * Получение данных с сервера
+     * Получение данных о пользователе
      */
     fetchData = async () => {
         let response = await RestClient.get(USER_URL + 'info');

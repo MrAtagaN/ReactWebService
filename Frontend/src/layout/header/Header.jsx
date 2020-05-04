@@ -16,7 +16,6 @@ class Header extends Component {
 
     state = {
         redirectURL: false //меняется по нажатию кнопок, на url редиректа
-
     };
 
     render() {
