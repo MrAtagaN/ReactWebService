@@ -51,6 +51,9 @@ public class User {
     @Column(name = "enabled")
     private boolean enabled;
 
+    @Column(name = "enter", columnDefinition = "TIMESTAMP")
+    private LocalDateTime enter; //
+
     @Column(name = "last_enter", columnDefinition = "TIMESTAMP")
     private LocalDateTime lastEnter;
 

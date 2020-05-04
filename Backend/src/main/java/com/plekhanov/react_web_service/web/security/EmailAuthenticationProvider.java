@@ -56,10 +56,9 @@ public class EmailAuthenticationProvider implements AuthenticationProvider {
                 if (!bCryptPasswordEncoder.matches(password, actualPassword)) {
                     throw new BadCredentialsException(format("User {0} bad credentials!", username));
                 }
-                LocalDateTime lastEnter = user.getLastEnter();
-                user.setLastEnter(LocalDateTime.now());
+                user.setLastEnter(user.getEnter());
+                user.setEnter(LocalDateTime.now());
                 userDao.saveOrUpdate(user);
-                user.setLastEnter(lastEnter);
                 //после всех проверок, аутентифицируем пользователя
                 return new UsernamePasswordAuthenticationToken(user, actualPassword, user.getAuthorities());
             }

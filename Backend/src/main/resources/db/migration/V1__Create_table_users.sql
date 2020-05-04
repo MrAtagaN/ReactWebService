@@ -7,6 +7,7 @@ CREATE TABLE users
     account_non_locked      BOOLEAN NOT NULL,
     credentials_non_expired BOOLEAN NOT NULL,
     enabled                 BOOLEAN NOT NULL,
+    enter                   TIMESTAMP,
     last_enter              TIMESTAMP,
     creation_time           TIMESTAMP,
     email                   TEXT NOT NULL
