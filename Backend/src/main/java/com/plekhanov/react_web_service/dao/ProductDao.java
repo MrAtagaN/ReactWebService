@@ -19,7 +19,7 @@ public interface ProductDao {
 
     Product saveOrUpdate(@NotNull Product product);
 
-    Set<Product> search(ProductSearchParams productSearchParams);
+    Set<Product> search(@NotNull ProductSearchParams productSearchParams);
 
 
 }
