@@ -27,6 +27,10 @@ public class UserServiceImpl implements UserService {
     private final ProductDao productDao;
     private final UserDao userDao;
 
+    @Override
+    public User findById(final int id) {
+        return userDao.findById(id);
+    }
 
     @Override
     public void addProductToBag(final Integer productId, final User user) {

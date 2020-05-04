@@ -29,7 +29,8 @@ public class UserController {
     @GetMapping("info")
     public ApiResponse<UserDto> getTestUser() {
         final User currentUser = SecurityUtils.getCurrentUser();
-        return ApiResponse.ok(UserDto.fromUser(currentUser));
+        final User foundUser = userService.findById(currentUser.getId());
+        return ApiResponse.ok(UserDto.fromUser(foundUser));
     }
 
     /**

@@ -6,6 +6,8 @@ import javax.validation.constraints.NotNull;
 
 public interface UserService {
 
+    User findById(int id);
+
     void addProductToBag(@NotNull Integer productId, @NotNull User user);
 
     void deleteProductFromBag(@NotNull Integer productId, @NotNull User user);
