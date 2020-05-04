@@ -25,7 +25,7 @@ public class ProductTypeController {
     private final ProductTypeService productTypeService;
 
     /**
-     * Возвращает типы Товаров
+     * Возвращает Типы Товаров
      */
     @GetMapping("all")
     public ApiResponse<Set<ProductTypeDto>> getTypes() {

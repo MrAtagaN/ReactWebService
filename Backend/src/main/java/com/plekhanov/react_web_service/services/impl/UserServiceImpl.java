@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserService {
         final List<UserBagProduct> bagProducts = user.getBagProducts();
         int index = -1;
         for (int i = 0; i < bagProducts.size(); i++) {
-            Product product = bagProducts.get(i).getProduct();
+            final Product product = bagProducts.get(i).getProduct();
             if (product.getId().equals(productId)) {
                 index = i;
                 break;
@@ -82,7 +82,7 @@ public class UserServiceImpl implements UserService {
         final Set<UserFavoriteProduct> favoriteProducts = user.getFavoriteProducts();
         UserFavoriteProduct toDelete = null;
         for (UserFavoriteProduct favoriteProduct : favoriteProducts) {
-            Product product = favoriteProduct.getProduct();
+            final Product product = favoriteProduct.getProduct();
             if (product.getId().equals(productId)) {
                 toDelete = favoriteProduct;
                 break;

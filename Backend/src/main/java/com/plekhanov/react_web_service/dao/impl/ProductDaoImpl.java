@@ -39,7 +39,7 @@ public class ProductDaoImpl implements ProductDao {
 
 
     @Override
-    public void delete(int id) {
+    public void delete(final int id) {
         Transaction transaction = null;
         try (Session session = sessionFactory.openSession()) {
             transaction = session.beginTransaction();

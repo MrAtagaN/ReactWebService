@@ -22,12 +22,12 @@ public class ProductTypeServiceImpl implements ProductTypeService {
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(final int id) {
         productTypeDao.delete(id);
     }
 
     @Override
-    public ProductType saveOrUpdate(ProductType productType) {
+    public ProductType saveOrUpdate(final ProductType productType) {
         return productTypeDao.saveOrUpdate(productType);
     }
 }

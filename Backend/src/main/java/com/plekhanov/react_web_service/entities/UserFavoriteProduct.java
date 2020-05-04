@@ -22,7 +22,7 @@ public class UserFavoriteProduct {
     @GeneratedValue(strategy = IDENTITY)
     private Integer id;
 
-    @ToString.Exclude
+    @ToString.Exclude // чтобы не было кругового вызова toString, Equals, HashCode ломбоком
     @EqualsAndHashCode.Exclude
     @ManyToOne(fetch = EAGER)
     @JoinColumn(name = "user_id")

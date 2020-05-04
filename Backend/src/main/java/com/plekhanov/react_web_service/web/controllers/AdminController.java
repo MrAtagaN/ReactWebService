@@ -28,7 +28,7 @@ public class AdminController {
     private final ProductTypeService productTypeService;
 
     /**
-     * Добавить или изменить товар
+     * Добавить или изменить {@link Product}
      */
     @PostMapping("save-or-update-product")
     public ApiResponse<String> saveOrUpdateProduct(
@@ -39,7 +39,7 @@ public class AdminController {
     }
 
     /**
-     * Удалить товар
+     * Удалить {@link Product}
      */
     @PostMapping("delete-product")
     public ApiResponse<String> deleteProduct(
@@ -50,7 +50,7 @@ public class AdminController {
     }
 
     /**
-     * Добавить или изменить тип товара
+     * Добавить или изменить {@link ProductType}
      */
     @PostMapping("save-or-update-product-type")
     public ApiResponse<String> saveOrUpdateProductType(
@@ -61,7 +61,7 @@ public class AdminController {
     }
 
     /**
-     * Удалить тип товара
+     * Удалить тип {@link ProductType}
      */
     @PostMapping("delete-productType")
     public ApiResponse<String> deleteProductType(
