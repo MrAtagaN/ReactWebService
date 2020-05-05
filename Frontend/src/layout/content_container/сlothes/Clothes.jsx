@@ -5,12 +5,12 @@ import RestClient from "../../../services/RestClient";
 import {OK, PRODUCT_TYPE_URL, USER_URL} from "../../../constants/RestConstants";
 
 /**
- * Одежда
+ * Типы Одежды
  */
 class Clothes extends Component {
 
     state = {
-        clothesTypes: ['desd','sd']
+        clothesTypes: []
     };
 
 
@@ -21,8 +21,8 @@ class Clothes extends Component {
     }
 
     render() {
-        const listTypes = this.state.clothesTypes.map((type) =>
-            <li className={'clothesTypes'}>{type}</li>
+        const listTypes = this.state.clothesTypes.map((clothesTypes) =>
+            <li key={clothesTypes.name} className={'clothesTypes'}>{clothesTypes.name}</li>
         );
 
         return (<div>
@@ -46,7 +46,7 @@ class Clothes extends Component {
      * Получение типов одежды
      */
     fetchData = async () => {
-        let response = await RestClient.get(PRODUCT_TYPE_URL + 'search', {category: 'clothes'});
+        const response = await RestClient.get(PRODUCT_TYPE_URL + 'search', {category: 'clothes'});
         if (response.code === OK) {
             this.setState({...this.state, clothesTypes: response.data});
         }
