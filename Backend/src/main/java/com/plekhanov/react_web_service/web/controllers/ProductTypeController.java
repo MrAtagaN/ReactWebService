@@ -14,7 +14,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
- * Эндпойты для {@link ProductType}
+ * Эндпойты для действий с {@link ProductType}
  */
 @RestController
 @RequiredArgsConstructor

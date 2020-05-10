@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.constraints.NotNull;
 
 /**
- * Эндпойты для {@link User}
+ * Эндпойты для действий с {@link User}
  */
 @RestController
 @RequiredArgsConstructor
