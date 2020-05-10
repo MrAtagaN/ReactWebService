@@ -105,6 +105,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         };
     }
 
+
     /**
      * Обработчик ошибки логина
      */
@@ -116,6 +117,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             putApiResponseInServletResponse(apiResponse, httpServletResponse);
         };
     }
+
 
     /**
      * Обработчик отказа доступа
@@ -129,6 +131,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         };
     }
 
+
     /**
      * Обработчик неаутентифицированного запроса
      */
@@ -141,6 +144,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         };
     }
 
+
     /**
      * Обработчик успешного разлогина
      */
@@ -150,6 +154,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             putApiResponseInServletResponse(ApiResponse.ok(null), httpServletResponse);
         };
     }
+
 
     /**
      * Кладет {@link ApiResponse} в {@link HttpServletResponse}
@@ -162,6 +167,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         out.flush();
     }
 
+
     /**
      * CORS конфигурация.
      * Нужна для возможности запускать фронт на другом сервере (для отладки)
@@ -173,7 +179,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             corsConfiguration.addAllowedMethod(HttpMethod.POST);
             corsConfiguration.addAllowedMethod(HttpMethod.GET);
             corsConfiguration.setAllowCredentials(true);
-
             return corsConfiguration;
         };
     }

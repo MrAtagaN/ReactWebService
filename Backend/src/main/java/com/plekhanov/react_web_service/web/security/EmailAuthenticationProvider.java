@@ -15,7 +15,7 @@ import static java.text.MessageFormat.format;
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
 /**
- * Аутентифицирует по логину и паролю.
+ * Базовая аутентификация по логину и паролю.
  * В качестве логина выступает поле email
  */
 @Service
