@@ -24,9 +24,13 @@ class Profile extends Component {
 
             </div>
             <div>
-                Your id: {this.state.data.id}
+                Id: {this.state.data.id}
                 <br/>
-                Your username: {this.state.data.username}
+                Username: {this.state.data.username}
+                <br/>
+                Email: {this.state.data.email}
+                <br/>
+                Last enter: {this.state.data.lastEnter}
                 <br/>
             </div>
 
