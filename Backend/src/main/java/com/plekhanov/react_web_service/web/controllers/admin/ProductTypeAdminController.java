@@ -1,11 +1,8 @@
-package com.plekhanov.react_web_service.web.controllers;
+package com.plekhanov.react_web_service.web.controllers.admin;
 
-import com.plekhanov.react_web_service.entities.Product;
+
 import com.plekhanov.react_web_service.entities.ProductType;
-import com.plekhanov.react_web_service.entities.User;
-import com.plekhanov.react_web_service.services.ProductService;
 import com.plekhanov.react_web_service.services.ProductTypeService;
-import com.plekhanov.react_web_service.utils.SecurityUtils;
 import com.plekhanov.react_web_service.web.dto.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -18,36 +15,13 @@ import javax.validation.constraints.NotNull;
  * Доступ пользователей с ролью ADMIN
  */
 @RestController
-@RequestMapping("api/v1/admin")
+@RequestMapping("admin/api/v1/product-type")
 @RequiredArgsConstructor
 @Validated
 @PreAuthorize("hasAuthority('ADMIN')")
-public class AdminController {
+public class ProductTypeAdminController {
 
-    private final ProductService productService;
     private final ProductTypeService productTypeService;
-
-    /**
-     * Добавить или изменить {@link Product}
-     */
-    @PostMapping("save-or-update-product")
-    public ApiResponse<String> saveOrUpdateProduct(
-            @RequestBody @NotNull final Product product) {
-
-        productService.saveOrUpdate(product);
-        return ApiResponse.ok("product saved or updated");
-    }
-
-    /**
-     * Удалить {@link Product}
-     */
-    @PostMapping("delete-product")
-    public ApiResponse<String> deleteProduct(
-            @RequestParam("productId") @NotNull final Integer productId) {
-
-        productService.delete(productId);
-        return ApiResponse.ok("product deleted");
-    }
 
     /**
      * Добавить или изменить {@link ProductType}
