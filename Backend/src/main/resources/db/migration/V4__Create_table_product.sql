@@ -13,7 +13,9 @@ CREATE TABLE product
     age             TEXT,
     color           TEXT,
     is_new          BOOLEAN,
-    is_sales        BOOLEAN
+    is_sales        BOOLEAN,
+
+    CONSTRAINT product_name_unique UNIQUE (name)
 );
 
 CREATE INDEX product_type_id_index ON product (type_id);

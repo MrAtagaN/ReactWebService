@@ -16,6 +16,8 @@ public interface ProductTypeDao {
 
     Set<ProductType> getAll();
 
+    ProductType findByNameAndCategory(@NotNull String name, @NotNull Category category);
+
     Set<ProductType> findByCategory(@NotNull Category category);
 
     void delete(int id);

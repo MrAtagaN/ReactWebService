@@ -2,11 +2,14 @@ package com.plekhanov.react_web_service.services;
 
 import com.plekhanov.react_web_service.entities.User;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 public interface UserService {
 
     User findById(int id);
+
+    User findByEmail(@NotBlank String email);
 
     User saveOrUpdate(@NotNull User user);
 

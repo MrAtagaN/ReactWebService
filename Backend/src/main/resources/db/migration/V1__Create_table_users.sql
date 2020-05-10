@@ -10,6 +10,8 @@ CREATE TABLE users
     enter                   TIMESTAMP,
     last_enter              TIMESTAMP,
     creation_time           TIMESTAMP,
-    email                   TEXT NOT NULL
+    email                   TEXT NOT NULL,
+
+    CONSTRAINT users_email_unique UNIQUE (email)
 );
 

@@ -14,6 +14,8 @@ import org.springframework.stereotype.Repository;
 import java.util.HashSet;
 import java.util.Set;
 
+import static org.springframework.dao.support.DataAccessUtils.singleResult;
+
 @Slf4j
 @RequiredArgsConstructor
 @Repository
@@ -28,6 +30,20 @@ public class ProductTypeDaoImpl implements ProductTypeDao {
             return new HashSet<>(query.list());
         } catch (Exception e) {
             log.error("Error while getAll ProductType: {}", e.getMessage());
+            throw e;
+        }
+    }
+
+    @Override
+    public ProductType findByNameAndCategory(final String name, final Category category) {
+        try (Session session = sessionFactory.openSession()) {
+            final Query<ProductType> query =
+                    session.createQuery("FROM ProductType p WHERE p.category = :category AND p.name = :name", ProductType.class);
+            query.setParameter("category", category);
+            query.setParameter("name", name);
+            return singleResult(query.list());
+        } catch (Exception e) {
+            log.error("Error while findByCategory ProductType: {}", e.getMessage());
             throw e;
         }
     }
