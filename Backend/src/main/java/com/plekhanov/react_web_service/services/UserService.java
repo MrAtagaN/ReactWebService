@@ -1,10 +1,12 @@
 package com.plekhanov.react_web_service.services;
 
 import com.plekhanov.react_web_service.entities.User;
+import org.springframework.validation.annotation.Validated;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+@Validated
 public interface UserService {
 
     User findById(int id);
