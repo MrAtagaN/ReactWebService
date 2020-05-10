@@ -24,7 +24,7 @@ public class ProductAdminController {
     /**
      * Добавить или изменить {@link Product}
      */
-    @PostMapping("save-or-update-product")
+    @PostMapping("save-or-update")
     public ApiResponse<String> saveOrUpdateProduct(
             @RequestBody @NotNull final Product product) {
 
@@ -36,7 +36,7 @@ public class ProductAdminController {
     /**
      * Удалить {@link Product}
      */
-    @PostMapping("delete-product")
+    @PostMapping("delete")
     public ApiResponse<String> deleteProduct(
             @RequestParam("productId") @NotNull final Integer productId) {
 
