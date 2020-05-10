@@ -20,7 +20,7 @@ public class Main {
 
 
     /**
-     * Наполнение базы демонстрационными данными
+     * Выполнение при старте приложения
      */
     @Bean
     public CommandLineRunner commandLineRunner(ApplicationContext context) {
@@ -29,7 +29,7 @@ public class Main {
         };
     }
 
-
+    //наполнить данными
 
 
     //TODO:
