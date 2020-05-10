@@ -11,26 +11,30 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
- * Открытые эндпойты для получения {@link Product}
+ * Эндпойты для {@link Product}
  */
 @RestController
-@RequestMapping("public/api/v1/product")
 @RequiredArgsConstructor
 @Validated
 public class ProductController {
 
     private final ProductService productService;
 
+    private static final String PUBLIC = "public/";
+    private static final String ADMIN = "admin/";
+    private static final String API_VERSION = "api/v1/product/";
+
 
     /**
      * Возвращает Товары, по выбранным параметрам
      */
-    @GetMapping("search")
+    @GetMapping(PUBLIC + API_VERSION + "search")
     public ApiResponse<Set<ProductDto>> search(
             @RequestParam(value = "name", required = false) final String name,
             @RequestParam(value = "type", required = false) final Integer type,
@@ -69,6 +73,30 @@ public class ProductController {
                 .map(ProductDto::fromProduct)
                 .collect(Collectors.toSet());
         return ApiResponse.ok(productsDto);
+    }
+
+
+    /**
+     * Добавить или изменить {@link Product}
+     */
+    @PostMapping(ADMIN + API_VERSION + "save-or-update")
+    public ApiResponse<String> saveOrUpdateProduct(
+            @RequestBody @NotNull final Product product) {
+
+        productService.saveOrUpdate(product);
+        return ApiResponse.ok("product saved or updated");
+    }
+
+
+    /**
+     * Удалить {@link Product}
+     */
+    @PostMapping(ADMIN + API_VERSION + "delete")
+    public ApiResponse<String> deleteProduct(
+            @RequestParam("productId") @NotNull final Integer productId) {
+
+        productService.delete(productId);
+        return ApiResponse.ok("product deleted");
     }
 
 
