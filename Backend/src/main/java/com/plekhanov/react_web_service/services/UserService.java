@@ -8,6 +8,8 @@ public interface UserService {
 
     User findById(int id);
 
+    User saveOrUpdate(@NotNull User user);
+
     void addProductToBag(@NotNull Integer productId, @NotNull User user);
 
     void deleteProductFromBag(@NotNull Integer productId, @NotNull User user);

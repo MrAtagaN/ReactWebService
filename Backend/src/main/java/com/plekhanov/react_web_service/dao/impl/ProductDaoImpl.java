@@ -32,7 +32,7 @@ public class ProductDaoImpl implements ProductDao {
         try (Session session = sessionFactory.openSession()) {
             return session.find(Product.class, id);
         } catch (Exception e) {
-            log.error("Error while find Product, id: {}", id);
+            log.error("Error while find Product, id: {}, {}", id, e.getMessage());
             throw e;
         }
     }
@@ -47,7 +47,7 @@ public class ProductDaoImpl implements ProductDao {
             session.delete(product);
             transaction.commit();
         } catch (Exception e) {
-            log.error("Error while delete Product, id: {}", id);
+            log.error("Error while delete Product, id: {}, {}", id, e.getMessage());
             if (transaction != null) {
                 transaction.rollback();
             }
@@ -65,7 +65,7 @@ public class ProductDaoImpl implements ProductDao {
             savedProduct = (Product) session.merge(product);
             transaction.commit();
         } catch (Exception e) {
-            log.error("Error while save Product");
+            log.error("Error while save Product, {}", e.getMessage());
             if (transaction != null) {
                 transaction.rollback();
             }
@@ -156,7 +156,7 @@ public class ProductDaoImpl implements ProductDao {
             query.setProperties(params);
             return new HashSet<>(query.list());
         } catch (Exception e) {
-            log.error("Error while search Product");
+            log.error("Error while search Product: {}", e.getMessage());
             throw e;
         }
     }

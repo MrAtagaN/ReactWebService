@@ -6,6 +6,8 @@ import org.hibernate.annotations.Fetch;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -64,11 +66,11 @@ public class User {
     private String email;
 
     @OneToMany(mappedBy = "user", cascade = ALL, orphanRemoval = true, fetch = EAGER)
-    private List<UserBagProduct> bagProducts;
+    private List<UserBagProduct> bagProducts = new ArrayList<>();
 
     @OneToMany(mappedBy = "user", cascade = ALL, orphanRemoval = true, fetch = EAGER)
     @Fetch(SUBSELECT) // по умолчанию используется JOIN, но это не будет работать если есть две коллекции с fetch = EAGER
-    private Set<UserFavoriteProduct> favoriteProducts;
+    private Set<UserFavoriteProduct> favoriteProducts = new HashSet<>();
 
     //TODO добавить поля: orders
 

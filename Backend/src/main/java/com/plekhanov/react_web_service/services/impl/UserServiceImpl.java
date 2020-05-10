@@ -12,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.validation.ValidationException;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -27,10 +28,18 @@ public class UserServiceImpl implements UserService {
     private final ProductDao productDao;
     private final UserDao userDao;
 
+
     @Override
     public User findById(final int id) {
         return userDao.findById(id);
     }
+
+
+    @Override
+    public User saveOrUpdate(User user) {
+        return userDao.saveOrUpdate(user);
+    }
+
 
     @Override
     public void addProductToBag(final Integer productId, final User user) {

@@ -30,7 +30,7 @@ public class UserDaoImpl implements UserDao {
             savedUsed = (User) session.merge(user);
             transaction.commit();
         } catch (Exception e) {
-            log.error("Error while save User");
+            log.error("Error while save User: {}", e.getMessage());
             if (transaction != null) {
                 transaction.rollback();
             }
@@ -44,7 +44,7 @@ public class UserDaoImpl implements UserDao {
         try (Session session = sessionFactory.openSession()) {
             return session.find(User.class, id);
         } catch (Exception e) {
-            log.error("Error while findById User, id: {}", id);
+            log.error("Error while findById User, id: {}, {}", id, e.getMessage());
             throw e;
         }
     }
@@ -55,7 +55,7 @@ public class UserDaoImpl implements UserDao {
             query.setParameter("username", username);
             return query.list();
         } catch (Exception e) {
-            log.error("Error while findByName User, username: {}", username);
+            log.error("Error while findByName User, username: {}, {}", username, e.getMessage());
             throw e;
         }
     }
@@ -66,7 +66,7 @@ public class UserDaoImpl implements UserDao {
             query.setParameter("email", email);
             return DataAccessUtils.singleResult(query.list());
         } catch (Exception e) {
-            log.error("Error while findByEmail User, email: {}", email);
+            log.error("Error while findByEmail User, email: {}, {}", email, e.getMessage());
             throw e;
         }
     }

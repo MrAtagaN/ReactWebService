@@ -27,7 +27,7 @@ public class ProductTypeDaoImpl implements ProductTypeDao {
             final Query<ProductType> query = session.createQuery("FROM ProductType p", ProductType.class);
             return new HashSet<>(query.list());
         } catch (Exception e) {
-            log.error("Error while getAll ProductType");
+            log.error("Error while getAll ProductType: {}", e.getMessage());
             throw e;
         }
     }
@@ -40,7 +40,7 @@ public class ProductTypeDaoImpl implements ProductTypeDao {
             query.setParameter("category", category);
             return new HashSet<>(query.list());
         } catch (Exception e) {
-            log.error("Error while findByCategory ProductType");
+            log.error("Error while findByCategory ProductType: {}", e.getMessage());
             throw e;
         }
     }
@@ -55,7 +55,7 @@ public class ProductTypeDaoImpl implements ProductTypeDao {
             session.delete(productType);
             transaction.commit();
         } catch (Exception e) {
-            log.error("Error while delete ProductType, id: {}", id);
+            log.error("Error while delete ProductType, id: {}, {}", id, e.getMessage());
             if (transaction != null) {
                 transaction.rollback();
             }
@@ -73,7 +73,7 @@ public class ProductTypeDaoImpl implements ProductTypeDao {
             savedProductType = (ProductType) session.merge(productType);
             transaction.commit();
         } catch (Exception e) {
-            log.error("Error while save ProductType");
+            log.error("Error while save ProductType, {}", e.getMessage());
             if (transaction != null) {
                 transaction.rollback();
             }

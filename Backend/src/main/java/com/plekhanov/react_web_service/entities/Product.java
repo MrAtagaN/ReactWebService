@@ -3,6 +3,7 @@ package com.plekhanov.react_web_service.entities;
 import lombok.Data;
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.HashSet;
 import java.util.Set;
 
 import static javax.persistence.EnumType.STRING;
@@ -66,7 +67,7 @@ public class Product {
     @ElementCollection(fetch = EAGER)
     @CollectionTable(name = "image", joinColumns = @JoinColumn(name = "product_id"))
     @Column(name = "data")
-    private Set<byte[]> images;
+    private Set<byte[]> images = new HashSet<>();
 
 
     public enum Gender {

@@ -1,16 +1,10 @@
 package com.plekhanov.react_web_service;
 
-import com.plekhanov.react_web_service.dao.ProductDao;
-import com.plekhanov.react_web_service.entities.Product;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
-
-import java.math.BigDecimal;
-import java.util.Collections;
 
 /**
  * Запуск приложения
@@ -24,37 +18,24 @@ public class Main {
     }
 
 
+
     /**
-     * Отладка
-     **/
-//    @Autowired
-//    ProductDao productDao;
-//
-//    @Bean
-//    public CommandLineRunner commandLineRunner(ApplicationContext context) {
-//        return (args) -> {
-//            Product product = new Product();
-//            product.setType("typeAAAA");
-//            product.setPrice(new BigDecimal("100.1"));
-//            product.setName("aaadvcv");
-//            product.setProductCategory(Product.ProductCategory.ACCESSORIES);
-//            product.setGenderCategory(Product.GenderCategory.MALE);
-//
-//            product.setImages(Collections.singleton(new byte[]{0,2,3}));
-//            productDao.save(product);
-//
-//            Product byId = productDao.findById(1);
-//            System.out.println(byId);
-//        };
-//    }
+     * Наполнение базы демонстрационными данными
+     */
+    @Bean
+    public CommandLineRunner commandLineRunner(ApplicationContext context) {
+        return (args) -> {
+            context.getBean(DemoDataHelper.class).insertData();
+        };
+    }
+
+
 
 
     //TODO:
     // Функциональные:
     // Обработать ошибку, если нет эндпойнта
     // Модель данных
-    // Поиск продуктов
-    // Фильтрация продуктов
     // Добавить регистрацию пользователя
     // Https
     // .
