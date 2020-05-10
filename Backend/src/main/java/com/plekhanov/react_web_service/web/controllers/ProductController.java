@@ -32,7 +32,7 @@ public class ProductController {
 
 
     /**
-     * Возвращает Товары, по выбранным параметрам
+     * Возвращает {@link Product}, по выбранным параметрам
      */
     @GetMapping(PUBLIC + API_VERSION + "search")
     public ApiResponse<Set<ProductDto>> search(

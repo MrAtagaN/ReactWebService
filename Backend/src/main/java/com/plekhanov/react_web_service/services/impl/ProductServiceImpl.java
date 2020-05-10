@@ -8,7 +8,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 
@@ -21,7 +20,7 @@ public class ProductServiceImpl implements ProductService {
 
 
     @Override
-    public Product saveOrUpdate(@NotNull Product product) {
+    public Product saveOrUpdate(final Product product) {
         return productDao.saveOrUpdate(product);
     }
 

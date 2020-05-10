@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public User saveOrUpdate(User user) {
+    public User saveOrUpdate(final User user) {
         return userDao.saveOrUpdate(user);
     }
 
