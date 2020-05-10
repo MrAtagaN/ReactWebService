@@ -5,7 +5,6 @@ import com.plekhanov.react_web_service.entities.ProductType;
 import com.plekhanov.react_web_service.services.ProductTypeService;
 import com.plekhanov.react_web_service.web.dto.ApiResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +17,6 @@ import javax.validation.constraints.NotNull;
 @RequestMapping("admin/api/v1/product-type")
 @RequiredArgsConstructor
 @Validated
-@PreAuthorize("hasAuthority('ADMIN')")
 public class ProductTypeAdminController {
 
     private final ProductTypeService productTypeService;
@@ -39,7 +37,7 @@ public class ProductTypeAdminController {
     /**
      * Удалить тип {@link ProductType}
      */
-    @PostMapping("delete-productType")
+    @PostMapping("delete-product-type")
     public ApiResponse<String> deleteProductType(
             @RequestParam("productId") @NotNull final Integer productTypeId) {
 

@@ -4,7 +4,6 @@ import com.plekhanov.react_web_service.entities.Product;
 import com.plekhanov.react_web_service.services.ProductService;
 import com.plekhanov.react_web_service.web.dto.ApiResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +16,6 @@ import javax.validation.constraints.NotNull;
 @RequestMapping("admin/api/v1/product")
 @RequiredArgsConstructor
 @Validated
-@PreAuthorize("hasAuthority('ADMIN')")
 public class ProductAdminController {
 
     private final ProductService productService;
