@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.NotNull;
 
-
 /**
  * Защищеные эндпойты действий пользователя
  */
@@ -23,6 +22,7 @@ public class UserController {
 
     private final UserService userService;
 
+
     /**
      * Информация о текущем пользователе
      */
@@ -32,6 +32,7 @@ public class UserController {
         final User foundUser = userService.findById(currentUser.getId());
         return ApiResponse.ok(UserDto.fromUser(foundUser));
     }
+
 
     /**
      * Добавить товар в корзину
@@ -45,6 +46,7 @@ public class UserController {
         return ApiResponse.ok("product add to bag");
     }
 
+
     /**
      * Удалить товар из корзины
      */
@@ -57,6 +59,7 @@ public class UserController {
         return ApiResponse.ok("product delete from bag");
     }
 
+
     /**
      * Добавить товар в избранное
      */
@@ -68,6 +71,7 @@ public class UserController {
         userService.addProductToFavorite(productId, user);
         return ApiResponse.ok("product add to favorite");
     }
+
 
     /**
      * Удалить товар из избранного

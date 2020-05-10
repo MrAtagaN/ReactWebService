@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.constraints.NotNull;
 
 /**
- * Доступ пользователей с ролью ADMIN
+ * Доступ пользователей с ролью ADMIN к {@link Product}
  */
 @RestController
 @RequestMapping("admin/api/v1/product")
@@ -33,6 +33,7 @@ public class ProductAdminController {
         productService.saveOrUpdate(product);
         return ApiResponse.ok("product saved or updated");
     }
+
 
     /**
      * Удалить {@link Product}

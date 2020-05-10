@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.constraints.NotNull;
 
 /**
- * Доступ пользователей с ролью ADMIN
+ * Доступ пользователей с ролью ADMIN к {@link ProductType}
  */
 @RestController
 @RequestMapping("admin/api/v1/product-type")
@@ -22,6 +22,7 @@ import javax.validation.constraints.NotNull;
 public class ProductTypeAdminController {
 
     private final ProductTypeService productTypeService;
+
 
     /**
      * Добавить или изменить {@link ProductType}
@@ -33,6 +34,7 @@ public class ProductTypeAdminController {
         productTypeService.saveOrUpdate(productType);
         return ApiResponse.ok("productType saved or updated");
     }
+
 
     /**
      * Удалить тип {@link ProductType}

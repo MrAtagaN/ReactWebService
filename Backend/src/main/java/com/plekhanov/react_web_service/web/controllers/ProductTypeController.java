@@ -26,6 +26,7 @@ public class ProductTypeController {
 
     private final ProductTypeService productTypeService;
 
+
     /**
      * Возвращает Типы Товаров в категории
      */
