@@ -82,9 +82,7 @@ public class ProductController {
      * Добавить или изменить {@link Product}
      */
     @PostMapping(ADMIN + API_VERSION + "save-or-update")
-    public ApiResponse<String> saveOrUpdateProduct(
-            @RequestBody @NotNull final Product product) {
-
+    public ApiResponse<String> saveOrUpdateProduct(@RequestBody @NotNull final Product product) {
         productService.saveOrUpdate(product);
         return ApiResponse.ok("product saved or updated");
     }
@@ -94,9 +92,7 @@ public class ProductController {
      * Удалить {@link Product}
      */
     @PostMapping(ADMIN + API_VERSION + "delete")
-    public ApiResponse<String> deleteProduct(
-            @RequestParam("productId") @NotNull final Integer productId) {
-
+    public ApiResponse<String> deleteProduct(@RequestParam("productId") @NotNull final Integer productId) {
         productService.delete(productId);
         return ApiResponse.ok("product deleted");
     }

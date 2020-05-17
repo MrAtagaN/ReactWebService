@@ -27,7 +27,8 @@ public class HibernateConfig {
      * чтобы Flyway сначала создал таблицы, а потом Hibernate к ним подключился
      */
     @Bean
-    public SessionFactory getSessionFactory(final DataSource getDataSource, final FlywayMigrationInitializer flywayMigrationInitializer) {
+    public SessionFactory getSessionFactory(final DataSource getDataSource,
+                                            final FlywayMigrationInitializer flywayMigrationInitializer) {
         final org.hibernate.cfg.Configuration configuration = new org.hibernate.cfg.Configuration();
         configuration.addAnnotatedClass(User.class);
         configuration.addAnnotatedClass(Product.class);

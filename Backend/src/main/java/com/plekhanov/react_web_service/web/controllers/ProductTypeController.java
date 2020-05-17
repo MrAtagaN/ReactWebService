@@ -32,8 +32,7 @@ public class ProductTypeController {
      * Возвращает Типы Товаров в категории
      */
     @GetMapping(PUBLIC + API_VERSION + "search")
-    public ApiResponse<Set<ProductTypeDto>> getTypes(
-            @RequestParam(value = "category") final Category category) {
+    public ApiResponse<Set<ProductTypeDto>> getTypes(@RequestParam(value = "category") final Category category) {
         final Set<ProductType> productTypes = productTypeService.findByCategory(category);
         final Set<ProductTypeDto> productTypeDtos = productTypes.stream()
                 .map(ProductTypeDto::fromProductType)
@@ -46,9 +45,7 @@ public class ProductTypeController {
      * Добавить или изменить {@link ProductType}
      */
     @PostMapping(ADMIN + API_VERSION + "save-or-update")
-    public ApiResponse<String> saveOrUpdateProductType(
-            @RequestBody @NotNull final ProductType productType) {
-
+    public ApiResponse<String> saveOrUpdateProductType(@RequestBody @NotNull final ProductType productType) {
         productTypeService.saveOrUpdate(productType);
         return ApiResponse.ok("productType saved or updated");
     }
@@ -58,9 +55,7 @@ public class ProductTypeController {
      * Удалить тип {@link ProductType}
      */
     @PostMapping(ADMIN + API_VERSION + "delete")
-    public ApiResponse<String> deleteProductType(
-            @RequestParam("productId") @NotNull final Integer productTypeId) {
-
+    public ApiResponse<String> deleteProductType(@RequestParam("productId") @NotNull final Integer productTypeId) {
         productTypeService.delete(productTypeId);
         return ApiResponse.ok("productType deleted");
     }

@@ -40,9 +40,7 @@ public class UserController {
      * Добавить товар в корзину {@link User}
      */
     @PostMapping(API_VERSION + "add-product-to-bag")
-    public ApiResponse<String> addProductToBag(
-            @RequestParam("productId") @NotNull final Integer productId) {
-
+    public ApiResponse<String> addProductToBag(@RequestParam("productId") @NotNull final Integer productId) {
         final User user = SecurityUtils.getCurrentUser();
         userService.addProductToBag(productId, user);
         return ApiResponse.ok("product add to bag");
@@ -53,9 +51,7 @@ public class UserController {
      * Удалить товар из корзины {@link User}
      */
     @PostMapping(API_VERSION + "delete-product-from-bag")
-    public ApiResponse<String> deleteProductFromBag(
-            @RequestParam("productId") @NotNull final Integer productId) {
-
+    public ApiResponse<String> deleteProductFromBag(@RequestParam("productId") @NotNull final Integer productId) {
         final User user = SecurityUtils.getCurrentUser();
         userService.deleteProductFromBag(productId, user);
         return ApiResponse.ok("product delete from bag");
@@ -66,9 +62,7 @@ public class UserController {
      * Добавить товар в избранное {@link User}
      */
     @PostMapping(API_VERSION + "add-product-to-favorite")
-    public ApiResponse<String> addProductToFavorite(
-            @RequestParam("productId") @NotNull final Integer productId) {
-
+    public ApiResponse<String> addProductToFavorite(@RequestParam("productId") @NotNull final Integer productId) {
         final User user = SecurityUtils.getCurrentUser();
         userService.addProductToFavorite(productId, user);
         return ApiResponse.ok("product add to favorite");
@@ -79,9 +73,7 @@ public class UserController {
      * Удалить товар из избранного {@link User}
      */
     @PostMapping(API_VERSION + "delete-product-from-favorite")
-    public ApiResponse<String> deleteProductFromFavorite(
-            @RequestParam("productId") @NotNull final Integer productId) {
-
+    public ApiResponse<String> deleteProductFromFavorite(@RequestParam("productId") @NotNull final Integer productId) {
         final User user = SecurityUtils.getCurrentUser();
         userService.deleteProductFromFavorite(productId, user);
         return ApiResponse.ok("product delete from favorite");

@@ -40,7 +40,8 @@ class ErrorHandlerControllerAdvice {
      */
     @ExceptionHandler({MissingServletRequestParameterException.class})
     public ResponseEntity<ApiResponse> onMissingServletRequestParameterExceptionHandler(
-            final MissingServletRequestParameterException e, final WebRequest webRequest) {
+            final MissingServletRequestParameterException e,
+            final WebRequest webRequest) {
 
         final String missingParameter = e.getParameterName();
         log.error("MissingServletRequestParameter: {}, in request {}.", missingParameter, webRequest);
@@ -56,7 +57,8 @@ class ErrorHandlerControllerAdvice {
      */
     @ExceptionHandler({MethodArgumentTypeMismatchException.class})
     public ResponseEntity<ApiResponse> onMethodArgumentTypeMismatchExceptionHandler(
-            final MethodArgumentTypeMismatchException e, final WebRequest webRequest) {
+            final MethodArgumentTypeMismatchException e,
+            final WebRequest webRequest) {
 
         final String invalidParameter = e.getName();
         log.error("MissingServletRequestParameter: {}, in request {}.", invalidParameter, webRequest);
