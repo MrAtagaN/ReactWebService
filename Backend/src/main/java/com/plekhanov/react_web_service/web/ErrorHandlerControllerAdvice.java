@@ -21,7 +21,6 @@ import static com.plekhanov.react_web_service.web.ApiResponse.ResponseCode.*;
 @ControllerAdvice
 class ErrorHandlerControllerAdvice {
 
-
     /**
      * Обработка Exception
      */
@@ -45,7 +44,8 @@ class ErrorHandlerControllerAdvice {
 
         final String missingParameter = e.getParameterName();
         log.error("MissingServletRequestParameter: {}, in request {}.", missingParameter, webRequest);
-        final ApiResponse apiResponse = ApiResponse.error(VALIDATION_ERROR, "Missing request parameter: " + missingParameter);
+        final ApiResponse apiResponse =
+                ApiResponse.error(VALIDATION_ERROR, "Missing mandatory request parameter: " + missingParameter);
         return ResponseEntity
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .header("Content-Type", "application/json; charset=UTF-8")
