@@ -3,7 +3,7 @@ package com.plekhanov.react_web_service.web.controllers;
 import com.plekhanov.react_web_service.entities.User;
 import com.plekhanov.react_web_service.services.UserService;
 import com.plekhanov.react_web_service.utils.SecurityUtils;
-import com.plekhanov.react_web_service.web.dto.ApiResponse;
+import com.plekhanov.react_web_service.web.ApiResponse;
 import com.plekhanov.react_web_service.web.dto.UserDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;

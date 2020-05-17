@@ -1,4 +1,4 @@
-package com.plekhanov.react_web_service.demo_data_uploader.impl.uploaders;
+package com.plekhanov.react_web_service.demo_data_uploader.uploaders;
 
 import com.plekhanov.react_web_service.entities.User;
 import com.plekhanov.react_web_service.services.UserService;

@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.plekhanov.react_web_service.config.security.EmailAuthenticationProvider;
 import com.plekhanov.react_web_service.entities.User;
 import com.plekhanov.react_web_service.utils.SecurityUtils;
-import com.plekhanov.react_web_service.web.dto.ApiResponse;
+import com.plekhanov.react_web_service.web.ApiResponse;
 import com.plekhanov.react_web_service.web.dto.UserDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
@@ -29,7 +29,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import static com.plekhanov.react_web_service.web.dto.ApiResponse.ResponseCode.*;
+import static com.plekhanov.react_web_service.web.ApiResponse.ResponseCode.*;
 
 /**
  * Конфигурация Security

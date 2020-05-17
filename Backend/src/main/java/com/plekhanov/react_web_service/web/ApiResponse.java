@@ -1,8 +1,8 @@
-package com.plekhanov.react_web_service.web.dto;
+package com.plekhanov.react_web_service.web;
 
 import lombok.*;
 
-import static com.plekhanov.react_web_service.web.dto.ApiResponse.ResponseCode.OK;
+import static com.plekhanov.react_web_service.web.ApiResponse.ResponseCode.OK;
 
 /**
  * Ответ контроллера на rest запрос

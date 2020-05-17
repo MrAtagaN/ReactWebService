@@ -3,7 +3,7 @@ package com.plekhanov.react_web_service.web.controllers;
 import com.plekhanov.react_web_service.entities.ProductType;
 import com.plekhanov.react_web_service.entities.ProductType.Category;
 import com.plekhanov.react_web_service.services.ProductTypeService;
-import com.plekhanov.react_web_service.web.dto.ApiResponse;
+import com.plekhanov.react_web_service.web.ApiResponse;
 import com.plekhanov.react_web_service.web.dto.ProductTypeDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;

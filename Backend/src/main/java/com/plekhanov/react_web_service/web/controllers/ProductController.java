@@ -5,7 +5,7 @@ import com.plekhanov.react_web_service.entities.Product.Age;
 import com.plekhanov.react_web_service.entities.Product.Gender;
 import com.plekhanov.react_web_service.entities.search_params.ProductSearchParams;
 import com.plekhanov.react_web_service.services.ProductService;
-import com.plekhanov.react_web_service.web.dto.ApiResponse;
+import com.plekhanov.react_web_service.web.ApiResponse;
 import com.plekhanov.react_web_service.web.dto.ProductDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
