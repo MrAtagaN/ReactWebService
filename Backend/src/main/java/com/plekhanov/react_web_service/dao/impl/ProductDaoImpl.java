@@ -154,10 +154,22 @@ public class ProductDaoImpl implements ProductDao {
 
             final Query<Product> query = session.createQuery(stringQuery.toString(), Product.class);
             query.setProperties(params);
+
+            final Integer page = productSearchParams.getPage();
+            if (page != null) {
+                final Integer itemsInPage = productSearchParams.getItemsInPage();
+                query.setFirstResult(page * itemsInPage);
+                query.setMaxResults(itemsInPage);
+            }
+
             return new HashSet<>(query.list());
         } catch (Exception e) {
             log.error("Error while search Product: {}", e.getMessage());
             throw e;
         }
+    }
+
+    public int count() {
+        return 0;//TODO
     }
 }

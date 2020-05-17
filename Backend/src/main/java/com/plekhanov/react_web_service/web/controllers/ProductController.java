@@ -49,7 +49,8 @@ public class ProductController {
             @RequestParam(value = "age", required = false) final Age age,
             @RequestParam(value = "color", required = false) final String color,
             @RequestParam(value = "isNew", required = false) final Boolean isNew,
-            @RequestParam(value = "isSales", required = false) final Boolean isSales) {
+            @RequestParam(value = "isSales", required = false) final Boolean isSales,
+            @RequestParam(value = "page", required = false, defaultValue = "0") final Integer page) {
 
         final ProductSearchParams productSearchParams = ProductSearchParams.builder()
                 .name(name)
@@ -66,6 +67,7 @@ public class ProductController {
                 .color(color)
                 .isNew(isNew)
                 .isSales(isSales)
+                .page(page)
                 .build();
 
         final Set<Product> products = productService.search(productSearchParams);

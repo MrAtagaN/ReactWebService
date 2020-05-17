@@ -28,4 +28,6 @@ public class ProductSearchParams {
     String color;
     Boolean isNew;
     Boolean isSales;
+    Integer page;
+    int itemsInPage = 9;
 }

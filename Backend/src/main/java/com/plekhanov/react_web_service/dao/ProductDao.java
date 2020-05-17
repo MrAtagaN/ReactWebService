@@ -21,5 +21,7 @@ public interface ProductDao {
 
     Set<Product> search(@NotNull ProductSearchParams productSearchParams);
 
+    int count();
+
 
 }
