@@ -2,6 +2,7 @@ package com.plekhanov.react_web_service.entities;
 
 import com.plekhanov.react_web_service.web.security.Role;
 import lombok.Data;
+import lombok.ToString;
 import org.hibernate.annotations.Fetch;
 
 import javax.persistence.*;
@@ -32,6 +33,7 @@ public class User {
     @Column(name = "username")
     private String username; //аутентификация происходит по полю email
 
+    @ToString.Exclude
     @Column(name = "password")
     private String password;
 
