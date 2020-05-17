@@ -8,7 +8,6 @@ import com.plekhanov.react_web_service.entities.UserBagProduct;
 import com.plekhanov.react_web_service.entities.UserFavoriteProduct;
 import com.plekhanov.react_web_service.services.UserService;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.validation.ValidationException;
@@ -18,8 +17,6 @@ import java.util.stream.Collectors;
 
 import static java.text.MessageFormat.format;
 
-
-@Slf4j
 @RequiredArgsConstructor
 @Service
 public class UserServiceImpl implements UserService {
