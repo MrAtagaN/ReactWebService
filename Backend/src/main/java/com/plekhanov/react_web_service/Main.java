@@ -1,5 +1,6 @@
 package com.plekhanov.react_web_service;
 
+import com.plekhanov.react_web_service.demo_data_uploader.DemoDataUploader;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -24,7 +25,7 @@ public class Main {
     @Bean
     public CommandLineRunner commandLineRunner(ApplicationContext context) {
         return (args) -> {
-            context.getBean(DemoDataHelper.class).insertData();
+            context.getBean(DemoDataUploader.class).insertData();
         };
     }
 
@@ -33,6 +34,7 @@ public class Main {
 
     //TODO:
     // Функциональные:
+    // Выводить данные постранично
     // Обработать ошибку, если нет эндпойнта
     // Модель данных
     // Добавить регистрацию пользователя
