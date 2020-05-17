@@ -1,6 +1,6 @@
 package com.plekhanov.react_web_service.entities;
 
-import com.plekhanov.react_web_service.web.security.Role;
+import com.plekhanov.react_web_service.config.security.Role;
 import lombok.Data;
 import lombok.ToString;
 import org.hibernate.annotations.Fetch;

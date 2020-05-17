@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 
-import static com.plekhanov.react_web_service.web.security.Role.ADMIN;
-import static com.plekhanov.react_web_service.web.security.Role.USER;
+import static com.plekhanov.react_web_service.config.security.Role.ADMIN;
+import static com.plekhanov.react_web_service.config.security.Role.USER;
 import static java.util.Collections.singleton;
 
 /**

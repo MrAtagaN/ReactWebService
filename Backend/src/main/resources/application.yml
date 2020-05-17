@@ -1,17 +1,17 @@
 server:
-  port: 80 # порт на котором работает приложение
+  port: 80    # порт на котором работает приложение
 
 hibernate:
-  dialect: org.hibernate.dialect.SQLiteDialect # диалект sql для подключения hibernate
+  dialect: org.hibernate.dialect.SQLiteDialect    # диалект sql для подключения hibernate к базе данных
 
 spring:
   datasource:
-    url: jdbc:sqlite:Backend/src/main/resources/webService.db # путь до базы данных
-    driver-class-name: org.sqlite.JDBC # класс драйвера для базы данных
+    url: jdbc:sqlite:Backend/src/main/resources/webService.db    # путь до базы данных
+    driver-class-name: org.sqlite.JDBC    # класс драйвера для подключения к базе данных
   flyway:
-    baseline-on-migrate: true # применять схемы миграции, если они не применены
-    outOfOrder: true # позволяет добавлять схемы миграции с номером не по-порядку
-    schemas: # схема, в которую flyway будет делать миграцию
+    baseline-on-migrate: true    # применять схемы миграции, если они не применены
+    outOfOrder: true    # позволяет добавлять схемы миграции с номером не по-порядку
+    schemas:    # схема, в которую flyway будет делать миграцию
 
 
 

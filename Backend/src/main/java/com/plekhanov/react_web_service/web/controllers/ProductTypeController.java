@@ -35,7 +35,9 @@ public class ProductTypeController {
     public ApiResponse<Set<ProductTypeDto>> getTypes(
             @RequestParam(value = "category") final Category category) {
         final Set<ProductType> productTypes = productTypeService.findByCategory(category);
-        final Set<ProductTypeDto> productTypeDtos = productTypes.stream().map(ProductTypeDto::fromProductType).collect(Collectors.toSet());
+        final Set<ProductTypeDto> productTypeDtos = productTypes.stream()
+                .map(ProductTypeDto::fromProductType)
+                .collect(Collectors.toSet());
         return ApiResponse.ok(productTypeDtos);
     }
 

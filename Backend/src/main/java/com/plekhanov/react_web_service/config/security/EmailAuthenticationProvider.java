@@ -1,4 +1,4 @@
-package com.plekhanov.react_web_service.web.security;
+package com.plekhanov.react_web_service.config.security;
 
 import com.plekhanov.react_web_service.dao.UserDao;
 import com.plekhanov.react_web_service.entities.User;

@@ -1,6 +1,7 @@
-package com.plekhanov.react_web_service.web.security;
+package com.plekhanov.react_web_service.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.plekhanov.react_web_service.config.security.EmailAuthenticationProvider;
 import com.plekhanov.react_web_service.entities.User;
 import com.plekhanov.react_web_service.utils.SecurityUtils;
 import com.plekhanov.react_web_service.web.dto.ApiResponse;
@@ -46,7 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     /**
      * Настройка открытых эндпойнтов
      */
-    public void configure(WebSecurity webSecurity) {
+    public void configure(final WebSecurity webSecurity) {
         webSecurity.ignoring()
                 .antMatchers("/")
                 .antMatchers("/*")
@@ -59,7 +60,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      * Настройка защищенных эндпойнтов
      */
     @Override
-    protected void configure(HttpSecurity http) throws Exception {
+    protected void configure(final HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/admin/**").access("hasAuthority('ADMIN')")
@@ -89,7 +90,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      * Нужен для авторизации и аутентификации пользователя классом {@link AuthenticationManager} фреймворка spring.security
      */
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) {
+    protected void configure(final AuthenticationManagerBuilder auth) {
         auth.authenticationProvider(emailAuthenticationProvider);
     }
 
@@ -100,7 +101,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private AuthenticationSuccessHandler successHandler() {
         return (httpServletRequest, httpServletResponse, authentication) -> {
             httpServletResponse.setStatus(200);
-            User currentUser = SecurityUtils.getCurrentUser();
+            final User currentUser = SecurityUtils.getCurrentUser();
             putApiResponseInServletResponse(ApiResponse.ok(UserDto.fromUser(currentUser)), httpServletResponse);
         };
     }
@@ -112,8 +113,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private AuthenticationFailureHandler failureHandler() {
         return (httpServletRequest, httpServletResponse, e) -> {
             httpServletResponse.setStatus(401);
-
-            ApiResponse apiResponse = ApiResponse.error(AUTHENTICATION_FAILURE, "Authentication failure");
+            final ApiResponse apiResponse = ApiResponse.error(AUTHENTICATION_FAILURE, "Authentication failure");
             putApiResponseInServletResponse(apiResponse, httpServletResponse);
         };
     }
@@ -125,8 +125,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private AccessDeniedHandler accessDeniedHandler() {
         return (httpServletRequest, httpServletResponse, e) -> {
             httpServletResponse.setStatus(403);
-
-            ApiResponse apiResponse = ApiResponse.error(ACCESS_DENIED, "Access denied");
+            final ApiResponse apiResponse = ApiResponse.error(ACCESS_DENIED, "Access denied");
             putApiResponseInServletResponse(apiResponse, httpServletResponse);
         };
     }
@@ -138,8 +137,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private AuthenticationEntryPoint authenticationEntryPoint() {
         return (httpServletRequest, httpServletResponse, e) -> {
             httpServletResponse.setStatus(401);
-
-            ApiResponse apiResponse = ApiResponse.error(NOT_AUTHENTICATED, "Not authenticated");
+            final ApiResponse apiResponse = ApiResponse.error(NOT_AUTHENTICATED, "Not authenticated");
             putApiResponseInServletResponse(apiResponse, httpServletResponse);
         };
     }
@@ -159,8 +157,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     /**
      * Кладет {@link ApiResponse} в {@link HttpServletResponse}
      */
-    private void putApiResponseInServletResponse(ApiResponse apiResponse, HttpServletResponse httpServletResponse) throws IOException {
-        PrintWriter out = httpServletResponse.getWriter();
+    private void putApiResponseInServletResponse(final ApiResponse apiResponse,
+                                                 final HttpServletResponse httpServletResponse) throws IOException {
+
+        final PrintWriter out = httpServletResponse.getWriter();
         httpServletResponse.setContentType("application/json");
         httpServletResponse.setCharacterEncoding("UTF-8");
         out.print(objectMapper.writeValueAsString(apiResponse));
@@ -174,7 +174,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      */
     private CorsConfigurationSource corsConfiguration() {
         return (httpServletRequest) -> {
-            CorsConfiguration corsConfiguration = new CorsConfiguration();
+            final CorsConfiguration corsConfiguration = new CorsConfiguration();
             corsConfiguration.addAllowedOrigin("http://localhost:3000");
             corsConfiguration.addAllowedMethod(HttpMethod.POST);
             corsConfiguration.addAllowedMethod(HttpMethod.GET);

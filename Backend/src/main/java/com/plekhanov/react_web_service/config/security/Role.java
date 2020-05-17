@@ -1,4 +1,4 @@
-package com.plekhanov.react_web_service.web.security;
+package com.plekhanov.react_web_service.config.security;
 
 import org.springframework.security.core.GrantedAuthority;
 
