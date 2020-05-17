@@ -22,8 +22,8 @@ public class UserBagProduct {
     @GeneratedValue(strategy = IDENTITY)
     private Integer id;
 
-    @ToString.Exclude // чтобы не было кругового вызова toString, Equals, HashCode ломбоком
-    @EqualsAndHashCode.Exclude
+    @ToString.Exclude          // чтобы не было кругового вызова toString, Equals, HashCode ломбоком
+    @EqualsAndHashCode.Exclude // т.к. User и UserBagProduct имеют двунаправленную связь
     @ManyToOne(fetch = EAGER)
     @JoinColumn(name = "user_id")
     private User user;
