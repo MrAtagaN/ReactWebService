@@ -52,7 +52,8 @@ public class ProductTypeDaoImpl implements ProductTypeDao {
     @Override
     public Set<ProductType> findByCategory(final Category category) {
         try (Session session = sessionFactory.openSession()) {
-            final Query<ProductType> query = session.createQuery("FROM ProductType p WHERE p.category = :category", ProductType.class);
+            final Query<ProductType> query =
+                    session.createQuery("FROM ProductType p WHERE p.category = :category", ProductType.class);
             query.setParameter("category", category);
             return new HashSet<>(query.list());
         } catch (Exception e) {
