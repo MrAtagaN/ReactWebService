@@ -21,12 +21,12 @@ import java.util.stream.Collectors;
 @Builder
 public class UserDto {
 
-    private Integer id;
-    private String username;
-    private String email;
-    private LocalDateTime lastEnter;
-    private Map<Product, Integer> bagProducts;
-    private Set<Product> favoriteProducts;
+    Integer id;
+    String username;
+    String email;
+    LocalDateTime lastEnter;
+    Map<Product, Integer> bagProducts;
+    Set<Product> favoriteProducts;
 
     /**
      * Фабричный метод. Возвращает {@link UserDto} из переданного {@link User}

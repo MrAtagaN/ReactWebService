@@ -11,9 +11,9 @@ import static com.plekhanov.react_web_service.web.ApiResponse.ResponseCode.OK;
 @Builder
 public class ApiResponse<T> {
 
-    private T data;
-    private int code;
-    private String errorMessage;
+    T data;
+    int code;
+    String errorMessage;
 
 
     /**

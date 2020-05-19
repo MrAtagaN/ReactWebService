@@ -4,7 +4,9 @@ import com.plekhanov.react_web_service.dao.ProductTypeDao;
 import com.plekhanov.react_web_service.entities.ProductType;
 import com.plekhanov.react_web_service.entities.ProductType.Category;
 import com.plekhanov.react_web_service.services.ProductTypeService;
+import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -13,9 +15,10 @@ import java.util.Set;
 @Slf4j
 @RequiredArgsConstructor
 @Service
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class ProductTypeServiceImpl implements ProductTypeService {
 
-    private final ProductTypeDao productTypeDao;
+    ProductTypeDao productTypeDao;
 
     @Override
     public Set<ProductType> getAll() {

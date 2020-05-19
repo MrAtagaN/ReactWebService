@@ -4,7 +4,9 @@ import com.plekhanov.react_web_service.dao.ProductDao;
 import com.plekhanov.react_web_service.entities.Product;
 import com.plekhanov.react_web_service.entities.search_params.ProductSearchParams;
 import com.plekhanov.react_web_service.services.ProductService;
+import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -13,9 +15,10 @@ import java.util.Set;
 @Slf4j
 @RequiredArgsConstructor
 @Service
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class ProductServiceImpl implements ProductService {
 
-    private final ProductDao productDao;
+    ProductDao productDao;
 
 
     @Override

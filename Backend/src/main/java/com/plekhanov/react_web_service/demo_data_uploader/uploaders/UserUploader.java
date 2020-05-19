@@ -2,7 +2,9 @@ package com.plekhanov.react_web_service.demo_data_uploader.uploaders;
 
 import com.plekhanov.react_web_service.entities.User;
 import com.plekhanov.react_web_service.services.UserService;
+import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -16,9 +18,10 @@ import static java.util.Collections.singleton;
  */
 @Service
 @RequiredArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class UserUploader {
 
-    private final UserService userService;
+    UserService userService;
 
 
     public void insertData() {
@@ -32,8 +35,8 @@ public class UserUploader {
             admin.setAccountNonLocked(true);
             admin.setCredentialsNonExpired(true);
             admin.setEnabled(true);
-            admin.setEnter(LocalDateTime.of(2019,11,10,9,12));
-            admin.setCreationTime(LocalDateTime.of(1989,12,24,9,12));
+            admin.setEnter(LocalDateTime.of(2019, 11, 10, 9, 12));
+            admin.setCreationTime(LocalDateTime.of(1989, 12, 24, 9, 12));
             admin.setEmail("admin@gmail.com");
             userService.saveOrUpdate(admin);
         }
@@ -48,8 +51,8 @@ public class UserUploader {
             user.setAccountNonLocked(true);
             user.setCredentialsNonExpired(true);
             user.setEnabled(true);
-            user.setEnter(LocalDateTime.of(2019,12,24,9,12));
-            user.setCreationTime(LocalDateTime.of(1989,12,24,9,12));
+            user.setEnter(LocalDateTime.of(2019, 12, 24, 9, 12));
+            user.setCreationTime(LocalDateTime.of(1989, 12, 24, 9, 12));
             user.setEmail("user@gmail.com");
             userService.saveOrUpdate(user);
         }

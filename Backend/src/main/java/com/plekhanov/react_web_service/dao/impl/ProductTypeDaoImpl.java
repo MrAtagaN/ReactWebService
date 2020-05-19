@@ -3,7 +3,9 @@ package com.plekhanov.react_web_service.dao.impl;
 import com.plekhanov.react_web_service.dao.ProductTypeDao;
 import com.plekhanov.react_web_service.entities.ProductType.Category;
 import com.plekhanov.react_web_service.entities.ProductType;
+import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -19,9 +21,10 @@ import static org.springframework.dao.support.DataAccessUtils.singleResult;
 @Slf4j
 @RequiredArgsConstructor
 @Repository
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class ProductTypeDaoImpl implements ProductTypeDao {
 
-    private final SessionFactory sessionFactory;
+    SessionFactory sessionFactory;
 
     @Override
     public Set<ProductType> getAll() {
