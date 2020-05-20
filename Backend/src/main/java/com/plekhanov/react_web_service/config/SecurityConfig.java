@@ -6,7 +6,9 @@ import com.plekhanov.react_web_service.entities.User;
 import com.plekhanov.react_web_service.utils.SecurityUtils;
 import com.plekhanov.react_web_service.web.ApiResponse;
 import com.plekhanov.react_web_service.web.dto.UserDto;
+import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -38,11 +40,12 @@ import static com.plekhanov.react_web_service.web.ApiResponse.ResponseCode.*;
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+//@EnableGlobalMethodSecurity(prePostEnabled = true)
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final ObjectMapper objectMapper;
-    private final EmailAuthenticationProvider emailAuthenticationProvider;
+    ObjectMapper objectMapper;
+    EmailAuthenticationProvider emailAuthenticationProvider;
 
     /**
      * Настройка открытых эндпойнтов

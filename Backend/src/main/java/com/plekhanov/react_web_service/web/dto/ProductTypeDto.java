@@ -12,14 +12,14 @@ import lombok.Value;
 @Builder
 public class ProductTypeDto {
 
-    private Integer id;
-    private String name;
-    private Category category;
+    Integer id;
+    String name;
+    Category category;
 
     /**
      * Фабричный метод. Возвращает {@link ProductTypeDto} из переданного {@link ProductType}
      */
-    public static ProductTypeDto fromProductType(ProductType product) {
+    public static ProductTypeDto fromProductType(final ProductType product) {
         return ProductTypeDto.builder()
                 .id(product.getId())
                 .name(product.getName())

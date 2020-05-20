@@ -5,7 +5,9 @@ import com.plekhanov.react_web_service.entities.ProductType;
 import com.plekhanov.react_web_service.entities.search_params.ProductSearchParams;
 import com.plekhanov.react_web_service.services.ProductService;
 import com.plekhanov.react_web_service.services.ProductTypeService;
+import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -20,10 +22,11 @@ import static com.plekhanov.react_web_service.entities.ProductType.Category.clot
  */
 @Service
 @RequiredArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class ProductUploader {
 
-    private final ProductService productService;
-    private final ProductTypeService productTypeService;
+    ProductService productService;
+    ProductTypeService productTypeService;
 
 
     public void insertData() {

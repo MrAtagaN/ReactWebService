@@ -1,7 +1,9 @@
 package com.plekhanov.react_web_service.dao.impl;
 
 import com.plekhanov.react_web_service.dao.UserDao;
+import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -16,9 +18,10 @@ import java.util.List;
 @Slf4j
 @RequiredArgsConstructor
 @Repository
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class UserDaoImpl implements UserDao {
 
-    private final SessionFactory sessionFactory;
+    SessionFactory sessionFactory;
 
 
     @Override

@@ -7,7 +7,9 @@ import com.plekhanov.react_web_service.entities.User;
 import com.plekhanov.react_web_service.entities.UserBagProduct;
 import com.plekhanov.react_web_service.entities.UserFavoriteProduct;
 import com.plekhanov.react_web_service.services.UserService;
+import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 
 import javax.validation.ValidationException;
@@ -19,10 +21,11 @@ import static java.text.MessageFormat.format;
 
 @RequiredArgsConstructor
 @Service
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class UserServiceImpl implements UserService {
 
-    private final ProductDao productDao;
-    private final UserDao userDao;
+    ProductDao productDao;
+    UserDao userDao;
 
 
     @Override

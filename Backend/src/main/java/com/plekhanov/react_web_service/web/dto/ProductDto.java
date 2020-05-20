@@ -15,26 +15,26 @@ import java.util.Set;
 @Builder
 public class ProductDto {
 
-    private Integer id;
-    private String name;
-    private String description;
-    private ProductTypeDto type;
-    private String subType;
-    private String brand;
-    private BigDecimal price;
-    private Integer size;
-    private String namedSize;
-    private Gender gender;
-    private Age age;
-    private String color;
-    private Boolean isNew;
-    private Boolean isSales;
-    private Set<byte[]> images;
+    Integer id;
+    String name;
+    String description;
+    ProductTypeDto type;
+    String subType;
+    String brand;
+    BigDecimal price;
+    Integer size;
+    String namedSize;
+    Gender gender;
+    Age age;
+    String color;
+    Boolean isNew;
+    Boolean isSales;
+    Set<byte[]> images;
 
     /**
      * Фабричный метод. Возвращает {@link ProductDto} из переданного {@link Product}
      */
-    public static ProductDto fromProduct(Product product) {
+    public static ProductDto fromProduct(final Product product) {
         return ProductDto.builder()
                 .id(product.getId())
                 .name(product.getName())

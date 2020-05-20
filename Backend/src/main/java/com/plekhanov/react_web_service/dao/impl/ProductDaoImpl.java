@@ -5,7 +5,9 @@ import com.plekhanov.react_web_service.entities.Product;
 import com.plekhanov.react_web_service.entities.Product.Age;
 import com.plekhanov.react_web_service.entities.Product.Gender;
 import com.plekhanov.react_web_service.entities.search_params.*;
+import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -22,9 +24,10 @@ import java.util.Set;
 @Slf4j
 @RequiredArgsConstructor
 @Repository
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class ProductDaoImpl implements ProductDao {
 
-    private final SessionFactory sessionFactory;
+    SessionFactory sessionFactory;
 
 
     @Override

@@ -56,7 +56,7 @@ public class User {
     private boolean enabled;
 
     @Column(name = "enter", columnDefinition = "TIMESTAMP")
-    private LocalDateTime enter; //
+    private LocalDateTime enter;
 
     @Column(name = "last_enter", columnDefinition = "TIMESTAMP")
     private LocalDateTime lastEnter;

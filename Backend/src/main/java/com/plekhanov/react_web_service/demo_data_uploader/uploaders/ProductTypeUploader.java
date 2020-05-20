@@ -2,7 +2,9 @@ package com.plekhanov.react_web_service.demo_data_uploader.uploaders;
 
 import com.plekhanov.react_web_service.entities.ProductType;
 import com.plekhanov.react_web_service.services.ProductTypeService;
+import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 
 import static com.plekhanov.react_web_service.entities.ProductType.Category.clothes;
@@ -12,9 +14,10 @@ import static com.plekhanov.react_web_service.entities.ProductType.Category.clot
  */
 @Service
 @RequiredArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class ProductTypeUploader {
 
-    private final ProductTypeService productTypeService;
+    ProductTypeService productTypeService;
 
 
     public void insertData() {
