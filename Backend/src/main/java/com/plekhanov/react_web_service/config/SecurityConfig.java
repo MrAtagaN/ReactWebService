@@ -40,7 +40,7 @@ import static com.plekhanov.react_web_service.web.ApiResponse.ResponseCode.*;
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
-//@EnableGlobalMethodSecurity(prePostEnabled = true)
+//@EnableGlobalMethodSecurity(prePostEnabled = true) //TODO убрать
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -175,7 +175,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      * CORS конфигурация.
      * Нужна для возможности запускать фронт на другом сервере (для отладки)
      */
-    private CorsConfigurationSource corsConfiguration() {
+    private CorsConfigurationSource corsConfiguration() { //TODO убрать
         return (httpServletRequest) -> {
             final CorsConfiguration corsConfiguration = new CorsConfiguration();
             corsConfiguration.addAllowedOrigin("http://localhost:3000");
