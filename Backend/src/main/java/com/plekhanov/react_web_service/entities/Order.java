@@ -8,13 +8,13 @@ import java.util.List;
  */
 public class Order {
 
-    private Long id;
+    Long id;
 
-    private Integer userId;
-    private List<Product> products;
-    private LocalDateTime createdAt;
-    private Address address;
-    private Status status;
+    Integer userId;
+    List<Product> products;
+    LocalDateTime createdAt;
+    Address address;
+    Status status;
 
 
     public enum Status {

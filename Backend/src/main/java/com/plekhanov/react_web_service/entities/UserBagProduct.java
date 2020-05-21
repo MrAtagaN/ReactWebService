@@ -20,15 +20,15 @@ public class UserBagProduct {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    private Integer id;
+    Integer id;
 
     @ToString.Exclude          // чтобы не было кругового вызова toString, Equals, HashCode ломбоком
     @EqualsAndHashCode.Exclude // т.к. User и UserBagProduct имеют двунаправленную связь
     @ManyToOne(fetch = EAGER)
     @JoinColumn(name = "user_id")
-    private User user;
+    User user;
 
     @ManyToOne(fetch = EAGER)
     @JoinColumn(name = "product_id")
-    private Product product;
+    Product product;
 }

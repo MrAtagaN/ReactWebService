@@ -28,51 +28,51 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    private Integer id;
+    Integer id;
 
     @Column(name = "username")
-    private String username; //аутентификация происходит по полю email
+    String username; //аутентификация происходит по полю email
 
     @ToString.Exclude
     @Column(name = "password")
-    private String password;
+    String password;
 
     @ElementCollection(fetch = EAGER)
     @Enumerated(STRING)
     @CollectionTable(name = "authorities", joinColumns = @JoinColumn(name = "user_id"))
     @Column(name = "role")
-    private Set<Role> authorities;
+    Set<Role> authorities;
 
     @Column(name = "account_non_expired")
-    private boolean accountNonExpired;
+    boolean accountNonExpired;
 
     @Column(name = "account_non_locked")
-    private boolean accountNonLocked;
+    boolean accountNonLocked;
 
     @Column(name = "credentials_non_expired")
-    private boolean credentialsNonExpired;
+    boolean credentialsNonExpired;
 
     @Column(name = "enabled")
-    private boolean enabled;
+    boolean enabled;
 
     @Column(name = "enter", columnDefinition = "TIMESTAMP")
-    private LocalDateTime enter;
+    LocalDateTime enter;
 
     @Column(name = "last_enter", columnDefinition = "TIMESTAMP")
-    private LocalDateTime lastEnter;
+    LocalDateTime lastEnter;
 
     @Column(name = "creation_time", columnDefinition = "TIMESTAMP")
-    private LocalDateTime creationTime;
+    LocalDateTime creationTime;
 
     @Column(name = "email")
-    private String email;
+    String email;
 
     @OneToMany(mappedBy = "user", cascade = ALL, orphanRemoval = true, fetch = EAGER)
-    private List<UserBagProduct> bagProducts = new ArrayList<>();
+    List<UserBagProduct> bagProducts = new ArrayList<>();
 
     @OneToMany(mappedBy = "user", cascade = ALL, orphanRemoval = true, fetch = EAGER)
     @Fetch(SUBSELECT) // по умолчанию используется JOIN, но это не будет работать если есть две коллекции с fetch = EAGER
-    private Set<UserFavoriteProduct> favoriteProducts = new HashSet<>();
+    Set<UserFavoriteProduct> favoriteProducts = new HashSet<>();
 
     //TODO добавить поля: orders
 

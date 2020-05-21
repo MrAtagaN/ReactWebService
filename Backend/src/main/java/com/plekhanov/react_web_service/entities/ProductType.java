@@ -16,14 +16,14 @@ public class ProductType {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    private Integer id;
+    Integer id;
 
     @Column(name = "name")
-    private String name;
+    String name;
 
     @Enumerated(STRING)
     @Column(name = "category")
-    private Category category;
+    Category category;
 
 
     public enum Category {

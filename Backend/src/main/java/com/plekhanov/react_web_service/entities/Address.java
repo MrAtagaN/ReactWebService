@@ -15,31 +15,31 @@ public class Address {
 
     @Nullable
     @Size(max = 100)
-    private String index;
+    String index;
 
     @Nullable
     @Size(max = 100)
-    private String country;
+    String country;
 
     @Nullable
     @Size(max = 100)
-    private String region;
+    String region;
 
     @Nullable
     @Size(max = 100)
-    private String city;
+    String city;
 
     @Nullable
     @Size(max = 100)
-    private String street;
+    String street;
     @Nullable
     @Size(max = 20)
-    private String house;
+    String house;
     @Nullable
     @Size(max = 20)
-    private String block;
+    String block;
     @Nullable
     @Size(max = 20)
-    private String flat;
+    String flat;
 
 }

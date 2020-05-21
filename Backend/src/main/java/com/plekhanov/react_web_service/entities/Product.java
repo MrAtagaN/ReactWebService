@@ -20,54 +20,54 @@ public class Product {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    private Integer id;
+    Integer id;
 
     @Column(name = "name")
-    private String name;
+    String name;
 
     @Column(name = "description")
-    private String description;
+    String description;
 
     @ManyToOne(fetch = EAGER)
     @JoinColumn(name = "type_id")
-    private ProductType type;
+    ProductType type;
 
     @Column(name = "sub_type")
-    private String subType;
+    String subType;
 
     @Column(name = "brand")
-    private String brand;
+    String brand;
 
     @Column(name = "price")
-    private BigDecimal price;
+    BigDecimal price;
 
     @Column(name = "size")
-    private Integer size;
+    Integer size;
 
     @Column(name = "named_size")
-    private String namedSize;
+    String namedSize;
 
     @Enumerated(STRING)
     @Column(name = "gender")
-    private Gender gender;
+    Gender gender;
 
     @Enumerated(STRING)
     @Column(name = "age")
-    private Age age;
+    Age age;
 
     @Column(name = "color")
-    private String color;
+    String color;
 
     @Column(name = "is_new")
-    private Boolean isNew;
+    Boolean isNew;
 
     @Column(name = "is_sales")
-    private Boolean isSales;
+    Boolean isSales;
 
     @ElementCollection(fetch = EAGER)
     @CollectionTable(name = "image", joinColumns = @JoinColumn(name = "product_id"))
     @Column(name = "data")
-    private Set<byte[]> images = new HashSet<>();
+    Set<byte[]> images = new HashSet<>();
 
 
     public enum Gender {
