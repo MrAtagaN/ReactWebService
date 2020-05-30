@@ -1,7 +1,6 @@
-package com.plekhanov.react_web_service.config;
+package com.plekhanov.react_web_service.config.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.plekhanov.react_web_service.config.security.EmailAuthenticationProvider;
 import com.plekhanov.react_web_service.entities.User;
 import com.plekhanov.react_web_service.utils.SecurityUtils;
 import com.plekhanov.react_web_service.web.ApiResponse;
@@ -13,7 +12,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
