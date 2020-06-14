@@ -6,14 +6,17 @@ import org.springframework.validation.annotation.Validated;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+/**
+ * Сервис для {@link User}
+ */
 @Validated
 public interface UserService {
+
+    User saveOrUpdate(@NotNull User user);
 
     User findById(int id);
 
     User findByEmail(@NotBlank String email);
-
-    User saveOrUpdate(@NotNull User user);
 
     void addProductToBag(@NotNull Integer productId, @NotNull User user);
 

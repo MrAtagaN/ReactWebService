@@ -36,13 +36,13 @@ public class HibernateConfig {
         configuration.addAnnotatedClass(UserFavoriteProduct.class);
         configuration.addAnnotatedClass(ProductType.class);
 
-        final StandardServiceRegistryBuilder standardServiceRegistryBuilder = new StandardServiceRegistryBuilder()
+        final StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder()
                 .applySetting(DIALECT, sqlDialect)
                 .applySetting(HBM2DDL_AUTO, "validate")
                 .applySetting(DATASOURCE, getDataSource)
                 .applySettings(configuration.getProperties());
 
-        final StandardServiceRegistry registry = standardServiceRegistryBuilder.build();
+        final StandardServiceRegistry registry = builder.build();
         return configuration.buildSessionFactory(registry);
     }
 

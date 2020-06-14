@@ -14,6 +14,10 @@ public class WebConfig {
     @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
+            /**
+             * CORS конфигурация.
+             * Нужна для возможности запускать фронт на другом сервере (для отладки)
+             */
             @Override
             public void addCorsMappings(final CorsRegistry registry) {
                 registry.addMapping("/**")

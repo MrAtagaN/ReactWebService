@@ -6,16 +6,20 @@ import org.springframework.validation.annotation.Validated;
 import javax.validation.constraints.NotNull;
 import java.util.Set;
 
+/**
+ * Сервис для {@link ProductType}
+ */
 @Validated
 public interface ProductTypeService {
 
-    Set<ProductType> getAll();
-
-    ProductType findByNameAndCategory(@NotNull String name, @NotNull ProductType.Category category);
-
-    Set<ProductType> findByCategory(@NotNull ProductType.Category category);
+    ProductType saveOrUpdate(@NotNull ProductType productType);
 
     void delete(int id);
 
-    ProductType saveOrUpdate(@NotNull ProductType productType);
+    Set<ProductType> findByCategory(@NotNull ProductType.Category category);
+
+    ProductType findByNameAndCategory(@NotNull String name, @NotNull ProductType.Category category);
+
+    Set<ProductType> getAll();
+
 }
