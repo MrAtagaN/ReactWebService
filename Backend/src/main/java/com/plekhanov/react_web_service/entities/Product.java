@@ -74,12 +74,14 @@ public class Product {
 
     public enum Gender {
         male,
-        female
+        female,
+        any
     }
 
     public enum Age {
         adult,
-        kids
+        kids,
+        any
     }
 
 }
