@@ -50,7 +50,8 @@ public class ProductController {
             @RequestParam(value = "color", required = false) final String color,
             @RequestParam(value = "isNew", required = false) final Boolean isNew,
             @RequestParam(value = "isSales", required = false) final Boolean isSales,
-            @RequestParam(value = "page", required = false, defaultValue = "0") final Integer page) {
+            @RequestParam(value = "page", required = false, defaultValue = "0") final Integer page,
+            @RequestParam(value = "itemsInPage", required = false, defaultValue = "9") final Integer itemsInPage) {
 
         final ProductSearchParams productSearchParams = ProductSearchParams.builder()
                 .name(name)
@@ -68,6 +69,7 @@ public class ProductController {
                 .isNew(isNew)
                 .isSales(isSales)
                 .page(page)
+                .itemsInPage(itemsInPage)
                 .build();
 
         final Set<Product> products = productService.search(productSearchParams);

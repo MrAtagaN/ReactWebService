@@ -14,7 +14,7 @@ import static com.plekhanov.react_web_service.config.security.Role.USER;
 import static java.util.Collections.singleton;
 
 /**
- * Загрузка в базу {@link User}
+ * Загрузка в базу тестовых {@link User}
  */
 @Service
 @RequiredArgsConstructor

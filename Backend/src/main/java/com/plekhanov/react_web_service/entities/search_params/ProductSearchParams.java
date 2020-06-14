@@ -29,5 +29,5 @@ public class ProductSearchParams {
     Boolean isNew;
     Boolean isSales;
     Integer page;
-    int itemsInPage = 9;
+    Integer itemsInPage;
 }

@@ -158,8 +158,8 @@ public class ProductDaoImpl implements ProductDao {
             query.setProperties(params);
 
             final Integer page = productSearchParams.getPage();
-            if (page != null) {
-                final Integer itemsInPage = productSearchParams.getItemsInPage();
+            final Integer itemsInPage = productSearchParams.getItemsInPage();
+            if (page != null && itemsInPage != null) {
                 query.setFirstResult(page * itemsInPage);
                 query.setMaxResults(itemsInPage);
             }
