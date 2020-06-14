@@ -139,5 +139,58 @@ public class ProductUploader {
             productService.saveOrUpdate(product6);
         }
 
+        //футболки
+        ProductType tShirts = productTypeService.findByNameAndCategory("футболки", clothes);
+
+        //Меланжевая футболка с карманом
+        Set<Product> found7 = productService.search(ProductSearchParams.builder().name("Меланжевая футболка с карманом").build());
+        if (found7.isEmpty()) {
+            Product product7 = new Product();
+            product7.setName("Меланжевая футболка с карманом");
+            product7.setDescription("Линия Casual. Базовый дизайн. В состав входит хлопок. Пестрая ткань. Круглый вырез " +
+                    "горловины. Короткие рукава.");
+            product7.setType(shirts);
+            product7.setBrand("gap");
+            product7.setPrice(new BigDecimal(999));
+            product7.setSize(32);
+            product7.setGender(male);
+            product7.setAge(adult);
+            product7.setColor("белый");
+            productService.saveOrUpdate(product7);
+        }
+
+        //Хлопковая футболка с V-образной горловиной
+        Set<Product> found8 = productService.search(ProductSearchParams.builder().name("Хлопковая футболка с V-образной горловиной").build());
+        if (found8.isEmpty()) {
+            Product product8 = new Product();
+            product8.setName("Хлопковая футболка с V-образной горловиной");
+            product8.setDescription("Линия Casual. Базовый дизайн. Изделие выполнено из хлопка. V-образный вырез " +
+                    "горловины. Короткие рукава.");
+            product8.setType(shirts);
+            product8.setBrand("gap");
+            product8.setPrice(new BigDecimal(799));
+            product8.setSize(32);
+            product8.setGender(male);
+            product8.setAge(adult);
+            product8.setColor("белый");
+            productService.saveOrUpdate(product8);
+        }
+
+        //Футболка из органического хлопка с принтом
+        Set<Product> found9 = productService.search(ProductSearchParams.builder().name("Футболка из органического хлопка с принтом").build());
+        if (found9.isEmpty()) {
+            Product product9 = new Product();
+            product9.setName("Футболка из органического хлопка с принтом");
+            product9.setDescription("100% органический хлопок. Набивной рисунок. Круглый вырез горловины. Короткие рукава.");
+            product9.setType(shirts);
+            product9.setBrand("gap");
+            product9.setPrice(new BigDecimal(899));
+            product9.setSize(32);
+            product9.setGender(female);
+            product9.setAge(adult);
+            product9.setColor("белый");
+            productService.saveOrUpdate(product9);
+        }
+
     }
 }
