@@ -16,6 +16,8 @@ import java.math.BigDecimal;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import static com.plekhanov.react_web_service.web.ApiResponse.ResponseCode.VALIDATION_ERROR;
+
 /**
  * Эндпойты для действий с {@link Product}
  */
@@ -52,6 +54,10 @@ public class ProductController {
             @RequestParam(value = "isSales", required = false) final Boolean isSales,
             @RequestParam(value = "page", required = false, defaultValue = "0") final Integer page,
             @RequestParam(value = "itemsInPage", required = false, defaultValue = "9") final Integer itemsInPage) {
+
+        if (itemsInPage != null && itemsInPage > 100) {
+            return ApiResponse.error(VALIDATION_ERROR, "parameter itemsInPage is very big");
+        }
 
         final ProductSearchParams productSearchParams = ProductSearchParams.builder()
                 .name(name)
