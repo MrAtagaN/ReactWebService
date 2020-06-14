@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Bean;
 
 /**
  * Запуск приложения
- * http://localhost:80/
+ * Приложение доступно на http://localhost:80/
  */
 @SpringBootApplication
 public class Main {
@@ -25,12 +25,13 @@ public class Main {
     @Bean
     public CommandLineRunner commandLineRunner(ApplicationContext context) {
         return (args) -> {
+            //загрузка в базу тестовых данных
             context.getBean(DemoDataUploader.class).uploadData();
         };
     }
 
 
-    //наполнить данными
+    //текущее: наполнить данными
 
     //TODO:
     // Функциональные:
