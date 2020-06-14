@@ -12,6 +12,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 /**
  * Товар
+ * name должно быть уникальным
  */
 @Data
 @Entity(name = "Product")

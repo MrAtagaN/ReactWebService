@@ -21,10 +21,10 @@ public class DemoDataUploader {
     ProductUploader productUploader;
 
 
-    public void insertData() {
+    public void uploadData() {
         System.setProperty("file.encoding", "UTF-8");
-        userUploader.insertData();
-        productTypeUploader.insertData();
-        productUploader.insertData();
+        userUploader.uploadData();
+        productTypeUploader.uploadData();
+        productUploader.uploadData();
     }
 }

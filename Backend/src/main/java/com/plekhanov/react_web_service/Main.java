@@ -25,7 +25,7 @@ public class Main {
     @Bean
     public CommandLineRunner commandLineRunner(ApplicationContext context) {
         return (args) -> {
-            context.getBean(DemoDataUploader.class).insertData();
+            context.getBean(DemoDataUploader.class).uploadData();
         };
     }
 

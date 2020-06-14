@@ -29,7 +29,7 @@ public class ProductUploader {
     ProductTypeService productTypeService;
 
 
-    public void insertData() {
+    public void uploadData() {
         ProductType jeans = productTypeService.findByNameAndCategory("джинсы", clothes);
 
         //джинсы модель 123

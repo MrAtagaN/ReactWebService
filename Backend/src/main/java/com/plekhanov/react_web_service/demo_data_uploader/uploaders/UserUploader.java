@@ -24,7 +24,8 @@ public class UserUploader {
     UserService userService;
 
 
-    public void insertData() {
+    public void uploadData() {
+        //admin@gmail.com
         User admin = userService.findByEmail("admin@gmail.com");
         if (admin == null) {
             admin = new User();
@@ -41,6 +42,7 @@ public class UserUploader {
             userService.saveOrUpdate(admin);
         }
 
+        //user@gmail.com
         User user = userService.findByEmail("user@gmail.com");
         if (user == null) {
             user = new User();

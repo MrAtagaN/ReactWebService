@@ -20,8 +20,8 @@ public class ProductTypeUploader {
     ProductTypeService productTypeService;
 
 
-    public void insertData() {
-        //одежда
+    public void uploadData() {
+        //одежда джинсы
         ProductType jeans = productTypeService.findByNameAndCategory("джинсы", clothes);
         if (jeans == null) {
             jeans = new ProductType();
@@ -30,6 +30,7 @@ public class ProductTypeUploader {
             productTypeService.saveOrUpdate(jeans);
         }
 
+        //одежда рубашки
         ProductType shirts = productTypeService.findByNameAndCategory("рубашки", clothes);
         if (shirts == null) {
             shirts = new ProductType();
@@ -38,6 +39,7 @@ public class ProductTypeUploader {
             productTypeService.saveOrUpdate(shirts);
         }
 
+        //одежда футболки
         ProductType tShirts = productTypeService.findByNameAndCategory("футболки", clothes);
         if (tShirts == null) {
             tShirts = new ProductType();

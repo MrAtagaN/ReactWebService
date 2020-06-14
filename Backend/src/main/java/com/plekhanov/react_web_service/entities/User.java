@@ -20,6 +20,7 @@ import static org.hibernate.annotations.FetchMode.SUBSELECT;
 
 /**
  * Пользователь сервиса
+ * email должно быть уникальным
  */
 @Data
 @Entity(name = "User")
