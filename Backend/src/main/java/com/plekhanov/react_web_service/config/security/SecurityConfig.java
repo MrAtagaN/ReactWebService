@@ -67,9 +67,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/admin/**").access("hasAuthority('ADMIN')")
                 .anyRequest().authenticated()
                 .and()
-                .cors()
-                .configurationSource(corsConfiguration())
-                .and()
                 .formLogin()
                 .successHandler(successHandler())
                 .failureHandler(failureHandler())
@@ -167,22 +164,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         out.print(objectMapper.writeValueAsString(apiResponse));
         out.flush();
     }
-
-
-    /**
-     * CORS конфигурация.
-     * Нужна для возможности запускать фронт на другом сервере (для отладки)
-     */
-    private CorsConfigurationSource corsConfiguration() { //TODO убрать
-        return (httpServletRequest) -> {
-            final CorsConfiguration corsConfiguration = new CorsConfiguration();
-            corsConfiguration.addAllowedOrigin("http://localhost:3000");
-            corsConfiguration.addAllowedMethod(HttpMethod.POST);
-            corsConfiguration.addAllowedMethod(HttpMethod.GET);
-            corsConfiguration.setAllowCredentials(true);
-            return corsConfiguration;
-        };
-    }
-
 
 }
