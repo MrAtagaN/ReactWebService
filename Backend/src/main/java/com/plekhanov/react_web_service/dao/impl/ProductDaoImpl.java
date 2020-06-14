@@ -61,12 +61,12 @@ public class ProductDaoImpl implements ProductDao {
 
     @Override
     public Product saveOrUpdate(final Product product) {
-        Product savedProduct;
         Transaction transaction = null;
         try (Session session = sessionFactory.openSession()) {
             transaction = session.beginTransaction();
-            savedProduct = (Product) session.merge(product);
+            final Product savedProduct = (Product) session.merge(product);
             transaction.commit();
+            return savedProduct;
         } catch (Exception e) {
             log.error("Error while save Product, {}", e.getMessage());
             if (transaction != null) {
@@ -74,7 +74,6 @@ public class ProductDaoImpl implements ProductDao {
             }
             throw e;
         }
-        return savedProduct;
     }
 
 

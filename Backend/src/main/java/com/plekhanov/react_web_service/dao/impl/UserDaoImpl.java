@@ -26,12 +26,12 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User saveOrUpdate(final User user) {
-        User savedUsed;
         Transaction transaction = null;
         try (Session session = sessionFactory.openSession()) {
             transaction = session.beginTransaction();
-            savedUsed = (User) session.merge(user);
+            final User savedUsed = (User) session.merge(user);
             transaction.commit();
+            return savedUsed;
         } catch (Exception e) {
             log.error("Error while save User: {}", e.getMessage());
             if (transaction != null) {
@@ -39,7 +39,6 @@ public class UserDaoImpl implements UserDao {
             }
             throw e;
         }
-        return savedUsed;
     }
 
 

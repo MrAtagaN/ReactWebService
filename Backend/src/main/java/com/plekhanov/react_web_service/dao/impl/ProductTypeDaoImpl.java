@@ -26,6 +26,7 @@ public class ProductTypeDaoImpl implements ProductTypeDao {
 
     SessionFactory sessionFactory;
 
+
     @Override
     public Set<ProductType> getAll() {
         try (Session session = sessionFactory.openSession()) {
@@ -86,12 +87,12 @@ public class ProductTypeDaoImpl implements ProductTypeDao {
 
     @Override
     public ProductType saveOrUpdate(final ProductType productType) {
-        ProductType savedProductType;
         Transaction transaction = null;
         try (Session session = sessionFactory.openSession()) {
             transaction = session.beginTransaction();
-            savedProductType = (ProductType) session.merge(productType);
+            final ProductType savedProductType = (ProductType) session.merge(productType);
             transaction.commit();
+            return savedProductType;
         } catch (Exception e) {
             log.error("Error while save ProductType, {}", e.getMessage());
             if (transaction != null) {
@@ -99,6 +100,5 @@ public class ProductTypeDaoImpl implements ProductTypeDao {
             }
             throw e;
         }
-        return savedProductType;
     }
 }
