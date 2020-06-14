@@ -12,6 +12,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 /**
  * Товар
+ *
  * name - уникальное
  * type, price - обязательные
  */

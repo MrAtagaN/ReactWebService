@@ -8,7 +8,8 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 /**
  * Тип продукта
- * Комбинация category и  name должна быть уникальной
+ *
+ * Комбинация category и name должна быть уникальной
  */
 @Data
 @Entity(name = "ProductType")
