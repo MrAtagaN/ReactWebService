@@ -1,10 +1,10 @@
 package com.plekhanov.react_web_service.web.dto;
 
 import com.plekhanov.react_web_service.entities.Product;
-import com.plekhanov.react_web_service.entities.Product.*;
 import com.plekhanov.react_web_service.entities.ProductType;
 import com.plekhanov.react_web_service.entities.ProductType.Gender;
 import com.plekhanov.react_web_service.entities.ProductType.Category;
+import com.plekhanov.react_web_service.entities.ProductType.Age;
 import lombok.Builder;
 import lombok.Value;
 
@@ -44,10 +44,12 @@ public class ProductDto {
         Gender gender = null;
         String type = null;
         Category category = null;
+        Age age = null;
         if (productType != null) {
             gender = productType.getGender();
             type = productType.getName();
             category = productType.getCategory();
+            age =  productType.getAge();
         }
 
         return ProductDto.builder()
@@ -62,7 +64,7 @@ public class ProductDto {
                 .gender(gender)
                 .type(type)
                 .category(category)
-                .age(product.getAge())
+                .age(age)
                 .color(product.getColor())
                 .isNew(product.getIsNew())
                 .isSales(product.getIsSales())

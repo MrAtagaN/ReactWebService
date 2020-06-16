@@ -15,7 +15,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-import static com.plekhanov.react_web_service.entities.Product.Age.adult;
+import static com.plekhanov.react_web_service.entities.ProductType.Age.adult;
 import static com.plekhanov.react_web_service.entities.ProductType.Category.clothes;
 import static com.plekhanov.react_web_service.entities.ProductType.Gender.*;
 
@@ -33,7 +33,7 @@ public class ProductUploader {
 
     public void uploadData() {
         //джинсы
-        ProductType jeans = productTypeService.findByParameters("джинсы", male, clothes);
+        ProductType jeans = productTypeService.findByParameters("джинсы", male, adult, clothes);
 
         //модель 123
         Set<Product> found = productService.search(ProductSearchParams.builder().name("модель 123").build());
@@ -46,7 +46,6 @@ public class ProductUploader {
             product.setPrice(new BigDecimal(4999));
             product.setSize(new HashSet<>(Arrays.asList(30, 31, 32)));
             product.setNamedSize(new HashSet<>(Arrays.asList("M", "S")));
-            product.setAge(adult);
             product.setColor("синий");
             productService.saveOrUpdate(product);
         }
@@ -63,7 +62,6 @@ public class ProductUploader {
             product2.setBrand("mango");
             product2.setPrice(new BigDecimal(3499));
             product2.setSize(new HashSet<>(Arrays.asList(30, 31, 32)));
-            product2.setAge(adult);
             product2.setColor("синий");
             productService.saveOrUpdate(product2);
         }
@@ -80,13 +78,12 @@ public class ProductUploader {
             product3.setPrice(new BigDecimal(4499));
             product3.setSize(new HashSet<>(Arrays.asList(30, 31, 32)));
             product3.setNamedSize(new HashSet<>(Arrays.asList("M", "S")));
-            product3.setAge(adult);
             product3.setColor("белый");
             productService.saveOrUpdate(product3);
         }
 
         //рубашки
-        ProductType shirts = productTypeService.findByParameters("рубашки", male, clothes);
+        ProductType shirts = productTypeService.findByParameters("рубашки", male, adult, clothes);
 
         //Рубашка regular-fit из светлого денима
         Set<Product> found4 = productService.search(ProductSearchParams.builder().name("Рубашка regular-fit из светлого денима").build());
@@ -100,7 +97,6 @@ public class ProductUploader {
             product4.setPrice(new BigDecimal(2999));
             product4.setSize(new HashSet<>(Arrays.asList(30, 31, 32)));
             product4.setNamedSize(new HashSet<>(Arrays.asList("M", "S")));
-            product4.setAge(adult);
             product4.setColor("белый");
             productService.saveOrUpdate(product4);
         }
@@ -117,7 +113,6 @@ public class ProductUploader {
             product5.setPrice(new BigDecimal(2999));
             product5.setSize(new HashSet<>(Arrays.asList(30, 31, 32)));
             product5.setNamedSize(new HashSet<>(Arrays.asList("M", "S")));
-            product5.setAge(adult);
             product5.setColor("белый");
             productService.saveOrUpdate(product5);
         }
@@ -134,13 +129,12 @@ public class ProductUploader {
             product6.setPrice(new BigDecimal(1999));
             product6.setSize(new HashSet<>(Arrays.asList(30, 31, 32)));
             product6.setNamedSize(new HashSet<>(Arrays.asList("M", "S")));
-            product6.setAge(adult);
             product6.setColor("белый");
             productService.saveOrUpdate(product6);
         }
 
         //футболки
-        ProductType tShirts = productTypeService.findByParameters("футболки", female, clothes);
+        ProductType tShirts = productTypeService.findByParameters("футболки", female, adult, clothes);
 
         //Меланжевая футболка с карманом
         Set<Product> found7 = productService.search(ProductSearchParams.builder().name("Меланжевая футболка с карманом").build());
@@ -154,7 +148,6 @@ public class ProductUploader {
             product7.setPrice(new BigDecimal(999));
             product7.setSize(new HashSet<>(Arrays.asList(30, 31, 32)));
             product7.setNamedSize(new HashSet<>(Arrays.asList("M", "S")));
-            product7.setAge(adult);
             product7.setColor("белый");
             productService.saveOrUpdate(product7);
         }
@@ -171,7 +164,6 @@ public class ProductUploader {
             product8.setPrice(new BigDecimal(799));
             product8.setSize(new HashSet<>(Arrays.asList(30, 31, 32)));
             product8.setNamedSize(new HashSet<>(Arrays.asList("M", "S")));
-            product8.setAge(adult);
             product8.setColor("белый");
             productService.saveOrUpdate(product8);
         }
@@ -187,7 +179,6 @@ public class ProductUploader {
             product9.setPrice(new BigDecimal(899));
             product9.setSize(new HashSet<>(Arrays.asList(30, 31, 32)));
             product9.setNamedSize(new HashSet<>(Arrays.asList("M", "S")));
-            product9.setAge(adult);
             product9.setColor("белый");
             productService.saveOrUpdate(product9);
         }

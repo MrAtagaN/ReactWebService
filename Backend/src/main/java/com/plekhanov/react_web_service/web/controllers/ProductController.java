@@ -1,7 +1,7 @@
 package com.plekhanov.react_web_service.web.controllers;
 
 import com.plekhanov.react_web_service.entities.Product;
-import com.plekhanov.react_web_service.entities.Product.Age;
+import com.plekhanov.react_web_service.entities.ProductType.Age;
 import com.plekhanov.react_web_service.entities.ProductType.Gender;
 import com.plekhanov.react_web_service.entities.search_params.ProductSearchParams;
 import com.plekhanov.react_web_service.services.ProductService;

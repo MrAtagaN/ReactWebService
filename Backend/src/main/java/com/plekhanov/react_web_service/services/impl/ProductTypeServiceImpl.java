@@ -4,6 +4,7 @@ import com.plekhanov.react_web_service.dao.ProductTypeDao;
 import com.plekhanov.react_web_service.entities.ProductType;
 import com.plekhanov.react_web_service.entities.ProductType.Category;
 import com.plekhanov.react_web_service.entities.ProductType.Gender;
+import com.plekhanov.react_web_service.entities.ProductType.Age;
 import com.plekhanov.react_web_service.services.ProductTypeService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -24,8 +25,8 @@ public class ProductTypeServiceImpl implements ProductTypeService {
         return productTypeDao.getAll();
     }
 
-    public ProductType findByParameters(final String name, Gender gender, final Category category) {
-        return productTypeDao.findByParameters(name, gender, category);
+    public ProductType findByParameters(final String name, Gender gender, final Age age, final Category category) {
+        return productTypeDao.findByParameters(name, gender, age, category);
     }
 
     @Override

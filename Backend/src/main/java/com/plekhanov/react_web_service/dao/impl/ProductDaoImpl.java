@@ -2,9 +2,8 @@ package com.plekhanov.react_web_service.dao.impl;
 
 import com.plekhanov.react_web_service.dao.ProductDao;
 import com.plekhanov.react_web_service.entities.Product;
-import com.plekhanov.react_web_service.entities.Product.Age;
+import com.plekhanov.react_web_service.entities.ProductType.Age;
 import com.plekhanov.react_web_service.entities.ProductType.Gender;
-import com.plekhanov.react_web_service.entities.ProductType;
 import com.plekhanov.react_web_service.entities.search_params.*;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -141,7 +140,7 @@ public class ProductDaoImpl implements ProductDao {
             }
             final Age age = productSearchParams.getAge();
             if (age != null) {
-                stringQuery.append(" and p.age = :age");
+                stringQuery.append(" and p.type.age = :age");
                 params.put("age", age);
             }
             final String color = productSearchParams.getColor();

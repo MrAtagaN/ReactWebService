@@ -9,7 +9,6 @@ CREATE TABLE product
     price           NUMERIC NOT NULL,
     size            INTEGER,
     named_size      TEXT,
-    age             TEXT,
     color           TEXT,
     is_new          BOOLEAN,
     is_sales        BOOLEAN,

@@ -3,6 +3,7 @@ package com.plekhanov.react_web_service.web.dto;
 import com.plekhanov.react_web_service.entities.ProductType;
 import com.plekhanov.react_web_service.entities.ProductType.Category;
 import com.plekhanov.react_web_service.entities.ProductType.Gender;
+import com.plekhanov.react_web_service.entities.ProductType.Age;
 import lombok.Builder;
 import lombok.Value;
 
@@ -16,6 +17,7 @@ public class ProductTypeDto {
     Integer id;
     String name;
     Gender gender;
+    Age age;
     Category category;
 
     /**
@@ -26,6 +28,7 @@ public class ProductTypeDto {
                 .id(product.getId())
                 .name(product.getName())
                 .gender(product.getGender())
+                .age(product.getAge())
                 .category(product.getCategory())
                 .build();
     }

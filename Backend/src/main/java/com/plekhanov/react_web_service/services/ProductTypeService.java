@@ -19,7 +19,10 @@ public interface ProductTypeService {
 
     Set<ProductType> findByCategory(@NotNull ProductType.Category category);
 
-    ProductType findByParameters(@NotNull String name, @NotNull Gender gender, @NotNull Category category);
+    ProductType findByParameters(@NotNull String name,
+                                 @NotNull Gender gender,
+                                 @NotNull Age age,
+                                 @NotNull Category category);
 
     Set<ProductType> getAll();
 

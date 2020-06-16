@@ -3,6 +3,7 @@ package com.plekhanov.react_web_service.dao.impl;
 import com.plekhanov.react_web_service.dao.ProductTypeDao;
 import com.plekhanov.react_web_service.entities.ProductType.Category;
 import com.plekhanov.react_web_service.entities.ProductType.Gender;
+import com.plekhanov.react_web_service.entities.ProductType.Age;
 import com.plekhanov.react_web_service.entities.ProductType;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -40,12 +41,14 @@ public class ProductTypeDaoImpl implements ProductTypeDao {
     }
 
     @Override
-    public ProductType findByParameters(final String name, final Gender gender, final Category category) {
+    public ProductType findByParameters(final String name, final Gender gender, final Age age, final Category category) {
         try (Session session = sessionFactory.openSession()) {
             final Query<ProductType> query =
-                    session.createQuery("FROM ProductType p WHERE p.category = :category AND p.name = :name AND p.gender = :gender", ProductType.class);
+                    session.createQuery("FROM ProductType p " +
+                            "WHERE p.category = :category AND p.name = :name AND p.gender = :gender AND p.age = :age", ProductType.class);
             query.setParameter("category", category);
             query.setParameter("gender", gender);
+            query.setParameter("age", age);
             query.setParameter("name", name);
             return singleResult(query.list());
         } catch (Exception e) {

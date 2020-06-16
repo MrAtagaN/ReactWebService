@@ -54,10 +54,6 @@ public class Product {
     @Column(name = "name")
     Set<String> namedSize = new HashSet<>();
 
-    @Enumerated(STRING)
-    @Column(name = "age")
-    Age age;
-
     @Column(name = "color")
     String color;
 
@@ -73,10 +69,6 @@ public class Product {
     Set<byte[]> images = new HashSet<>();
 
 
-    public enum Age {
-        adult,
-        kids,
-        any
-    }
+
 
 }
