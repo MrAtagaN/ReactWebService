@@ -1,6 +1,5 @@
 package com.plekhanov.react_web_service.entities.search_params;
 
-
 import com.plekhanov.react_web_service.entities.ProductType;
 import com.plekhanov.react_web_service.entities.ProductType.*;
 import lombok.Builder;
