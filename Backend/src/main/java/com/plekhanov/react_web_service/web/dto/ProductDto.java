@@ -2,6 +2,9 @@ package com.plekhanov.react_web_service.web.dto;
 
 import com.plekhanov.react_web_service.entities.Product;
 import com.plekhanov.react_web_service.entities.Product.*;
+import com.plekhanov.react_web_service.entities.ProductType;
+import com.plekhanov.react_web_service.entities.ProductType.Gender;
+import com.plekhanov.react_web_service.entities.ProductType.Category;
 import lombok.Builder;
 import lombok.Value;
 
@@ -18,13 +21,14 @@ public class ProductDto {
     Integer id;
     String name;
     String description;
-    ProductTypeDto type;
     String subType;
     String brand;
     BigDecimal price;
     Set<Integer> size;
     Set<String> namedSize;
     Gender gender;
+    String type;
+    Category category;
     Age age;
     String color;
     Boolean isNew;
@@ -35,17 +39,29 @@ public class ProductDto {
      * Фабричный метод. Возвращает {@link ProductDto} из переданного {@link Product}
      */
     public static ProductDto fromProduct(final Product product) {
+        ProductType productType = product.getType();
+
+        Gender gender = null;
+        String type = null;
+        Category category = null;
+        if (productType != null) {
+            gender = productType.getGender();
+            type = productType.getName();
+            category = productType.getCategory();
+        }
+
         return ProductDto.builder()
                 .id(product.getId())
                 .name(product.getName())
                 .description(product.getDescription())
-                .type(ProductTypeDto.fromProductType(product.getType()))
                 .subType(product.getSubType())
                 .brand(product.getBrand())
                 .price(product.getPrice())
                 .size(product.getSize())
                 .namedSize(product.getNamedSize())
-                .gender(product.getGender())
+                .gender(gender)
+                .type(type)
+                .category(category)
                 .age(product.getAge())
                 .color(product.getColor())
                 .isNew(product.getIsNew())

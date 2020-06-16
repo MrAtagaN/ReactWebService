@@ -2,6 +2,7 @@ package com.plekhanov.react_web_service.dao;
 
 import com.plekhanov.react_web_service.entities.ProductType;
 import com.plekhanov.react_web_service.entities.ProductType.Category;
+import com.plekhanov.react_web_service.entities.ProductType.Gender;
 
 import org.springframework.validation.annotation.Validated;
 
@@ -16,7 +17,7 @@ public interface ProductTypeDao {
 
     Set<ProductType> getAll();
 
-    ProductType findByNameAndCategory(@NotNull String name, @NotNull Category category);
+    ProductType findByParameters(@NotNull String name, @NotNull Gender gender, @NotNull Category category);
 
     Set<ProductType> findByCategory(@NotNull Category category);
 

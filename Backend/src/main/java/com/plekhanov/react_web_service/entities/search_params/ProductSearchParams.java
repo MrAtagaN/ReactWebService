@@ -2,6 +2,7 @@ package com.plekhanov.react_web_service.entities.search_params;
 
 import com.plekhanov.react_web_service.entities.Product.*;
 import com.plekhanov.react_web_service.entities.Product;
+import com.plekhanov.react_web_service.entities.ProductType.Gender;
 import lombok.Builder;
 import lombok.Value;
 
@@ -24,6 +25,7 @@ public class ProductSearchParams {
     Integer sizeTo;
     String namedSize;
     Gender gender;
+    String type;
     Age age;
     String color;
     Boolean isNew;

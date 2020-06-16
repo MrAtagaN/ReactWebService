@@ -9,7 +9,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 /**
  * Тип продукта
  *
- * Комбинация category и name должна быть уникальной
+ * Комбинация name, gender, category,  полей должна быть уникальной
  */
 @Data
 @Entity(name = "ProductType")
@@ -24,9 +24,19 @@ public class ProductType {
     String name;
 
     @Enumerated(STRING)
+    @Column(name = "gender")
+    Gender gender;
+
+    @Enumerated(STRING)
     @Column(name = "category")
     Category category;
 
+
+    public enum Gender {
+        male,
+        female,
+        any
+    }
 
     public enum Category {
         clothes,

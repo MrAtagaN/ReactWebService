@@ -1,6 +1,7 @@
 package com.plekhanov.react_web_service.services;
 
 import com.plekhanov.react_web_service.entities.ProductType;
+import com.plekhanov.react_web_service.entities.ProductType.*;
 import org.springframework.validation.annotation.Validated;
 
 import javax.validation.constraints.NotNull;
@@ -18,7 +19,7 @@ public interface ProductTypeService {
 
     Set<ProductType> findByCategory(@NotNull ProductType.Category category);
 
-    ProductType findByNameAndCategory(@NotNull String name, @NotNull ProductType.Category category);
+    ProductType findByParameters(@NotNull String name, @NotNull Gender gender, @NotNull Category category);
 
     Set<ProductType> getAll();
 

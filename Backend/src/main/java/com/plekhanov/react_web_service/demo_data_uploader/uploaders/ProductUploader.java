@@ -16,9 +16,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import static com.plekhanov.react_web_service.entities.Product.Age.adult;
-import static com.plekhanov.react_web_service.entities.Product.Gender.female;
-import static com.plekhanov.react_web_service.entities.Product.Gender.male;
 import static com.plekhanov.react_web_service.entities.ProductType.Category.clothes;
+import static com.plekhanov.react_web_service.entities.ProductType.Gender.*;
 
 /**
  * Загрузка в базу тестовых {@link Product}
@@ -34,7 +33,7 @@ public class ProductUploader {
 
     public void uploadData() {
         //джинсы
-        ProductType jeans = productTypeService.findByNameAndCategory("джинсы", clothes);
+        ProductType jeans = productTypeService.findByParameters("джинсы", male, clothes);
 
         //модель 123
         Set<Product> found = productService.search(ProductSearchParams.builder().name("модель 123").build());
@@ -47,7 +46,6 @@ public class ProductUploader {
             product.setPrice(new BigDecimal(4999));
             product.setSize(new HashSet<>(Arrays.asList(30, 31, 32)));
             product.setNamedSize(new HashSet<>(Arrays.asList("M", "S")));
-            product.setGender(male);
             product.setAge(adult);
             product.setColor("синий");
             productService.saveOrUpdate(product);
@@ -65,7 +63,6 @@ public class ProductUploader {
             product2.setBrand("mango");
             product2.setPrice(new BigDecimal(3499));
             product2.setSize(new HashSet<>(Arrays.asList(30, 31, 32)));
-            product2.setGender(male);
             product2.setAge(adult);
             product2.setColor("синий");
             productService.saveOrUpdate(product2);
@@ -83,14 +80,13 @@ public class ProductUploader {
             product3.setPrice(new BigDecimal(4499));
             product3.setSize(new HashSet<>(Arrays.asList(30, 31, 32)));
             product3.setNamedSize(new HashSet<>(Arrays.asList("M", "S")));
-            product3.setGender(female);
             product3.setAge(adult);
             product3.setColor("белый");
             productService.saveOrUpdate(product3);
         }
 
         //рубашки
-        ProductType shirts = productTypeService.findByNameAndCategory("рубашки", clothes);
+        ProductType shirts = productTypeService.findByParameters("рубашки", male, clothes);
 
         //Рубашка regular-fit из светлого денима
         Set<Product> found4 = productService.search(ProductSearchParams.builder().name("Рубашка regular-fit из светлого денима").build());
@@ -104,7 +100,6 @@ public class ProductUploader {
             product4.setPrice(new BigDecimal(2999));
             product4.setSize(new HashSet<>(Arrays.asList(30, 31, 32)));
             product4.setNamedSize(new HashSet<>(Arrays.asList("M", "S")));
-            product4.setGender(male);
             product4.setAge(adult);
             product4.setColor("белый");
             productService.saveOrUpdate(product4);
@@ -122,7 +117,6 @@ public class ProductUploader {
             product5.setPrice(new BigDecimal(2999));
             product5.setSize(new HashSet<>(Arrays.asList(30, 31, 32)));
             product5.setNamedSize(new HashSet<>(Arrays.asList("M", "S")));
-            product5.setGender(male);
             product5.setAge(adult);
             product5.setColor("белый");
             productService.saveOrUpdate(product5);
@@ -140,14 +134,13 @@ public class ProductUploader {
             product6.setPrice(new BigDecimal(1999));
             product6.setSize(new HashSet<>(Arrays.asList(30, 31, 32)));
             product6.setNamedSize(new HashSet<>(Arrays.asList("M", "S")));
-            product6.setGender(female);
             product6.setAge(adult);
             product6.setColor("белый");
             productService.saveOrUpdate(product6);
         }
 
         //футболки
-        ProductType tShirts = productTypeService.findByNameAndCategory("футболки", clothes);
+        ProductType tShirts = productTypeService.findByParameters("футболки", female, clothes);
 
         //Меланжевая футболка с карманом
         Set<Product> found7 = productService.search(ProductSearchParams.builder().name("Меланжевая футболка с карманом").build());
@@ -156,12 +149,11 @@ public class ProductUploader {
             product7.setName("Меланжевая футболка с карманом");
             product7.setDescription("Линия Casual. Базовый дизайн. В состав входит хлопок. Пестрая ткань. Круглый вырез " +
                     "горловины. Короткие рукава.");
-            product7.setType(shirts);
+            product7.setType(tShirts);
             product7.setBrand("gap");
             product7.setPrice(new BigDecimal(999));
             product7.setSize(new HashSet<>(Arrays.asList(30, 31, 32)));
             product7.setNamedSize(new HashSet<>(Arrays.asList("M", "S")));
-            product7.setGender(male);
             product7.setAge(adult);
             product7.setColor("белый");
             productService.saveOrUpdate(product7);
@@ -174,7 +166,7 @@ public class ProductUploader {
             product8.setName("Хлопковая футболка с V-образной горловиной");
             product8.setDescription("Линия Casual. Базовый дизайн. Изделие выполнено из хлопка. V-образный вырез " +
                     "горловины. Короткие рукава.");
-            product8.setType(shirts);
+            product8.setType(tShirts);
             product8.setBrand("gap");
             product8.setPrice(new BigDecimal(799));
             product8.setSize(new HashSet<>(Arrays.asList(30, 31, 32)));
@@ -190,12 +182,11 @@ public class ProductUploader {
             Product product9 = new Product();
             product9.setName("Футболка из органического хлопка с принтом");
             product9.setDescription("100% органический хлопок. Набивной рисунок. Круглый вырез горловины. Короткие рукава.");
-            product9.setType(shirts);
+            product9.setType(tShirts);
             product9.setBrand("gap");
             product9.setPrice(new BigDecimal(899));
             product9.setSize(new HashSet<>(Arrays.asList(30, 31, 32)));
             product9.setNamedSize(new HashSet<>(Arrays.asList("M", "S")));
-            product9.setGender(female);
             product9.setAge(adult);
             product9.setColor("белый");
             productService.saveOrUpdate(product9);
