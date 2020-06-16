@@ -4,7 +4,7 @@ import Main from './layout/Main';
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 import {rootReducer} from "./store/Reducers";
-import createBrowserHistory from "history/createBrowserHistory";
+//import createBrowserHistory from "history/createBrowserHistory";
 import {BrowserRouter} from "react-router-dom";
 
 
@@ -15,11 +15,11 @@ class App extends Component {
 
     render() {
         const store = createStore(rootReducer);
-        const history = createBrowserHistory();
+        //const history = createBrowserHistory();
 
         return (
             <Provider store={store}>
-                <BrowserRouter history={history}>
+                <BrowserRouter>
                     <Main/>
                 </BrowserRouter>
             </Provider>
