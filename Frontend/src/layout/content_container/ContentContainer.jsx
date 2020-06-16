@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Clothes from "./сlothes/Clothes";
+import ClothesTypes from "./clothes_types/ClothesTypes";
 import Shoes from "./shoes/Shoes";
 import {Route} from "react-router-dom";
 import Switch from "react-bootstrap/esm/Switch";
@@ -22,7 +22,7 @@ export default class ContentContainer extends Component {
                 <Switch>
                     <Route exact path='/' component={Home}/>
                     <Route path='/new-products' component={NewProducts}/>
-                    <Route path='/clothes' component={Clothes}/>
+                    <Route path='/clothes-types' component={ClothesTypes}/>
                     <Route path='/shoes' component={Shoes}/>
                     <Route path='/accessories' component={Accessories}/>
                     <Route path='/sale' component={Sale}/>

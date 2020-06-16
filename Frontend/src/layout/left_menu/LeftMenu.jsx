@@ -16,7 +16,7 @@ export default class LeftMenu extends Component {
                             <Link to="/new-products"><div className={"link"}><img width={45} src="images/newProducts.png"/>Новинки</div></Link>
                         </li>
                         <li>
-                            <Link to="/clothes"><div className={"link"}><img width={45} src="images/clothes.png"/>Одежда</div></Link>
+                            <Link to="/clothes-types"><div className={"link"}><img width={45} src="images/clothes.png"/>Одежда</div></Link>
                         </li>
                         <li>
                             <Link to='/shoes'><div className={"link"}><img  width={50} src="images/shoes.png"/>Обувь</div></Link>
