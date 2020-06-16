@@ -17,7 +17,9 @@ import java.util.Set;
 @Validated
 public interface ProductTypeDao {
 
-    Set<ProductType> getAll();
+    ProductType saveOrUpdate(@NotNull ProductType productType);
+
+    void delete(int id);
 
     ProductType findByParameters(@NotNull String name,
                                  @NotNull Gender gender,
@@ -25,9 +27,5 @@ public interface ProductTypeDao {
                                  @NotNull Category category);
 
     Set<ProductType> search(@NotNull ProductTypeSearchParams productTypeSearchParams);
-
-    void delete(int id);
-
-    ProductType saveOrUpdate(@NotNull ProductType productType);
 
 }

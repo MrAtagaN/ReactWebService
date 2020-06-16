@@ -13,11 +13,12 @@ import java.util.List;
 @Validated
 public interface UserDao {
 
+    User findById(int id);
+
     User saveOrUpdate(@NotNull User user);
 
     List<User> findByName(@NotBlank String username);
 
     User findByEmail(@NotBlank String email);
 
-    User findById(int id);
 }

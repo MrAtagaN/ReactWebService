@@ -41,7 +41,7 @@ public class ProductTypeController {
             @RequestParam(value = "age", required = false) final Age age,
             @RequestParam(value = "category", required = false) final Category category) {
 
-        ProductTypeSearchParams productTypeSearchParams = ProductTypeSearchParams.builder()
+        final ProductTypeSearchParams productTypeSearchParams = ProductTypeSearchParams.builder()
                 .name(name)
                 .gender(gender)
                 .age(age)

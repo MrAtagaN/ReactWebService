@@ -34,17 +34,6 @@ public class ProductTypeDaoImpl implements ProductTypeDao {
 
 
     @Override
-    public Set<ProductType> getAll() {
-        try (Session session = sessionFactory.openSession()) {
-            final Query<ProductType> query = session.createQuery("FROM ProductType p", ProductType.class);
-            return new HashSet<>(query.list());
-        } catch (Exception e) {
-            log.error("Error while getAll ProductType: {}", e.getMessage());
-            throw e;
-        }
-    }
-
-    @Override
     public ProductType findByParameters(final String name, final Gender gender, final Age age, final Category category) {
         try (Session session = sessionFactory.openSession()) {
             final Query<ProductType> query =

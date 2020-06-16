@@ -25,6 +25,4 @@ public interface ProductTypeService {
                                  @NotNull Age age,
                                  @NotNull Category category);
 
-    Set<ProductType> getAll();
-
 }

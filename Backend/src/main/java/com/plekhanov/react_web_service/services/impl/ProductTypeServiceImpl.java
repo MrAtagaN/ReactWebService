@@ -22,10 +22,6 @@ public class ProductTypeServiceImpl implements ProductTypeService {
 
     ProductTypeDao productTypeDao;
 
-    @Override
-    public Set<ProductType> getAll() {
-        return productTypeDao.getAll();
-    }
 
     public ProductType findByParameters(final String name, Gender gender, final Age age, final Category category) {
         return productTypeDao.findByParameters(name, gender, age, category);
