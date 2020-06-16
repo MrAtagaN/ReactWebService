@@ -2,6 +2,9 @@ package com.plekhanov.react_web_service.web.controllers;
 
 import com.plekhanov.react_web_service.entities.ProductType;
 import com.plekhanov.react_web_service.entities.ProductType.Category;
+import com.plekhanov.react_web_service.entities.ProductType.Gender;
+import com.plekhanov.react_web_service.entities.ProductType.Age;
+import com.plekhanov.react_web_service.entities.search_params.ProductTypeSearchParams;
 import com.plekhanov.react_web_service.services.ProductTypeService;
 import com.plekhanov.react_web_service.web.ApiResponse;
 import com.plekhanov.react_web_service.web.dto.ProductTypeDto;
@@ -29,11 +32,23 @@ public class ProductTypeController {
 
 
     /**
-     * Возвращает Типы Товаров в категории
+     * Возвращает {@link ProductType}, по выбранным параметрам
      */
     @GetMapping(PUBLIC + API_VERSION + "search")
-    public ApiResponse<Set<ProductTypeDto>> getTypes(@RequestParam(value = "category") final Category category) {
-        final Set<ProductType> productTypes = productTypeService.findByCategory(category);
+    public ApiResponse<Set<ProductTypeDto>> getTypes(
+            @RequestParam(value = "name", required = false) final String name,
+            @RequestParam(value = "gender", required = false) final Gender gender,
+            @RequestParam(value = "age", required = false) final Age age,
+            @RequestParam(value = "category", required = false) final Category category) {
+
+        ProductTypeSearchParams productTypeSearchParams = ProductTypeSearchParams.builder()
+                .name(name)
+                .gender(gender)
+                .age(age)
+                .category(category)
+                .build();
+
+        final Set<ProductType> productTypes = productTypeService.search(productTypeSearchParams);
         final Set<ProductTypeDto> productTypeDtos = productTypes.stream()
                 .map(ProductTypeDto::fromProductType)
                 .collect(Collectors.toSet());

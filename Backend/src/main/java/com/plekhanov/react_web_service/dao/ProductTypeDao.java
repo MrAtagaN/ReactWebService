@@ -5,6 +5,7 @@ import com.plekhanov.react_web_service.entities.ProductType.Category;
 import com.plekhanov.react_web_service.entities.ProductType.Gender;
 import com.plekhanov.react_web_service.entities.ProductType.Age;
 
+import com.plekhanov.react_web_service.entities.search_params.ProductTypeSearchParams;
 import org.springframework.validation.annotation.Validated;
 
 import javax.validation.constraints.NotNull;
@@ -23,7 +24,7 @@ public interface ProductTypeDao {
                                  @NotNull Age age,
                                  @NotNull Category category);
 
-    Set<ProductType> findByCategory(@NotNull Category category);
+    Set<ProductType> search(@NotNull ProductTypeSearchParams productTypeSearchParams);
 
     void delete(int id);
 

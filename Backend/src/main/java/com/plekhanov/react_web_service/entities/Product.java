@@ -69,6 +69,4 @@ public class Product {
     Set<byte[]> images = new HashSet<>();
 
 
-
-
 }

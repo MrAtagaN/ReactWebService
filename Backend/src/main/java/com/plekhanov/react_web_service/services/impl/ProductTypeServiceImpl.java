@@ -5,12 +5,14 @@ import com.plekhanov.react_web_service.entities.ProductType;
 import com.plekhanov.react_web_service.entities.ProductType.Category;
 import com.plekhanov.react_web_service.entities.ProductType.Gender;
 import com.plekhanov.react_web_service.entities.ProductType.Age;
+import com.plekhanov.react_web_service.entities.search_params.ProductTypeSearchParams;
 import com.plekhanov.react_web_service.services.ProductTypeService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 
+import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 @RequiredArgsConstructor
@@ -30,8 +32,8 @@ public class ProductTypeServiceImpl implements ProductTypeService {
     }
 
     @Override
-    public Set<ProductType> findByCategory(final Category category) {
-        return productTypeDao.findByCategory(category);
+    public Set<ProductType> search(@NotNull final ProductTypeSearchParams productTypeSearchParams) {
+        return productTypeDao.search(productTypeSearchParams);
     }
 
     @Override
