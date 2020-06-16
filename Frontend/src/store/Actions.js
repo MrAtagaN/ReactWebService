@@ -1,7 +1,7 @@
 import {
     CHOSEN_GENDER,
     IS_AUTHENTICATED,
-    IS_OPEN_AUTH_MODAL,
+    IS_OPEN_AUTH_MODAL, ON_CHOSEN_GENDER,
     ON_SUCCESS_AUTH,
     TITLE,
     USER_INFO
@@ -42,9 +42,22 @@ export const setUserInfo = (newValue) => {
     }
 };
 
+/**
+ * выбранный пол
+ */
 export const setChosenGender = (newValue) => {
     return {
         type: CHOSEN_GENDER,
+        value: newValue
+    }
+};
+
+/**
+ * действие выполняемое при выборе пола
+ */
+export const setOnChosenGender = (newValue) => {
+    return {
+        type: ON_CHOSEN_GENDER,
         value: newValue
     }
 };

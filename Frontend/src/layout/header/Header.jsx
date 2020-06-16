@@ -104,20 +104,24 @@ class Header extends Component {
     };
 
 
-    onClickFemale = () => {
-        this.props.changeAppState.setChosenGender(FEMALE);
+     onClickFemale = async () => {
+        await this.props.changeAppState.setChosenGender(FEMALE);
+        this.props.appState.onChosenGender();
     };
 
-    onClickMale = () => {
-        this.props.changeAppState.setChosenGender(MALE);
+    onClickMale = async () => {
+        await this.props.changeAppState.setChosenGender(MALE);
+        this.props.appState.onChosenGender();
     };
 
-    onClickGirl = () => {
-        this.props.changeAppState.setChosenGender(GIRL);
+    onClickGirl = async () => {
+        await this.props.changeAppState.setChosenGender(GIRL);
+        this.props.appState.onChosenGender();
     };
 
-    onClickBoy = () => {
-        this.props.changeAppState.setChosenGender(BOY);
+    onClickBoy = async () => {
+        await this.props.changeAppState.setChosenGender(BOY);
+        this.props.appState.onChosenGender();
     };
 
 

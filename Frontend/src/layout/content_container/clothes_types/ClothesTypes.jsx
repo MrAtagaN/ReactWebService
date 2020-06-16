@@ -18,6 +18,7 @@ class ClothesTypes extends Component {
     constructor(props) {
         super(props);
         this.props.changeAppState.setTitle('Clothes');
+        this.props.changeAppState.setOnChosenGender(this.fetchData);
     }
 
     render() {
@@ -43,12 +44,12 @@ class ClothesTypes extends Component {
     }
 
     /**
-     * Получение типов одежды
+     * Получение типов одежды с сервера
      */
     fetchData = async () => {
         let params;
 
-        const gender =  this.props.appState.chosenGender;
+        const gender = this.props.appState.chosenGender;
         if (gender === FEMALE) {
             params = {category: 'clothes', age:'adult', gender: 'female'}
         }

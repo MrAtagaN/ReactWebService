@@ -1,7 +1,7 @@
 import {
     CHOSEN_GENDER,
     IS_AUTHENTICATED,
-    IS_OPEN_AUTH_MODAL,
+    IS_OPEN_AUTH_MODAL, ON_CHOSEN_GENDER,
     ON_SUCCESS_AUTH,
     TITLE,
     USER_INFO
@@ -17,7 +17,8 @@ const initialState = {
     onSuccessAuth: ()=>{}, //действие при успешной авторизации
     title: '',
     userInfo: '',
-    chosenGender: FEMALE
+    chosenGender: FEMALE,
+    onChosenGender: ()=>{} //действие при выборе пола
 };
 
 
@@ -35,6 +36,8 @@ export const rootReducer = (state = initialState, action) => {
             return {...state, userInfo: action.value};
         case CHOSEN_GENDER:
             return {...state, chosenGender: action.value};
+        case ON_CHOSEN_GENDER:
+            return {...state, onChosenGender: action.value};
     }
 
     return state;

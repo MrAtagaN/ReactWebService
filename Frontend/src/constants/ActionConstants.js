@@ -4,3 +4,4 @@ export const ON_SUCCESS_AUTH ='onSuccessAuth';
 export const TITLE ='title';
 export const USER_INFO ='userInfo';
 export const CHOSEN_GENDER ='chosenGender';
+export const ON_CHOSEN_GENDER ='onChosenGender';

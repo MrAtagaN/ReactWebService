@@ -2,7 +2,7 @@ import {bindActionCreators} from 'redux';
 import {
     setChosenGender,
     setIsAuthenticated,
-    setIsOpenAuthModal,
+    setIsOpenAuthModal, setOnChosenGender,
     setOnSuccessAuth,
     setTitle,
     setUserInfo
@@ -20,7 +20,8 @@ export const putStateFieldsToProps = (state) => {
             userInfo: state.userInfo,
             isOpenAuthModal: state.isOpenAuthModal,
             onSuccessAuth: state.onSuccessAuth,
-            chosenGender: state.chosenGender
+            chosenGender: state.chosenGender,
+            onChosenGender: state.onChosenGender
         }
     };
 };
@@ -37,9 +38,8 @@ export const putActionsToProps = (dispatch) => {
             setUserInfo: bindActionCreators(setUserInfo, dispatch),
             setIsOpenAuthModal: bindActionCreators(setIsOpenAuthModal, dispatch),
             setOnSuccessAuth: bindActionCreators(setOnSuccessAuth, dispatch),
-            setChosenGender: bindActionCreators(setChosenGender, dispatch)
-
-
+            setChosenGender: bindActionCreators(setChosenGender, dispatch),
+            setOnChosenGender: bindActionCreators(setOnChosenGender, dispatch)
         }
     };
 };
