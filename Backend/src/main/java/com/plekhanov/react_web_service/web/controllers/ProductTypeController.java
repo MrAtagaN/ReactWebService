@@ -67,7 +67,7 @@ public class ProductTypeController {
 
 
     /**
-     * Удалить тип {@link ProductType}
+     * Удалить {@link ProductType}
      */
     @PostMapping(ADMIN + API_VERSION + "delete")
     public ApiResponse<String> deleteProductType(@RequestParam("productId") @NotNull final Integer productTypeId) {
