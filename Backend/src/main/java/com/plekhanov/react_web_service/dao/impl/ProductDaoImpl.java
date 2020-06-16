@@ -20,6 +20,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -115,17 +116,17 @@ public class ProductDaoImpl implements ProductDao {
             }
             final Integer sizeFrom = productSearchParams.getSizeFrom();
             if (sizeFrom != null) {
-                stringQuery.append(" and p.size >= :sizeFrom");
+                stringQuery.append(" and minelement(p.size) >= :sizeFrom");
                 params.put("sizeFrom", sizeFrom);
             }
             final Integer sizeTo = productSearchParams.getSizeTo();
             if (sizeTo != null) {
-                stringQuery.append(" and p.size <= :sizeTo");
+                stringQuery.append(" and maxelement(p.size) <= :sizeTo");
                 params.put("sizeTo", sizeTo);
             }
             final String namedSize = productSearchParams.getNamedSize();
             if (namedSize != null) {
-                stringQuery.append(" and p.namedSize = :namedSize");
+                stringQuery.append(" and :namedSize in elements(p.namedSize)");
                 params.put("namedSize", namedSize);
             }
             final Gender gender = productSearchParams.getGender();

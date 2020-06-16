@@ -37,7 +37,7 @@ public class ProductController {
      * Возвращает {@link Product}, по выбранным параметрам
      */
     @GetMapping(PUBLIC + API_VERSION + "search")
-    public ApiResponse search(
+    public ApiResponse<?> search(
             @RequestParam(value = "name", required = false) final String name,
             @RequestParam(value = "type", required = false) final Integer type,
             @RequestParam(value = "subType", required = false) final String subType,

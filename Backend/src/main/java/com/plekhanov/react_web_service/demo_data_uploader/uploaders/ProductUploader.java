@@ -11,6 +11,8 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Set;
 
 import static com.plekhanov.react_web_service.entities.Product.Age.adult;
@@ -43,7 +45,8 @@ public class ProductUploader {
             product.setType(jeans);
             product.setBrand("gap");
             product.setPrice(new BigDecimal(4999));
-            product.setSize(32);
+            product.setSize(new HashSet<>(Arrays.asList(30, 31, 32)));
+            product.setNamedSize(new HashSet<>(Arrays.asList("M", "S")));
             product.setGender(male);
             product.setAge(adult);
             product.setColor("синий");
@@ -61,7 +64,7 @@ public class ProductUploader {
             product2.setType(jeans);
             product2.setBrand("mango");
             product2.setPrice(new BigDecimal(3499));
-            product2.setSize(32);
+            product2.setSize(new HashSet<>(Arrays.asList(30, 31, 32)));
             product2.setGender(male);
             product2.setAge(adult);
             product2.setColor("синий");
@@ -78,7 +81,8 @@ public class ProductUploader {
             product3.setType(jeans);
             product3.setBrand("mango");
             product3.setPrice(new BigDecimal(4499));
-            product3.setSize(30);
+            product3.setSize(new HashSet<>(Arrays.asList(30, 31, 32)));
+            product3.setNamedSize(new HashSet<>(Arrays.asList("M", "S")));
             product3.setGender(female);
             product3.setAge(adult);
             product3.setColor("белый");
@@ -98,7 +102,8 @@ public class ProductUploader {
             product4.setType(shirts);
             product4.setBrand("mango");
             product4.setPrice(new BigDecimal(2999));
-            product4.setSize(32);
+            product4.setSize(new HashSet<>(Arrays.asList(30, 31, 32)));
+            product4.setNamedSize(new HashSet<>(Arrays.asList("M", "S")));
             product4.setGender(male);
             product4.setAge(adult);
             product4.setColor("белый");
@@ -115,7 +120,8 @@ public class ProductUploader {
             product5.setType(shirts);
             product5.setBrand("gap");
             product5.setPrice(new BigDecimal(2999));
-            product5.setSize(32);
+            product5.setSize(new HashSet<>(Arrays.asList(30, 31, 32)));
+            product5.setNamedSize(new HashSet<>(Arrays.asList("M", "S")));
             product5.setGender(male);
             product5.setAge(adult);
             product5.setColor("белый");
@@ -132,7 +138,8 @@ public class ProductUploader {
             product6.setType(shirts);
             product6.setBrand("mango");
             product6.setPrice(new BigDecimal(1999));
-            product6.setSize(32);
+            product6.setSize(new HashSet<>(Arrays.asList(30, 31, 32)));
+            product6.setNamedSize(new HashSet<>(Arrays.asList("M", "S")));
             product6.setGender(female);
             product6.setAge(adult);
             product6.setColor("белый");
@@ -152,7 +159,8 @@ public class ProductUploader {
             product7.setType(shirts);
             product7.setBrand("gap");
             product7.setPrice(new BigDecimal(999));
-            product7.setSize(32);
+            product7.setSize(new HashSet<>(Arrays.asList(30, 31, 32)));
+            product7.setNamedSize(new HashSet<>(Arrays.asList("M", "S")));
             product7.setGender(male);
             product7.setAge(adult);
             product7.setColor("белый");
@@ -169,8 +177,8 @@ public class ProductUploader {
             product8.setType(shirts);
             product8.setBrand("gap");
             product8.setPrice(new BigDecimal(799));
-            product8.setSize(32);
-            product8.setGender(male);
+            product8.setSize(new HashSet<>(Arrays.asList(30, 31, 32)));
+            product8.setNamedSize(new HashSet<>(Arrays.asList("M", "S")));
             product8.setAge(adult);
             product8.setColor("белый");
             productService.saveOrUpdate(product8);
@@ -185,7 +193,8 @@ public class ProductUploader {
             product9.setType(shirts);
             product9.setBrand("gap");
             product9.setPrice(new BigDecimal(899));
-            product9.setSize(32);
+            product9.setSize(new HashSet<>(Arrays.asList(30, 31, 32)));
+            product9.setNamedSize(new HashSet<>(Arrays.asList("M", "S")));
             product9.setGender(female);
             product9.setAge(adult);
             product9.setColor("белый");

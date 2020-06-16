@@ -22,8 +22,8 @@ public class ProductDto {
     String subType;
     String brand;
     BigDecimal price;
-    Integer size;
-    String namedSize;
+    Set<Integer> size;
+    Set<String> namedSize;
     Gender gender;
     Age age;
     String color;

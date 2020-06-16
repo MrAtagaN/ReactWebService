@@ -44,11 +44,15 @@ public class Product {
     @Column(name = "price")
     BigDecimal price;
 
-    @Column(name = "size")
-    Integer size;
+    @ElementCollection(fetch = EAGER)
+    @CollectionTable(name = "sizes", joinColumns = @JoinColumn(name = "product_id"))
+    @Column(name = "value")
+    Set<Integer> size = new HashSet<>();
 
-    @Column(name = "named_size")
-    String namedSize;
+    @ElementCollection(fetch = EAGER)
+    @CollectionTable(name = "named_size", joinColumns = @JoinColumn(name = "product_id"))
+    @Column(name = "name")
+    Set<String> namedSize = new HashSet<>();
 
     @Enumerated(STRING)
     @Column(name = "gender")
