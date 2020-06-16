@@ -107,7 +107,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private AuthenticationFailureHandler failureHandler() {
         return (httpServletRequest, httpServletResponse, e) -> {
             httpServletResponse.setStatus(401);
-            final ApiResponse apiResponse = ApiResponse.error(AUTHENTICATION_FAILURE, "Authentication failure");
+            final ApiResponse<String> apiResponse = ApiResponse.error(AUTHENTICATION_FAILURE, "Authentication failure");
             putApiResponseInServletResponse(apiResponse, httpServletResponse);
         };
     }
@@ -119,7 +119,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private AccessDeniedHandler accessDeniedHandler() {
         return (httpServletRequest, httpServletResponse, e) -> {
             httpServletResponse.setStatus(403);
-            final ApiResponse apiResponse = ApiResponse.error(ACCESS_DENIED, "Access denied");
+            final ApiResponse<String> apiResponse = ApiResponse.error(ACCESS_DENIED, "Access denied");
             putApiResponseInServletResponse(apiResponse, httpServletResponse);
         };
     }
@@ -131,7 +131,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private AuthenticationEntryPoint authenticationEntryPoint() {
         return (httpServletRequest, httpServletResponse, e) -> {
             httpServletResponse.setStatus(401);
-            final ApiResponse apiResponse = ApiResponse.error(NOT_AUTHENTICATED, "Not authenticated");
+            final ApiResponse<String> apiResponse = ApiResponse.error(NOT_AUTHENTICATED, "Not authenticated");
             putApiResponseInServletResponse(apiResponse, httpServletResponse);
         };
     }
@@ -151,7 +151,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     /**
      * Кладет {@link ApiResponse} в {@link HttpServletResponse}
      */
-    private void putApiResponseInServletResponse(final ApiResponse apiResponse,
+    private void putApiResponseInServletResponse(final ApiResponse<?> apiResponse,
                                                  final HttpServletResponse httpServletResponse) throws IOException {
 
         final PrintWriter out = httpServletResponse.getWriter();

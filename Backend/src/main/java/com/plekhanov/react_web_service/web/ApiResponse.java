@@ -19,8 +19,8 @@ public class ApiResponse<T> {
     /**
      * Фабричный метод. Возвращает {@link ApiResponse} с кодом и сообщинием ошибки
      */
-    public static ApiResponse error(final ResponseCode code, final String errorMessage) {
-        return ApiResponse.builder()
+    public static ApiResponse<String> error(final ResponseCode code, final String errorMessage) {
+        return ApiResponse.<String>builder()
                 .code(code.getValue())
                 .errorMessage(errorMessage)
                 .build();
