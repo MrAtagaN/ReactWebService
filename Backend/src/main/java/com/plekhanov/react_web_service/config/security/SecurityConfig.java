@@ -172,7 +172,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      * CORS конфигурация.
      * Нужна для возможности запускать фронт на другом сервере (для отладки)
      */
-    private CorsConfigurationSource corsConfiguration() { //TODO убрать
+    private CorsConfigurationSource corsConfiguration() {
         return (httpServletRequest) -> {
             final CorsConfiguration corsConfiguration = new CorsConfiguration();
             corsConfiguration.addAllowedOrigin("http://localhost:3000");
