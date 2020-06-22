@@ -39,7 +39,7 @@ public class ProductController {
     @GetMapping(PUBLIC + API_VERSION + "search")
     public ApiResponse<?> search(
             @RequestParam(value = "name", required = false) final String name,
-            @RequestParam(value = "type", required = false) final Integer type,
+            @RequestParam(value = "typeId", required = false) final Integer typeId,
             @RequestParam(value = "subType", required = false) final String subType,
             @RequestParam(value = "brand", required = false) final String brand,
             @RequestParam(value = "priceFrom", required = false) final BigDecimal priceFrom,
@@ -48,6 +48,7 @@ public class ProductController {
             @RequestParam(value = "sizeTo", required = false) final Integer sizeTo,
             @RequestParam(value = "namedSize", required = false) final String namedSize,
             @RequestParam(value = "gender", required = false) final Gender gender,
+            @RequestParam(value = "type", required = false) final String type,
             @RequestParam(value = "age", required = false) final Age age,
             @RequestParam(value = "color", required = false) final String color,
             @RequestParam(value = "isNew", required = false) final Boolean isNew,
@@ -61,7 +62,7 @@ public class ProductController {
 
         final ProductSearchParams productSearchParams = ProductSearchParams.builder()
                 .name(name)
-                .typeId(type)
+                .typeId(typeId)
                 .subType(subType)
                 .brand(brand)
                 .priceFrom(priceFrom)
@@ -70,6 +71,7 @@ public class ProductController {
                 .sizeTo(sizeTo)
                 .namedSize(namedSize)
                 .gender(gender)
+                .type(type)
                 .age(age)
                 .color(color)
                 .isNew(isNew)

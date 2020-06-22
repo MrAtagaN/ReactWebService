@@ -3,6 +3,7 @@ export const LOGIN_URL = 'api/v1/login';
 export const LOGOUT_URL = 'api/v1/logout';
 export const USER_URL = 'api/v1/user/';
 export const PRODUCT_TYPE_URL = 'public/api/v1/product-type/';
+export const PRODUCT_URL = 'public/api/v1/product/';
 
 export const OK = 0;
 export const NOT_AUTHENTICATED = 1;
