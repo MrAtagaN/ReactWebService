@@ -9,6 +9,7 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -21,6 +22,8 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -62,6 +65,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/admin/**").access("hasAuthority('ADMIN')")
                 .anyRequest().authenticated()
+                .and()
+                .cors()
+                .configurationSource(corsConfiguration())
                 .and()
                 .formLogin()
                 .successHandler(successHandler())
@@ -159,6 +165,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         httpServletResponse.setCharacterEncoding("UTF-8");
         out.print(objectMapper.writeValueAsString(apiResponse));
         out.flush();
+    }
+
+
+    /**
+     * CORS конфигурация.
+     * Нужна для возможности запускать фронт на другом сервере (для отладки)
+     */
+    private CorsConfigurationSource corsConfiguration() { //TODO убрать
+        return (httpServletRequest) -> {
+            final CorsConfiguration corsConfiguration = new CorsConfiguration();
+            corsConfiguration.addAllowedOrigin("http://localhost:3000");
+            corsConfiguration.addAllowedMethod(HttpMethod.POST);
+            corsConfiguration.addAllowedMethod(HttpMethod.GET);
+            corsConfiguration.setAllowCredentials(true);
+            return corsConfiguration;
+        };
     }
 
 }

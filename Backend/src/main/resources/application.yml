@@ -1,5 +1,7 @@
 server:
   port: 80    # порт на котором работает приложение
+  tomcat:
+    uri-encoding: UTF-8
 
 hibernate:
   dialect: org.hibernate.dialect.SQLiteDialect    # диалект sql для подключения hibernate к базе данных
