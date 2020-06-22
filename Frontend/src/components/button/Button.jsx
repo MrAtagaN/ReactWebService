@@ -3,7 +3,11 @@ import React, {Component} from 'react';
 import './Button.css';
 
 /**
- * В props нужно передавать: onClickAction
+ * В props нужно передавать:
+ * onClickAction - функция при нажатии
+ * classes - строка с классами кнопками через пробед
+ * children - теги в кнопке
+ * chosen - boolean, есть ли класс chosen
  */
 export default class Button extends Component {
 
