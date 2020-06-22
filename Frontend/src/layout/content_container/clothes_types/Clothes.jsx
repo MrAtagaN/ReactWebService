@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {connectToStore} from "../../../store/Connect";
-import './ClothesTypes.css';
+import './Clothes.css';
 import RestClient from "../../../services/RestClient";
 import {OK, PRODUCT_TYPE_URL, PRODUCT_URL, USER_URL} from "../../../constants/RestConstants";
 import {BOY, FEMALE, GIRL, MALE} from "../../../constants/AppConstants";
@@ -9,7 +9,7 @@ import Button from "../../../components/button/Button";
 /**
  * Типы Одежды
  */
-class ClothesTypes extends Component {
+class Clothes extends Component {
 
     state = {
         clothesTypes: [],
@@ -104,4 +104,4 @@ class ClothesTypes extends Component {
     };
 }
 
-export default connectToStore(ClothesTypes);
+export default connectToStore(Clothes);
