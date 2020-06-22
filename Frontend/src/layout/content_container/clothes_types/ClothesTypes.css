@@ -4,3 +4,14 @@
     margin-right: 0px;
     margin-left: 0px;
 }
+
+.leftContent {
+    float: left; /*Задаем обтекание*/
+    line-height: 20px; /*Высота строки +  верт. центрирования текста*/
+    width: 200px;
+}
+
+.rightContent {
+    padding-left: 250px;
+    padding-top: 20px;
+}

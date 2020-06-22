@@ -31,7 +31,17 @@ class ClothesTypes extends Component {
             </li>
         );
 
-        return (<div>
+        //TODO сделать отображение товара
+        const listClothes = this.state.clothes.map((clothes)=>
+            <div>
+                {clothes.name} - {clothes.price}
+            </div>
+        );
+        //========
+
+        return (
+            <div >
+                <div className={'leftContent'}>
                     <h1>
                         Одежда
                     </h1>
@@ -39,6 +49,10 @@ class ClothesTypes extends Component {
                         <ul className={'clothesTypes'}>{listTypes}</ul>
                     </div>
                 </div>
+                <div className={'rightContent'}>
+                    {listClothes}
+                </div>
+            </div>
         );
 
     }
