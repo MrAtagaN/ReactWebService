@@ -8,7 +8,7 @@
 .leftContent {
     float: left; /*Задаем обтекание*/
     line-height: 20px; /*Высота строки +  верт. центрирования текста*/
-    width: 185px;
+    width: 178px;
 }
 
 .rightContent {
