@@ -33,11 +33,11 @@ public class User {
     @GeneratedValue(strategy = IDENTITY)
     Integer id;
 
-    @Column(name = "username")
+    @Column(name = "username", nullable = false)
     String username; //аутентификация происходит по полю email
 
     @ToString.Exclude
-    @Column(name = "password")
+    @Column(name = "password", nullable = false)
     String password;
 
     @ElementCollection(fetch = EAGER)

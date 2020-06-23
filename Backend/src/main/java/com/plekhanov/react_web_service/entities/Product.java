@@ -6,7 +6,6 @@ import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
-import static javax.persistence.EnumType.STRING;
 import static javax.persistence.FetchType.EAGER;
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -32,7 +31,7 @@ public class Product {
     String description;
 
     @ManyToOne(fetch = EAGER)
-    @JoinColumn(name = "type_id")
+    @JoinColumn(name = "type_id", nullable = false)
     ProductType type;
 
     @Column(name = "sub_type")
@@ -41,7 +40,7 @@ public class Product {
     @Column(name = "brand")
     String brand;
 
-    @Column(name = "price")
+    @Column(name = "price", nullable = false)
     BigDecimal price;
 
     @ElementCollection(fetch = EAGER)
