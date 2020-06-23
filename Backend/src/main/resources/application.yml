@@ -14,6 +14,13 @@ spring:
     baseline-on-migrate: true    # применять схемы миграции, если они не применены
     outOfOrder: true    # позволяет добавлять схемы миграции с номером не по-порядку
     schemas:    # схема, в которую flyway будет делать миграцию
+  mvc:
+    throw-exception-if-no-handler-found: true
+  http:
+    encoding:
+      enabled: true
+      charset: UTF-8
+      force: true
 
 
 
