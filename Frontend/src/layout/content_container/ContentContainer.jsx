@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Clothes from "./clothes_types/Clothes";
+import Clothes from "./clothes/Clothes";
 import Shoes from "./shoes/Shoes";
 import {Route} from "react-router-dom";
 import Switch from "react-bootstrap/esm/Switch";

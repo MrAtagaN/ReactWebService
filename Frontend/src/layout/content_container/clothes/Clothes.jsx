@@ -5,9 +5,10 @@ import RestClient from "../../../services/RestClient";
 import {OK, PRODUCT_TYPE_URL, PRODUCT_URL, USER_URL} from "../../../constants/RestConstants";
 import {BOY, FEMALE, GIRL, MALE} from "../../../constants/AppConstants";
 import Button from "../../../components/button/Button";
+import ProductTable from "../../../components/product_table/ProductTable";
 
 /**
- * Типы Одежды
+ * Одежда
  */
 class Clothes extends Component {
 
@@ -19,9 +20,10 @@ class Clothes extends Component {
 
     constructor(props) {
         super(props);
-        this.props.changeAppState.setTitle('Clothes');
+        this.props.changeAppState.setTitle('Clothes'); //TODO не используется
         this.props.changeAppState.setOnChosenGender(this.fetchClothesTypes);
     }
+
 
     render() {
         //множество тегов li с кнопкой
@@ -31,16 +33,8 @@ class Clothes extends Component {
             </li>
         );
 
-        //TODO сделать отображение товара
-        const listClothes = this.state.clothes.map((clothes)=>
-            <div>
-                {clothes.name} - {clothes.price}
-            </div>
-        );
-        //========
-
         return (
-            <div >
+            <div>
                 <div className={'leftContent'}>
                     <h1>
                         Одежда
@@ -49,12 +43,9 @@ class Clothes extends Component {
                         <ul className={'clothesTypes'}>{listTypes}</ul>
                     </div>
                 </div>
-                <div className={'rightContent'}>
-                    {listClothes}
-                </div>
+                <ProductTable products={this.state.clothes}/>
             </div>
         );
-
     }
 
 

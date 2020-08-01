@@ -36,10 +36,10 @@ export const putActionsToProps = (dispatch) => {
             setIsAuthenticated: bindActionCreators(setIsAuthenticated, dispatch),
             setTitle: bindActionCreators(setTitle, dispatch),
             setUserInfo: bindActionCreators(setUserInfo, dispatch),
-            setIsOpenAuthModal: bindActionCreators(setIsOpenAuthModal, dispatch),
-            setOnSuccessAuth: bindActionCreators(setOnSuccessAuth, dispatch),
+            setIsOpenAuthModal: bindActionCreators(setIsOpenAuthModal, dispatch), //открыто модальное окно авторизации
+            setOnSuccessAuth: bindActionCreators(setOnSuccessAuth, dispatch), //действие при успешной авторизации
             setChosenGender: bindActionCreators(setChosenGender, dispatch),
-            setOnChosenGender: bindActionCreators(setOnChosenGender, dispatch)
+            setOnChosenGender: bindActionCreators(setOnChosenGender, dispatch) //действие при выборе пола
         }
     };
 };
