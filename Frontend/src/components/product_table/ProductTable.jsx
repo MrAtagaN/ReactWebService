@@ -26,6 +26,7 @@ import './ProductTable.css';
  * Boolean isNew;
  * Boolean isSales;
  * Set<byte[]> images;
+ * Integer mainImage;
  */
 class ProductTable extends Component {
 
@@ -39,7 +40,9 @@ class ProductTable extends Component {
             <div className='product-information'>
                 <div className='product-image'>
                     {product.images.length === 0 && <img src="images/noImage.png"/>}
-                    {product.images.length !== 0 && <img className='product' src={"data:image/png;base64," + product.images[product.mainImage]}/>}
+                    {product.images.length !== 0
+                     && product.mainImage != null
+                     && <img className='product' src={"data:image/png;base64," + product.images[product.mainImage]}/>}
                 </div>
 
                 <div className='product-description'>
