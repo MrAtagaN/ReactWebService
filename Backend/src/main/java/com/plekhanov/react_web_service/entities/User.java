@@ -2,6 +2,7 @@ package com.plekhanov.react_web_service.entities;
 
 import com.plekhanov.react_web_service.config.security.Role;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import org.hibernate.annotations.Fetch;
 
@@ -70,9 +71,13 @@ public class User {
     @Column(name = "email")
     String email;
 
+    @ToString.Exclude          // чтобы не было кругового вызова toString, Equals, HashCode ломбоком
+    @EqualsAndHashCode.Exclude // т.к. User и UserBagProduct имеют двунаправленную связь
     @OneToMany(mappedBy = "user", cascade = ALL, orphanRemoval = true, fetch = EAGER)
     List<UserBagProduct> bagProducts = new ArrayList<>();
 
+    @ToString.Exclude          // чтобы не было кругового вызова toString, Equals, HashCode ломбоком,
+    @EqualsAndHashCode.Exclude // т.к. User и UserFavoriteProduct имеют двунаправленную связь
     @OneToMany(mappedBy = "user", cascade = ALL, orphanRemoval = true, fetch = EAGER)
     @Fetch(SUBSELECT) // по умолчанию используется JOIN, но это не будет работать если есть две коллекции с fetch = EAGER
     Set<UserFavoriteProduct> favoriteProducts = new HashSet<>();

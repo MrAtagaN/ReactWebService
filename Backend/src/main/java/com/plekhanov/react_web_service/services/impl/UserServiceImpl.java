@@ -86,16 +86,8 @@ public class UserServiceImpl implements UserService {
         if (product == null) {
             throw new ValidationException(format("No product with id: {0}", productId));
         }
-
-        final Set<Integer> productIds = user.getFavoriteProducts().stream()
-                .map(userFavoriteProduct -> userFavoriteProduct.getProduct().getId())
-                .collect(Collectors.toSet());
-
-        if (!productIds.contains(productId)) {
-            final UserFavoriteProduct userFavoriteProduct = new UserFavoriteProduct(null, user, product);
-            user.getFavoriteProducts().add(userFavoriteProduct);
-            userDao.saveOrUpdate(user);
-        }
+        user.getFavoriteProducts().add(new UserFavoriteProduct(user, product));
+        userDao.saveOrUpdate(user);
     }
 
 
