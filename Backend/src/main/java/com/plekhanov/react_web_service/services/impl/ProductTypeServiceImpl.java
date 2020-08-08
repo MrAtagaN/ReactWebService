@@ -23,7 +23,7 @@ public class ProductTypeServiceImpl implements ProductTypeService {
     ProductTypeDao productTypeDao;
 
 
-    public ProductType findByParameters(final String name, Gender gender, final Age age, final Category category) {
+    public ProductType findByParameters(final String name, final Gender gender, final Age age, final Category category) {
         return productTypeDao.findByParameters(name, gender, age, category);
     }
 

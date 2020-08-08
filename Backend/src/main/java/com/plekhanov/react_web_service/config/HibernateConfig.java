@@ -14,7 +14,7 @@ import javax.sql.DataSource;
 import static org.hibernate.cfg.AvailableSettings.*;
 
 /**
- * Конфиг подключения к базе данных
+ * Конфиг Hibernate
  */
 @Configuration
 public class HibernateConfig {

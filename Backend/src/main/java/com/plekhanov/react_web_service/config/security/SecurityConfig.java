@@ -41,6 +41,10 @@ import static com.plekhanov.react_web_service.web.ApiResponse.ResponseCode.*;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    String loginUrl = "/api/v1/login";
+    String logoutUrl = "/api/v1/logout";
+    String logoutSuccessUrl = "/";
+
     ObjectMapper objectMapper;
     EmailAuthenticationProvider emailAuthenticationProvider;
 
@@ -72,15 +76,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .successHandler(successHandler())
                 .failureHandler(failureHandler())
-                .loginProcessingUrl("/api/v1/login")
+                .loginProcessingUrl(loginUrl)
                 .and()
                 .exceptionHandling()
                 .accessDeniedHandler(accessDeniedHandler())
                 .authenticationEntryPoint(authenticationEntryPoint())
                 .and()
                 .logout()
-                .logoutUrl("/api/v1/logout")
-                .logoutSuccessUrl("/")
+                .logoutUrl(logoutUrl)
+                .logoutSuccessUrl(logoutSuccessUrl)
                 .deleteCookies("JSESSIONID")
                 .logoutSuccessHandler(logoutSuccessHandler());
     }

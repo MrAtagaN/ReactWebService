@@ -21,6 +21,7 @@ public interface ProductTypeDao {
 
     void delete(int id);
 
+    //TODO Убрать
     ProductType findByParameters(@NotNull String name,
                                  @NotNull Gender gender,
                                  @NotNull Age age,

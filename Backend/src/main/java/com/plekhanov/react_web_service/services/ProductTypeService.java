@@ -20,6 +20,7 @@ public interface ProductTypeService {
 
     Set<ProductType> search(@NotNull ProductTypeSearchParams productTypeSearchParams);
 
+    //TODO Убрать
     ProductType findByParameters(@NotNull String name,
                                  @NotNull Gender gender,
                                  @NotNull Age age,
