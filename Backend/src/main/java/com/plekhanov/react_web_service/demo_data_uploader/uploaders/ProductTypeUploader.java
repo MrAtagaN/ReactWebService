@@ -25,146 +25,146 @@ public class ProductTypeUploader {
 
     public void uploadData() {
         //одежда джинсы
-        ProductType jeans = productTypeService.findByParameters("джинсы", male, adult, clothes);
-        if (jeans == null) {
-            jeans = new ProductType();
-            jeans.setName("джинсы");
-            jeans.setGender(male);
-            jeans.setAge(adult);
-            jeans.setCategory(clothes);
-            productTypeService.saveOrUpdate(jeans);
+        ProductType maleJeans = productTypeService.findByParameters("джинсы", male, adult, clothes);
+        if (maleJeans == null) {
+            maleJeans = new ProductType();
+            maleJeans.setName("джинсы");
+            maleJeans.setGender(male);
+            maleJeans.setAge(adult);
+            maleJeans.setCategory(clothes);
+            productTypeService.saveOrUpdate(maleJeans);
         }
 
         //одежда рубашки
-        ProductType shirts = productTypeService.findByParameters("рубашки", male, adult, clothes);
-        if (shirts == null) {
-            shirts = new ProductType();
-            shirts.setName("рубашки");
-            shirts.setGender(male);
-            shirts.setAge(adult);
-            shirts.setCategory(clothes);
-            productTypeService.saveOrUpdate(shirts);
+        ProductType maleShirts = productTypeService.findByParameters("рубашки", male, adult, clothes);
+        if (maleShirts == null) {
+            maleShirts = new ProductType();
+            maleShirts.setName("рубашки");
+            maleShirts.setGender(male);
+            maleShirts.setAge(adult);
+            maleShirts.setCategory(clothes);
+            productTypeService.saveOrUpdate(maleShirts);
         }
 
         //одежда футболки
-        ProductType tShirts = productTypeService.findByParameters("футболки", female, adult, clothes);
-        if (tShirts == null) {
-            tShirts = new ProductType();
-            tShirts.setName("футболки");
-            tShirts.setGender(female);
-            tShirts.setAge(adult);
-            tShirts.setCategory(clothes);
-            productTypeService.saveOrUpdate(tShirts);
+        ProductType femaleTShirts = productTypeService.findByParameters("футболки", female, adult, clothes);
+        if (femaleTShirts == null) {
+            femaleTShirts = new ProductType();
+            femaleTShirts.setName("футболки");
+            femaleTShirts.setGender(female);
+            femaleTShirts.setAge(adult);
+            femaleTShirts.setCategory(clothes);
+            productTypeService.saveOrUpdate(femaleTShirts);
         }
 
         //одежда брюки
-        ProductType pants = productTypeService.findByParameters("брюки", male, adult, clothes);
-        if (pants == null) {
-            pants = new ProductType();
-            pants.setName("брюки");
-            pants.setGender(male);
-            pants.setAge(adult);
-            pants.setCategory(clothes);
-            productTypeService.saveOrUpdate(pants);
+        ProductType malePants = productTypeService.findByParameters("брюки", male, adult, clothes);
+        if (malePants == null) {
+            malePants = new ProductType();
+            malePants.setName("брюки");
+            malePants.setGender(male);
+            malePants.setAge(adult);
+            malePants.setCategory(clothes);
+            productTypeService.saveOrUpdate(malePants);
         }
 
         //одежда шорты
-        ProductType shorts = productTypeService.findByParameters("шорты", male, adult, clothes);
-        if (shorts == null) {
-            shorts = new ProductType();
-            shorts.setName("шорты");
-            shorts.setGender(male);
-            shorts.setAge(adult);
-            shorts.setCategory(clothes);
-            productTypeService.saveOrUpdate(shorts);
+        ProductType maleShorts = productTypeService.findByParameters("шорты", male, adult, clothes);
+        if (maleShorts == null) {
+            maleShorts = new ProductType();
+            maleShorts.setName("шорты");
+            maleShorts.setGender(male);
+            maleShorts.setAge(adult);
+            maleShorts.setCategory(clothes);
+            productTypeService.saveOrUpdate(maleShorts);
         }
 
         //одежда толстовки
-        ProductType hoodies = productTypeService.findByParameters("толстовки", male, adult, clothes);
-        if (hoodies == null) {
-            hoodies = new ProductType();
-            hoodies.setName("толстовки");
-            hoodies.setGender(male);
-            hoodies.setAge(adult);
-            hoodies.setCategory(clothes);
-            productTypeService.saveOrUpdate(hoodies);
+        ProductType maleHoodies = productTypeService.findByParameters("толстовки", male, adult, clothes);
+        if (maleHoodies == null) {
+            maleHoodies = new ProductType();
+            maleHoodies.setName("толстовки");
+            maleHoodies.setGender(male);
+            maleHoodies.setAge(adult);
+            maleHoodies.setCategory(clothes);
+            productTypeService.saveOrUpdate(maleHoodies);
         }
 
         //одежда верхняя одежда
-        ProductType outerwear = productTypeService.findByParameters("верхняя одежда", male, adult, clothes);
-        if (outerwear == null) {
-            outerwear = new ProductType();
-            outerwear.setName("верхняя одежда");
-            outerwear.setGender(male);
-            outerwear.setAge(adult);
-            outerwear.setCategory(clothes);
-            productTypeService.saveOrUpdate(outerwear);
+        ProductType maleOuterwear = productTypeService.findByParameters("верхняя одежда", male, adult, clothes);
+        if (maleOuterwear == null) {
+            maleOuterwear = new ProductType();
+            maleOuterwear.setName("верхняя одежда");
+            maleOuterwear.setGender(male);
+            maleOuterwear.setAge(adult);
+            maleOuterwear.setCategory(clothes);
+            productTypeService.saveOrUpdate(maleOuterwear);
         }
 
         //обувь кроссовки
-        ProductType sneakers = productTypeService.findByParameters("кроссовки", male, adult, shoes);
-        if (sneakers == null) {
-            sneakers = new ProductType();
-            sneakers.setName("кроссовки");
-            sneakers.setGender(male);
-            sneakers.setAge(adult);
-            sneakers.setCategory(shoes);
-            productTypeService.saveOrUpdate(sneakers);
+        ProductType maleSneakers = productTypeService.findByParameters("кроссовки", male, adult, shoes);
+        if (maleSneakers == null) {
+            maleSneakers = new ProductType();
+            maleSneakers.setName("кроссовки");
+            maleSneakers.setGender(male);
+            maleSneakers.setAge(adult);
+            maleSneakers.setCategory(shoes);
+            productTypeService.saveOrUpdate(maleSneakers);
         }
 
         //обувь ботинки
-        ProductType boots = productTypeService.findByParameters("ботинки", male, adult, shoes);
-        if (boots == null) {
-            boots = new ProductType();
-            boots.setName("ботинки");
-            boots.setGender(male);
-            boots.setAge(adult);
-            boots.setCategory(shoes);
-            productTypeService.saveOrUpdate(boots);
+        ProductType maleBoots = productTypeService.findByParameters("ботинки", male, adult, shoes);
+        if (maleBoots == null) {
+            maleBoots = new ProductType();
+            maleBoots.setName("ботинки");
+            maleBoots.setGender(male);
+            maleBoots.setAge(adult);
+            maleBoots.setCategory(shoes);
+            productTypeService.saveOrUpdate(maleBoots);
         }
 
         //обувь шлепанцы
-        ProductType slippers = productTypeService.findByParameters("шлепанцы", male, adult, shoes);
-        if (slippers == null) {
-            slippers = new ProductType();
-            slippers.setName("шлепанцы");
-            slippers.setGender(male);
-            slippers.setAge(adult);
-            slippers.setCategory(shoes);
-            productTypeService.saveOrUpdate(slippers);
+        ProductType maleSlippers = productTypeService.findByParameters("шлепанцы", male, adult, shoes);
+        if (maleSlippers == null) {
+            maleSlippers = new ProductType();
+            maleSlippers.setName("шлепанцы");
+            maleSlippers.setGender(male);
+            maleSlippers.setAge(adult);
+            maleSlippers.setCategory(shoes);
+            productTypeService.saveOrUpdate(maleSlippers);
         }
 
         //аксессуары сумки
-        ProductType bags = productTypeService.findByParameters("сумки", male, adult, accessories);
-        if (bags == null) {
-            bags = new ProductType();
-            bags.setName("сумки");
-            bags.setGender(male);
-            bags.setAge(adult);
-            bags.setCategory(accessories);
-            productTypeService.saveOrUpdate(bags);
+        ProductType maleBags = productTypeService.findByParameters("сумки", male, adult, accessories);
+        if (maleBags == null) {
+            maleBags = new ProductType();
+            maleBags.setName("сумки");
+            maleBags.setGender(male);
+            maleBags.setAge(adult);
+            maleBags.setCategory(accessories);
+            productTypeService.saveOrUpdate(maleBags);
         }
 
         //аксессуары ремни
-        ProductType belts = productTypeService.findByParameters("ремни", male, adult, accessories);
-        if (belts == null) {
-            belts = new ProductType();
-            belts.setName("ремни");
-            belts.setGender(male);
-            belts.setAge(adult);
-            belts.setCategory(accessories);
-            productTypeService.saveOrUpdate(belts);
+        ProductType maleBelts = productTypeService.findByParameters("ремни", male, adult, accessories);
+        if (maleBelts == null) {
+            maleBelts = new ProductType();
+            maleBelts.setName("ремни");
+            maleBelts.setGender(male);
+            maleBelts.setAge(adult);
+            maleBelts.setCategory(accessories);
+            productTypeService.saveOrUpdate(maleBelts);
         }
 
         //аксессуары шляпы
-        ProductType hats = productTypeService.findByParameters("шляпы", male, adult, accessories);
-        if (hats == null) {
-            hats = new ProductType();
-            hats.setName("шляпы");
-            hats.setGender(male);
-            hats.setAge(adult);
-            hats.setCategory(accessories);
-            productTypeService.saveOrUpdate(hats);
+        ProductType maleHats = productTypeService.findByParameters("шляпы", male, adult, accessories);
+        if (maleHats == null) {
+            maleHats = new ProductType();
+            maleHats.setName("шляпы");
+            maleHats.setGender(male);
+            maleHats.setAge(adult);
+            maleHats.setCategory(accessories);
+            productTypeService.saveOrUpdate(maleHats);
         }
     }
 }
