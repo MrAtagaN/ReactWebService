@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
 import javax.validation.ValidationException;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import static java.text.MessageFormat.format;
 
