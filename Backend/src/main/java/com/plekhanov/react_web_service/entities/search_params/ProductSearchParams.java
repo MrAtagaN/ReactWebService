@@ -30,6 +30,6 @@ public class ProductSearchParams {
     String color;
     Boolean isNew;
     Boolean isSales;
-    Integer page;
-    Integer itemsInPage;
+    Integer page; // номер интервала
+    Integer itemsInPage; //количество объектов в интервале
 }

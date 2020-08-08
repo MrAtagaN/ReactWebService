@@ -7,10 +7,13 @@ import com.plekhanov.react_web_service.services.ProductService;
 import com.plekhanov.react_web_service.services.ProductTypeService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -31,6 +34,7 @@ public class ProductUploader {
     ProductTypeService productTypeService;
 
 
+    @SneakyThrows
     public void uploadData() {
         //мужские джинсы
         ProductType maleJeans = productTypeService.findByParameters("джинсы", male, adult, clothes);
@@ -194,6 +198,7 @@ public class ProductUploader {
             product10.setPrice(new BigDecimal(1399));
             product10.setSize(new HashSet<>(Arrays.asList(29, 31)));
             product10.setNamedSize(new HashSet<>(Arrays.asList("M", "S")));
+            product10.getImages().add(Files.readAllBytes(Paths.get("Backend/src/main/resources/demoData/tShirt.jpg")));
             product10.setColor("белый");
             productService.saveOrUpdate(product10);
         }
