@@ -19,16 +19,25 @@ class ProductTable extends Component {
 
 
     render() {
-        const listClothes = this.props.products.map((product) =>
-            <div>
-                {product.name} - {product.price}
+        const listProducts = this.props.products.map((product) =>
+            <div className='product-information'>
+                <div className='product-image'>
+                    <img  src="images/noImage.png"/>
+                </div>
+
+
+                <div >
+                    <div className='product-name'>{product.name}</div>
+                    <div className='product-price'>{product.price}</div>
+                </div>
             </div>
         );
 
         //TODO сделать отображение таблицей
         return (
             <div className={'rightContent'}>
-                {listClothes}
+                <div>{listProducts}</div>
+
             </div>
         );
 

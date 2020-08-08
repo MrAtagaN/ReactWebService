@@ -3,9 +3,11 @@
     color: #30383e;
     margin-right: 0px;
     margin-left: 0px;
+    font-size: 15px;
 }
 
 .leftContent {
+    margin-left: 25px;
     float: left; /*Задаем обтекание*/
     line-height: 20px; /*Высота строки +  верт. центрирования текста*/
     width: 178px;
