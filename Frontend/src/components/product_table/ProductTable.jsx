@@ -22,11 +22,10 @@ class ProductTable extends Component {
         const listProducts = this.props.products.map((product) =>
             <div className='product-information'>
                 <div className='product-image'>
-                    <img  src="images/noImage.png"/>
+                    {product.images.length === 0 && <img src="images/noImage.png"/>}
                 </div>
 
-
-                <div >
+                <div>
                     <div className='product-name'>{product.name}</div>
                     <div className='product-price'>{product.price}</div>
                 </div>
