@@ -10,6 +10,7 @@ CREATE TABLE product
     color           TEXT,
     is_new          BOOLEAN,
     is_sales        BOOLEAN,
+    main_image      INTEGER,
 
     CONSTRAINT product_name_unique UNIQUE (name)
 );

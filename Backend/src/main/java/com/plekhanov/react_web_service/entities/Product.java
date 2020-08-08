@@ -3,7 +3,9 @@ package com.plekhanov.react_web_service.entities;
 import lombok.Data;
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import static javax.persistence.FetchType.EAGER;
@@ -65,7 +67,11 @@ public class Product {
     @ElementCollection(fetch = EAGER)
     @CollectionTable(name = "image", joinColumns = @JoinColumn(name = "product_id"))
     @Column(name = "data")
-    Set<byte[]> images = new HashSet<>();
+    @OrderColumn
+    List<byte[]> images = new ArrayList<>();
+
+    @Column(name = "main_image")
+    Integer mainImage; //номер в списке images
 
 
 }

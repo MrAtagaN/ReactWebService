@@ -9,6 +9,7 @@ import lombok.Builder;
 import lombok.Value;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -33,7 +34,8 @@ public class ProductDto {
     String color;
     Boolean isNew;
     Boolean isSales;
-    Set<byte[]> images;
+    List<byte[]> images;
+    Integer mainImage;
 
     /**
      * Фабричный метод. Возвращает {@link ProductDto} из переданного {@link Product}
@@ -69,6 +71,7 @@ public class ProductDto {
                 .isNew(product.getIsNew())
                 .isSales(product.getIsSales())
                 .images(product.getImages())
+                .mainImage(product.getMainImage())
                 .build();
     }
 }
