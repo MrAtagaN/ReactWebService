@@ -97,17 +97,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteProductFromFavorite(final Integer productId, final User user) {
         final Set<UserFavoriteProduct> favoriteProducts = user.getFavoriteProducts();
-        UserFavoriteProduct toDelete = null;
-        for (UserFavoriteProduct favoriteProduct : favoriteProducts) {
+
+        favoriteProducts.removeIf(favoriteProduct -> {
             final Product product = favoriteProduct.getProduct();
-            if (product.getId().equals(productId)) {
-                toDelete = favoriteProduct;
-                break;
-            }
-        }
-        if (toDelete != null) {
-            favoriteProducts.remove(toDelete);
-        }
+            return product.getId().equals(productId);
+        });
+
         userDao.saveOrUpdate(user);
     }
 }
