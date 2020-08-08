@@ -57,21 +57,26 @@ public class UserServiceImpl implements UserService {
     }
 
 
+    /**
+     * Удаляется из списка только один продукт
+     */
     @Override
-    public void deleteProductFromBag(final Integer productId, final User user) {
-        final List<UserBagProduct> bagProducts = user.getBagProducts();
-        int index = -1;
-        for (int i = 0; i < bagProducts.size(); i++) {
-            final Product product = bagProducts.get(i).getProduct();
-            if (product.getId().equals(productId)) {
-                index = i;
-                break;
+    public void deleteProductFromBag(final Integer productIdToDelete, final User user) {
+        synchronized (user) {
+            final List<UserBagProduct> bagProducts = user.getBagProducts();
+            int index = -1;
+            for (int i = 0; i < bagProducts.size(); i++) {
+                final Integer productIdInBag = bagProducts.get(i).getProduct().getId();
+                if (productIdInBag.equals(productIdToDelete)) {
+                    index = i;
+                    break;
+                }
             }
+            if (index != -1) {
+                bagProducts.remove(index);
+            }
+            userDao.saveOrUpdate(user);
         }
-        if (index != -1) {
-            bagProducts.remove(index);
-        }
-        userDao.saveOrUpdate(user);
     }
 
 
