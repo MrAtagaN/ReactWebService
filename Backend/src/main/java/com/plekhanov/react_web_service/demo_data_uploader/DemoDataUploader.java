@@ -22,7 +22,7 @@ public class DemoDataUploader {
 
 
     public void uploadData() {
-        System.setProperty("file.encoding", "UTF-8");
+        String bugfix = "это строка - решение бага с кодировкой";
         userUploader.uploadData();
         //сначала загружается тип, затем продукты
         productTypeUploader.uploadData();
