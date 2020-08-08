@@ -32,8 +32,8 @@ public class ProductUploader {
 
 
     public void uploadData() {
-        //джинсы
-        ProductType jeans = productTypeService.findByParameters("джинсы", male, adult, clothes);
+        //мужские джинсы
+        ProductType maleJeans = productTypeService.findByParameters("джинсы", male, adult, clothes);
 
         //модель 123
         Set<Product> found = productService.search(ProductSearchParams.builder().name("модель 123").build());
@@ -41,7 +41,7 @@ public class ProductUploader {
             Product product = new Product();
             product.setName("модель 123");
             product.setDescription("джинсы классические, прямые");
-            product.setType(jeans);
+            product.setType(maleJeans);
             product.setBrand("gap");
             product.setPrice(new BigDecimal(4999));
             product.setSize(new HashSet<>(Arrays.asList(30, 31, 32)));
@@ -58,7 +58,7 @@ public class ProductUploader {
             product2.setDescription("Джинсовая коллекция. Линия Casual. Экологичный хлопок. Ткань ultra-comfort cashmere " +
                     "touch. Крой скинни. Итальянская ткань. Биоразлагаемая эластичная ткань. Темный цвет с эффектом " +
                     "потертости. Экологичный краситель.");
-            product2.setType(jeans);
+            product2.setType(maleJeans);
             product2.setBrand("mango");
             product2.setPrice(new BigDecimal(3499));
             product2.setSize(new HashSet<>(Arrays.asList(30, 31, 32)));
@@ -73,7 +73,7 @@ public class ProductUploader {
             product3.setName("Джинсы-скинни sculpt");
             product3.setDescription("Укороченная длина. Крой скинни. Посадка на талии. Ткань из экологичного хлопка. По " +
                     "бокам два кармана. Карман для монет. Сзади два накладных кармана. Шлевки. Застежка на молнию и пуговицу.");
-            product3.setType(jeans);
+            product3.setType(maleJeans);
             product3.setBrand("mango");
             product3.setPrice(new BigDecimal(4499));
             product3.setSize(new HashSet<>(Arrays.asList(30, 31, 32)));
@@ -82,8 +82,8 @@ public class ProductUploader {
             productService.saveOrUpdate(product3);
         }
 
-        //рубашки
-        ProductType shirts = productTypeService.findByParameters("рубашки", male, adult, clothes);
+        //мужские рубашки
+        ProductType MaleShirts = productTypeService.findByParameters("рубашки", male, adult, clothes);
 
         //Рубашка regular-fit из светлого денима
         Set<Product> found4 = productService.search(ProductSearchParams.builder().name("Рубашка regular-fit из светлого денима").build());
@@ -92,7 +92,7 @@ public class ProductUploader {
             product4.setName("Рубашка regular-fit из светлого денима");
             product4.setDescription("Линия Casual. Regular fit. Светлый цвет. Воротник \"Акула\". На груди накладной " +
                     "карман. Длинные рукава. Закругленные манжеты с застежкой на две пуговицы.");
-            product4.setType(shirts);
+            product4.setType(MaleShirts);
             product4.setBrand("mango");
             product4.setPrice(new BigDecimal(2999));
             product4.setSize(new HashSet<>(Arrays.asList(30, 31, 32)));
@@ -108,7 +108,7 @@ public class ProductUploader {
             product5.setName("Хлопковая рубашка regular fit с принтом");
             product5.setDescription("Линия Casual. Изделие выполнено из хлопка. Дизайн с фактурной выделкой. Принт. " +
                     "Regular fit. Классический воротник. Короткие рукава. Застежка на пуговицы.");
-            product5.setType(shirts);
+            product5.setType(MaleShirts);
             product5.setBrand("gap");
             product5.setPrice(new BigDecimal(2999));
             product5.setSize(new HashSet<>(Arrays.asList(30, 31, 32)));
@@ -124,7 +124,7 @@ public class ProductUploader {
             product6.setName("Топ со сборками и принтом");
             product6.setDescription("100% органический хлопок. Цветочный принт. Присборенная вставка. Рукава-фонарики " +
                     "три четверти. Внизу волан.");
-            product6.setType(shirts);
+            product6.setType(MaleShirts);
             product6.setBrand("mango");
             product6.setPrice(new BigDecimal(1999));
             product6.setSize(new HashSet<>(Arrays.asList(30, 31, 32)));
@@ -133,8 +133,8 @@ public class ProductUploader {
             productService.saveOrUpdate(product6);
         }
 
-        //футболки
-        ProductType tShirts = productTypeService.findByParameters("футболки", female, adult, clothes);
+        //женские футболки
+        ProductType femaleTShirts = productTypeService.findByParameters("футболки", female, adult, clothes);
 
         //Меланжевая футболка с карманом
         Set<Product> found7 = productService.search(ProductSearchParams.builder().name("Меланжевая футболка с карманом").build());
@@ -143,7 +143,7 @@ public class ProductUploader {
             product7.setName("Меланжевая футболка с карманом");
             product7.setDescription("Линия Casual. Базовый дизайн. В состав входит хлопок. Пестрая ткань. Круглый вырез " +
                     "горловины. Короткие рукава.");
-            product7.setType(tShirts);
+            product7.setType(femaleTShirts);
             product7.setBrand("gap");
             product7.setPrice(new BigDecimal(999));
             product7.setSize(new HashSet<>(Arrays.asList(30, 31, 32)));
@@ -159,7 +159,7 @@ public class ProductUploader {
             product8.setName("Хлопковая футболка с V-образной горловиной");
             product8.setDescription("Линия Casual. Базовый дизайн. Изделие выполнено из хлопка. V-образный вырез " +
                     "горловины. Короткие рукава.");
-            product8.setType(tShirts);
+            product8.setType(femaleTShirts);
             product8.setBrand("gap");
             product8.setPrice(new BigDecimal(799));
             product8.setSize(new HashSet<>(Arrays.asList(30, 31, 32)));
@@ -174,13 +174,28 @@ public class ProductUploader {
             Product product9 = new Product();
             product9.setName("Футболка из органического хлопка с принтом");
             product9.setDescription("100% органический хлопок. Набивной рисунок. Круглый вырез горловины. Короткие рукава.");
-            product9.setType(tShirts);
+            product9.setType(femaleTShirts);
             product9.setBrand("gap");
             product9.setPrice(new BigDecimal(899));
             product9.setSize(new HashSet<>(Arrays.asList(30, 31, 32)));
             product9.setNamedSize(new HashSet<>(Arrays.asList("M", "S")));
             product9.setColor("белый");
             productService.saveOrUpdate(product9);
+        }
+
+        //Футболка из органического хлопка с принтом
+        Set<Product> found10 = productService.search(ProductSearchParams.builder().name("Футболка с принтом").build());
+        if (found10.isEmpty()) {
+            Product product10 = new Product();
+            product10.setName("Футболка с принтом");
+            product10.setDescription("Футболка из хлопкового трикотажа с принтом");
+            product10.setType(femaleTShirts);
+            product10.setBrand("h&m");
+            product10.setPrice(new BigDecimal(1399));
+            product10.setSize(new HashSet<>(Arrays.asList(29, 31)));
+            product10.setNamedSize(new HashSet<>(Arrays.asList("M", "S")));
+            product10.setColor("белый");
+            productService.saveOrUpdate(product10);
         }
 
     }
