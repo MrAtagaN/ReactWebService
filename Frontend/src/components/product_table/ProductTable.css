@@ -6,7 +6,7 @@
 }
 
 .product-information {
-    height: 600px;
+    height: 450px;
     width: 300px;
     display: inline-block;
 
@@ -17,7 +17,6 @@
 
 
 .product-image {
-    margin: 0px;
     padding: 0px;
     height: 400px;
     width: 300px;
@@ -29,12 +28,14 @@
 
 .product-description {
 
+
 }
 
 .product-name {
     height: 50px;
+
+
 }
 
 .product-price {
-    height: 50px;
 }

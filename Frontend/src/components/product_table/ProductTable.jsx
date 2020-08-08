@@ -10,6 +10,22 @@ import './ProductTable.css';
  *
  * Объект Product имеет параметры:
  *
+ * Integer id;
+ * String name;
+ * String description;
+ * String subType;
+ * String brand;
+ * BigDecimal price;
+ * Set<Integer> size;
+ * Set<String> namedSize;
+ * Gender gender;
+ * String type;
+ * Category category;
+ * Age age;
+ * String color;
+ * Boolean isNew;
+ * Boolean isSales;
+ * Set<byte[]> images;
  */
 class ProductTable extends Component {
 
@@ -25,9 +41,10 @@ class ProductTable extends Component {
                     {product.images.length === 0 && <img src="images/noImage.png"/>}
                 </div>
 
-                <div>
+                <div className='product-description'>
                     <div className='product-name'>{product.name}</div>
                     <div className='product-price'>{product.price}</div>
+
                 </div>
             </div>
         );
