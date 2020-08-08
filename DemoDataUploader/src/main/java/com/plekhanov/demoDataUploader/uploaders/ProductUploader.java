@@ -1,4 +1,4 @@
-package com.plekhanov.react_web_service.demo_data_uploader.uploaders;
+package com.plekhanov.demoDataUploader.uploaders;
 
 import com.plekhanov.react_web_service.entities.Product;
 import com.plekhanov.react_web_service.entities.ProductType;
@@ -198,7 +198,7 @@ public class ProductUploader {
             product10.setPrice(new BigDecimal(1399));
             product10.setSize(new HashSet<>(Arrays.asList(29, 31)));
             product10.setNamedSize(new HashSet<>(Arrays.asList("M", "S")));
-            product10.getImages().add(Files.readAllBytes(Paths.get("Backend/src/main/resources/demoData/tShirt.jpg")));
+            product10.getImages().add(Files.readAllBytes(Paths.get("DemoDataUploader/src/main/resources/images/tShirt.jpg")));
             product10.setMainImage(0);
             product10.setColor("белый");
             productService.saveOrUpdate(product10);

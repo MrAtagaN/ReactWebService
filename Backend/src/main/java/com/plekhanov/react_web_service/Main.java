@@ -1,11 +1,7 @@
 package com.plekhanov.react_web_service;
 
-import com.plekhanov.react_web_service.demo_data_uploader.DemoDataUploader;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Bean;
 
 /**
  * Запуск приложения
@@ -18,17 +14,6 @@ public class Main {
         SpringApplication.run(Main.class, args);
     }
 
-
-    /**
-     * Выполнение при старте приложения
-     */
-    @Bean
-    public CommandLineRunner commandLineRunner(ApplicationContext context) {
-        return (args) -> {
-            //загрузка в базу тестовых данных
-            context.getBean(DemoDataUploader.class).uploadData();
-        };
-    }
 
 
     //текущее: На фронте отображать товар
