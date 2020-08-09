@@ -14,6 +14,7 @@ import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -33,8 +34,8 @@ public class ProductDaoImpl implements ProductDao {
 
     @Override
     public Product findById(final int id) {
-        try (Session session = entityManager.unwrap(Session.class)) {
-            return session.find(Product.class, id);
+        try {
+            return entityManager.find(Product.class, id);
         } catch (Exception e) {
             log.error("Error while find Product, id: {}, {}", id, e.getMessage());
             throw e;
@@ -44,9 +45,9 @@ public class ProductDaoImpl implements ProductDao {
 
     @Override
     public void delete(final int id) {
-        try (Session session = entityManager.unwrap(Session.class)) {
-            final Product product = session.load(Product.class, id);
-            session.delete(product);
+        try {
+            final Product product = entityManager.find(Product.class, id);
+            entityManager.remove(product);
         } catch (Exception e) {
             log.error("Error while delete Product, id: {}, {}", id, e.getMessage());
             throw e;
@@ -56,8 +57,8 @@ public class ProductDaoImpl implements ProductDao {
 
     @Override
     public Product saveOrUpdate(final Product product) {
-        try (Session session = entityManager.unwrap(Session.class)) {
-            return (Product) session.merge(product);
+        try {
+            return entityManager.merge(product);
         } catch (Exception e) {
             log.error("Error while save Product, {}", e.getMessage());
             throw e;
@@ -67,7 +68,7 @@ public class ProductDaoImpl implements ProductDao {
 
     @Override
     public Set<Product> search(final ProductSearchParams productSearchParams) {
-        try (Session session = entityManager.unwrap(Session.class)) {
+        try {
             final Map<String, Object> params = new HashMap<>();
             final StringBuilder stringQuery = new StringBuilder("FROM Product p WHERE 1=1");
 
@@ -147,8 +148,8 @@ public class ProductDaoImpl implements ProductDao {
                 params.put("isSales", isSales);
             }
 
-            final Query<Product> query = session.createQuery(stringQuery.toString(), Product.class);
-            query.setProperties(params);
+            final TypedQuery<Product> query = entityManager.createQuery(stringQuery.toString(), Product.class);
+            params.forEach(query::setParameter);
 
             final Integer page = productSearchParams.getPage();
             final Integer itemsInPage = productSearchParams.getItemsInPage();
@@ -157,7 +158,7 @@ public class ProductDaoImpl implements ProductDao {
                 query.setMaxResults(itemsInPage);
             }
 
-            return new HashSet<>(query.list());
+            return new HashSet<>(query.getResultList());
         } catch (Exception e) {
             log.error("Error while search Product: {}", e.getMessage());
             throw e;

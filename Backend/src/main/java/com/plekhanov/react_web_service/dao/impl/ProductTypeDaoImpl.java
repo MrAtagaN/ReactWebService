@@ -11,11 +11,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -36,15 +36,15 @@ public class ProductTypeDaoImpl implements ProductTypeDao {
 
     @Override
     public ProductType findByParameters(final String name, final Gender gender, final Age age, final Category category) {
-        try (Session session = entityManager.unwrap(Session.class)) {
-            final Query<ProductType> query =
-                    session.createQuery("FROM ProductType p " +
+        try {
+            final TypedQuery<ProductType> query =
+                    entityManager.createQuery("FROM ProductType p " +
                             "WHERE p.category = :category AND p.name = :name AND p.gender = :gender AND p.age = :age", ProductType.class);
             query.setParameter("category", category);
             query.setParameter("gender", gender);
             query.setParameter("age", age);
             query.setParameter("name", name);
-            return singleResult(query.list());
+            return query.getSingleResult();
         } catch (Exception e) {
             log.error("Error while findByCategory ProductType: {}", e.getMessage());
             throw e;
@@ -55,7 +55,7 @@ public class ProductTypeDaoImpl implements ProductTypeDao {
     @Override
     public Set<ProductType> search(final ProductTypeSearchParams productTypeSearchParams) {
 
-        try (Session session = entityManager.unwrap(Session.class)) {
+        try {
             final Map<String, Object> params = new HashMap<>();
             final StringBuilder stringQuery = new StringBuilder("FROM ProductType p WHERE 1=1");
 
@@ -80,10 +80,10 @@ public class ProductTypeDaoImpl implements ProductTypeDao {
                 params.put("category", category);
             }
 
-            final Query<ProductType> query = session.createQuery(stringQuery.toString(), ProductType.class);
-            query.setProperties(params);
+            final TypedQuery<ProductType> query = entityManager.createQuery(stringQuery.toString(), ProductType.class);
+            params.forEach(query::setParameter);
 
-            return new HashSet<>(query.list());
+            return new HashSet<>(query.getResultList());
         } catch (Exception e) {
             log.error("Error while findByCategory ProductType: {}", e.getMessage());
             throw e;
@@ -93,9 +93,9 @@ public class ProductTypeDaoImpl implements ProductTypeDao {
 
     @Override
     public void delete(final int id) {
-        try (Session session = entityManager.unwrap(Session.class)) {
-            final ProductType productType = session.load(ProductType.class, id);
-            session.delete(productType);
+        try {
+            final ProductType productType = entityManager.find(ProductType.class, id);
+            entityManager.remove(productType);
         } catch (Exception e) {
             log.error("Error while delete ProductType, id: {}, {}", id, e.getMessage());
             throw e;
@@ -105,9 +105,8 @@ public class ProductTypeDaoImpl implements ProductTypeDao {
 
     @Override
     public ProductType saveOrUpdate(final ProductType productType) {
-        try (Session session = entityManager.unwrap(Session.class)) {
-            final ProductType savedProductType = (ProductType) session.merge(productType);
-            return savedProductType;
+        try {
+            return entityManager.merge(productType);
         } catch (Exception e) {
             log.error("Error while save ProductType, {}", e.getMessage());
             throw e;
