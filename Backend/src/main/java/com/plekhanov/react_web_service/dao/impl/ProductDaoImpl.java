@@ -10,11 +10,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -25,14 +25,15 @@ import java.util.Set;
 @RequiredArgsConstructor
 @Repository
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
+@Transactional
 public class ProductDaoImpl implements ProductDao {
 
-    SessionFactory sessionFactory;
+    EntityManager entityManager;
 
 
     @Override
     public Product findById(final int id) {
-        try (Session session = sessionFactory.openSession()) {
+        try (Session session = entityManager.unwrap(Session.class)) {
             return session.find(Product.class, id);
         } catch (Exception e) {
             log.error("Error while find Product, id: {}, {}", id, e.getMessage());
@@ -43,17 +44,11 @@ public class ProductDaoImpl implements ProductDao {
 
     @Override
     public void delete(final int id) {
-        Transaction transaction = null;
-        try (Session session = sessionFactory.openSession()) {
-            transaction = session.beginTransaction();
+        try (Session session = entityManager.unwrap(Session.class)) {
             final Product product = session.load(Product.class, id);
             session.delete(product);
-            transaction.commit();
         } catch (Exception e) {
             log.error("Error while delete Product, id: {}, {}", id, e.getMessage());
-            if (transaction != null) {
-                transaction.rollback();
-            }
             throw e;
         }
     }
@@ -61,17 +56,10 @@ public class ProductDaoImpl implements ProductDao {
 
     @Override
     public Product saveOrUpdate(final Product product) {
-        Transaction transaction = null;
-        try (Session session = sessionFactory.openSession()) {
-            transaction = session.beginTransaction();
-            final Product savedProduct = (Product) session.merge(product);
-            transaction.commit();
-            return savedProduct;
+        try (Session session = entityManager.unwrap(Session.class)) {
+            return (Product) session.merge(product);
         } catch (Exception e) {
             log.error("Error while save Product, {}", e.getMessage());
-            if (transaction != null) {
-                transaction.rollback();
-            }
             throw e;
         }
     }
@@ -79,7 +67,7 @@ public class ProductDaoImpl implements ProductDao {
 
     @Override
     public Set<Product> search(final ProductSearchParams productSearchParams) {
-        try (Session session = sessionFactory.openSession()) {
+        try (Session session = entityManager.unwrap(Session.class)) {
             final Map<String, Object> params = new HashMap<>();
             final StringBuilder stringQuery = new StringBuilder("FROM Product p WHERE 1=1");
 

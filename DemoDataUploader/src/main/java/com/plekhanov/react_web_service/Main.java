@@ -1,14 +1,31 @@
 package com.plekhanov.react_web_service;
 
 import com.plekhanov.react_web_service.demoDataUploader.DemoDataUploader;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.ComponentScan;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.WebApplicationType;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Bean;
 
-@ComponentScan
+@SpringBootApplication
 public class Main {
 
     public static void main(String[] args) {
-        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(Main.class);
-        applicationContext.getBean(DemoDataUploader.class).uploadData();
+        //без сервера
+        new SpringApplicationBuilder(Main.class)
+                .web(WebApplicationType.NONE)
+                .run(args);
     }
+
+
+    @Bean
+    public CommandLineRunner commandLineRunner(ApplicationContext context) {
+        return (args) -> {
+            context.getBean(DemoDataUploader.class).uploadData();
+        };
+    }
+
+
 }
