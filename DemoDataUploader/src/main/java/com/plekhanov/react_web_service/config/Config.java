@@ -1,4 +1,4 @@
-package com.plekhanov.config;
+package com.plekhanov.react_web_service.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.context.annotation.Bean;

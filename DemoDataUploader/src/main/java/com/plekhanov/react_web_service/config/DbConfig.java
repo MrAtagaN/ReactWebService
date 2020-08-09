@@ -1,4 +1,4 @@
-package com.plekhanov.config;
+package com.plekhanov.react_web_service.config;
 
 import org.flywaydb.core.Flyway;
 import org.springframework.beans.factory.annotation.Value;

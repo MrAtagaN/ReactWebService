@@ -20,6 +20,7 @@
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
+                    <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
 
@@ -32,6 +33,7 @@
                             <goal>repackage</goal>
                         </goals>
                         <configuration>
+                            <classifier>exec</classifier>
                             <outputDirectory>../</outputDirectory>
                             <mainClass>
                                 com.plekhanov.react_web_service.Main

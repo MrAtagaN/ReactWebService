@@ -1,8 +1,8 @@
-package com.plekhanov.demoDataUploader;
+package com.plekhanov.react_web_service.demoDataUploader;
 
-import com.plekhanov.demoDataUploader.uploaders.ProductTypeUploader;
-import com.plekhanov.demoDataUploader.uploaders.ProductUploader;
-import com.plekhanov.demoDataUploader.uploaders.UserUploader;
+import com.plekhanov.react_web_service.demoDataUploader.uploaders.ProductTypeUploader;
+import com.plekhanov.react_web_service.demoDataUploader.uploaders.ProductUploader;
+import com.plekhanov.react_web_service.demoDataUploader.uploaders.UserUploader;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;

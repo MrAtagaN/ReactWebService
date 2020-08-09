@@ -1,6 +1,6 @@
-package com.plekhanov;
+package com.plekhanov.react_web_service;
 
-import com.plekhanov.demoDataUploader.DemoDataUploader;
+import com.plekhanov.react_web_service.demoDataUploader.DemoDataUploader;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 
