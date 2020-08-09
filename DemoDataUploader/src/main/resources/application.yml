@@ -4,6 +4,8 @@ server:
     uri-encoding: UTF-8
 
 spring:
+  jmx:
+    enabled: false
   jpa:
     properties:
       hibernate:
