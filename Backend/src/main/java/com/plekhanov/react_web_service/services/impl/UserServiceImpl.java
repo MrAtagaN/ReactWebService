@@ -61,7 +61,8 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public void deleteProductFromBag(final Integer productIdToDelete, final User user) {
-        synchronized (user) {
+        final Integer userId = user.getId();
+        synchronized (userId) {
             final List<UserBagProduct> bagProducts = user.getBagProducts();
             int index = -1;
             for (int i = 0; i < bagProducts.size(); i++) {
@@ -73,8 +74,8 @@ public class UserServiceImpl implements UserService {
             }
             if (index != -1) {
                 bagProducts.remove(index);
+                userDao.saveOrUpdate(user);
             }
-            userDao.saveOrUpdate(user);
         }
     }
 
