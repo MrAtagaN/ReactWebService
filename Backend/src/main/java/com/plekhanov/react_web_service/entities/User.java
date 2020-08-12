@@ -69,9 +69,6 @@ public class User {
     String email;
 
 
-    @ToString.Exclude          // чтобы не было кругового вызова toString, Equals, HashCode ломбоком
-    @EqualsAndHashCode.Exclude // т.к. User и UserBagProduct имеют двунаправленную связь
-
     @ElementCollection(fetch = EAGER)
     @CollectionTable(name = "user_bag_product", joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")})
     @MapKeyJoinColumn(name = "product_id")
@@ -81,12 +78,9 @@ public class User {
 
     @ToString.Exclude          // чтобы не было кругового вызова toString, Equals, HashCode ломбоком,
     @EqualsAndHashCode.Exclude // т.к. User и UserFavoriteProduct имеют двунаправленную связь
-
-//    @ElementCollection(fetch = EAGER)
-//    @CollectionTable(name = "user_favorite_product", joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")})
-//    @Column(name = "product_id")
-            @Transient
-    Set<Product> favoriteProducts = new HashSet<>();
+    @OneToMany(mappedBy = "user", cascade = ALL, orphanRemoval = true, fetch = EAGER)
+    @Fetch(SUBSELECT)
+    Set<UserFavoriteProduct> favoriteProducts = new HashSet<>();
 
     //TODO добавить поля: orders
 

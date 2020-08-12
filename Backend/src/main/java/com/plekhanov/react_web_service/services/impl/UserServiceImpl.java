@@ -4,6 +4,7 @@ import com.plekhanov.react_web_service.dao.ProductDao;
 import com.plekhanov.react_web_service.dao.UserDao;
 import com.plekhanov.react_web_service.entities.Product;
 import com.plekhanov.react_web_service.entities.User;
+import com.plekhanov.react_web_service.entities.UserFavoriteProduct;
 import com.plekhanov.react_web_service.services.UserService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -44,7 +45,6 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    @Transactional(isolation = Isolation.REPEATABLE_READ)
     public void addProductToBag(final Integer productId, final User user) {
         final Product product = productDao.findById(productId);
         if (product == null) {
@@ -61,7 +61,6 @@ public class UserServiceImpl implements UserService {
      * Удаляется из списка только один продукт
      */
     @Override
-    @Transactional(isolation = Isolation.REPEATABLE_READ)
     public void deleteProductFromBag(final Integer productIdToDelete, final User user) {
         final Map<Product, Integer> bagProducts = user.getBagProducts();
 
@@ -80,13 +79,15 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    @Transactional(isolation = Isolation.REPEATABLE_READ)
     public void addProductToFavorite(final Integer productId, final User user) {
         final Product product = productDao.findById(productId);
         if (product == null) {
             throw new ValidationException(format("No product with id: {0}", productId));
         }
-        user.getFavoriteProducts().add(product);
+
+        Set<UserFavoriteProduct> favoriteProducts = user.getFavoriteProducts();
+        favoriteProducts.add(new UserFavoriteProduct(user, product));
+
         userDao.saveOrUpdate(user);
     }
 
@@ -94,8 +95,8 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional(isolation = Isolation.REPEATABLE_READ)
     public void deleteProductFromFavorite(final Integer productId, final User user) {
-        final Set<Product> favoriteProducts = user.getFavoriteProducts();
-        favoriteProducts.removeIf(product -> product.getId().equals(productId));
+        Set<UserFavoriteProduct> favoriteProducts = user.getFavoriteProducts();
+        favoriteProducts.removeIf(userFavoriteProduct -> userFavoriteProduct.getProduct().getId().equals(productId));
         userDao.saveOrUpdate(user);
     }
 }
