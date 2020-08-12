@@ -11,6 +11,8 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.ValidationException;
 import java.util.List;
@@ -45,6 +47,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
+    @Transactional(isolation = Isolation.REPEATABLE_READ)
     public void addProductToBag(final Integer productId, final User user) {
         final Product product = productDao.findById(productId);
         if (product == null) {
@@ -60,27 +63,26 @@ public class UserServiceImpl implements UserService {
      * Удаляется из списка только один продукт
      */
     @Override
+    @Transactional(isolation = Isolation.REPEATABLE_READ)
     public void deleteProductFromBag(final Integer productIdToDelete, final User user) {
-        final Integer userId = user.getId();
-        synchronized (userId) {
-            final List<UserBagProduct> bagProducts = user.getBagProducts();
-            int index = -1;
-            for (int i = 0; i < bagProducts.size(); i++) {
-                final Integer productIdInBag = bagProducts.get(i).getProduct().getId();
-                if (productIdInBag.equals(productIdToDelete)) {
-                    index = i;
-                    break;
-                }
+        final List<UserBagProduct> bagProducts = user.getBagProducts();
+        int index = -1;
+        for (int i = 0; i < bagProducts.size(); i++) {
+            final Integer productIdInBag = bagProducts.get(i).getProduct().getId();
+            if (productIdInBag.equals(productIdToDelete)) {
+                index = i;
+                break;
             }
-            if (index != -1) {
-                bagProducts.remove(index);
-                userDao.saveOrUpdate(user);
-            }
+        }
+        if (index != -1) {
+            bagProducts.remove(index);
+            userDao.saveOrUpdate(user);
         }
     }
 
 
     @Override
+    @Transactional(isolation = Isolation.REPEATABLE_READ)
     public void addProductToFavorite(final Integer productId, final User user) {
         final Product product = productDao.findById(productId);
         if (product == null) {
@@ -92,6 +94,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
+    @Transactional(isolation = Isolation.REPEATABLE_READ)
     public void deleteProductFromFavorite(final Integer productId, final User user) {
         final Set<UserFavoriteProduct> favoriteProducts = user.getFavoriteProducts();
 
