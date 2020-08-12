@@ -4,7 +4,6 @@ import com.plekhanov.react_web_service.dao.ProductDao;
 import com.plekhanov.react_web_service.dao.UserDao;
 import com.plekhanov.react_web_service.entities.Product;
 import com.plekhanov.react_web_service.entities.User;
-import com.plekhanov.react_web_service.entities.UserFavoriteProduct;
 import com.plekhanov.react_web_service.services.UserService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -87,7 +86,7 @@ public class UserServiceImpl implements UserService {
         if (product == null) {
             throw new ValidationException(format("No product with id: {0}", productId));
         }
-        user.getFavoriteProducts().add(new UserFavoriteProduct(user, product));
+        user.getFavoriteProducts().add(product);
         userDao.saveOrUpdate(user);
     }
 
@@ -95,13 +94,8 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional(isolation = Isolation.REPEATABLE_READ)
     public void deleteProductFromFavorite(final Integer productId, final User user) {
-        final Set<UserFavoriteProduct> favoriteProducts = user.getFavoriteProducts();
-
-        favoriteProducts.removeIf(favoriteProduct -> {
-            final Product product = favoriteProduct.getProduct();
-            return product.getId().equals(productId);
-        });
-
+        final Set<Product> favoriteProducts = user.getFavoriteProducts();
+        favoriteProducts.removeIf(product -> product.getId().equals(productId));
         userDao.saveOrUpdate(user);
     }
 }

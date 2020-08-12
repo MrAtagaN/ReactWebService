@@ -81,9 +81,11 @@ public class User {
 
     @ToString.Exclude          // чтобы не было кругового вызова toString, Equals, HashCode ломбоком,
     @EqualsAndHashCode.Exclude // т.к. User и UserFavoriteProduct имеют двунаправленную связь
-    @OneToMany(mappedBy = "user", cascade = ALL, orphanRemoval = true, fetch = EAGER)
-    @Fetch(SUBSELECT) // по умолчанию используется JOIN, но это не будет работать если есть две коллекции с fetch = EAGER
-    Set<UserFavoriteProduct> favoriteProducts = new HashSet<>();
+
+    @ElementCollection(fetch = EAGER)
+    @CollectionTable(name = "user_favorite_product", joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")})
+    @MapKeyColumn(name = "product_id")
+    Set<Product> favoriteProducts = new HashSet<>();
 
     //TODO добавить поля: orders
 

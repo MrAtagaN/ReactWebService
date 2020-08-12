@@ -2,7 +2,6 @@ package com.plekhanov.react_web_service.web.dto;
 
 import com.plekhanov.react_web_service.entities.Product;
 import com.plekhanov.react_web_service.entities.User;
-import com.plekhanov.react_web_service.entities.UserFavoriteProduct;
 import lombok.Builder;
 import lombok.Value;
 
@@ -52,11 +51,10 @@ public class UserDto {
     }
 
     /**
-     * Set<UserFavoriteProduct> -> Set<ProductDto>
+     * Set<Product> -> Set<ProductDto>
      */
-    private static Set<ProductDto> fromFavoriteProducts(final Set<UserFavoriteProduct> userFavoriteProducts) {
+    private static Set<ProductDto> fromFavoriteProducts(final Set<Product> userFavoriteProducts) {
         return userFavoriteProducts.stream()
-                .map(UserFavoriteProduct::getProduct)
                 .map(ProductDto::fromProduct)
                 .collect(Collectors.toSet());
     }
