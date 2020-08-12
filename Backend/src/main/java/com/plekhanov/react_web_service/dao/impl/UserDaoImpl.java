@@ -5,6 +5,7 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.stereotype.Repository;
 import com.plekhanov.react_web_service.entities.*;
 
@@ -58,7 +59,7 @@ public class UserDaoImpl implements UserDao {
         try {
             final TypedQuery<User> query = entityManager.createQuery("FROM User u WHERE u.email = :email", User.class);
             query.setParameter("email", email);
-            return query.getSingleResult();
+            return DataAccessUtils.singleResult(query.getResultList());
         } catch (Exception e) {
             log.error("Error while findByEmail User, email: {}, {}", email, e.getMessage());
             throw e;

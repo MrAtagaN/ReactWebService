@@ -2,14 +2,12 @@ package com.plekhanov.react_web_service.web.dto;
 
 import com.plekhanov.react_web_service.entities.Product;
 import com.plekhanov.react_web_service.entities.User;
-import com.plekhanov.react_web_service.entities.UserBagProduct;
 import com.plekhanov.react_web_service.entities.UserFavoriteProduct;
 import lombok.Builder;
 import lombok.Value;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -25,8 +23,8 @@ public class UserDto {
     String username;
     String email;
     LocalDateTime lastEnter;
-    Map<Product, Integer> bagProducts;
-    Set<Product> favoriteProducts;
+    Map<ProductDto, Integer> bagProducts;
+    Set<ProductDto> favoriteProducts;
 
     /**
      * Фабричный метод. Возвращает {@link UserDto} из переданного {@link User}
@@ -43,31 +41,23 @@ public class UserDto {
     }
 
     /**
-     * List<UserBagProductDao> -> Map<Product, Integer>
+     * Map<Product, Integer> -> Map<ProductDto, Integer>
      */
-    private static Map<Product, Integer> fromBagProducts(final List<UserBagProduct> userBagProducts) {
-        List<Product> products = userBagProducts.stream()
-                .map(UserBagProduct::getProduct)
-                .collect(Collectors.toList());
-
-        final Map<Product, Integer> map = new HashMap<>();
-        products.forEach(product -> {
-            if (map.containsKey(product)) {
-                Integer count = map.get(product);
-                map.put(product, ++count);
-            } else {
-                map.put(product, 1);
-            }
+    private static Map<ProductDto, Integer> fromBagProducts(final Map<Product, Integer> userBagProducts) {
+        Map<ProductDto, Integer> result = new HashMap<>();
+        userBagProducts.forEach((product, count) -> {
+            result.put(ProductDto.fromProduct(product), count);
         });
-        return map;
+        return result;
     }
 
     /**
-     * Set<UserFavoriteProduct> -> Set<Product>
+     * Set<UserFavoriteProduct> -> Set<ProductDto>
      */
-    private static Set<Product> fromFavoriteProducts(final Set<UserFavoriteProduct> userFavoriteProducts) {
+    private static Set<ProductDto> fromFavoriteProducts(final Set<UserFavoriteProduct> userFavoriteProducts) {
         return userFavoriteProducts.stream()
                 .map(UserFavoriteProduct::getProduct)
+                .map(ProductDto::fromProduct)
                 .collect(Collectors.toSet());
     }
 }

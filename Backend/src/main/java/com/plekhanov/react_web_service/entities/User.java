@@ -8,10 +8,7 @@ import org.hibernate.annotations.Fetch;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static javax.persistence.CascadeType.ALL;
 import static javax.persistence.EnumType.STRING;
@@ -71,10 +68,16 @@ public class User {
     @Column(name = "email")
     String email;
 
+
     @ToString.Exclude          // чтобы не было кругового вызова toString, Equals, HashCode ломбоком
     @EqualsAndHashCode.Exclude // т.к. User и UserBagProduct имеют двунаправленную связь
-    @OneToMany(mappedBy = "user", cascade = ALL, orphanRemoval = true, fetch = EAGER)
-    List<UserBagProduct> bagProducts = new ArrayList<>();
+
+    @ElementCollection(fetch = EAGER)
+    @CollectionTable(name = "user_bag_product", joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")})
+    @MapKeyColumn(name = "product_id")
+    @Column(name = "count")
+    Map<Product, Integer> bagProducts = new HashMap<>();
+
 
     @ToString.Exclude          // чтобы не было кругового вызова toString, Equals, HashCode ломбоком,
     @EqualsAndHashCode.Exclude // т.к. User и UserFavoriteProduct имеют двунаправленную связь

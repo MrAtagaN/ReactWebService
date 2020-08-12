@@ -4,7 +4,6 @@ import com.plekhanov.react_web_service.dao.ProductDao;
 import com.plekhanov.react_web_service.dao.UserDao;
 import com.plekhanov.react_web_service.entities.Product;
 import com.plekhanov.react_web_service.entities.User;
-import com.plekhanov.react_web_service.entities.UserBagProduct;
 import com.plekhanov.react_web_service.entities.UserFavoriteProduct;
 import com.plekhanov.react_web_service.services.UserService;
 import lombok.AccessLevel;
@@ -15,8 +14,7 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.ValidationException;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static java.text.MessageFormat.format;
 
@@ -53,8 +51,9 @@ public class UserServiceImpl implements UserService {
         if (product == null) {
             throw new ValidationException(format("No product with id: {0}", productId));
         }
-        final UserBagProduct userBagProduct = new UserBagProduct(null, user, product);
-        user.getBagProducts().add(userBagProduct);
+        Map<Product, Integer> bagProducts = user.getBagProducts();
+        Integer count = bagProducts.getOrDefault(product, 0);
+        bagProducts.put(product, ++count);
         userDao.saveOrUpdate(user);
     }
 
@@ -65,19 +64,19 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional(isolation = Isolation.REPEATABLE_READ)
     public void deleteProductFromBag(final Integer productIdToDelete, final User user) {
-        final List<UserBagProduct> bagProducts = user.getBagProducts();
-        int index = -1;
-        for (int i = 0; i < bagProducts.size(); i++) {
-            final Integer productIdInBag = bagProducts.get(i).getProduct().getId();
-            if (productIdInBag.equals(productIdToDelete)) {
-                index = i;
-                break;
-            }
+        final Map<Product, Integer> bagProducts = user.getBagProducts();
+
+        final Product productToRemove = new Product();
+        productToRemove.setId(productIdToDelete);
+
+        final Integer count = bagProducts.getOrDefault(productToRemove, 0);
+        if (count <= 1) {
+            bagProducts.remove(productToRemove);
+        } else {
+            bagProducts.put(productToRemove, count - 1);
         }
-        if (index != -1) {
-            bagProducts.remove(index);
-            userDao.saveOrUpdate(user);
-        }
+
+        userDao.saveOrUpdate(user);
     }
 
 

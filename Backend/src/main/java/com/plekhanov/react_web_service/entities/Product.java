@@ -11,8 +11,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 /**
  * Товар
  *
- * name - уникальное, обязательное
- * type, price - обязательные
+ * name, type, price - обязательные
  */
 @Data
 @Entity(name = "Product")
@@ -76,11 +75,11 @@ public class Product {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Product product = (Product) o;
-        return name.equals(product.name);
+        return Objects.equals(id, product.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name);
+        return Objects.hash(id);
     }
 }

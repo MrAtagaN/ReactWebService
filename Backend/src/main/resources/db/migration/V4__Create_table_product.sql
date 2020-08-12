@@ -10,9 +10,7 @@ CREATE TABLE product
     color           TEXT,
     is_new          BOOLEAN,
     is_sales        BOOLEAN,
-    main_image      INTEGER,
-
-    CONSTRAINT product_name_unique UNIQUE (name)
+    main_image      INTEGER
 );
 
 CREATE INDEX product_type_id_index ON product (type_id);

@@ -10,6 +10,7 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -41,7 +42,7 @@ public class ProductTypeDaoImpl implements ProductTypeDao {
             query.setParameter("gender", gender);
             query.setParameter("age", age);
             query.setParameter("name", name);
-            return query.getSingleResult();
+            return DataAccessUtils.singleResult(query.getResultList());
         } catch (Exception e) {
             log.error("Error while findByCategory ProductType: {}", e.getMessage());
             throw e;
