@@ -44,6 +44,7 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
+
     public List<User> findByName(final String username) {
         try {
             final TypedQuery<User> query = entityManager.createQuery("FROM User u WHERE u.username = :username", User.class);
@@ -54,6 +55,7 @@ public class UserDaoImpl implements UserDao {
             throw e;
         }
     }
+
 
     public User findByEmail(final String email) {
         try {
