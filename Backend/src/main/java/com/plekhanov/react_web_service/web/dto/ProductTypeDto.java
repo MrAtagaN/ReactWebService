@@ -20,6 +20,7 @@ public class ProductTypeDto {
     Age age;
     Category category;
 
+
     /**
      * Фабричный метод. Возвращает {@link ProductTypeDto} из переданного {@link ProductType}
      */

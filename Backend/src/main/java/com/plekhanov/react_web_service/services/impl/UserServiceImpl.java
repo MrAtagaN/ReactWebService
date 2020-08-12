@@ -84,10 +84,8 @@ public class UserServiceImpl implements UserService {
         if (product == null) {
             throw new ValidationException(format("No product with id: {0}", productId));
         }
-
         Set<UserFavoriteProduct> favoriteProducts = user.getFavoriteProducts();
         favoriteProducts.add(new UserFavoriteProduct(user, product));
-
         userDao.saveOrUpdate(user);
     }
 

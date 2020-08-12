@@ -27,6 +27,7 @@ public class UserDto {
     Map<ProductDto, Integer> bagProducts;
     Set<ProductDto> favoriteProducts;
 
+
     /**
      * Фабричный метод. Возвращает {@link UserDto} из переданного {@link User}
      */
@@ -44,6 +45,7 @@ public class UserDto {
                 .build();
     }
 
+
     /**
      * Map<Product, Integer> -> Map<ProductDto, Integer>
      */
@@ -58,6 +60,7 @@ public class UserDto {
         result.remove(null);
         return result;
     }
+
 
     /**
      * Set<Product> -> Set<ProductDto>

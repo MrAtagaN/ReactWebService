@@ -37,6 +37,7 @@ public class ProductDto {
     List<byte[]> images;
     Integer mainImageNumber;
 
+
     /**
      * Фабричный метод. Возвращает {@link ProductDto} из переданного {@link Product}
      */
