@@ -23,13 +23,16 @@ public class ProductTypeDto {
     /**
      * Фабричный метод. Возвращает {@link ProductTypeDto} из переданного {@link ProductType}
      */
-    public static ProductTypeDto fromProductType(final ProductType product) {
+    public static ProductTypeDto fromProductType(final ProductType productType) {
+        if (productType == null) {
+            return null;
+        }
         return ProductTypeDto.builder()
-                .id(product.getId())
-                .name(product.getName())
-                .gender(product.getGender())
-                .age(product.getAge())
-                .category(product.getCategory())
+                .id(productType.getId())
+                .name(productType.getName())
+                .gender(productType.getGender())
+                .age(productType.getAge())
+                .category(productType.getCategory())
                 .build();
     }
 }

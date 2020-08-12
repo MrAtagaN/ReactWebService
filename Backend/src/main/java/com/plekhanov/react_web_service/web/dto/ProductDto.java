@@ -41,6 +41,9 @@ public class ProductDto {
      * Фабричный метод. Возвращает {@link ProductDto} из переданного {@link Product}
      */
     public static ProductDto fromProduct(final Product product) {
+        if (product == null) {
+            return null;
+        }
         ProductType productType = product.getType();
 
         Gender gender = null;
