@@ -35,7 +35,7 @@ public class ProductDto {
     Boolean isNew;
     Boolean isSales;
     List<byte[]> images;
-    Integer mainImage;
+    Integer mainImageNumber;
 
     /**
      * Фабричный метод. Возвращает {@link ProductDto} из переданного {@link Product}
@@ -71,7 +71,7 @@ public class ProductDto {
                 .isNew(product.getIsNew())
                 .isSales(product.getIsSales())
                 .images(product.getImages())
-                .mainImage(product.getMainImage())
+                .mainImageNumber(product.getMainImageNumber())
                 .build();
     }
 }

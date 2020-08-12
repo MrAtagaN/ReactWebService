@@ -199,7 +199,7 @@ public class ProductUploader {
             product10.setSize(new HashSet<>(Arrays.asList(29, 31)));
             product10.setNamedSize(new HashSet<>(Arrays.asList("M", "S")));
             product10.getImages().add(Files.readAllBytes(Paths.get("DemoDataUploader/src/main/resources/images/tShirt.jpg")));
-            product10.setMainImage(0);
+            product10.setMainImageNumber(0);
             product10.setColor("белый");
             productService.saveOrUpdate(product10);
         }

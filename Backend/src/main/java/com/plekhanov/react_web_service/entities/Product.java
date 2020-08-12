@@ -67,7 +67,7 @@ public class Product {
     List<byte[]> images = new ArrayList<>();
 
     @Column(name = "main_image")
-    Integer mainImage; //номер в списке images
+    Integer mainImageNumber; //номер в списке images
 
 
     @Override
