@@ -74,7 +74,7 @@ public class User {
 
     @ElementCollection(fetch = EAGER)
     @CollectionTable(name = "user_bag_product", joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")})
-    @MapKeyColumn(name = "product_id")
+    @MapKeyJoinColumn(name = "product_id")
     @Column(name = "count")
     Map<Product, Integer> bagProducts = new HashMap<>();
 
@@ -82,9 +82,10 @@ public class User {
     @ToString.Exclude          // чтобы не было кругового вызова toString, Equals, HashCode ломбоком,
     @EqualsAndHashCode.Exclude // т.к. User и UserFavoriteProduct имеют двунаправленную связь
 
-    @ElementCollection(fetch = EAGER)
-    @CollectionTable(name = "user_favorite_product", joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")})
-    @MapKeyColumn(name = "product_id")
+//    @ElementCollection(fetch = EAGER)
+//    @CollectionTable(name = "user_favorite_product", joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")})
+//    @Column(name = "product_id")
+            @Transient
     Set<Product> favoriteProducts = new HashSet<>();
 
     //TODO добавить поля: orders
