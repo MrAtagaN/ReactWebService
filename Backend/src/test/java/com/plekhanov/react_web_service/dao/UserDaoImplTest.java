@@ -28,9 +28,6 @@ public class UserDaoImplTest {
             userDao.saveOrUpdate(user);
     }
 
-    class SubTests {
-
-    }
 
     @Test
     void saveOrUpdate() {
