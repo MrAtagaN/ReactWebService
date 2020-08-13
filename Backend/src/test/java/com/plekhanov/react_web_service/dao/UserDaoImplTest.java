@@ -3,6 +3,7 @@ package com.plekhanov.react_web_service.dao;
 
 import com.plekhanov.react_web_service.entities.User;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -38,12 +39,21 @@ public class UserDaoImplTest {
     void findById() {
     }
 
+    @DisplayName("положительный findByName")
     @Test
-    void findByName() {
+    void positiveFindByNameTest() {
         //jdbcTemplate.update("INSERT INTO public.users (username, email) VALUES ('Sergey', 'gmail@plekhanov.ru')");
         List<User> found = userDao.findByName("Sergey");
         assertEquals(1, found.size());
         assertEquals("Sergey", found.get(0).getUsername());
+    }
+
+    @DisplayName("отрицательный findByName")
+    @Test
+    void negativeFindByNameTest() {
+        //jdbcTemplate.update("INSERT INTO public.users (username, email) VALUES ('Sergey', 'gmail@plekhanov.ru')");
+        List<User> found = userDao.findByName("Max");
+        assertEquals(0, found.size());
     }
 
     @Test
