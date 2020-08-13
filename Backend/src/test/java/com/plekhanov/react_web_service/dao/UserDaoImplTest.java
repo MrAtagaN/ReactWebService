@@ -2,13 +2,10 @@ package com.plekhanov.react_web_service.dao;
 
 
 import com.plekhanov.react_web_service.entities.User;
-import org.aspectj.lang.annotation.Before;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.List;
 
@@ -22,11 +19,16 @@ public class UserDaoImplTest {
     @Autowired
     UserDao userDao;
 
-    @Autowired
-    JdbcTemplate jdbcTemplate;
+    @BeforeAll
+    public void initDB() {
+            User user = new User();
+            user.setUsername("Sergey");
+            user.setEmail("gmail@plekhanov.ru");
+            user.setPassword("12345678");
+            userDao.saveOrUpdate(user);
+    }
 
-    @BeforeEach()
-    public void init() {
+    class SubTests {
 
     }
 
@@ -43,12 +45,14 @@ public class UserDaoImplTest {
     void findByName() {
         //jdbcTemplate.update("INSERT INTO public.users (username, email) VALUES ('Sergey', 'gmail@plekhanov.ru')");
         List<User> found = userDao.findByName("Sergey");
-        assertEquals(found.size(), 1);
+        assertEquals(1, found.size());
+        assertEquals("Sergey", found.get(0).getUsername());
     }
 
     @Test
     void findByEmail() {
         User found = userDao.findByEmail("gmail@plekhanov.ru");
         assertNotNull(found);
+        assertEquals("gmail@plekhanov.ru", found.getEmail());
     }
 }

@@ -13,7 +13,7 @@ spring:
     enabled: false
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: create # схема создается с помощью hibernate, т.к. скрипты миграции не работают на h2 базе
     properties:
       hibernate:
         dialect: org.hibernate.dialect.H2Dialect    # диалект sql для подключения hibernate к базе данных
