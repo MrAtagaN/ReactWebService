@@ -2,11 +2,18 @@ server:
   port: 80    # порт на котором работает приложение
   tomcat:
     uri-encoding: UTF-8
+  servlet:
+    encoding:
+      enabled: true
+      force: true
+      charset: UTF-8
 
 spring:
   jmx:
     enabled: false
   jpa:
+    hibernate:
+      ddl-auto: validate
     properties:
       hibernate:
         dialect: org.hibernate.dialect.SQLiteDialect    # диалект sql для подключения hibernate к базе данных
@@ -16,14 +23,11 @@ spring:
   flyway:
     baseline-on-migrate: true    # применять схемы миграции, если они не применены
     outOfOrder: true    # позволяет добавлять схемы миграции с номером не по-порядку
-    schemas:    # схема, в которую flyway будет делать миграцию
+    schemas:   # схема, в которую flyway будет делать миграцию
   mvc:
     throw-exception-if-no-handler-found: true
   http:
-    encoding:
-      enabled: true
-      charset: UTF-8
-      force: true
+
 
 
 

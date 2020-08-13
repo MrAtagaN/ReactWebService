@@ -83,6 +83,14 @@
             <scope>provided</scope>
         </dependency>
 
+        <!-- FLYWAY -->
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+            <version>5.2.2</version>
+        </dependency>
+
+
 
         <!-- TESTS -->
         <dependency>

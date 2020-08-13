@@ -12,6 +12,8 @@ spring:
   jmx:
     enabled: false
   jpa:
+    hibernate:
+      ddl-auto: validate
     properties:
       hibernate:
         dialect: org.hibernate.dialect.SQLiteDialect    # диалект sql для подключения hibernate к базе данных
