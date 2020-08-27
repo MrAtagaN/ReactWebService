@@ -67,11 +67,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(final HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/admin/**").access("hasAuthority('ADMIN')")
+                .antMatchers("/admin/**").hasAuthority(Role.ADMIN.name())
                 .anyRequest().authenticated()
                 .and()
                 .cors()
-                .configurationSource(corsConfiguration())
                 .and()
                 .formLogin()
                 .successHandler(successHandler())
@@ -169,22 +168,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         httpServletResponse.setCharacterEncoding("UTF-8");
         out.print(objectMapper.writeValueAsString(apiResponse));
         out.flush();
-    }
-
-
-    /**
-     * CORS конфигурация.
-     * Нужна для возможности запускать фронт на другом сервере (для отладки)
-     */
-    private CorsConfigurationSource corsConfiguration() {
-        return (httpServletRequest) -> {
-            final CorsConfiguration corsConfiguration = new CorsConfiguration();
-            corsConfiguration.addAllowedOrigin("http://localhost:3000");
-            corsConfiguration.addAllowedMethod(HttpMethod.POST);
-            corsConfiguration.addAllowedMethod(HttpMethod.GET);
-            corsConfiguration.setAllowCredentials(true);
-            return corsConfiguration;
-        };
     }
 
 }
