@@ -38,19 +38,12 @@ export default class RestClient {
             .catch(err => {return {code: UNKNOWN_ERROR};});
     };
 
-    /**
-     * Отправляет post запрос multipart/form-data
-     */
+
     static sendForm = async (url, data) => {
-        const formData = new FormData();
-
-        for (const name in data) {
-            formData.append(name, data[name]);
-        }
-
         return await fetch(SERVER_URL + url, {
-            body: formData,
+            body: JSON.stringify(data),
             method: 'post',
+            headers: { 'Content-Type': 'application/json' },
             url: SERVER_URL,
             credentials: 'include'
         })

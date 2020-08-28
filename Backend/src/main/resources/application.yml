@@ -27,6 +27,11 @@ spring:
   mvc:
     throw-exception-if-no-handler-found: true
 
+jwt:
+  validityinmilliseconds: 6000000
+  secretkey: atagan
+  cookie: JWTToken
+
 
 
 

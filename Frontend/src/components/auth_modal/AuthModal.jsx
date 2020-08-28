@@ -34,7 +34,7 @@ class AuthModal extends Component {
                             </div>
                             <div className="modalBody">
                                 <div>Введите логин и пароль</div>
-                                <Input id={'username'}/>
+                                <Input id={'email'}/>
                                 <Input id={'password'}/>
                                 <div>{this.state.message}</div>
                             </div>
@@ -54,10 +54,10 @@ class AuthModal extends Component {
      * Выполняется при нажатии на кнопку Submit
      */
     handleSubmitAuth = async () => {
-        const username = document.getElementById('username').value;
+        const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
 
-        const response = await RestClient.sendForm(LOGIN_URL, {username: username, password: password});
+        const response = await RestClient.sendForm(LOGIN_URL, {email: email, password: password});
 
         if (response.code === OK) {
             this.props.changeAppState.setIsAuthenticated(true);
