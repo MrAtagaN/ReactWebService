@@ -51,7 +51,10 @@ public class AuthController {
         final String jwtToken = jwtService.createJwtToken(email);
         final HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.set("SET-COOKIE", jwtCookieName + "=" + jwtToken + "; HttpOnly; Path=/");
-        return ResponseEntity.ok().headers(httpHeaders).body(ApiResponse.ok(UserDto.fromUser(user)));
+        return ResponseEntity
+                .ok()
+                .headers(httpHeaders)
+                .body(ApiResponse.ok(UserDto.fromUser(user)));
     }
 
 }
