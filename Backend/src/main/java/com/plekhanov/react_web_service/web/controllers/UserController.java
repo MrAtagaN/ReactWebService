@@ -31,6 +31,7 @@ public class UserController {
     @GetMapping(API_VERSION + "info")
     public ApiResponse<UserDto> getInfo() {
         final User currentUser = SecurityUtils.getCurrentUser();
+        //идем в базу, чтобы получить актуальную информацию
         final User foundUser = userService.findById(currentUser.getId());
         return ApiResponse.ok(UserDto.fromUser(foundUser));
     }
