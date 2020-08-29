@@ -2,6 +2,7 @@ package com.plekhanov.react_web_service.config.security;
 
 import com.plekhanov.react_web_service.entities.User;
 import com.plekhanov.react_web_service.services.UserService;
+import com.plekhanov.react_web_service.utils.SecurityUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -18,7 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 /**
- * //TODO
+ * Фильтр запросов. Валидирурет JWT токен, который приходит в cookie.
  */
 @Component
 public class JwtTokenFilter extends GenericFilterBean {
@@ -29,7 +30,7 @@ public class JwtTokenFilter extends GenericFilterBean {
 
     public JwtTokenFilter(final JwtService jwtService,
                           final UserService userService,
-                          final  @Value("${jwt.cookie.name}") String jwtCookieName) {
+                          final @Value("${jwt.cookie.name}") String jwtCookieName) {
         this.jwtService = jwtService;
         this.userService = userService;
         this.jwtCookieName = jwtCookieName;
@@ -43,27 +44,26 @@ public class JwtTokenFilter extends GenericFilterBean {
     public void doFilter(final ServletRequest servletRequest,
                          final ServletResponse servletResponse,
                          final FilterChain filterChain) throws IOException, ServletException {
+
         final String token = getTokenFromCookie(servletRequest);
-        if (token != null && jwtService.validateToken(token)) {
-            final Authentication authentication = getAuthentication(token);
-            SecurityContextHolder.getContext().setAuthentication(authentication);
+        if (jwtService.validateToken(token)) {
+            if (SecurityUtils.getCurrentUser() == null) {
+                final String email = jwtService.getEmailFromToken(token);
+                final User user = userService.findByEmail(email);
+                final Authentication authentication =
+                        new UsernamePasswordAuthenticationToken(user, "", user.getAuthorities());
+                SecurityContextHolder.getContext().setAuthentication(authentication);
+            }
+        } else {
+            SecurityContextHolder.clearContext();
         }
+
         filterChain.doFilter(servletRequest, servletResponse);
     }
 
 
     /**
-     *
-     */
-    private Authentication getAuthentication(final String token) {
-        final String email = jwtService.getEmailFromToken(token);
-        final User user = userService.findByEmail(email);
-        return new UsernamePasswordAuthenticationToken(user, "", user.getAuthorities());
-    }
-
-
-    /**
-     *
+     * Достает JWT токен из cookie запроса
      */
     private String getTokenFromCookie(final ServletRequest servletRequest) {
         final Cookie[] cookies = ((HttpServletRequest) servletRequest).getCookies();

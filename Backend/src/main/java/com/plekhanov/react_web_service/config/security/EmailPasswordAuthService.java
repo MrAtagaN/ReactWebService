@@ -21,7 +21,7 @@ import static org.apache.commons.lang3.StringUtils.isNotBlank;
 @Service
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-public class EmailAuthService {
+public class EmailPasswordAuthService {
 
     UserDao userDao;
     BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();

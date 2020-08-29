@@ -121,7 +121,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private LogoutSuccessHandler logoutSuccessHandler() {
         return (httpServletRequest, httpServletResponse, e) -> {
             httpServletResponse.setStatus(200);
-            putApiResponseInServletResponse(ApiResponse.ok(null), httpServletResponse);
+            putApiResponseInServletResponse(ApiResponse.ok("logout ok"), httpServletResponse);
         };
     }
 

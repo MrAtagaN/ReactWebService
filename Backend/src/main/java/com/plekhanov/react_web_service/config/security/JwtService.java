@@ -7,12 +7,11 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import java.util.Base64;
 import java.util.Date;
 
 /**
- * //TODO
+ *
  */
 @Service
 public class JwtService {
@@ -50,6 +49,9 @@ public class JwtService {
      *
      */
     public boolean validateToken(final String token) {
+        if (token == null) {
+            return false;
+        }
         final Jws<Claims> claimsJws = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
         return !claimsJws.getBody().getExpiration().before(new Date());
     }
