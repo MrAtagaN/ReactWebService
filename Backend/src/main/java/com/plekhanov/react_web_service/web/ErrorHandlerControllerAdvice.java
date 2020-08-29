@@ -84,7 +84,7 @@ class ErrorHandlerControllerAdvice {
     }
 
     /**
-     * Ошибока валидации javax.validation
+     * Ошибка валидации javax.validation
      */
     @ExceptionHandler({ConstraintViolationException.class})
     public ResponseEntity<ApiResponse<String>> validationException(final ConstraintViolationException e, final WebRequest webRequest) {
