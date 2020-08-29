@@ -11,10 +11,13 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.validation.constraints.NotNull;
 
 
 /**
@@ -22,6 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/api/v1")
+@Validated
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class AuthController {
 
@@ -45,7 +49,7 @@ public class AuthController {
      * @return JWT token in cookie
      */
     @PostMapping("/login")
-    public ResponseEntity<ApiResponse<UserDto>> login(final @RequestBody AuthenticationRequestDto request) {
+    public ResponseEntity<ApiResponse<UserDto>> login(@RequestBody @NotNull final AuthenticationRequestDto request) {
         final String email = request.getEmail();
         final User user = emailPasswordAuthService.authenticate(email, request.getPassword());
         final String jwtToken = jwtService.createJwtToken(email);

@@ -8,14 +8,17 @@ import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
+import javax.validation.constraints.NotNull;
 import java.util.Base64;
 import java.util.Date;
 
 /**
- * Обработка JWT токена
+ * Создание и обработка JWT токена
  */
 @Service
+@Validated
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class JwtService {
 
@@ -31,7 +34,7 @@ public class JwtService {
     }
 
 
-    public String createJwtToken(final String email) {
+    public String createJwtToken(@NotNull final String email) {
         final Claims claims = Jwts.claims().setSubject(email);
         final Date now = new Date();
         final Date validity = new Date(now.getTime() + validityTokenInMilliseconds);
@@ -45,16 +48,13 @@ public class JwtService {
     }
 
 
-    public boolean validateToken(final String token) {
-        if (token == null) {
-            return false;
-        }
+    public boolean validateToken(@NotNull final String token) {
         final Jws<Claims> claimsJws = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
         return !claimsJws.getBody().getExpiration().before(new Date());
     }
 
 
-    public String getEmailFromToken(final String token) {
+    public String getEmailFromToken(@NotNull final String token) {
         return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject();
     }
 }

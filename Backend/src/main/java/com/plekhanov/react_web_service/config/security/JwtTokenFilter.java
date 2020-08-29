@@ -49,7 +49,7 @@ public class JwtTokenFilter extends GenericFilterBean {
                          final FilterChain filterChain) throws IOException, ServletException {
 
         final String token = getTokenFromCookie(servletRequest);
-        if (jwtService.validateToken(token)) {
+        if (token != null && jwtService.validateToken(token)) {
             if (SecurityUtils.getCurrentUser() == null) {
                 final String email = jwtService.getEmailFromToken(token);
                 final User user = userService.findByEmail(email);
