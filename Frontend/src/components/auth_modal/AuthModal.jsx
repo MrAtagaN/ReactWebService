@@ -57,6 +57,7 @@ class AuthModal extends Component {
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
 
+        //TODO переделать на RestClient post
         const response = await RestClient.sendForm(LOGIN_URL, {email: email, password: password});
 
         if (response.code === OK) {

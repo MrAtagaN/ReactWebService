@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -77,6 +78,19 @@ class ErrorHandlerControllerAdvice {
     public ResponseEntity<ApiResponse<String>> onAccessDeniedExceptionHandler(final Exception e, final WebRequest webRequest) {
         log.debug("Access denied during handling request {}.", webRequest);
         final ApiResponse<String> apiResponse = ApiResponse.error(ACCESS_DENIED, "Access denied");
+        return ResponseEntity
+                .status(HttpStatus.FORBIDDEN)
+                .header("Content-Type", "application/json; charset=UTF-8")
+                .body(apiResponse);
+    }
+
+    /**
+     * Ошибка аутентификации
+     */
+    @ExceptionHandler({AuthenticationException.class})
+    public ResponseEntity<ApiResponse<String>> onAuthenticationExceptionHandler(final Exception e, final WebRequest webRequest) {
+        log.debug("Authentication failure during handling request {}.", webRequest);
+        final ApiResponse<String> apiResponse = ApiResponse.error(AUTHENTICATION_FAILURE, "Authentication failure");
         return ResponseEntity
                 .status(HttpStatus.FORBIDDEN)
                 .header("Content-Type", "application/json; charset=UTF-8")

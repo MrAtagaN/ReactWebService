@@ -11,24 +11,31 @@ import javax.annotation.PostConstruct;
 import java.util.Base64;
 import java.util.Date;
 
+/**
+ * //TODO
+ */
 @Service
-public class JwtService{
+public class JwtService {
 
-    @Value("${jwt.validityinmilliseconds}")
     private long validityInMilliseconds;
-
-    @Value("${jwt.secretkey}")
     private String secretKey;
 
-    @PostConstruct
-    protected void init() {
-        secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
+
+    public JwtService(@Value("${jwt.validityinmilliseconds}") long validityInMilliseconds,
+                      @Value("${jwt.secretkey}") String secretKey) {
+
+        this.validityInMilliseconds = validityInMilliseconds;
+        this.secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
     }
 
-    public String createJwtToken(String email) {
-        Claims claims = Jwts.claims().setSubject(email);
-        Date now = new Date();
-        Date validity = new Date(now.getTime() + validityInMilliseconds);
+
+    /**
+     * //TODO
+     */
+    public String createJwtToken(final String email) {
+        final Claims claims = Jwts.claims().setSubject(email);
+        final Date now = new Date();
+        final Date validity = new Date(now.getTime() + validityInMilliseconds);
 
         return Jwts.builder()
                 .setClaims(claims)
@@ -38,13 +45,20 @@ public class JwtService{
                 .compact();
     }
 
-    public boolean validateToken(String token) {
-        Jws<Claims> claimsJws = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
+
+    /**
+     *
+     */
+    public boolean validateToken(final String token) {
+        final Jws<Claims> claimsJws = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
         return !claimsJws.getBody().getExpiration().before(new Date());
     }
 
 
-    public String getEmailFromToken(String token) {
+    /**
+     *
+     */
+    public String getEmailFromToken(final String token) {
         return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject();
     }
 }
