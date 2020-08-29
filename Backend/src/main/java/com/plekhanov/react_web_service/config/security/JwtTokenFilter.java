@@ -3,6 +3,8 @@ package com.plekhanov.react_web_service.config.security;
 import com.plekhanov.react_web_service.entities.User;
 import com.plekhanov.react_web_service.services.UserService;
 import com.plekhanov.react_web_service.utils.SecurityUtils;
+import lombok.AccessLevel;
+import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -22,11 +24,12 @@ import java.io.IOException;
  * Фильтр запросов. Валидирурет JWT токен, который приходит в cookie.
  */
 @Component
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class JwtTokenFilter extends GenericFilterBean {
 
-    private final JwtService jwtService;
-    private final UserService userService;
-    private final String jwtCookieName;
+    JwtService jwtService;
+    UserService userService;
+    String jwtCookieName;
 
     public JwtTokenFilter(final JwtService jwtService,
                           final UserService userService,
@@ -38,7 +41,7 @@ public class JwtTokenFilter extends GenericFilterBean {
 
 
     /**
-     *
+     * Валидирует JWT токен, кладет в SecurityContext {@link User}
      */
     @Override
     public void doFilter(final ServletRequest servletRequest,

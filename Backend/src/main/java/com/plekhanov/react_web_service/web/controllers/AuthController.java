@@ -6,6 +6,8 @@ import com.plekhanov.react_web_service.entities.User;
 import com.plekhanov.react_web_service.web.ApiResponse;
 import com.plekhanov.react_web_service.web.dto.AuthenticationRequestDto;
 import com.plekhanov.react_web_service.web.dto.UserDto;
+import lombok.AccessLevel;
+import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -15,17 +17,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
-
 /**
  * Эндпойнт для аутентификации
  */
 @RestController
 @RequestMapping("/api/v1")
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class AuthController {
 
-    private final JwtService jwtService;
-    private final String jwtCookieName;
-    private final EmailPasswordAuthService emailPasswordAuthService;
+    JwtService jwtService;
+    String jwtCookieName;
+    EmailPasswordAuthService emailPasswordAuthService;
 
     public AuthController(final JwtService jwtService,
                           final @Value("${jwt.cookie.name}") String jwtCookieName,

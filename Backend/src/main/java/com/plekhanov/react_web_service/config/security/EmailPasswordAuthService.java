@@ -30,6 +30,8 @@ public class EmailPasswordAuthService {
     /**
      * Сверяет введенные пользователем email и пароль с
      * email и паролем {@link User} в базе.
+     *
+     * Возвращает аутентифицированного {@link User}
      */
     public User authenticate(final String email, final String password) {
 

@@ -4,6 +4,8 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import lombok.AccessLevel;
+import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -11,30 +13,28 @@ import java.util.Base64;
 import java.util.Date;
 
 /**
- *
+ * Обработка JWT токена
  */
 @Service
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class JwtService {
 
-    private long validityInMilliseconds;
-    private String secretKey;
+    long validityTokenInMilliseconds;
+    String secretKey;
 
 
-    public JwtService(@Value("${jwt.validityinmilliseconds}") long validityInMilliseconds,
+    public JwtService(@Value("${jwt.validityinmilliseconds}") long validityTokenInMilliseconds,
                       @Value("${jwt.secretkey}") String secretKey) {
 
-        this.validityInMilliseconds = validityInMilliseconds;
+        this.validityTokenInMilliseconds = validityTokenInMilliseconds;
         this.secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
     }
 
 
-    /**
-     * //TODO
-     */
     public String createJwtToken(final String email) {
         final Claims claims = Jwts.claims().setSubject(email);
         final Date now = new Date();
-        final Date validity = new Date(now.getTime() + validityInMilliseconds);
+        final Date validity = new Date(now.getTime() + validityTokenInMilliseconds);
 
         return Jwts.builder()
                 .setClaims(claims)
@@ -45,9 +45,6 @@ public class JwtService {
     }
 
 
-    /**
-     *
-     */
     public boolean validateToken(final String token) {
         if (token == null) {
             return false;
@@ -57,9 +54,6 @@ public class JwtService {
     }
 
 
-    /**
-     *
-     */
     public String getEmailFromToken(final String token) {
         return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject();
     }
