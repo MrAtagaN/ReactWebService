@@ -1,6 +1,7 @@
 package com.plekhanov.react_web_service.services.impl;
 
 import com.plekhanov.react_web_service.services.RegistrationService;
+import com.plekhanov.react_web_service.entities.UserRegistrationRequest;
 import com.plekhanov.react_web_service.entities.User;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +17,7 @@ import org.springframework.stereotype.Service;
 public class EmailRegistrationService implements RegistrationService {
 
     /**
-     * Создает в базе запись, посылает на почту ссылку для подтверждения email
+     * Создает в базе запись {@link UserRegistrationRequest}, посылает на почту ссылку для подтверждения email
      */
     @Override
     public void registrationRequest(final String username, final String email, final String password) {
