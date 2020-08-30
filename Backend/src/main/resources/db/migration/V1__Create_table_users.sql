@@ -9,7 +9,7 @@ CREATE TABLE users
     enabled                 BOOLEAN NOT NULL,
     enter                   TIMESTAMP,
     last_enter              TIMESTAMP,
-    creation_time           TIMESTAMP,
+    creation_time           TIMESTAMP NOT NULL,
     email                   TEXT NOT NULL,
 
     CONSTRAINT users_email_unique UNIQUE (email)

@@ -27,6 +27,13 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> search(final ProductSearchParams productSearchParams) {
+        PageRequest pageRequest = null;
+        final Integer page = productSearchParams.getPage();
+        final Integer itemsInPage = productSearchParams.getItemsInPage();
+
+        if (page != null && itemsInPage != null) {
+            pageRequest = PageRequest.of(page, itemsInPage);
+        }
         return productDao.findByParameters(
                 productSearchParams.getName(),
                 productSearchParams.getTypeId(),
@@ -43,7 +50,7 @@ public class ProductServiceImpl implements ProductService {
                 productSearchParams.getColor(),
                 productSearchParams.getIsNew(),
                 productSearchParams.getIsSales(),
-                PageRequest.of(productSearchParams.getPage(), productSearchParams.getItemsInPage()));
+                pageRequest);
     }
 
     @Override

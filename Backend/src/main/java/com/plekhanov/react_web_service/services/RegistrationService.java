@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 public interface RegistrationService {
 
     /**
-     * Запрос на создание нового {@link User}
+     * Запрос на создание нового {@link User}, нужно подтвердить
      */
     void registrationRequest(@NotNull String username, @NotNull String email, @NotNull String password);
 

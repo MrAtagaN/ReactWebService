@@ -20,7 +20,7 @@ import static org.hibernate.annotations.FetchMode.SUBSELECT;
  * Пользователь сервиса
  *
  * email должно быть уникальным
- * username, password - обязательные
+ * username, password, creationTime - обязательные
  */
 @Data
 @Entity(name = "User")
@@ -62,10 +62,10 @@ public class User {
     @Column(name = "last_enter", columnDefinition = "TIMESTAMP")
     LocalDateTime lastEnter;
 
-    @Column(name = "creation_time", columnDefinition = "TIMESTAMP")
+    @Column(name = "creation_time", columnDefinition = "TIMESTAMP", nullable = false)
     LocalDateTime creationTime;
 
-    @Column(name = "email")
+    @Column(name = "email", nullable = false)
     String email;
 
 

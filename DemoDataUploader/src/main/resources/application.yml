@@ -1,5 +1,5 @@
 server:
-  port: 80    # порт на котором работает приложение
+  port: 8088    # порт на котором работает приложение
   tomcat:
     uri-encoding: UTF-8
   servlet:
