@@ -3,15 +3,15 @@
 <configuration scan="true" scanPeriod="30 seconds">
 
 
-    <property name="logs" value="logs"/>
-    <property name="logs_archive" value="logs/archived"/>
+    <property name="logs_dir" value="logs"/>
+    <property name="logs_archive_dir" value="logs/archived"/>
 
 
     <!-- вывод всех логов в файл -->
     <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${logs}/react-web-service.log</file>
+        <file>${logs_dir}/react-web-service.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <fileNamePattern>${logs_archive}/react-web-service.%d{yyyy-MM-dd}.%i.zip</fileNamePattern>
+            <fileNamePattern>${logs_archive_dir}/react-web-service.%d{yyyy-MM-dd}.%i.zip</fileNamePattern>
             <maxFileSize>2GB</maxFileSize>
             <maxHistory>7</maxHistory>
             <totalSizeCap>5GB</totalSizeCap>
@@ -30,9 +30,9 @@
             <onMatch>ACCEPT</onMatch>
             <onMismatch>DENY</onMismatch>
         </filter>
-        <file>${logs}/react-web-service-errors.log</file>
+        <file>${logs_dir}/react-web-service-errors.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <fileNamePattern>${logs_archive}/react-web-service-errors.%d{yyyy-MM-dd}.%i.zip</fileNamePattern>
+            <fileNamePattern>${logs_archive_dir}/react-web-service-errors.%d{yyyy-MM-dd}.%i.zip</fileNamePattern>
             <maxFileSize>1GB</maxFileSize>
             <maxHistory>7</maxHistory>
             <totalSizeCap>2GB</totalSizeCap>
