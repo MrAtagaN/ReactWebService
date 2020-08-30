@@ -9,6 +9,8 @@ import com.plekhanov.react_web_service.services.UserService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,6 +27,20 @@ public class UserServiceImpl implements UserService {
 
     ProductDao productDao;
     UserDao userDao;
+
+
+    /**
+     * Получить текущего авторизованного пользователя
+     */
+    @Override
+    public User getCurrentUser() {
+        final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null) {
+            User user = (User) authentication.getPrincipal();
+            return userDao.findById(user.getId()).get();
+        }
+        return null;
+    }
 
 
     @Override

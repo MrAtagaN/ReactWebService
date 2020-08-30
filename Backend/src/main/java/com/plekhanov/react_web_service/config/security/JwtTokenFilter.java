@@ -2,7 +2,6 @@ package com.plekhanov.react_web_service.config.security;
 
 import com.plekhanov.react_web_service.entities.User;
 import com.plekhanov.react_web_service.services.UserService;
-import com.plekhanov.react_web_service.utils.SecurityUtils;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Value;
@@ -56,7 +55,7 @@ public class JwtTokenFilter extends GenericFilterBean {
     private void authenticateProcessJwt(final ServletRequest servletRequest) {
         final String token = getTokenFromCookie(servletRequest);
         if (token != null && jwtService.validateToken(token)) {
-            if (SecurityUtils.getCurrentUser() == null) {
+            if (SecurityContextHolder.getContext().getAuthentication() == null) {
                 final String email = jwtService.getEmailFromToken(token);
                 final User user = userService.findByEmail(email);
                 final Authentication authentication =

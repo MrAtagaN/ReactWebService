@@ -12,6 +12,8 @@ import javax.validation.constraints.NotNull;
 @Validated
 public interface UserService {
 
+    User getCurrentUser();
+
     User saveOrUpdate(@NotNull User user);
 
     User findById(int id);
