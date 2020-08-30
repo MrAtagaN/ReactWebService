@@ -1,10 +1,8 @@
 package com.plekhanov.react_web_service.web.controllers;
 
 import com.plekhanov.react_web_service.entities.User;
-import com.plekhanov.react_web_service.services.RegistrationService;
 import com.plekhanov.react_web_service.services.UserService;
 import com.plekhanov.react_web_service.web.ApiResponse;
-import com.plekhanov.react_web_service.web.dto.RegistrationRequestDto;
 import com.plekhanov.react_web_service.web.dto.UserDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
@@ -20,10 +18,8 @@ import javax.validation.constraints.NotNull;
 @Validated
 public class UserController {
 
-    private final RegistrationService registrationService;
     private final UserService userService;
 
-    private static final String PUBLIC = "public/";
     private static final String API_VERSION = "api/v1/user/";
 
 
@@ -78,16 +74,6 @@ public class UserController {
         final User user = userService.getCurrentUser();
         userService.deleteProductFromFavorite(productId, user);
         return ApiResponse.ok("product delete from favorite");
-    }
-
-
-    /**
-     * Регистрация нового {@link User}
-     */
-    @PostMapping(PUBLIC + API_VERSION + "registration")
-    public ApiResponse<String> registration(@RequestBody @NotNull final RegistrationRequestDto requestDto) {
-        registrationService.registration(requestDto.getUsername(), requestDto.getEmail(), requestDto.getPassword());
-        return ApiResponse.ok("user registration request accepted");
     }
 
 
