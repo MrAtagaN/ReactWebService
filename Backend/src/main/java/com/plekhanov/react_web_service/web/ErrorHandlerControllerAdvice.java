@@ -44,7 +44,7 @@ class ErrorHandlerControllerAdvice {
             final WebRequest webRequest) {
 
         final String missingParameter = e.getParameterName();
-        log.error("MissingServletRequestParameter: {}, in request {}.", missingParameter, webRequest);
+        log.debug("MissingServletRequestParameter: {}, in request {}.", missingParameter, webRequest);
         final ApiResponse<String> apiResponse =
                 ApiResponse.error(VALIDATION_ERROR, "Missing mandatory request parameter: " + missingParameter);
         return ResponseEntity
@@ -62,7 +62,7 @@ class ErrorHandlerControllerAdvice {
             final WebRequest webRequest) {
 
         final String invalidParameter = e.getName();
-        log.error("MissingServletRequestParameter: {}, in request {}.", invalidParameter, webRequest);
+        log.debug("MissingServletRequestParameter: {}, in request {}.", invalidParameter, webRequest);
         final ApiResponse<String> apiResponse =
                 ApiResponse.error(VALIDATION_ERROR, "Invalid type in request parameter: " + invalidParameter);
         return ResponseEntity
