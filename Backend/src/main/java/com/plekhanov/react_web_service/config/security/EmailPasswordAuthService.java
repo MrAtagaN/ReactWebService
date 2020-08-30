@@ -56,7 +56,7 @@ public class EmailPasswordAuthService {
                 }
                 user.setLastEnter(user.getEnter());
                 user.setEnter(LocalDateTime.now());
-                userDao.saveOrUpdate(user);
+                userDao.save(user);
                 return user;
             }
         } else {
