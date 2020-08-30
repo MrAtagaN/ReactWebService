@@ -30,7 +30,7 @@ spring:
 jwt:
   validityinmilliseconds: 60000000
   secretkey: atagan
-  cookie: JWTToken
+  cookie.name: JWTToken
 
 
 

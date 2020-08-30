@@ -2,11 +2,13 @@ package com.plekhanov.react_web_service.config.security;
 
 import com.plekhanov.react_web_service.entities.User;
 import com.plekhanov.react_web_service.services.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.plekhanov.react_web_service.utils.SecurityUtils;
+import lombok.AccessLevel;
+import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.GenericFilterBean;
@@ -17,54 +19,70 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * Фильтр запросов. Валидирурет JWT токен, который приходит в cookie.
+ */
 @Component
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class JwtTokenFilter extends GenericFilterBean {
 
-    @Autowired
     JwtService jwtService;
-
-    @Autowired
     UserService userService;
+    String jwtCookieName;
 
-    @Value("${jwt.cookie}")
-    private String jwtCookieName;
+    public JwtTokenFilter(final JwtService jwtService,
+                          final UserService userService,
+                          final @Value("${jwt.cookie.name}") String jwtCookieName) {
+        this.jwtService = jwtService;
+        this.userService = userService;
+        this.jwtCookieName = jwtCookieName;
+    }
+
 
     @Override
-    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
-        String token = null;
-        Cookie[] cookies = httpServletRequest.getCookies();
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals(jwtCookieName)) {
-                    token = cookie.getValue();
-                }
-            }
-        }
-
-        try {
-            if (token != null && jwtService.validateToken(token)) {
-                Authentication authentication = getAuthentication(token);
-                SecurityContextHolder.getContext().setAuthentication(authentication);
-            }
-        } catch (Exception e) {
-            SecurityContextHolder.clearContext();
-            ((HttpServletResponse) servletResponse).sendError(HttpStatus.UNAUTHORIZED.value());
-            throw new RuntimeException("JWT token is expired or invalid");
-        }
+    public void doFilter(final ServletRequest servletRequest,
+                         final ServletResponse servletResponse,
+                         final FilterChain filterChain) throws IOException, ServletException {
+        authenticateProcessJwt(servletRequest);
         filterChain.doFilter(servletRequest, servletResponse);
     }
 
 
-    private Authentication getAuthentication(String token) {
-        final String email = jwtService.getEmailFromToken(token);
-        User user = userService.findByEmail(email);
-        return new UsernamePasswordAuthenticationToken(user, "", user.getAuthorities());
+    /**
+     * Валидирует JWT токен, кладет {@link Authentication} в {@link SecurityContext}
+     */
+    private void authenticateProcessJwt(final ServletRequest servletRequest) {
+        final String token = getTokenFromCookie(servletRequest);
+        if (token != null && jwtService.validateToken(token)) {
+            if (SecurityUtils.getCurrentUser() == null) {
+                final String email = jwtService.getEmailFromToken(token);
+                final User user = userService.findByEmail(email);
+                final Authentication authentication =
+                        new UsernamePasswordAuthenticationToken(user, "", user.getAuthorities());
+                SecurityContextHolder.getContext().setAuthentication(authentication);
+            }
+        } else {
+            SecurityContextHolder.clearContext();
+        }
     }
 
+
+    /**
+     * Достает JWT токен из cookie запроса
+     */
+    private String getTokenFromCookie(final ServletRequest servletRequest) {
+        final Cookie[] cookies = ((HttpServletRequest) servletRequest).getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals(jwtCookieName)) {
+                    return cookie.getValue();
+                }
+            }
+        }
+        return null;
+    }
 
 
 }

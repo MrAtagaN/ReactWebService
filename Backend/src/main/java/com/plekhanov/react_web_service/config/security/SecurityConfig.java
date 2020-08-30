@@ -3,11 +3,10 @@ package com.plekhanov.react_web_service.config.security;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.plekhanov.react_web_service.web.ApiResponse;
 import lombok.AccessLevel;
-import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -23,6 +22,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import static com.plekhanov.react_web_service.web.ApiResponse.ResponseCode.ACCESS_DENIED;
+import static com.plekhanov.react_web_service.web.ApiResponse.ResponseCode.NOT_AUTHENTICATED;
+import static org.springframework.http.HttpStatus.*;
+
 
 /**
  * Конфигурация Security
@@ -30,17 +33,26 @@ import java.io.PrintWriter;
  */
 @Configuration
 @EnableWebSecurity
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    String loginUrl = "/api/v1/login";
     String logoutUrl = "/api/v1/logout";
     String logoutSuccessUrl = "/";
 
-    @Autowired
-    private ObjectMapper objectMapper;
-    @Autowired
-    private JwtTokenFilter jwtTokenFilter;
-    @Value("${jwt.cookie}")
-    private String jwtCookieName;
+    ObjectMapper objectMapper;
+    JwtTokenFilter jwtTokenFilter;
+    String jwtCookieName;
+
+
+    public SecurityConfig(final ObjectMapper objectMapper,
+                          final JwtTokenFilter jwtTokenFilter,
+                          final @Value("${jwt.cookie.name}") String jwtCookieName) {
+        this.objectMapper = objectMapper;
+        this.jwtTokenFilter = jwtTokenFilter;
+        this.jwtCookieName = jwtCookieName;
+    }
+
 
     /**
      * Настройка открытых эндпойнтов
@@ -63,7 +75,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests()
                 .antMatchers("/admin/**").hasAuthority(Role.ADMIN.name())
-                .antMatchers("/api/v1/login").permitAll()
+                .antMatchers(loginUrl).permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .cors()
@@ -88,8 +100,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      */
     private AccessDeniedHandler accessDeniedHandler() {
         return (httpServletRequest, httpServletResponse, e) -> {
-            httpServletResponse.setStatus(403);
-            final ApiResponse<String> apiResponse = ApiResponse.error(ApiResponse.ResponseCode.ACCESS_DENIED, "Access denied");
+            httpServletResponse.setStatus(FORBIDDEN.value());
+            final ApiResponse<String> apiResponse = ApiResponse.error(ACCESS_DENIED, "Access denied");
             putApiResponseInServletResponse(apiResponse, httpServletResponse);
         };
     }
@@ -100,8 +112,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      */
     private AuthenticationEntryPoint authenticationEntryPoint() {
         return (httpServletRequest, httpServletResponse, e) -> {
-            httpServletResponse.setStatus(401);
-            final ApiResponse<String> apiResponse = ApiResponse.error(ApiResponse.ResponseCode.NOT_AUTHENTICATED, "Not authenticated");
+            httpServletResponse.setStatus(UNAUTHORIZED.value());
+            final ApiResponse<String> apiResponse = ApiResponse.error(NOT_AUTHENTICATED, "Not authenticated");
             putApiResponseInServletResponse(apiResponse, httpServletResponse);
         };
     }
@@ -112,8 +124,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      */
     private LogoutSuccessHandler logoutSuccessHandler() {
         return (httpServletRequest, httpServletResponse, e) -> {
-            httpServletResponse.setStatus(200);
-            putApiResponseInServletResponse(ApiResponse.ok(null), httpServletResponse);
+            httpServletResponse.setStatus(OK.value());
+            putApiResponseInServletResponse(ApiResponse.ok("logout ok"), httpServletResponse);
         };
     }
 

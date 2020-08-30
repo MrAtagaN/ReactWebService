@@ -4,31 +4,40 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import lombok.AccessLevel;
+import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
-import javax.annotation.PostConstruct;
+import javax.validation.constraints.NotNull;
 import java.util.Base64;
 import java.util.Date;
 
+/**
+ * Создание и обработка JWT токена
+ */
 @Service
-public class JwtService{
+@Validated
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
+public class JwtService {
 
-    @Value("${jwt.validityinmilliseconds}")
-    private long validityInMilliseconds;
+    long validityTokenInMilliseconds;
+    String secretKey;
 
-    @Value("${jwt.secretkey}")
-    private String secretKey;
 
-    @PostConstruct
-    protected void init() {
-        secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
+    public JwtService(@Value("${jwt.validityinmilliseconds}") long validityTokenInMilliseconds,
+                      @Value("${jwt.secretkey}") String secretKey) {
+
+        this.validityTokenInMilliseconds = validityTokenInMilliseconds;
+        this.secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
     }
 
-    public String createJwtToken(String email) {
-        Claims claims = Jwts.claims().setSubject(email);
-        Date now = new Date();
-        Date validity = new Date(now.getTime() + validityInMilliseconds);
+
+    public String createJwtToken(@NotNull final String email) {
+        final Claims claims = Jwts.claims().setSubject(email);
+        final Date now = new Date();
+        final Date validity = new Date(now.getTime() + validityTokenInMilliseconds);
 
         return Jwts.builder()
                 .setClaims(claims)
@@ -38,13 +47,14 @@ public class JwtService{
                 .compact();
     }
 
-    public boolean validateToken(String token) {
-        Jws<Claims> claimsJws = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
+
+    public boolean validateToken(@NotNull final String token) {
+        final Jws<Claims> claimsJws = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
         return !claimsJws.getBody().getExpiration().before(new Date());
     }
 
 
-    public String getEmailFromToken(String token) {
+    public String getEmailFromToken(@NotNull final String token) {
         return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject();
     }
 }

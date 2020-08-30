@@ -29,8 +29,9 @@ public class UserController {
      * Информация о текущем пользователе
      */
     @GetMapping(API_VERSION + "info")
-    public ApiResponse<UserDto> getTestUser() {
+    public ApiResponse<UserDto> getInfo() {
         final User currentUser = SecurityUtils.getCurrentUser();
+        //идем в базу, чтобы получить актуальную информацию
         final User foundUser = userService.findById(currentUser.getId());
         return ApiResponse.ok(UserDto.fromUser(foundUser));
     }
