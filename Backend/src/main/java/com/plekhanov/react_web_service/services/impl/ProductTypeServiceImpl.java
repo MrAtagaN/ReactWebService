@@ -13,8 +13,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
-@RequiredArgsConstructor
 @Service
+@RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class ProductTypeServiceImpl implements ProductTypeService {
 

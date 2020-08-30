@@ -1,6 +1,7 @@
 package com.plekhanov.react_web_service.web.controllers;
 
 import com.plekhanov.react_web_service.entities.User;
+import com.plekhanov.react_web_service.services.RegistrationService;
 import com.plekhanov.react_web_service.services.UserService;
 import com.plekhanov.react_web_service.web.ApiResponse;
 import com.plekhanov.react_web_service.web.dto.RegistrationRequestDto;
@@ -19,6 +20,7 @@ import javax.validation.constraints.NotNull;
 @Validated
 public class UserController {
 
+    private final RegistrationService registrationService;
     private final UserService userService;
 
     private static final String PUBLIC = "public/";
@@ -84,8 +86,8 @@ public class UserController {
      */
     @PostMapping(PUBLIC + API_VERSION + "registration")
     public ApiResponse<String> registration(@RequestBody @NotNull final RegistrationRequestDto requestDto) {
-        userService.registration(requestDto.getUsername(), requestDto.getEmail(), requestDto.getPassword());
-        return ApiResponse.ok("registration request accepted");
+        registrationService.registration(requestDto.getUsername(), requestDto.getEmail(), requestDto.getPassword());
+        return ApiResponse.ok("user registration request accepted");
     }
 
 

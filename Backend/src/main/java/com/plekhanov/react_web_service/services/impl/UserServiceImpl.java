@@ -20,8 +20,8 @@ import java.util.*;
 
 import static java.text.MessageFormat.format;
 
-@RequiredArgsConstructor
 @Service
+@RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class UserServiceImpl implements UserService {
 
@@ -111,9 +111,4 @@ public class UserServiceImpl implements UserService {
     }
 
 
-    @Override
-    public void registration(final String username, final String email, final String password) {
-        //TODO
-        throw new RuntimeException("not implemented!");
-    }
 }

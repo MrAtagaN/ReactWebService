@@ -28,5 +28,4 @@ public interface UserService {
 
     void deleteProductFromFavorite(@NotNull Integer productId, @NotNull User user);
 
-    void registration(@NotNull String username, @NotNull String email, @NotNull String password);
 }

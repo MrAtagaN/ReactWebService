@@ -12,8 +12,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@RequiredArgsConstructor
 @Service
+@RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class ProductServiceImpl implements ProductService {
 
