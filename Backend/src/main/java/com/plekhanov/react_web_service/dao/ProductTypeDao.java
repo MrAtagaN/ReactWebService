@@ -20,14 +20,14 @@ public interface ProductTypeDao extends JpaRepository<ProductType, Integer> {
 
     void deleteById(int id);
 
-  @Query("SELECT p FROM ProductType p WHERE " +
-          "(:name is null or p.name = :name) and " +
-          "(:gender is null or p.gender = :gender) and " +
-          "(:age is null or p.age = :age) and " +
-          "(:category is null or p.category = :category)")
-   Set<ProductType> findByParameters(@Param("name") String name,
-                                     @Param("gender") Gender gender,
-                                     @Param("age") Age age,
-                                     @Param("category") Category category);
+    @Query("SELECT p FROM ProductType p WHERE " +
+            "(:name is null or p.name = :name) and " +
+            "(:gender is null or p.gender = :gender) and " +
+            "(:age is null or p.age = :age) and " +
+            "(:category is null or p.category = :category)")
+    Set<ProductType> findByParameters(@Param("name") String name,
+                                      @Param("gender") Gender gender,
+                                      @Param("age") Age age,
+                                      @Param("category") Category category);
 
 }
