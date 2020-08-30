@@ -8,6 +8,7 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.GenericFilterBean;
@@ -40,14 +41,19 @@ public class JwtTokenFilter extends GenericFilterBean {
     }
 
 
-    /**
-     * Валидирует JWT токен, кладет в SecurityContext {@link User}
-     */
     @Override
     public void doFilter(final ServletRequest servletRequest,
                          final ServletResponse servletResponse,
                          final FilterChain filterChain) throws IOException, ServletException {
+        authenticateProcessJwt(servletRequest);
+        filterChain.doFilter(servletRequest, servletResponse);
+    }
 
+
+    /**
+     * Валидирует JWT токен, кладет {@link Authentication} в {@link SecurityContext}
+     */
+    private void authenticateProcessJwt(final ServletRequest servletRequest) {
         final String token = getTokenFromCookie(servletRequest);
         if (token != null && jwtService.validateToken(token)) {
             if (SecurityUtils.getCurrentUser() == null) {
@@ -60,8 +66,6 @@ public class JwtTokenFilter extends GenericFilterBean {
         } else {
             SecurityContextHolder.clearContext();
         }
-
-        filterChain.doFilter(servletRequest, servletResponse);
     }
 
 
