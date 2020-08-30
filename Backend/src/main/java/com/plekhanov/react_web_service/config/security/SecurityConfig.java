@@ -1,12 +1,11 @@
 package com.plekhanov.react_web_service.config.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.plekhanov.react_web_service.web.ApiResponse;
+import com.plekhanov.react_web_service.web.api.ApiResponse;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -22,8 +21,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import static com.plekhanov.react_web_service.web.ApiResponse.ResponseCode.ACCESS_DENIED;
-import static com.plekhanov.react_web_service.web.ApiResponse.ResponseCode.NOT_AUTHENTICATED;
+import static com.plekhanov.react_web_service.web.api.ApiResponse.ResponseCode.ACCESS_DENIED;
+import static com.plekhanov.react_web_service.web.api.ApiResponse.ResponseCode.NOT_AUTHENTICATED;
 import static org.springframework.http.HttpStatus.*;
 
 

@@ -3,8 +3,8 @@ package com.plekhanov.react_web_service.web.controllers;
 
 import com.plekhanov.react_web_service.entities.User;
 import com.plekhanov.react_web_service.services.RegistrationService;
-import com.plekhanov.react_web_service.web.ApiResponse;
-import com.plekhanov.react_web_service.web.dto.RegistrationRequestDto;
+import com.plekhanov.react_web_service.web.api.ApiResponse;
+import com.plekhanov.react_web_service.web.api.dto.RegistrationRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;

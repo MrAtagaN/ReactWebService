@@ -1,5 +1,6 @@
 package com.plekhanov.react_web_service.web;
 
+import com.plekhanov.react_web_service.web.api.ApiResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +14,7 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
 
 import javax.validation.ConstraintViolationException;
 
-import static com.plekhanov.react_web_service.web.ApiResponse.ResponseCode.*;
+import static com.plekhanov.react_web_service.web.api.ApiResponse.ResponseCode.*;
 
 /**
  * Обработчик ошибок контроллеров

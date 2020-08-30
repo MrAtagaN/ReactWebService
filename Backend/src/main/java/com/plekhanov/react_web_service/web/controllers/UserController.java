@@ -2,8 +2,8 @@ package com.plekhanov.react_web_service.web.controllers;
 
 import com.plekhanov.react_web_service.entities.User;
 import com.plekhanov.react_web_service.services.UserService;
-import com.plekhanov.react_web_service.web.ApiResponse;
-import com.plekhanov.react_web_service.web.dto.UserDto;
+import com.plekhanov.react_web_service.web.api.ApiResponse;
+import com.plekhanov.react_web_service.web.api.dto.UserDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;

@@ -5,8 +5,8 @@ import com.plekhanov.react_web_service.entities.ProductType.Age;
 import com.plekhanov.react_web_service.entities.ProductType.Gender;
 import com.plekhanov.react_web_service.entities.search_params.ProductSearchParams;
 import com.plekhanov.react_web_service.services.ProductService;
-import com.plekhanov.react_web_service.web.ApiResponse;
-import com.plekhanov.react_web_service.web.dto.ProductDto;
+import com.plekhanov.react_web_service.web.api.ApiResponse;
+import com.plekhanov.react_web_service.web.api.dto.ProductDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static com.plekhanov.react_web_service.web.ApiResponse.ResponseCode.VALIDATION_ERROR;
+import static com.plekhanov.react_web_service.web.api.ApiResponse.ResponseCode.VALIDATION_ERROR;
 
 /**
  * Эндпойты для действий с {@link Product}
