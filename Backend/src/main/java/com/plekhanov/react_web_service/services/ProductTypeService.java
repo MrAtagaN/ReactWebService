@@ -2,7 +2,6 @@ package com.plekhanov.react_web_service.services;
 
 import com.plekhanov.react_web_service.entities.ProductType;
 import com.plekhanov.react_web_service.entities.ProductType.*;
-import com.plekhanov.react_web_service.entities.search_params.ProductTypeSearchParams;
 import org.springframework.validation.annotation.Validated;
 
 import javax.validation.constraints.NotNull;
@@ -16,13 +15,8 @@ public interface ProductTypeService {
 
     ProductType saveOrUpdate(@NotNull ProductType productType);
 
-    void delete(int id);
+    void deleteById(int id);
 
-    Set<ProductType> search(@NotNull ProductTypeSearchParams productTypeSearchParams);
-
-    ProductType findByParameters(@NotNull String name,
-                                 @NotNull Gender gender,
-                                 @NotNull Age age,
-                                 @NotNull Category category);
+    Set<ProductType> findByParameters(String name, Gender gender, Age age, Category category);
 
 }

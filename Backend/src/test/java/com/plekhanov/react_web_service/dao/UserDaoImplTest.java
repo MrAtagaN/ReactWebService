@@ -26,7 +26,7 @@ public class UserDaoImplTest {
             user.setUsername("Sergey");
             user.setEmail("gmail@plekhanov.ru");
             user.setPassword("12345678");
-            userDao.saveOrUpdate(user);
+            userDao.save(user);
     }
 
 
@@ -39,20 +39,20 @@ public class UserDaoImplTest {
     void findById() {
     }
 
-    @DisplayName("положительный findByName")
+    @DisplayName("положительный findByUsername")
     @Test
     void positiveFindByNameTest() {
         //jdbcTemplate.update("INSERT INTO public.users (username, email) VALUES ('Sergey', 'gmail@plekhanov.ru')");
-        List<User> found = userDao.findByName("Sergey");
+        List<User> found = userDao.findByUsername("Sergey");
         assertEquals(1, found.size());
         assertEquals("Sergey", found.get(0).getUsername());
     }
 
-    @DisplayName("отрицательный findByName")
+    @DisplayName("отрицательный findByUsername")
     @Test
     void negativeFindByNameTest() {
         //jdbcTemplate.update("INSERT INTO public.users (username, email) VALUES ('Sergey', 'gmail@plekhanov.ru')");
-        List<User> found = userDao.findByName("Max");
+        List<User> found = userDao.findByUsername("Max");
         assertEquals(0, found.size());
     }
 

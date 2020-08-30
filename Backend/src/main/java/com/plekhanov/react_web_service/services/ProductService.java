@@ -5,7 +5,7 @@ import com.plekhanov.react_web_service.entities.search_params.ProductSearchParam
 import org.springframework.validation.annotation.Validated;
 
 import javax.validation.constraints.NotNull;
-import java.util.Set;
+import java.util.List;
 
 /**
  * Сервис для {@link Product}
@@ -15,8 +15,8 @@ public interface ProductService {
 
     Product saveOrUpdate(@NotNull Product product);
 
-    void delete(int id);
+    void deleteById(int id);
 
-    Set<Product> search(@NotNull ProductSearchParams productSearchParams);
+    List<Product> search(@NotNull ProductSearchParams productSearchParams);
 
 }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -81,7 +82,7 @@ public class ProductController {
                 .itemsInPage(itemsInPage)
                 .build();
 
-        final Set<Product> products = productService.search(productSearchParams);
+        final List<Product> products = productService.search(productSearchParams);
         final Set<ProductDto> productsDto = products.stream()
                 .map(ProductDto::fromProduct)
                 .collect(Collectors.toSet());
@@ -104,7 +105,7 @@ public class ProductController {
      */
     @PostMapping(ADMIN + API_VERSION + "delete")
     public ApiResponse<String> deleteProduct(@RequestParam("productId") @NotNull final Integer productId) {
-        productService.delete(productId);
+        productService.deleteById(productId);
         return ApiResponse.ok("product deleted");
     }
 
