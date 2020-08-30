@@ -4,6 +4,7 @@ import com.plekhanov.react_web_service.entities.User;
 import com.plekhanov.react_web_service.services.UserService;
 import com.plekhanov.react_web_service.utils.SecurityUtils;
 import com.plekhanov.react_web_service.web.ApiResponse;
+import com.plekhanov.react_web_service.web.dto.RegistrationRequestDto;
 import com.plekhanov.react_web_service.web.dto.UserDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
@@ -85,9 +86,9 @@ public class UserController {
      * Регистрация нового {@link User}
      */
     @PostMapping(PUBLIC + API_VERSION + "registration")
-    public ApiResponse<String> registration() {
-        //TODO
-        return null;
+    public ApiResponse<String> registration(@RequestBody @NotNull final RegistrationRequestDto requestDto) {
+        userService.registration(requestDto.getUsername(), requestDto.getEmail(), requestDto.getPassword());
+        return ApiResponse.ok("registration request accepted");
     }
 
 

@@ -93,4 +93,11 @@ public class UserServiceImpl implements UserService {
         favoriteProducts.removeIf(userFavoriteProduct -> userFavoriteProduct.getProduct().getId().equals(productId));
         userDao.save(user);
     }
+
+
+    @Override
+    public void registration(final String username, final String email, final String password) {
+        //TODO
+        throw new RuntimeException("not implemented!");
+    }
 }
