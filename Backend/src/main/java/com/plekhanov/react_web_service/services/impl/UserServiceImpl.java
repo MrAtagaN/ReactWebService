@@ -40,20 +40,18 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User saveOrUpdate(final User user) {
-        return userDao.saveOrUpdate(user);
+        return userDao.save(user);
     }
 
 
     @Override
     public void addProductToBag(final Integer productId, final User user) {
-        final Product product = productDao.findById(productId);
-        if (product == null) {
-            throw new ValidationException(format("No product with id: {0}", productId));
-        }
+        Product product = productDao.findById(productId).orElseThrow(() ->
+                new ValidationException(format("No product with id: {0}", productId)));
         Map<Product, Integer> bagProducts = user.getBagProducts();
         Integer count = bagProducts.getOrDefault(product, 0);
         bagProducts.put(product, ++count);
-        userDao.saveOrUpdate(user);
+        userDao.save(user);
     }
 
 
@@ -74,19 +72,17 @@ public class UserServiceImpl implements UserService {
             bagProducts.put(productToRemove, count - 1);
         }
 
-        userDao.saveOrUpdate(user);
+        userDao.save(user);
     }
 
 
     @Override
     public void addProductToFavorite(final Integer productId, final User user) {
-        final Product product = productDao.findById(productId);
-        if (product == null) {
-            throw new ValidationException(format("No product with id: {0}", productId));
-        }
+        final Product product = productDao.findById(productId).orElseThrow(() ->
+                new ValidationException(format("No product with id: {0}", productId)));
         Set<UserFavoriteProduct> favoriteProducts = user.getFavoriteProducts();
         favoriteProducts.add(new UserFavoriteProduct(user, product));
-        userDao.saveOrUpdate(user);
+        userDao.save(user);
     }
 
 
@@ -95,6 +91,6 @@ public class UserServiceImpl implements UserService {
     public void deleteProductFromFavorite(final Integer productId, final User user) {
         Set<UserFavoriteProduct> favoriteProducts = user.getFavoriteProducts();
         favoriteProducts.removeIf(userFavoriteProduct -> userFavoriteProduct.getProduct().getId().equals(productId));
-        userDao.saveOrUpdate(user);
+        userDao.save(user);
     }
 }

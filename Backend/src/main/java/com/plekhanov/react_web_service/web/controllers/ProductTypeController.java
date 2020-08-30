@@ -4,7 +4,6 @@ import com.plekhanov.react_web_service.entities.ProductType;
 import com.plekhanov.react_web_service.entities.ProductType.Category;
 import com.plekhanov.react_web_service.entities.ProductType.Gender;
 import com.plekhanov.react_web_service.entities.ProductType.Age;
-import com.plekhanov.react_web_service.entities.search_params.ProductTypeSearchParams;
 import com.plekhanov.react_web_service.services.ProductTypeService;
 import com.plekhanov.react_web_service.web.ApiResponse;
 import com.plekhanov.react_web_service.web.dto.ProductTypeDto;
@@ -41,14 +40,7 @@ public class ProductTypeController {
             @RequestParam(value = "age", required = false) final Age age,
             @RequestParam(value = "category", required = false) final Category category) {
 
-        final ProductTypeSearchParams productTypeSearchParams = ProductTypeSearchParams.builder()
-                .name(name)
-                .gender(gender)
-                .age(age)
-                .category(category)
-                .build();
-
-        final Set<ProductType> productTypes = productTypeService.search(productTypeSearchParams);
+        final Set<ProductType> productTypes = productTypeService.findByParameters(name, gender, age, category);
         final Set<ProductTypeDto> productTypeDtos = productTypes.stream()
                 .map(ProductTypeDto::fromProductType)
                 .collect(Collectors.toSet());
@@ -71,7 +63,7 @@ public class ProductTypeController {
      */
     @PostMapping(ADMIN + API_VERSION + "delete")
     public ApiResponse<String> deleteProductType(@RequestParam("productId") @NotNull final Integer productTypeId) {
-        productTypeService.delete(productTypeId);
+        productTypeService.deleteById(productTypeId);
         return ApiResponse.ok("productType deleted");
     }
 

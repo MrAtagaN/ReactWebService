@@ -16,6 +16,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import static com.plekhanov.react_web_service.entities.ProductType.Age.adult;
@@ -37,10 +38,11 @@ public class ProductUploader {
     @SneakyThrows
     public void uploadData() {
         //мужские джинсы
-        ProductType maleJeans = productTypeService.findByParameters("джинсы", male, adult, clothes);
+       Set<ProductType> maleJeansSet = productTypeService.findByParameters("джинсы", male, adult, clothes);
+       ProductType maleJeans = maleJeansSet.stream().findFirst().get();
 
         //модель 123
-        Set<Product> found = productService.search(ProductSearchParams.builder().name("модель 123").build());
+        List<Product> found = productService.search(ProductSearchParams.builder().name("модель 123").build());
         if (found.isEmpty()) {
             Product product = new Product();
             product.setName("модель 123");
@@ -55,7 +57,7 @@ public class ProductUploader {
         }
 
         //Ultra-Comfort
-        Set<Product> found2 = productService.search(ProductSearchParams.builder().name("Ultra-Comfort").build());
+        List<Product> found2 = productService.search(ProductSearchParams.builder().name("Ultra-Comfort").build());
         if (found2.isEmpty()) {
             Product product2 = new Product();
             product2.setName("Ultra-Comfort");
@@ -71,7 +73,7 @@ public class ProductUploader {
         }
 
         //Джинсы-скинни sculpt
-        Set<Product> found3 = productService.search(ProductSearchParams.builder().name("Джинсы-скинни sculpt").build());
+        List<Product> found3 = productService.search(ProductSearchParams.builder().name("Джинсы-скинни sculpt").build());
         if (found3.isEmpty()) {
             Product product3 = new Product();
             product3.setName("Джинсы-скинни sculpt");
@@ -87,16 +89,17 @@ public class ProductUploader {
         }
 
         //мужские рубашки
-        ProductType MaleShirts = productTypeService.findByParameters("рубашки", male, adult, clothes);
+       Set<ProductType> maleShirtsSet = productTypeService.findByParameters("рубашки", male, adult, clothes);
+        ProductType maleShirts = maleShirtsSet.stream().findFirst().get();
 
         //Рубашка regular-fit из светлого денима
-        Set<Product> found4 = productService.search(ProductSearchParams.builder().name("Рубашка regular-fit из светлого денима").build());
+        List<Product> found4 = productService.search(ProductSearchParams.builder().name("Рубашка regular-fit из светлого денима").build());
         if (found4.isEmpty()) {
             Product product4 = new Product();
             product4.setName("Рубашка regular-fit из светлого денима");
             product4.setDescription("Линия Casual. Regular fit. Светлый цвет. Воротник \"Акула\". На груди накладной " +
                     "карман. Длинные рукава. Закругленные манжеты с застежкой на две пуговицы.");
-            product4.setType(MaleShirts);
+            product4.setType(maleShirts);
             product4.setBrand("mango");
             product4.setPrice(new BigDecimal(2999));
             product4.setSize(new HashSet<>(Arrays.asList(30, 31, 32)));
@@ -106,13 +109,13 @@ public class ProductUploader {
         }
 
         //Хлопковая рубашка regular fit с принтом
-        Set<Product> found5 = productService.search(ProductSearchParams.builder().name("Хлопковая рубашка regular fit с принтом").build());
+        List<Product> found5 = productService.search(ProductSearchParams.builder().name("Хлопковая рубашка regular fit с принтом").build());
         if (found5.isEmpty()) {
             Product product5 = new Product();
             product5.setName("Хлопковая рубашка regular fit с принтом");
             product5.setDescription("Линия Casual. Изделие выполнено из хлопка. Дизайн с фактурной выделкой. Принт. " +
                     "Regular fit. Классический воротник. Короткие рукава. Застежка на пуговицы.");
-            product5.setType(MaleShirts);
+            product5.setType(maleShirts);
             product5.setBrand("gap");
             product5.setPrice(new BigDecimal(2999));
             product5.setSize(new HashSet<>(Arrays.asList(30, 31, 32)));
@@ -122,13 +125,13 @@ public class ProductUploader {
         }
 
         //Топ со сборками и принтом
-        Set<Product> found6 = productService.search(ProductSearchParams.builder().name("Топ со сборками и принтом").build());
+        List<Product> found6 = productService.search(ProductSearchParams.builder().name("Топ со сборками и принтом").build());
         if (found6.isEmpty()) {
             Product product6 = new Product();
             product6.setName("Топ со сборками и принтом");
             product6.setDescription("100% органический хлопок. Цветочный принт. Присборенная вставка. Рукава-фонарики " +
                     "три четверти. Внизу волан.");
-            product6.setType(MaleShirts);
+            product6.setType(maleShirts);
             product6.setBrand("mango");
             product6.setPrice(new BigDecimal(1999));
             product6.setSize(new HashSet<>(Arrays.asList(30, 31, 32)));
@@ -138,10 +141,10 @@ public class ProductUploader {
         }
 
         //женские футболки
-        ProductType femaleTShirts = productTypeService.findByParameters("футболки", female, adult, clothes);
-
+       Set<ProductType> femaleTShirtsSet = productTypeService.findByParameters("футболки", female, adult, clothes);
+       ProductType femaleTShirts = femaleTShirtsSet.stream().findFirst().get();
         //Меланжевая футболка с карманом
-        Set<Product> found7 = productService.search(ProductSearchParams.builder().name("Меланжевая футболка с карманом").build());
+        List<Product> found7 = productService.search(ProductSearchParams.builder().name("Меланжевая футболка с карманом").build());
         if (found7.isEmpty()) {
             Product product7 = new Product();
             product7.setName("Меланжевая футболка с карманом");
@@ -157,7 +160,7 @@ public class ProductUploader {
         }
 
         //Хлопковая футболка с V-образной горловиной
-        Set<Product> found8 = productService.search(ProductSearchParams.builder().name("Хлопковая футболка с V-образной горловиной").build());
+        List<Product> found8 = productService.search(ProductSearchParams.builder().name("Хлопковая футболка с V-образной горловиной").build());
         if (found8.isEmpty()) {
             Product product8 = new Product();
             product8.setName("Хлопковая футболка с V-образной горловиной");
@@ -173,7 +176,7 @@ public class ProductUploader {
         }
 
         //Футболка из органического хлопка с принтом
-        Set<Product> found9 = productService.search(ProductSearchParams.builder().name("Футболка из органического хлопка с принтом").build());
+        List<Product> found9 = productService.search(ProductSearchParams.builder().name("Футболка из органического хлопка с принтом").build());
         if (found9.isEmpty()) {
             Product product9 = new Product();
             product9.setName("Футболка из органического хлопка с принтом");
@@ -188,7 +191,7 @@ public class ProductUploader {
         }
 
         //Футболка из органического хлопка с принтом
-        Set<Product> found10 = productService.search(ProductSearchParams.builder().name("Футболка с принтом").build());
+        List<Product> found10 = productService.search(ProductSearchParams.builder().name("Футболка с принтом").build());
         if (found10.isEmpty()) {
             Product product10 = new Product();
             product10.setName("Футболка с принтом");

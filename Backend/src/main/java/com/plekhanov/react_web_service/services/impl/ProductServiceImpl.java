@@ -7,9 +7,10 @@ import com.plekhanov.react_web_service.services.ProductService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import java.util.Set;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Service
@@ -21,17 +22,33 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product saveOrUpdate(final Product product) {
-        return productDao.saveOrUpdate(product);
+        return productDao.save(product);
     }
 
     @Override
-    public Set<Product> search(final ProductSearchParams productSearchParams) {
-        return productDao.search(productSearchParams);
+    public List<Product> search(final ProductSearchParams productSearchParams) {
+        return productDao.findByParameters(
+                productSearchParams.getName(),
+                productSearchParams.getTypeId(),
+                productSearchParams.getSubType(),
+                productSearchParams.getBrand(),
+                productSearchParams.getPriceFrom(),
+                productSearchParams.getPriceTo(),
+                productSearchParams.getSizeFrom(),
+                productSearchParams.getSizeTo(),
+                productSearchParams.getNamedSize(),
+                productSearchParams.getGender(),
+                productSearchParams.getType(),
+                productSearchParams.getAge(),
+                productSearchParams.getColor(),
+                productSearchParams.getIsNew(),
+                productSearchParams.getIsSales(),
+                PageRequest.of(productSearchParams.getPage(), productSearchParams.getItemsInPage()));
     }
 
     @Override
-    public void delete(int id) {
-        productDao.delete(id);
+    public void deleteById(int id) {
+        productDao.deleteById(id);
     }
 
 }
