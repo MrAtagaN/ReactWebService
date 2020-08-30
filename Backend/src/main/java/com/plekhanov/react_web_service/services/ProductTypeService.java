@@ -4,6 +4,7 @@ import com.plekhanov.react_web_service.entities.ProductType;
 import com.plekhanov.react_web_service.entities.ProductType.*;
 import org.springframework.validation.annotation.Validated;
 
+import javax.annotation.Nullable;
 import javax.validation.constraints.NotNull;
 import java.util.Set;
 
@@ -17,6 +18,9 @@ public interface ProductTypeService {
 
     void deleteById(int id);
 
-    Set<ProductType> findByParameters(String name, Gender gender, Age age, Category category);
+    Set<ProductType> findByParameters(@Nullable String name,
+                                      @Nullable Gender gender,
+                                      @Nullable Age age,
+                                      @Nullable Category category);
 
 }
