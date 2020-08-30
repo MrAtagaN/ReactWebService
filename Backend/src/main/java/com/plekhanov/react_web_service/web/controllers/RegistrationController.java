@@ -1,6 +1,5 @@
 package com.plekhanov.react_web_service.web.controllers;
 
-
 import com.plekhanov.react_web_service.entities.User;
 import com.plekhanov.react_web_service.services.RegistrationService;
 import com.plekhanov.react_web_service.web.api.ApiResponse;

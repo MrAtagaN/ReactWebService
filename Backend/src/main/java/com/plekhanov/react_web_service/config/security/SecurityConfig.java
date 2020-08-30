@@ -27,7 +27,6 @@ import static com.plekhanov.react_web_service.web.api.ApiResponse.ResponseCode.A
 import static com.plekhanov.react_web_service.web.api.ApiResponse.ResponseCode.NOT_AUTHENTICATED;
 import static org.springframework.http.HttpStatus.*;
 
-
 /**
  * Конфигурация Security
  * https://stackoverflow.com/questions/32498868/custom-login-form-configure-spring-security-to-get-a-json-response
