@@ -13,8 +13,6 @@ import java.util.List;
 @Validated
 public interface UserDao extends JpaRepository<User, Integer> {
 
-    User findById(int id);
-
     List<User> findByUsername(@NotBlank String username);
 
     User findByEmail(@NotBlank String email);

@@ -18,8 +18,6 @@ import java.util.Set;
 @Validated
 public interface ProductTypeDao extends JpaRepository<ProductType, Integer> {
 
-    void deleteById(int id);
-
     @Query("SELECT p FROM ProductType p WHERE " +
             "(:name is null or p.name = :name) and " +
             "(:gender is null or p.gender = :gender) and " +

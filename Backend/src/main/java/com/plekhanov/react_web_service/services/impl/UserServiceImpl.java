@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService {
         final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null) {
             User user = (User) authentication.getPrincipal();
-            return userDao.findById(user.getId()).get();
+            return findById(user.getId());
         }
         return null;
     }
@@ -45,7 +45,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findById(final int id) {
-        return userDao.findById(id);
+        return userDao.findById(id).orElseThrow(() ->
+                new RuntimeException(format("No User with id: {0}", id)));
     }
 
     @Override

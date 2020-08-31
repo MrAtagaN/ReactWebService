@@ -17,8 +17,6 @@ import java.util.List;
 @Validated
 public interface ProductDao extends JpaRepository<Product, Integer> {
 
-    void deleteById(int id);
-
     @Query("SELECT p FROM Product p inner join p.size s WHERE " +
             "(:name is null or p.name = :name) and " +
             "(:typeId is null or p.type = :typeId) and " +
