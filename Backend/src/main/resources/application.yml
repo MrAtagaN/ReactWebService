@@ -14,7 +14,7 @@ server:
     key-alias: react-web-service
     enabled: true
     protocol: TLS
-    client-auth: want
+    client-auth: want # не аутентифицировать клиента, поставить need если надо аутентифицировать
 
 spring:
   jmx:
