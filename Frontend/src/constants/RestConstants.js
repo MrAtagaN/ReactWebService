@@ -1,4 +1,4 @@
-export const SERVER_URL = 'http://localhost:80/';
+export const SERVER_URL = 'https://localhost:443/';
 export const LOGIN_URL = 'api/v1/login';
 export const LOGOUT_URL = 'api/v1/logout';
 export const USER_URL = 'api/v1/user/';

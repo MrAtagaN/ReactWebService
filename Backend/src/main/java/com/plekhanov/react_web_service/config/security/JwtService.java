@@ -26,7 +26,7 @@ public class JwtService {
     String secretKey;
 
 
-    public JwtService(@Value("${jwt.validityinmilliseconds}") long validityTokenInMilliseconds,
+    public JwtService(@Value("${jwt.validityTokenInMilliseconds}") long validityTokenInMilliseconds,
                       @Value("${jwt.secretkey}") String secretKey) {
 
         this.validityTokenInMilliseconds = validityTokenInMilliseconds;
