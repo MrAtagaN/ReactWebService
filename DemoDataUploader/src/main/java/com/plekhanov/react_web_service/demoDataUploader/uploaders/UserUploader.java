@@ -5,6 +5,7 @@ import com.plekhanov.react_web_service.services.UserService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -22,6 +23,7 @@ import static java.util.Collections.singleton;
 public class UserUploader {
 
     UserService userService;
+    BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
     public void uploadData() {
@@ -30,7 +32,7 @@ public class UserUploader {
         if (admin == null) {
             admin = new User();
             admin.setUsername("Сергей");
-            admin.setPassword("$2a$10$nWq3jS4Xui7hMVz4L1dUVuRYzY8DQsfWUROmXA627yd.wjm/FrD5G"); //admin
+            admin.setPassword(bCryptPasswordEncoder.encode("admin"));
             admin.setAuthorities(singleton(ADMIN));
             admin.setAccountNonExpired(true);
             admin.setAccountNonLocked(true);
@@ -47,7 +49,7 @@ public class UserUploader {
         if (user == null) {
             user = new User();
             user.setUsername("Александр");
-            user.setPassword("$2a$10$DPPNZFtJEqmVr8qpARZfvu4HbT2Sd1bj563TIgZ35A7JPVtZUZ5MG"); //user
+            user.setPassword(bCryptPasswordEncoder.encode("user"));
             user.setAuthorities(singleton(USER));
             user.setAccountNonExpired(true);
             user.setAccountNonLocked(true);

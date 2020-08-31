@@ -1,6 +1,5 @@
 package com.plekhanov.react_web_service.entities;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,7 +7,6 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 import static javax.persistence.FetchType.EAGER;
-
 
 /**
  * Связка {@link User} и понравившегося ему {@link Product}

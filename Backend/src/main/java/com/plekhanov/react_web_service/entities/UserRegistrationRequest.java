@@ -1,6 +1,5 @@
 package com.plekhanov.react_web_service.entities;
 
-
 import lombok.Data;
 import lombok.ToString;
 

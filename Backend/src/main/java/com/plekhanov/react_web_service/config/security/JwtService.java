@@ -38,7 +38,6 @@ public class JwtService {
         final Claims claims = Jwts.claims().setSubject(email);
         final Date now = new Date();
         final Date validity = new Date(now.getTime() + validityTokenInMilliseconds);
-
         return Jwts.builder()
                 .setClaims(claims)
                 .setIssuedAt(now)
