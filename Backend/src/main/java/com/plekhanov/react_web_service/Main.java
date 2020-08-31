@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * Запуск приложения
- * Приложение доступно на http://localhost:80/
+ * Приложение доступно на https://localhost:443/
  */
 @SpringBootApplication
 public class Main {
