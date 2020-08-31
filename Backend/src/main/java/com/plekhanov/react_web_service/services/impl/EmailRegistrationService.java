@@ -22,7 +22,7 @@ public class EmailRegistrationService implements RegistrationService {
     @Override
     public void registrationRequest(final String username, final String email, final String password) {
         //TODO послать на почту ссылку для подтверждения, создать в  таблице user_registration_request запись
-
+        //TODO enableTransaction
         throw new RuntimeException("not implemented!");
     }
 
