@@ -43,7 +43,8 @@ public class ApiResponse<T> {
         AUTHENTICATION_FAILURE(2),
         ACCESS_DENIED(3),
         UNKNOWN_ERROR(4),
-        VALIDATION_ERROR(5);
+        VALIDATION_ERROR(5),
+        WRONG_CONFIRM_CODE(6);
 
         ResponseCode(int value) {
             this.value = value;

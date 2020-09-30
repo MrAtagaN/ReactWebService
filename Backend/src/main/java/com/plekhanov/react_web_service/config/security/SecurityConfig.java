@@ -63,6 +63,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/*")
                 .antMatchers("/static/**")
                 .antMatchers("/images/**")
+                .antMatchers("public/api/v1/registration/request")
+                .antMatchers("public/api/v1/registration/confirm-email")
                 .antMatchers("/public/**");
     }
 

@@ -12,7 +12,7 @@ server:
     key-store: classpath:keystore.jks
     key-password: changeit
     key-alias: react-web-service
-    enabled: true
+    enabled: false
     protocol: TLS
     client-auth: want # не аутентифицировать клиента, поставить need если надо аутентифицировать
 
@@ -34,6 +34,22 @@ spring:
     schemas:    # схема, в которую flyway будет делать миграцию
   mvc:
     throw-exception-if-no-handler-found: true
+  mail:
+    host: smtp.rambler.ru
+    port: 465
+    username: JavaProjectMail
+    password: A1234qwer
+    properties:
+      mail:
+        transport:
+          protocol: smtp
+        smtp:
+#          port: 25
+          auth: true
+          ssl:
+            enable: true
+          starttls:
+            enable: true
 
 jwt:
   validityTokenInMilliseconds: 60000000

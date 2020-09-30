@@ -8,12 +8,12 @@ import javax.validation.constraints.NotNull;
  * Сервис для создания нового {@link User}
  */
 @Validated
-public interface RegistrationService {
+public interface UserRegistrationService {
 
     /**
      * Запрос на создание нового {@link User}, нужно подтвердить
      */
-    void registrationRequest(@NotNull String username, @NotNull String email, @NotNull String password);
+    void userRegistrationRequest(@NotNull String username, @NotNull String email, @NotNull String password);
 
 
     /**
