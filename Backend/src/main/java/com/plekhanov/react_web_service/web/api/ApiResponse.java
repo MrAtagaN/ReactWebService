@@ -44,7 +44,8 @@ public class ApiResponse<T> {
         ACCESS_DENIED(3),
         UNKNOWN_ERROR(4),
         VALIDATION_ERROR(5),
-        WRONG_CONFIRM_CODE(6);
+        WRONG_CONFIRM_CODE(6),
+        USER_EMAIL_ALREADY_EXIST(7);
 
         ResponseCode(int value) {
             this.value = value;

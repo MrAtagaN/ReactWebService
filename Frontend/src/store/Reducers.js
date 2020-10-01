@@ -2,7 +2,7 @@ import {
     CHOSEN_GENDER,
     IS_AUTHENTICATED,
     IS_OPEN_AUTH_MODAL, IS_OPEN_REGISTRATION_MODAL, ON_CHOSEN_GENDER,
-    ON_SUCCESS_AUTH,
+    ON_SUCCESS_AUTH, SUCCESS_REGISTRATION_REQUEST,
     TITLE,
     USER_INFO
 } from "../constants/ActionConstants";
@@ -15,6 +15,7 @@ const initialState = {
     isAuthenticated: false,
     isOpenAuthModal: false, //открыто модальное окно авторизации
     isOpenRegistrationModal: false, // открыто модальное окно регистрации
+    isSuccessRegistrationRequest: false, // успешный ответ решистрации нового пользователя
     onSuccessAuth: ()=>{}, //действие при успешной авторизации
     title: '',
     userInfo: '',
@@ -41,6 +42,8 @@ export const rootReducer = (state = initialState, action) => {
             return {...state, onChosenGender: action.value};
         case IS_OPEN_REGISTRATION_MODAL:
             return {...state, isOpenRegistrationModal: action.value}
+        case SUCCESS_REGISTRATION_REQUEST:
+            return {...state, isSuccessRegistrationRequest: action.value}
     }
 
     return state;

@@ -33,7 +33,7 @@ class AuthModal extends Component {
 
                             </div>
                             <div className="modalBody">
-                                <div>Введите логин и пароль</div>
+                                <div>Введите адресс электронной почты и пароль</div>
                                 <Input id={'email'}/>
                                 <Input id={'password'}/>
                                 <div>{this.state.message}</div>

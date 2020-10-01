@@ -5,7 +5,7 @@ import {
     setIsOpenAuthModal,
     setIsOpenRegistrationModal,
     setOnChosenGender,
-    setOnSuccessAuth,
+    setOnSuccessAuth, setSuccessRegistrationRequest,
     setTitle,
     setUserInfo
 } from './Actions';
@@ -22,6 +22,7 @@ export const putStateFieldsToProps = (state) => {
             userInfo: state.userInfo,
             isOpenAuthModal: state.isOpenAuthModal,
             isOpenRegistrationModal: state.isOpenRegistrationModal,
+            isSuccessRegistrationRequest: state.isSuccessRegistrationRequest,
             onSuccessAuth: state.onSuccessAuth,
             chosenGender: state.chosenGender,
             onChosenGender: state.onChosenGender
@@ -41,6 +42,7 @@ export const putActionsToProps = (dispatch) => {
             setUserInfo: bindActionCreators(setUserInfo, dispatch),
             setIsOpenAuthModal: bindActionCreators(setIsOpenAuthModal, dispatch), //открыто модальное окно авторизации
             setIsOpenRegistrationModal: bindActionCreators(setIsOpenRegistrationModal, dispatch),
+            setSuccessRegistrationRequest: bindActionCreators(setSuccessRegistrationRequest, dispatch),
             setOnSuccessAuth: bindActionCreators(setOnSuccessAuth, dispatch), //действие при успешной авторизации
             setChosenGender: bindActionCreators(setChosenGender, dispatch),
             setOnChosenGender: bindActionCreators(setOnChosenGender, dispatch) //действие при выборе пола

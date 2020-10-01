@@ -1,6 +1,7 @@
 package com.plekhanov.react_web_service.web;
 
 import com.plekhanov.react_web_service.exceptions.ConfirmCodeException;
+import com.plekhanov.react_web_service.exceptions.UserEmailAlreadyExist;
 import com.plekhanov.react_web_service.web.api.ApiResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -116,6 +117,16 @@ class ErrorHandlerControllerAdvice {
     public ResponseEntity<ApiResponse<String>> confirmCodeException(final ConfirmCodeException e) {
         log.warn(e.getMessage());
         final ApiResponse<String> apiResponse = ApiResponse.error(WRONG_CONFIRM_CODE, "Validation error");
+        return ResponseEntity
+                .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .header("Content-Type", "application/json; charset=UTF-8")
+                .body(apiResponse);
+    }
+
+    @ExceptionHandler({UserEmailAlreadyExist.class})
+    public ResponseEntity<ApiResponse<String>> userEmailAlreadyExistException(final UserEmailAlreadyExist e) {
+        log.warn(e.getMessage());
+        final ApiResponse<String> apiResponse = ApiResponse.error(USER_EMAIL_ALREADY_EXIST, "Validation error");
         return ResponseEntity
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .header("Content-Type", "application/json; charset=UTF-8")

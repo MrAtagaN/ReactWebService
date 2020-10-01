@@ -2,7 +2,7 @@ import {
     CHOSEN_GENDER,
     IS_AUTHENTICATED,
     IS_OPEN_AUTH_MODAL, IS_OPEN_REGISTRATION_MODAL, ON_CHOSEN_GENDER,
-    ON_SUCCESS_AUTH,
+    ON_SUCCESS_AUTH, SUCCESS_REGISTRATION_REQUEST,
     TITLE,
     USER_INFO
 } from "../constants/ActionConstants";
@@ -24,6 +24,13 @@ export const setIsOpenAuthModal = (newValue) => {
 export const setIsOpenRegistrationModal = (newValue) => {
     return {
         type: IS_OPEN_REGISTRATION_MODAL,
+        value: newValue
+    }
+}
+
+export const setSuccessRegistrationRequest = (newValue) => {
+    return {
+        type: SUCCESS_REGISTRATION_REQUEST,
         value: newValue
     }
 }

@@ -4,6 +4,7 @@ import com.plekhanov.react_web_service.config.security.Role;
 import com.plekhanov.react_web_service.dao.UserDao;
 import com.plekhanov.react_web_service.dao.UserRegistrationDao;
 import com.plekhanov.react_web_service.exceptions.ConfirmCodeException;
+import com.plekhanov.react_web_service.exceptions.UserEmailAlreadyExist;
 import com.plekhanov.react_web_service.services.MailSender;
 import com.plekhanov.react_web_service.services.UserRegistrationService;
 import com.plekhanov.react_web_service.entities.UserRegistrationRequest;
@@ -37,7 +38,15 @@ public class UserEmailRegistrationService implements UserRegistrationService {
     @Override
     @Transactional
     public void userRegistrationRequest(final String username, final String email, final String password) {
-        UserRegistrationRequest userRegistrationRequest = new UserRegistrationRequest();
+        UserRegistrationRequest userRegistrationRequest = userRegistrationDao.findByEmail(email);
+        if (userRegistrationRequest != null) {
+            throw new UserEmailAlreadyExist("Пользователь с таким email уже существует");
+        }
+        User user = userDao.findByEmail(email);
+        if(user != null) {
+            throw new UserEmailAlreadyExist("Пользователь с таким email уже существует");
+        }
+        userRegistrationRequest = new UserRegistrationRequest();
         userRegistrationRequest.setEmail(email);
         userRegistrationRequest.setPassword(password);
         userRegistrationRequest.setUsername(username);
