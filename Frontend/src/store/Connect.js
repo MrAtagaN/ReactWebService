@@ -2,7 +2,9 @@ import {bindActionCreators} from 'redux';
 import {
     setChosenGender,
     setIsAuthenticated,
-    setIsOpenAuthModal, setOnChosenGender,
+    setIsOpenAuthModal,
+    setIsOpenRegistrationModal,
+    setOnChosenGender,
     setOnSuccessAuth,
     setTitle,
     setUserInfo
@@ -19,6 +21,7 @@ export const putStateFieldsToProps = (state) => {
             title: state.title,
             userInfo: state.userInfo,
             isOpenAuthModal: state.isOpenAuthModal,
+            isOpenRegistrationModal: state.isOpenRegistrationModal,
             onSuccessAuth: state.onSuccessAuth,
             chosenGender: state.chosenGender,
             onChosenGender: state.onChosenGender
@@ -37,6 +40,7 @@ export const putActionsToProps = (dispatch) => {
             setTitle: bindActionCreators(setTitle, dispatch),
             setUserInfo: bindActionCreators(setUserInfo, dispatch),
             setIsOpenAuthModal: bindActionCreators(setIsOpenAuthModal, dispatch), //открыто модальное окно авторизации
+            setIsOpenRegistrationModal: bindActionCreators(setIsOpenRegistrationModal, dispatch),
             setOnSuccessAuth: bindActionCreators(setOnSuccessAuth, dispatch), //действие при успешной авторизации
             setChosenGender: bindActionCreators(setChosenGender, dispatch),
             setOnChosenGender: bindActionCreators(setOnChosenGender, dispatch) //действие при выборе пола

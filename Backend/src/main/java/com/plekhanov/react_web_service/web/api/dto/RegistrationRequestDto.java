@@ -11,8 +11,8 @@ import lombok.Value;
 @Builder
 public class RegistrationRequestDto {
 
-    String username;
     String email;
     String password;
+    String username;
 
 }

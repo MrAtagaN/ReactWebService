@@ -50,6 +50,7 @@ class Header extends Component {
 
                     {this.props.appState.isAuthenticated && <Button classes={"logout"} onClickAction={this.onClickLogout} ><img src="images/login2.svg"/><br/>Выход</Button>}
                     {!this.props.appState.isAuthenticated && <Button classes={"login"} onClickAction={this.onClickLogin}><img src="images/login2.svg"/><br/>Вход</Button>}
+                    <Button onClickAction={this.onClickRegistration}><img src="images/bag.svg"/><br/>Регистрация</Button>
                 </span>
 
 
@@ -60,6 +61,10 @@ class Header extends Component {
     onClickSearch = () => {//TODO поменять
 
     };
+
+    onClickRegistration = () => {
+        this.props.changeAppState.setIsOpenRegistrationModal(true);
+    }
 
     onClickLogout = () => {
         RestClient.get(LOGOUT_URL);

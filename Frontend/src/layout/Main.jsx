@@ -7,6 +7,7 @@ import {OK, USER_URL} from "../constants/RestConstants";
 import {connectToStore} from "../store/Connect";
 import RestClient from "../services/RestClient";
 import AuthModal from "../components/auth_modal/AuthModal";
+import RegistrationModal from "../components/registration_modal/RegistrationModal";
 
 /**
  * Главный компонент (весь сайт)
@@ -16,6 +17,7 @@ class Main extends Component {
     render() {
         return (
             <div>
+                <RegistrationModal/>
                 <AuthModal/>
                 <Header/>
                 <LeftMenu/>

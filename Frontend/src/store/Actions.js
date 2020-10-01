@@ -1,7 +1,7 @@
 import {
     CHOSEN_GENDER,
     IS_AUTHENTICATED,
-    IS_OPEN_AUTH_MODAL, ON_CHOSEN_GENDER,
+    IS_OPEN_AUTH_MODAL, IS_OPEN_REGISTRATION_MODAL, ON_CHOSEN_GENDER,
     ON_SUCCESS_AUTH,
     TITLE,
     USER_INFO
@@ -20,6 +20,13 @@ export const setIsOpenAuthModal = (newValue) => {
         value: newValue
     }
 };
+
+export const setIsOpenRegistrationModal = (newValue) => {
+    return {
+        type: IS_OPEN_REGISTRATION_MODAL,
+        value: newValue
+    }
+}
 
 export const setOnSuccessAuth = (newValue) => {
     return {
