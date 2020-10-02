@@ -5,8 +5,6 @@ package com.plekhanov.react_web_service.cron;
  */
 public interface DataBaseCleaner {
 
-    /**
-     * //TODO
-     */
+
     void cleanUserRegistrationRequest();
 }

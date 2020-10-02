@@ -15,4 +15,5 @@ export const UNKNOWN_ERROR = 4;
 export const VALIDATION_ERROR = 5;
 export const WRONG_CONFIRM_CODE = 6;
 export const USER_EMAIL_ALREADY_EXIST = 7;
+export const USER_REQUEST_TIME_OUT = 8;
 

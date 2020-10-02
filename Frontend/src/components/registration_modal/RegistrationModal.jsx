@@ -11,6 +11,7 @@ import {
     WRONG_CONFIRM_CODE,
     REGISTRATION_REQUEST,
     CONFIRM_REQUEST,
+    USER_REQUEST_TIME_OUT,
     USER_EMAIL_ALREADY_EXIST
 } from "../../constants/RestConstants";
 
@@ -116,10 +117,14 @@ class RegistrationModal extends Component {
         const response = await RestClient.sendForm(CONFIRM_REQUEST, {confirmCode: confirmcode, email: email});
 
         if (response.code === WRONG_CONFIRM_CODE) {
-            this.setState({message: 'неправильный проверочный код'})
+            this.setState({message: 'неправильный проверочный код'});
+        } else if (response.code === USER_REQUEST_TIME_OUT) {
+            this.setState({message: 'Время подтверждения истекло'})
         } else if (response.code === OK) {
-            this.props.changeAppState.setIsOpenRegistrationModal(false);
-            this.props.changeAppState.setSuccessRegistrationRequest(false);
+            this.setState({message: 'Пользователь зарегистрирован'});
+            setTimeout(() => {this.setState({message: ''})}, 2000);
+            setTimeout(() => {this.props.changeAppState.setIsOpenRegistrationModal(false)}, 2000);
+            setTimeout(() => {this.props.changeAppState.setSuccessRegistrationRequest(false)}, 2000);
         }
     }
 

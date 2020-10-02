@@ -2,12 +2,14 @@ package com.plekhanov.react_web_service;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  * Запуск приложения
  * Приложение доступно на https://localhost:443/
  */
 @SpringBootApplication
+@EnableScheduling
 public class Main {
 
     public static void main(String[] args) {

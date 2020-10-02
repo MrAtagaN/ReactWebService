@@ -2,6 +2,7 @@ package com.plekhanov.react_web_service.web;
 
 import com.plekhanov.react_web_service.exceptions.ConfirmCodeException;
 import com.plekhanov.react_web_service.exceptions.UserEmailAlreadyExist;
+import com.plekhanov.react_web_service.exceptions.UserRequestTimeOutException;
 import com.plekhanov.react_web_service.web.api.ApiResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -31,6 +32,7 @@ class ErrorHandlerControllerAdvice {
     @ExceptionHandler({Exception.class})
     public ResponseEntity<ApiResponse<String>> onExceptionHandler(final Exception e, final WebRequest webRequest) {
         log.error("Internal error during handling request {} , {}.", e, webRequest);
+        e.printStackTrace();
         final ApiResponse<String> apiResponse = ApiResponse.error(UNKNOWN_ERROR, "Internal server error");
         return ResponseEntity
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -79,7 +81,7 @@ class ErrorHandlerControllerAdvice {
      */
     @ExceptionHandler({AccessDeniedException.class})
     public ResponseEntity<ApiResponse<String>> onAccessDeniedExceptionHandler(final Exception e, final WebRequest webRequest) {
-        log.debug("Access denied during handling request {}.", webRequest);
+        log.error("Access denied during handling request {}.", webRequest);
         final ApiResponse<String> apiResponse = ApiResponse.error(ACCESS_DENIED, "Access denied");
         return ResponseEntity
                 .status(HttpStatus.FORBIDDEN)
@@ -92,7 +94,7 @@ class ErrorHandlerControllerAdvice {
      */
     @ExceptionHandler({AuthenticationException.class})
     public ResponseEntity<ApiResponse<String>> onAuthenticationExceptionHandler(final Exception e, final WebRequest webRequest) {
-        log.debug("Authentication failure during handling request {}.", webRequest);
+        log.error("Authentication failure during handling request {}.", webRequest);
         final ApiResponse<String> apiResponse = ApiResponse.error(AUTHENTICATION_FAILURE, "Authentication failure");
         return ResponseEntity
                 .status(HttpStatus.FORBIDDEN)
@@ -105,7 +107,7 @@ class ErrorHandlerControllerAdvice {
      */
     @ExceptionHandler({ConstraintViolationException.class})
     public ResponseEntity<ApiResponse<String>> validationException(final ConstraintViolationException e, final WebRequest webRequest) {
-        log.warn("Validation exception during handling request {} , {}.", e.getMessage(), webRequest);
+        log.error("Validation exception during handling request {} , {}.", e.getMessage(), webRequest);
         final ApiResponse<String> apiResponse = ApiResponse.error(VALIDATION_ERROR, "Validation error");
         return ResponseEntity
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -115,7 +117,7 @@ class ErrorHandlerControllerAdvice {
 
     @ExceptionHandler({ConfirmCodeException.class})
     public ResponseEntity<ApiResponse<String>> confirmCodeException(final ConfirmCodeException e) {
-        log.warn(e.getMessage());
+        log.error(e.getMessage());
         final ApiResponse<String> apiResponse = ApiResponse.error(WRONG_CONFIRM_CODE, "Validation error");
         return ResponseEntity
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -125,8 +127,18 @@ class ErrorHandlerControllerAdvice {
 
     @ExceptionHandler({UserEmailAlreadyExist.class})
     public ResponseEntity<ApiResponse<String>> userEmailAlreadyExistException(final UserEmailAlreadyExist e) {
-        log.warn(e.getMessage());
+        log.error(e.getMessage());
         final ApiResponse<String> apiResponse = ApiResponse.error(USER_EMAIL_ALREADY_EXIST, "Validation error");
+        return ResponseEntity
+                .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .header("Content-Type", "application/json; charset=UTF-8")
+                .body(apiResponse);
+    }
+
+    @ExceptionHandler({UserRequestTimeOutException.class})
+    public ResponseEntity<ApiResponse<String>> UserRequestTimeOutException(final UserRequestTimeOutException e) {
+        log.error(e.getMessage());
+        final ApiResponse<String> apiResponse = ApiResponse.error(USER_REQUEST_TIME_OUT, "Validation error");
         return ResponseEntity
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .header("Content-Type", "application/json; charset=UTF-8")

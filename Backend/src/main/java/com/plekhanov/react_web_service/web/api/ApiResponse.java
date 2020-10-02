@@ -1,5 +1,6 @@
 package com.plekhanov.react_web_service.web.api;
 
+import com.plekhanov.react_web_service.exceptions.UserRequestTimeOutException;
 import lombok.*;
 
 import static com.plekhanov.react_web_service.web.api.ApiResponse.ResponseCode.OK;
@@ -45,7 +46,8 @@ public class ApiResponse<T> {
         UNKNOWN_ERROR(4),
         VALIDATION_ERROR(5),
         WRONG_CONFIRM_CODE(6),
-        USER_EMAIL_ALREADY_EXIST(7);
+        USER_EMAIL_ALREADY_EXIST(7),
+        USER_REQUEST_TIME_OUT(8);
 
         ResponseCode(int value) {
             this.value = value;

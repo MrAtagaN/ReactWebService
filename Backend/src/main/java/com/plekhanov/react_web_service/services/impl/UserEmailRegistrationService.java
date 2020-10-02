@@ -5,6 +5,7 @@ import com.plekhanov.react_web_service.dao.UserDao;
 import com.plekhanov.react_web_service.dao.UserRegistrationDao;
 import com.plekhanov.react_web_service.exceptions.ConfirmCodeException;
 import com.plekhanov.react_web_service.exceptions.UserEmailAlreadyExist;
+import com.plekhanov.react_web_service.exceptions.UserRequestTimeOutException;
 import com.plekhanov.react_web_service.services.MailSender;
 import com.plekhanov.react_web_service.services.UserRegistrationService;
 import com.plekhanov.react_web_service.entities.UserRegistrationRequest;
@@ -66,6 +67,10 @@ public class UserEmailRegistrationService implements UserRegistrationService {
     public void confirmEmail(final String email, final String confirmCode) {
 
        final UserRegistrationRequest userRegistrationRequest = userRegistrationDao.findByEmail(email);
+
+       if (userRegistrationRequest == null) {
+           throw new UserRequestTimeOutException("User request not found, (time out)");
+       }
 
        if (!userRegistrationRequest.getConfirmCode().equals(confirmCode)) {
          throw new ConfirmCodeException("Wrong confirm code");
