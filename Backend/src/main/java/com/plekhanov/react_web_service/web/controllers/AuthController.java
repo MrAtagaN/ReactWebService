@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.constraints.NotNull;
 
+import static java.lang.String.format;
+
 
 /**
  * Эндпойнт для аутентификации
@@ -30,15 +32,15 @@ import javax.validation.constraints.NotNull;
 public class AuthController {
 
     JwtService jwtService;
-    String jwtCookieName;
+    String cookieTemplate;
     EmailPasswordAuthService emailPasswordAuthService;
 
     public AuthController(final JwtService jwtService,
                           final @Value("${jwt.cookie.name}") String jwtCookieName,
                           final EmailPasswordAuthService emailPasswordAuthService) {
         this.jwtService = jwtService;
-        this.jwtCookieName = jwtCookieName;
         this.emailPasswordAuthService = emailPasswordAuthService;
+        this.cookieTemplate = jwtCookieName + "={0}; HttpOnly; Path=/";
     }
 
 
@@ -54,7 +56,7 @@ public class AuthController {
         final User user = emailPasswordAuthService.authenticate(email, request.getPassword());
         final String jwtToken = jwtService.createJwtToken(email);
         final HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.set("SET-COOKIE", jwtCookieName + "=" + jwtToken + "; HttpOnly; Path=/");
+        httpHeaders.set("SET-COOKIE", format(cookieTemplate, jwtToken));
         return ResponseEntity
                 .ok()
                 .headers(httpHeaders)
