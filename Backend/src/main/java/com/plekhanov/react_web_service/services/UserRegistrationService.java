@@ -17,8 +17,8 @@ public interface UserRegistrationService {
 
 
     /**
-     * Подтверждение email ранее созданого {@link User}
-     * @param email в Base64
+     * Подтверждение ранее созданого {@link User} кодом
+     * @param email пользователя в Base64
      * @param confirmCode в Base64
      */
     void confirmEmail(@NotNull String email, @NotNull String confirmCode);

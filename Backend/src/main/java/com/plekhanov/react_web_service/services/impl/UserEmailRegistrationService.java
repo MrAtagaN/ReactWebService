@@ -34,7 +34,7 @@ public class UserEmailRegistrationService implements UserRegistrationService {
     UserDao userDao;
 
     /**
-     * Создает в базе запись {@link UserRegistrationRequest}, посылает на почту ссылку для подтверждения email
+     * Создает в базе запись {@link UserRegistrationRequest}, посылает на почту код для подтверждения email
      */
     @Override
     @Transactional
