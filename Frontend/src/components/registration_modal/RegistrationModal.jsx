@@ -112,9 +112,9 @@ class RegistrationModal extends Component {
      * Выполняется при нажатии на кнопку Submit при отправке проверочного кода
      */
     handleSubmitConfirmCode = async () => {
-        const confirmcode = document.getElementById('confirmcode').value;
+        const confirmCode = document.getElementById('confirmcode').value;
         const email = this.state.email;
-        const response = await RestClient.sendForm(CONFIRM_REQUEST, {confirmCode: confirmcode, email: email});
+        const response = await RestClient.sendForm(CONFIRM_REQUEST, {confirmCode: confirmCode, email: email});
 
         if (response.code === WRONG_CONFIRM_CODE) {
             this.setState({message: 'неправильный проверочный код'});

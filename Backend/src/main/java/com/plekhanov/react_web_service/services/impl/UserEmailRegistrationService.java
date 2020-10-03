@@ -39,23 +39,23 @@ public class UserEmailRegistrationService implements UserRegistrationService {
     @Override
     @Transactional
     public void userRegistrationRequest(final String username, final String email, final String password) {
-        UserRegistrationRequest userRegistrationRequest = userRegistrationDao.findByEmail(email);
-        if (userRegistrationRequest != null) {
+        final UserRegistrationRequest found = userRegistrationDao.findByEmail(email);
+        if (found != null) {
             throw new UserEmailAlreadyExist("Пользователь с таким email уже существует");
         }
-        User user = userDao.findByEmail(email);
+        final User user = userDao.findByEmail(email);
         if(user != null) {
             throw new UserEmailAlreadyExist("Пользователь с таким email уже существует");
         }
-        userRegistrationRequest = new UserRegistrationRequest();
+        final UserRegistrationRequest userRegistrationRequest = new UserRegistrationRequest();
         userRegistrationRequest.setEmail(email);
         userRegistrationRequest.setPassword(password);
         userRegistrationRequest.setUsername(username);
-        final String confirmCode = String.valueOf(ThreadLocalRandom.current().nextInt(1000, 10000));
+        final String confirmCode = String.valueOf(ThreadLocalRandom.current().nextInt(1000, 10000)); //TODO вынести в параметр
         userRegistrationRequest.setConfirmCode(confirmCode);
         userRegistrationRequest.setCreationTime(LocalDateTime.now());
         userRegistrationDao.save(userRegistrationRequest);
-        mailSender.sendMail(email, confirmCode);
+        mailSender.sendUserRegistrationConfirmCodeMail(email, confirmCode);
     }
 
 
@@ -76,11 +76,11 @@ public class UserEmailRegistrationService implements UserRegistrationService {
          throw new ConfirmCodeException("Wrong confirm code");
        }
 
-       User user = new User();
+       final User user = new User();
        user.setUsername(userRegistrationRequest.getUsername());
        user.setEmail(userRegistrationRequest.getEmail());
        user.setPassword(userRegistrationRequest.getPassword());
-       Set<Role> roles = new HashSet<>();
+       final Set<Role> roles = new HashSet<>();
        roles.add(Role.USER);
        user.setAuthorities(roles);
        user.setAccountNonExpired(true);

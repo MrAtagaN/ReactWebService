@@ -21,15 +21,12 @@ public class DataBaseCleanerImpl implements DataBaseCleaner {
    UserRegistrationDao userRegistrationDao;
 
 
-    /**
-     *  Очищаем базу от неподтверждённых запросов на регистрация новых пользователей
-     */
-    @Scheduled(cron="30 * * * * *", zone="Europe/Istanbul")
+    @Scheduled(cron="0 * * * * *", zone="Europe/Istanbul") //TODO вынести в параметр
     @Async
     public void cleanUserRegistrationRequest() {
-        List<UserRegistrationRequest> userRegistrationRequests = userRegistrationDao.findAll();
-
-        userRegistrationRequests.stream().filter(request -> request.getCreationTime().isBefore(LocalDateTime.now()
-                .minusMinutes(5))).forEach(userRegistrationDao::delete);
+        final List<UserRegistrationRequest> userRegistrationRequests = userRegistrationDao.findAll();
+        userRegistrationRequests.stream()
+                .filter(request -> request.getCreationTime().isBefore(LocalDateTime.now().minusMinutes(5)))
+                .forEach(userRegistrationDao::delete);
     }
 }

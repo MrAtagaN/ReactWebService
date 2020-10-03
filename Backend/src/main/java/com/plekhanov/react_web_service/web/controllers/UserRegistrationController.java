@@ -21,12 +21,12 @@ import javax.validation.constraints.NotNull;
 @RestController
 @RequiredArgsConstructor
 @Validated
-public class RegistrationController {
+public class UserRegistrationController {
 
     private final UserRegistrationService registrationService;
 
     private static final String PUBLIC = "public/";
-    private static final String API_VERSION = "api/v1/registration/";
+    private static final String API_VERSION = "api/v1/user-registration/";
 
 
     /**

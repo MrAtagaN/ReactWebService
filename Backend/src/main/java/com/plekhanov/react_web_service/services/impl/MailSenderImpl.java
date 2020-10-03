@@ -15,15 +15,15 @@ public class MailSenderImpl implements MailSender {
 
     JavaMailSenderImpl mailSender;
 
+
     @Override
-    public void sendMail(final String email, final String confirmCode) {
-        SimpleMailMessage message = new SimpleMailMessage();
+    public void sendUserRegistrationConfirmCodeMail(final String email, final String confirmCode) {
+        final SimpleMailMessage message = new SimpleMailMessage(); //TODO формировать письмо из шаблона
         message.setTo(email);
-        message.setFrom("JavaProjectMail@rambler.ru");
+        message.setFrom("JavaProjectMail@rambler.ru");//TODO вынести в параметры
         message.setSubject("Confirm code");
         message.setText(confirmCode);
 
         mailSender.send(message);
-
     }
 }
