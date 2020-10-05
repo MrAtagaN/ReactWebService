@@ -1,6 +1,6 @@
 package com.plekhanov.react_web_service.entities;
 
-import com.plekhanov.react_web_service.config.security.Role;
+import com.plekhanov.react_web_service.config.security.Authority;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -42,7 +42,7 @@ public class User {
     @Enumerated(STRING)
     @CollectionTable(name = "authorities", joinColumns = @JoinColumn(name = "user_id"))
     @Column(name = "role")
-    Set<Role> authorities;
+    Set<Authority> authorities;
 
     @Column(name = "account_non_expired")
     boolean accountNonExpired;

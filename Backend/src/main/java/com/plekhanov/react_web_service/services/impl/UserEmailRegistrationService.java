@@ -1,6 +1,6 @@
 package com.plekhanov.react_web_service.services.impl;
 
-import com.plekhanov.react_web_service.config.security.Role;
+import com.plekhanov.react_web_service.config.security.Authority;
 import com.plekhanov.react_web_service.dao.UserDao;
 import com.plekhanov.react_web_service.dao.UserRegistrationDao;
 import com.plekhanov.react_web_service.exceptions.ConfirmCodeException;
@@ -80,9 +80,9 @@ public class UserEmailRegistrationService implements UserRegistrationService {
        user.setUsername(userRegistrationRequest.getUsername());
        user.setEmail(userRegistrationRequest.getEmail());
        user.setPassword(userRegistrationRequest.getPassword());
-       final Set<Role> roles = new HashSet<>();
-       roles.add(Role.USER);
-       user.setAuthorities(roles);
+       final Set<Authority> authorities = new HashSet<>();
+       authorities.add(Authority.USER);
+       user.setAuthorities(authorities);
        user.setAccountNonExpired(true);
        user.setAccountNonLocked(true);
        user.setCredentialsNonExpired(true);
