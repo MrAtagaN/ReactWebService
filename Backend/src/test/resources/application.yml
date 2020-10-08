@@ -1,5 +1,5 @@
 server:
-  port: 80    # порт на котором работает приложение
+  port: 443    # порт на котором работает приложение
   tomcat:
     uri-encoding: UTF-8
   servlet:
@@ -7,23 +7,48 @@ server:
       enabled: true
       charset: UTF-8
       force: true
+  ssl:
+    key-store-type: JKS
+    key-store: classpath:keystore.jks
+    key-password: changeit
+    key-alias: react-web-service
+    enabled: false
+    protocol: TLS
+    client-auth: want # не аутентифицировать клиента, поставить need если надо аутентифицировать
 
 spring:
   jmx:
     enabled: false
   jpa:
     hibernate:
-      ddl-auto: create # схема создается с помощью hibernate, т.к. скрипты миграции не работают на h2 базе
+      ddl-auto: validate
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.H2Dialect    # диалект sql для подключения hibernate к базе данных
+        dialect: org.hibernate.dialect.SQLiteDialect    # диалект sql для подключения hibernate к базе данных
   datasource:
-    url: jdbc:h2:mem:test;INIT=CREATE SCHEMA IF NOT EXISTS TEST;   # путь до базы данных
-    driver-class-name: org.h2.Driver    # класс драйвера для подключения к базе данных
+    url: jdbc:sqlite:src/main/resources/webService.db    # путь до базы данных
+    driver-class-name: org.sqlite.JDBC    # класс драйвера для подключения к базе данных
   flyway:
-    enabled: false
+    baseline-on-migrate: true    # применять схемы миграции, если они не применены
+    outOfOrder: true    # позволяет добавлять схемы миграции с номером не по-порядку
+    schemas:    # схема, в которую flyway будет делать миграцию
   mvc:
     throw-exception-if-no-handler-found: true
+  mail:
+    host: smtp.rambler.ru
+    port: 465
+    username: JavaProjectMail
+    password: A1234qwer
+    properties:
+      mail:
+        transport:
+          protocol: smtp
+        smtp:
+          auth: true
+          ssl:
+            enable: true
+          starttls:
+            enable: true
 
 jwt:
   validityTokenInMilliseconds: 60000000

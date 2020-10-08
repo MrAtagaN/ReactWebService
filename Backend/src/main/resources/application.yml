@@ -44,7 +44,6 @@ spring:
         transport:
           protocol: smtp
         smtp:
-#          port: 25
           auth: true
           ssl:
             enable: true
