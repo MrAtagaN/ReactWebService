@@ -44,7 +44,7 @@ public class UserEmailRegistrationService implements UserRegistrationService {
             throw new UserEmailAlreadyExist("Пользователь с таким email уже существует");
         }
         final User user = userDao.findByEmail(email);
-        if(user != null) {
+        if (user != null) {
             throw new UserEmailAlreadyExist("Пользователь с таким email уже существует");
         }
         final UserRegistrationRequest userRegistrationRequest = new UserRegistrationRequest();
@@ -66,31 +66,31 @@ public class UserEmailRegistrationService implements UserRegistrationService {
     @Transactional
     public void confirmEmail(final String email, final String confirmCode) {
 
-       final UserRegistrationRequest userRegistrationRequest = userRegistrationDao.findByEmail(email);
+        final UserRegistrationRequest userRegistrationRequest = userRegistrationDao.findByEmail(email);
 
-       if (userRegistrationRequest == null) {
-           throw new UserRequestTimeOutException("User request not found, (time out)");
-       }
+        if (userRegistrationRequest == null) {
+            throw new UserRequestTimeOutException("User request not found, (time out)");
+        }
 
-       if (!userRegistrationRequest.getConfirmCode().equals(confirmCode)) {
-         throw new ConfirmCodeException("Wrong confirm code");
-       }
+        if (!userRegistrationRequest.getConfirmCode().equals(confirmCode)) {
+            throw new ConfirmCodeException("Wrong confirm code");
+        }
 
-       final User user = new User();
-       user.setUsername(userRegistrationRequest.getUsername());
-       user.setEmail(userRegistrationRequest.getEmail());
-       user.setPassword(userRegistrationRequest.getPassword());
-       final Set<Authority> authorities = new HashSet<>();
-       authorities.add(Authority.USER);
-       user.setAuthorities(authorities);
-       user.setAccountNonExpired(true);
-       user.setAccountNonLocked(true);
-       user.setCredentialsNonExpired(true);
-       user.setEnabled(true);
-       user.setCreationTime(LocalDateTime.now());
+        final User user = new User();
+        user.setUsername(userRegistrationRequest.getUsername());
+        user.setEmail(userRegistrationRequest.getEmail());
+        user.setPassword(userRegistrationRequest.getPassword());
+        final Set<Authority> authorities = new HashSet<>();
+        authorities.add(Authority.USER);
+        user.setAuthorities(authorities);
+        user.setAccountNonExpired(true);
+        user.setAccountNonLocked(true);
+        user.setCredentialsNonExpired(true);
+        user.setEnabled(true);
+        user.setCreationTime(LocalDateTime.now());
 
-       userDao.save(user);
-       userRegistrationDao.delete(userRegistrationRequest);
+        userDao.save(user);
+        userRegistrationDao.delete(userRegistrationRequest);
     }
 
 }

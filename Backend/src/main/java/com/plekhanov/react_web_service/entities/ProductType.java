@@ -20,8 +20,8 @@ public class ProductType {
     @GeneratedValue(strategy = IDENTITY)
     Integer id;
 
-    @Column(name = "name")
-    String name;
+    @Column(name = "type")
+    String type;
 
     @Enumerated(STRING)
     @Column(name = "gender")

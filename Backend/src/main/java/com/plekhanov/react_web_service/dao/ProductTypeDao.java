@@ -19,11 +19,11 @@ import java.util.Set;
 public interface ProductTypeDao extends JpaRepository<ProductType, Integer> {
 
     @Query("SELECT p FROM ProductType p WHERE " +
-            "(:name is null or p.name = :name) and " +
+            "(:type is null or p.type = :type) and " +
             "(:gender is null or p.gender = :gender) and " +
             "(:age is null or p.age = :age) and " +
             "(:category is null or p.category = :category)")
-    Set<ProductType> findByParameters(@Param("name") String name,
+    Set<ProductType> findByParameters(@Param("type") String type,
                                       @Param("gender") Gender gender,
                                       @Param("age") Age age,
                                       @Param("category") Category category);

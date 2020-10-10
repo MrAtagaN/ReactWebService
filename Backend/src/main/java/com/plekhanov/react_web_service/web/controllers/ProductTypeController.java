@@ -35,12 +35,12 @@ public class ProductTypeController {
      */
     @GetMapping(PUBLIC + API_VERSION + "search")
     public ApiResponse<Set<ProductTypeDto>> getTypes(
-            @RequestParam(value = "name", required = false) final String name,
+            @RequestParam(value = "type", required = false) final String type,
             @RequestParam(value = "gender", required = false) final Gender gender,
             @RequestParam(value = "age", required = false) final Age age,
             @RequestParam(value = "category", required = false) final Category category) {
 
-        final Set<ProductType> productTypes = productTypeService.findByParameters(name, gender, age, category);
+        final Set<ProductType> productTypes = productTypeService.findByParameters(type, gender, age, category);
         final Set<ProductTypeDto> productTypeDtos = productTypes.stream()
                 .map(ProductTypeDto::fromProductType)
                 .collect(Collectors.toSet());

@@ -28,7 +28,7 @@ public interface ProductDao extends JpaRepository<Product, Integer> {
             "(:sizeTo is null or s <= :sizeTo) and " +
             "(:namedSize is null or :namedSize in elements(p.namedSize)) and " +
             "(:gender is null or p.type.gender = :gender) and " +
-            "(:typee is null or p.type.name = :typee) and " +
+            "(:typee is null or p.type.type = :typee) and " +
             "(:age is null or p.type.age = :age) and " +
             "(:color is null or p.color = :color) and " +
             "(:isNew is null or p.isNew = :isNew) and " +

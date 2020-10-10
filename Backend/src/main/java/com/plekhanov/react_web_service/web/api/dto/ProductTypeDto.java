@@ -15,7 +15,7 @@ import lombok.Value;
 public class ProductTypeDto {
 
     Integer id;
-    String name;
+    String type;
     Gender gender;
     Age age;
     Category category;
@@ -30,7 +30,7 @@ public class ProductTypeDto {
         }
         return ProductTypeDto.builder()
                 .id(productType.getId())
-                .name(productType.getName())
+                .type(productType.getType())
                 .gender(productType.getGender())
                 .age(productType.getAge())
                 .category(productType.getCategory())

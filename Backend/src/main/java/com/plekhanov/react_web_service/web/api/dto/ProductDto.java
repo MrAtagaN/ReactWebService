@@ -53,7 +53,7 @@ public class ProductDto {
         Age age = null;
         if (productType != null) {
             gender = productType.getGender();
-            type = productType.getName();
+            type = productType.getType();
             category = productType.getCategory();
             age =  productType.getAge();
         }

@@ -18,7 +18,7 @@ public interface ProductTypeService {
 
     void deleteById(int id);
 
-    Set<ProductType> findByParameters(@Nullable String name,
+    Set<ProductType> findByParameters(@Nullable String type,
                                       @Nullable Gender gender,
                                       @Nullable Age age,
                                       @Nullable Category category);

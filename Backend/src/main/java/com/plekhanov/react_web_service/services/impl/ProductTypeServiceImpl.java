@@ -21,8 +21,8 @@ public class ProductTypeServiceImpl implements ProductTypeService {
     ProductTypeDao productTypeDao;
 
     @Override
-    public Set<ProductType> findByParameters(final String name, final Gender gender, final Age age, final Category category) {
-        return productTypeDao.findByParameters(name, gender, age, category);
+    public Set<ProductType> findByParameters(final String type, final Gender gender, final Age age, final Category category) {
+        return productTypeDao.findByParameters(type, gender, age, category);
     }
 
     @Override

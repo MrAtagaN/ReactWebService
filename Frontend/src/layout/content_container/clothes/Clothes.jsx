@@ -28,8 +28,8 @@ class Clothes extends Component {
     render() {
         //множество тегов li с кнопкой
         const listTypes = this.state.clothesTypes.map((clothesTypes) =>
-            <li key={clothesTypes.name} className={'clothesTypes'}>
-                <Button classes={'type'} onClickAction={() => this.fetchClothesByType(clothesTypes.name)}>{clothesTypes.name} </Button>
+            <li key={clothesTypes.type} className={'clothesTypes'}>
+                <Button classes={'type'} onClickAction={() => this.fetchClothesByType(clothesTypes.type)}>{clothesTypes.type} </Button>
             </li>
         );
 
@@ -57,9 +57,22 @@ class Clothes extends Component {
     /**
      * Получение одежды с сервера по типу
      */
-    fetchClothesByType = async (name) => {
-        if (name !== null) {
-            const params = {type: name};
+    fetchClothesByType = async (type) => {
+        if (type !== null) {
+            let params = {type: type};
+            const gender = this.props.appState.chosenGender;
+            if (gender === FEMALE) {
+                params = {...params, category: 'clothes', age:'adult', gender: 'female'}
+            }
+            if (gender === MALE) {
+                params = {...params, category: 'clothes', age:'adult', gender: 'male'}
+            }
+            if (gender === GIRL) {
+                params = {...params, category: 'clothes', age:'kids', gender: 'female'}
+            }
+            if (gender === BOY) {
+                params = {...params, category: 'clothes', age:'kids', gender: 'male'}
+            }
             const response = await RestClient.get(PRODUCT_URL + 'search', params);
             if (response.code === OK) {
                 this.setState({...this.state, clothes: response.data});
