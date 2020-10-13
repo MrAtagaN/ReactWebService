@@ -5,9 +5,9 @@ import {
     setIsOpenAuthModal,
     setIsOpenRegistrationModal,
     setOnChosenGender,
-    setOnSuccessAuth, setSuccessRegistrationRequest,
+    setOnSuccessAuth, setClothesSearchParams, setSuccessRegistrationRequest,
     setTitle,
-    setUserInfo
+    setUserInfo, setProducts
 } from './Actions';
 import {connect} from "react-redux";
 
@@ -25,7 +25,9 @@ export const putStateFieldsToProps = (state) => {
             isSuccessRegistrationRequest: state.isSuccessRegistrationRequest,
             onSuccessAuth: state.onSuccessAuth,
             chosenGender: state.chosenGender,
-            onChosenGender: state.onChosenGender
+            onChosenGender: state.onChosenGender,
+            clothesSearchParams: state.clothesSearchParams,
+            products: state.products
         }
     };
 };
@@ -45,7 +47,9 @@ export const putActionsToProps = (dispatch) => {
             setSuccessRegistrationRequest: bindActionCreators(setSuccessRegistrationRequest, dispatch),
             setOnSuccessAuth: bindActionCreators(setOnSuccessAuth, dispatch), //действие при успешной авторизации
             setChosenGender: bindActionCreators(setChosenGender, dispatch),
-            setOnChosenGender: bindActionCreators(setOnChosenGender, dispatch) //действие при выборе пола
+            setOnChosenGender: bindActionCreators(setOnChosenGender, dispatch), //действие при выборе пола
+            setClothesSearchParams: bindActionCreators(setClothesSearchParams, dispatch),
+            setProducts: bindActionCreators(setProducts, dispatch)
         }
     };
 };

@@ -17,7 +17,7 @@ import java.util.List;
 @Validated
 public interface ProductDao extends JpaRepository<Product, Integer> {
 
-    @Query("SELECT p FROM Product p inner join p.size s WHERE " +
+    @Query("SELECT distinct p FROM Product p inner join p.size s WHERE " +
             "(:name is null or p.name = :name) and " +
             "(:typeId is null or p.type = :typeId) and " +
             "(:subType is null or p.subType = :subType) and " +

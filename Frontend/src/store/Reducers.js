@@ -2,7 +2,7 @@ import {
     CHOSEN_GENDER,
     IS_AUTHENTICATED,
     IS_OPEN_AUTH_MODAL, IS_OPEN_REGISTRATION_MODAL, ON_CHOSEN_GENDER,
-    ON_SUCCESS_AUTH, SUCCESS_REGISTRATION_REQUEST,
+    ON_SUCCESS_AUTH, SET_CLOTHES_SEARCH_PARAMS, SET_PRODUCTS, SUCCESS_REGISTRATION_REQUEST,
     TITLE,
     USER_INFO
 } from "../constants/ActionConstants";
@@ -20,7 +20,9 @@ const initialState = {
     title: '',
     userInfo: '',
     chosenGender: FEMALE,
-    onChosenGender: ()=>{} //действие при выборе пола
+    onChosenGender: ()=>{}, //действие при выборе пола
+    clothesSearchParams: {},
+    products: []
 };
 
 
@@ -44,6 +46,10 @@ export const rootReducer = (state = initialState, action) => {
             return {...state, isOpenRegistrationModal: action.value}
         case SUCCESS_REGISTRATION_REQUEST:
             return {...state, isSuccessRegistrationRequest: action.value}
+        case SET_CLOTHES_SEARCH_PARAMS:
+            return {...state, clothesSearchParams: action.value}
+        case SET_PRODUCTS:
+            return {...state, products: action.value}
     }
 
     return state;

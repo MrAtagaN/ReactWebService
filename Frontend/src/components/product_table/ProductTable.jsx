@@ -1,6 +1,8 @@
 import React, {Component} from "react";
 import {connectToStore} from "../../store/Connect";
 import './ProductTable.css';
+import RestClient from "../../services/RestClient";
+import {PRODUCT_URL} from "../../constants/RestConstants";
 
 /**
  * Таблица отображения продуктов
@@ -36,7 +38,7 @@ class ProductTable extends Component {
 
 
     render() {
-        const listProducts = this.props.products.map((product) =>
+        let listProducts = this.props.appState.products.map((product) =>
             <div className='product-information'>
                 <div className='product-image'>
                     {product.images.length === 0 && <img src="images/noImage.png"/>}
@@ -44,11 +46,9 @@ class ProductTable extends Component {
                      && product.mainImageNumber != null
                      && <img className='product' src={"data:image/png;base64," + product.images[product.mainImageNumber]}/>}
                 </div>
-
                 <div className='product-description'>
                     <div className='product-name'>{product.name}</div>
                     <div className='product-price'>{product.price}</div>
-
                 </div>
             </div>
         );
@@ -56,11 +56,39 @@ class ProductTable extends Component {
         //TODO сделать отображение таблицей
         return (
             <div className={'rightContent'}>
+                <div>
+                        Размер одежды от
+                    <form>
+                        <input style={{width: '30px'}} onChange={event => this.setSizeFromValue(event.target.value)}/>
+                    </form>
+                            до
+                    <form>
+                        <input style={{width: '30px'}} onChange={event => this.setSizeToValue(event.target.value)}/>
+                    </form>
+                </div>
                 <div>{listProducts}</div>
 
             </div>
         );
 
+    }
+
+    setSizeFromValue = async (value) => {
+        let params = this.props.appState.clothesSearchParams;
+        params = {...params, sizeFrom: value}
+        this.props.changeAppState.setClothesSearchParams(params);
+        const response = await RestClient.get(PRODUCT_URL + 'search', params);
+        this.props.changeAppState.setProducts(response.data)
+        this.setState({ state: this.state});
+    }
+
+    setSizeToValue = async (value) => {
+        let params = this.props.appState.clothesSearchParams;
+        params = {...params, sizeTo: value}
+        this.props.changeAppState.setClothesSearchParams(params);
+        const response = await RestClient.get(PRODUCT_URL + 'search', params);
+        this.props.changeAppState.setProducts(response.data)
+        this.setState({ state: this.state});
     }
 }
 

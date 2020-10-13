@@ -13,8 +13,7 @@ import ProductTable from "../../../components/product_table/ProductTable";
 class Clothes extends Component {
 
     state = {
-        clothesTypes: [],
-        clothes: []
+        clothesTypes: []
     };
 
 
@@ -43,7 +42,7 @@ class Clothes extends Component {
                         <ul className={'clothesTypes'}>{listTypes}</ul>
                     </div>
                 </div>
-                <ProductTable products={this.state.clothes}/>
+                <ProductTable/>
             </div>
         );
     }
@@ -59,24 +58,24 @@ class Clothes extends Component {
      */
     fetchClothesByType = async (type) => {
         if (type !== null) {
-            let params = {type: type};
             const gender = this.props.appState.chosenGender;
+            let searchParams = this.props.appState.clothesSearchParams;
+            searchParams = {...searchParams, type: type}
             if (gender === FEMALE) {
-                params = {...params, category: 'clothes', age:'adult', gender: 'female'}
+                searchParams = {...searchParams, category: 'clothes', age:'adult', gender: 'female'}
             }
             if (gender === MALE) {
-                params = {...params, category: 'clothes', age:'adult', gender: 'male'}
+                searchParams = {...searchParams, category: 'clothes', age:'adult', gender: 'male'}
             }
             if (gender === GIRL) {
-                params = {...params, category: 'clothes', age:'kids', gender: 'female'}
+                searchParams = {...searchParams, category: 'clothes', age:'kids', gender: 'female'}
             }
             if (gender === BOY) {
-                params = {...params, category: 'clothes', age:'kids', gender: 'male'}
+                searchParams = {...searchParams, category: 'clothes', age:'kids', gender: 'male'}
             }
-            const response = await RestClient.get(PRODUCT_URL + 'search', params);
-            if (response.code === OK) {
-                this.setState({...this.state, clothes: response.data});
-            }
+            const response = await RestClient.get(PRODUCT_URL + 'search', searchParams);
+            this.props.changeAppState.setClothesSearchParams(searchParams);
+            this.props.changeAppState.setProducts(response.data);
         }
     };
 
