@@ -13,6 +13,22 @@
     <version>1.0-SNAPSHOT</version>
     <modelVersion>4.0.0</modelVersion>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.plekhanov</groupId>
+            <artifactId>Backend</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <!-- LOMBOK -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.10</version>
+            <scope>provided</scope>
+        </dependency>
+
+    </dependencies>
 
     <build>
         <finalName>DemoDataUploader</finalName>
@@ -30,22 +46,4 @@
         </plugins>
     </build>
 
-
-    <dependencies>
-
-        <dependency>
-            <groupId>com.plekhanov</groupId>
-            <artifactId>Backend</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-
-        <!-- LOMBOK -->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.10</version>
-            <scope>provided</scope>
-        </dependency>
-
-    </dependencies>
 </project>

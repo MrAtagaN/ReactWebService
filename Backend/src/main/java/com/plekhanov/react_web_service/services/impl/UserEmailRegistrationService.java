@@ -41,11 +41,11 @@ public class UserEmailRegistrationService implements UserRegistrationService {
     public void userRegistrationRequest(final String username, final String email, final String password) {
         final UserRegistrationRequest found = userRegistrationDao.findByEmail(email);
         if (found != null) {
-            throw new UserEmailAlreadyExist("Пользователь с таким email уже существует");
+            throw new UserEmailAlreadyExist();
         }
         final User user = userDao.findByEmail(email);
         if (user != null) {
-            throw new UserEmailAlreadyExist("Пользователь с таким email уже существует");
+            throw new UserEmailAlreadyExist();
         }
         final UserRegistrationRequest userRegistrationRequest = new UserRegistrationRequest();
         userRegistrationRequest.setEmail(email);
@@ -69,11 +69,11 @@ public class UserEmailRegistrationService implements UserRegistrationService {
         final UserRegistrationRequest userRegistrationRequest = userRegistrationDao.findByEmail(email);
 
         if (userRegistrationRequest == null) {
-            throw new UserRequestTimeOutException("User request not found, (time out)");
+            throw new UserRequestTimeOutException();
         }
 
         if (!userRegistrationRequest.getConfirmCode().equals(confirmCode)) {
-            throw new ConfirmCodeException("Wrong confirm code");
+            throw new ConfirmCodeException();
         }
 
         final User user = new User();

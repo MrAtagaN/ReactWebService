@@ -1,0 +1,41 @@
+.rightContent {
+    margin-left: 0px;
+    padding-left: 0px;
+    padding-top: 0px;
+
+}
+
+.product-information {
+    height: 450px;
+    width: 300px;
+    display: inline-block;
+
+    margin: 20px 50px 50px;
+    padding: 0px;
+}
+
+
+
+.product-image {
+    padding: 0px;
+    height: 400px;
+    width: 300px;
+    overflow: hidden;
+}
+
+
+img.product {
+    width: 100%;
+    height: 100%;
+}
+
+.product-description {
+
+}
+
+.product-name {
+    height: 35px;
+}
+
+.product-price {
+}

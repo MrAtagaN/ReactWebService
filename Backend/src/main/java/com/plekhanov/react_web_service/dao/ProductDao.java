@@ -49,4 +49,7 @@ public interface ProductDao extends JpaRepository<Product, Integer> {
                                    @Param("isNew") Boolean isNew,
                                    @Param("isSales") Boolean isSales,
                                    Pageable pageRequest);
+
+    // IgnoreCase не работает с sqlLite с русскими буквами (не работают функции upper и lower),
+    List<Product> findByNameContainingIgnoreCase(String name);
 }

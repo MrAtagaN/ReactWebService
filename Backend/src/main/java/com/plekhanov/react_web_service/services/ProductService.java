@@ -19,4 +19,6 @@ public interface ProductService {
 
     List<Product> search(@NotNull ProductSearchParams productSearchParams);
 
+    List<Product> searchByName(@NotNull String name);
+
 }

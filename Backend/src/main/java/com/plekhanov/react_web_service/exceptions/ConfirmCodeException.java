@@ -3,10 +3,7 @@ package com.plekhanov.react_web_service.exceptions;
 public class ConfirmCodeException extends RuntimeException {
 
     public ConfirmCodeException() {
-        super();
+        super("Wrong confirm code");
     }
 
-    public ConfirmCodeException(String message) {
-        super(message);
-    }
 }

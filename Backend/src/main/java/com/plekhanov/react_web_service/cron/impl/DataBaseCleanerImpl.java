@@ -26,7 +26,7 @@ public class DataBaseCleanerImpl implements DataBaseCleaner {
     public void cleanUserRegistrationRequest() {
         final List<UserRegistrationRequest> userRegistrationRequests = userRegistrationDao.findAll();
         userRegistrationRequests.stream()
-                .filter(request -> request.getCreationTime().isBefore(LocalDateTime.now().minusMinutes(5)))
+                .filter(request -> request.getCreationTime().isBefore(LocalDateTime.now().minusMinutes(5))) //TODO 5 вынести в параметр
                 .forEach(userRegistrationDao::delete);
     }
 }

@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -84,11 +87,28 @@ public class ProductController {
 
         final List<Product> products = productService.search(productSearchParams);
         final Set<ProductDto> productsDto = products.stream()
-                .map(ProductDto::fromProduct)
-                .collect(Collectors.toSet());
+                .map(ProductDto::fromProduct).sorted(Comparator.comparing(ProductDto::getName))
+                .collect(Collectors.toCollection(LinkedHashSet::new));
         return ApiResponse.ok(productsDto);
     }
 
+    /**
+     * Поиск {@link Product}, по имени
+     */
+    @GetMapping(PUBLIC + API_VERSION + "searchbyname")
+    public ApiResponse<?> search(
+            @RequestParam(value = "name", required = false) final String name) {
+        if (name.equals("")) {
+            Set<ProductDto> productsDto = Collections.emptySet();
+            return ApiResponse.ok(productsDto);
+        }
+        final List<Product> products;
+        products = productService.searchByName(name);
+        final Set<ProductDto> productsDto = products.stream()
+                .map(ProductDto::fromProduct).sorted(Comparator.comparing(ProductDto::getName))
+                .collect(Collectors.toCollection(LinkedHashSet::new));
+        return ApiResponse.ok(productsDto);
+    }
 
     /**
      * Добавить или изменить {@link Product}

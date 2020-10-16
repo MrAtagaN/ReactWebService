@@ -7,6 +7,7 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.MediaType;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -63,8 +64,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/*")
                 .antMatchers("/static/**")
                 .antMatchers("/images/**")
-                .antMatchers("public/api/v1/registration/request")
-                .antMatchers("public/api/v1/registration/confirm-email")
                 .antMatchers("/public/**");
     }
 
@@ -145,7 +144,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                                                  final HttpServletResponse httpServletResponse) throws IOException {
 
         final PrintWriter out = httpServletResponse.getWriter();
-        httpServletResponse.setContentType("application/json");
+        httpServletResponse.setContentType(MediaType.APPLICATION_JSON_VALUE);
         httpServletResponse.setCharacterEncoding("UTF-8");
         out.print(objectMapper.writeValueAsString(apiResponse));
         out.flush();

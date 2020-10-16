@@ -7,7 +7,6 @@ import com.plekhanov.react_web_service.entities.User;
 import com.plekhanov.react_web_service.entities.UserRegistrationRequest;
 import com.plekhanov.react_web_service.services.MailSender;
 import com.plekhanov.react_web_service.services.impl.UserEmailRegistrationService;
-import com.sun.xml.internal.ws.api.ha.StickyFeature;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;

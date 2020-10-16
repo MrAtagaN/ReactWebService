@@ -9,6 +9,7 @@ import './ContentContainer.css';
 import Accessories from "./accessories/Accessories";
 import NewProducts from "./new_products/NewProducts";
 import Sale from "./sale/Sale";
+import SearchProductTable from "../../components/search_product_table/SearchProductTable";
 
 /**
  * Контейнер с контентом сайта.
@@ -27,6 +28,7 @@ export default class ContentContainer extends Component {
                     <Route path='/accessories' component={Accessories}/>
                     <Route path='/sale' component={Sale}/>
                     <Route path='/profile' component={Profile}/>
+                    <Route path='/product-table' component={SearchProductTable}/>
                 </Switch>
             </div>
         )

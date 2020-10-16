@@ -30,7 +30,7 @@ public class ProductTypeUploader {
         Set<ProductType> maleJeansSet = productTypeService.findByParameters("джинсы", male, adult, clothes);
         if (maleJeansSet.isEmpty()) {
             ProductType maleJeans = new ProductType();
-            maleJeans.setName("джинсы");
+            maleJeans.setType("джинсы");
             maleJeans.setGender(male);
             maleJeans.setAge(adult);
             maleJeans.setCategory(clothes);
@@ -41,7 +41,7 @@ public class ProductTypeUploader {
         Set<ProductType> maleShirtsSet = productTypeService.findByParameters("рубашки", male, adult, clothes);
         if (maleShirtsSet.isEmpty()) {
             ProductType maleShirts = new ProductType();
-            maleShirts.setName("рубашки");
+            maleShirts.setType("рубашки");
             maleShirts.setGender(male);
             maleShirts.setAge(adult);
             maleShirts.setCategory(clothes);
@@ -52,7 +52,7 @@ public class ProductTypeUploader {
         Set<ProductType> femaleTShirtsSet = productTypeService.findByParameters("футболки", female, adult, clothes);
         if (femaleTShirtsSet.isEmpty()) {
             ProductType femaleTShirts = new ProductType();
-            femaleTShirts.setName("футболки");
+            femaleTShirts.setType("футболки");
             femaleTShirts.setGender(female);
             femaleTShirts.setAge(adult);
             femaleTShirts.setCategory(clothes);
@@ -63,7 +63,7 @@ public class ProductTypeUploader {
         Set<ProductType> malePantsSet = productTypeService.findByParameters("брюки", male, adult, clothes);
         if (malePantsSet.isEmpty()) {
             ProductType malePants = new ProductType();
-            malePants.setName("брюки");
+            malePants.setType("брюки");
             malePants.setGender(male);
             malePants.setAge(adult);
             malePants.setCategory(clothes);
@@ -74,7 +74,7 @@ public class ProductTypeUploader {
         Set<ProductType> maleShortsSet = productTypeService.findByParameters("шорты", male, adult, clothes);
         if (maleShortsSet.isEmpty()) {
             ProductType maleShorts = new ProductType();
-            maleShorts.setName("шорты");
+            maleShorts.setType("шорты");
             maleShorts.setGender(male);
             maleShorts.setAge(adult);
             maleShorts.setCategory(clothes);
@@ -85,7 +85,7 @@ public class ProductTypeUploader {
         Set<ProductType> maleHoodiesSet = productTypeService.findByParameters("толстовки", male, adult, clothes);
         if (maleHoodiesSet.isEmpty()) {
             ProductType maleHoodies = new ProductType();
-            maleHoodies.setName("толстовки");
+            maleHoodies.setType("толстовки");
             maleHoodies.setGender(male);
             maleHoodies.setAge(adult);
             maleHoodies.setCategory(clothes);
@@ -96,7 +96,7 @@ public class ProductTypeUploader {
         Set<ProductType> maleOuterwearSet = productTypeService.findByParameters("верхняя одежда", male, adult, clothes);
         if (maleOuterwearSet.isEmpty()) {
             ProductType maleOuterwear = new ProductType();
-            maleOuterwear.setName("верхняя одежда");
+            maleOuterwear.setType("верхняя одежда");
             maleOuterwear.setGender(male);
             maleOuterwear.setAge(adult);
             maleOuterwear.setCategory(clothes);
@@ -107,7 +107,7 @@ public class ProductTypeUploader {
         Set<ProductType> maleSneakersSet = productTypeService.findByParameters("кроссовки", male, adult, shoes);
         if (maleSneakersSet.isEmpty()) {
             ProductType maleSneakers = new ProductType();
-            maleSneakers.setName("кроссовки");
+            maleSneakers.setType("кроссовки");
             maleSneakers.setGender(male);
             maleSneakers.setAge(adult);
             maleSneakers.setCategory(shoes);
@@ -118,7 +118,7 @@ public class ProductTypeUploader {
         Set<ProductType> maleBootsSet = productTypeService.findByParameters("ботинки", male, adult, shoes);
         if (maleBootsSet.isEmpty()) {
             ProductType maleBoots = new ProductType();
-            maleBoots.setName("ботинки");
+            maleBoots.setType("ботинки");
             maleBoots.setGender(male);
             maleBoots.setAge(adult);
             maleBoots.setCategory(shoes);
@@ -129,7 +129,7 @@ public class ProductTypeUploader {
         Set<ProductType> maleSlippersSet = productTypeService.findByParameters("шлепанцы", male, adult, shoes);
         if (maleSlippersSet.isEmpty()) {
             ProductType maleSlippers = new ProductType();
-            maleSlippers.setName("шлепанцы");
+            maleSlippers.setType("шлепанцы");
             maleSlippers.setGender(male);
             maleSlippers.setAge(adult);
             maleSlippers.setCategory(shoes);
@@ -140,7 +140,7 @@ public class ProductTypeUploader {
         Set<ProductType> maleBagsSet = productTypeService.findByParameters("сумки", male, adult, accessories);
         if (maleBagsSet.isEmpty()) {
             ProductType maleBags = new ProductType();
-            maleBags.setName("сумки");
+            maleBags.setType("сумки");
             maleBags.setGender(male);
             maleBags.setAge(adult);
             maleBags.setCategory(accessories);
@@ -151,7 +151,7 @@ public class ProductTypeUploader {
         Set<ProductType> maleBeltsSet = productTypeService.findByParameters("ремни", male, adult, accessories);
         if (maleBeltsSet.isEmpty()) {
             ProductType maleBelts = new ProductType();
-            maleBelts.setName("ремни");
+            maleBelts.setType("ремни");
             maleBelts.setGender(male);
             maleBelts.setAge(adult);
             maleBelts.setCategory(accessories);
@@ -162,7 +162,7 @@ public class ProductTypeUploader {
         Set<ProductType> maleHatsSet = productTypeService.findByParameters("шляпы", male, adult, accessories);
         if (maleHatsSet.isEmpty()) {
             ProductType maleHats = new ProductType();
-            maleHats.setName("шляпы");
+            maleHats.setType("шляпы");
             maleHats.setGender(male);
             maleHats.setAge(adult);
             maleHats.setCategory(accessories);

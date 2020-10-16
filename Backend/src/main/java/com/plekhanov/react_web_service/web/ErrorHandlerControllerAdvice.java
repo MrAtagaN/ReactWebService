@@ -5,7 +5,9 @@ import com.plekhanov.react_web_service.exceptions.UserEmailAlreadyExist;
 import com.plekhanov.react_web_service.exceptions.UserRequestTimeOutException;
 import com.plekhanov.react_web_service.web.api.ApiResponse;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.AuthenticationException;
@@ -36,7 +38,7 @@ class ErrorHandlerControllerAdvice {
         final ApiResponse<String> apiResponse = ApiResponse.error(UNKNOWN_ERROR, "Internal server error");
         return ResponseEntity
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .header("Content-Type", "application/json; charset=UTF-8")
+                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .body(apiResponse);
     }
 
@@ -54,7 +56,7 @@ class ErrorHandlerControllerAdvice {
                 ApiResponse.error(VALIDATION_ERROR, "Missing mandatory request parameter: " + missingParameter);
         return ResponseEntity
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .header("Content-Type", "application/json; charset=UTF-8")
+                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .body(apiResponse);
     }
 
@@ -72,7 +74,7 @@ class ErrorHandlerControllerAdvice {
                 ApiResponse.error(VALIDATION_ERROR, "Invalid type in request parameter: " + invalidParameter);
         return ResponseEntity
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .header("Content-Type", "application/json; charset=UTF-8")
+                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .body(apiResponse);
     }
 
@@ -85,7 +87,7 @@ class ErrorHandlerControllerAdvice {
         final ApiResponse<String> apiResponse = ApiResponse.error(ACCESS_DENIED, "Access denied");
         return ResponseEntity
                 .status(HttpStatus.FORBIDDEN)
-                .header("Content-Type", "application/json; charset=UTF-8")
+                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .body(apiResponse);
     }
 
@@ -98,7 +100,7 @@ class ErrorHandlerControllerAdvice {
         final ApiResponse<String> apiResponse = ApiResponse.error(AUTHENTICATION_FAILURE, "Authentication failure");
         return ResponseEntity
                 .status(HttpStatus.FORBIDDEN)
-                .header("Content-Type", "application/json; charset=UTF-8")
+                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .body(apiResponse);
     }
 
@@ -111,37 +113,46 @@ class ErrorHandlerControllerAdvice {
         final ApiResponse<String> apiResponse = ApiResponse.error(VALIDATION_ERROR, "Validation error");
         return ResponseEntity
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .header("Content-Type", "application/json; charset=UTF-8")
+                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .body(apiResponse);
     }
 
+    /**
+     *
+     */
     @ExceptionHandler({ConfirmCodeException.class})
     public ResponseEntity<ApiResponse<String>> confirmCodeException(final ConfirmCodeException e) {
         log.error(e.getMessage());
-        final ApiResponse<String> apiResponse = ApiResponse.error(WRONG_CONFIRM_CODE, "Validation error");
+        final ApiResponse<String> apiResponse = ApiResponse.error(WRONG_CONFIRM_CODE, e.getMessage());
         return ResponseEntity
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .header("Content-Type", "application/json; charset=UTF-8")
+                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .body(apiResponse);
     }
 
+    /**
+     *
+     */
     @ExceptionHandler({UserEmailAlreadyExist.class})
     public ResponseEntity<ApiResponse<String>> userEmailAlreadyExistException(final UserEmailAlreadyExist e) {
         log.error(e.getMessage());
-        final ApiResponse<String> apiResponse = ApiResponse.error(USER_EMAIL_ALREADY_EXIST, "Validation error");
+        final ApiResponse<String> apiResponse = ApiResponse.error(USER_EMAIL_ALREADY_EXIST, e.getMessage());
         return ResponseEntity
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .header("Content-Type", "application/json; charset=UTF-8")
+                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .body(apiResponse);
     }
 
+    /**
+     *
+     */
     @ExceptionHandler({UserRequestTimeOutException.class})
     public ResponseEntity<ApiResponse<String>> UserRequestTimeOutException(final UserRequestTimeOutException e) {
         log.error(e.getMessage());
-        final ApiResponse<String> apiResponse = ApiResponse.error(USER_REQUEST_TIME_OUT, "Validation error");
+        final ApiResponse<String> apiResponse = ApiResponse.error(USER_REQUEST_TIME_OUT, e.getMessage());
         return ResponseEntity
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .header("Content-Type", "application/json; charset=UTF-8")
+                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .body(apiResponse);
     }
 

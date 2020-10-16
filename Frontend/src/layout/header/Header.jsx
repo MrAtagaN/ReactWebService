@@ -3,7 +3,7 @@ import './Header.css';
 import {connectToStore} from "../../store/Connect";
 import Button from "../../components/button/Button";
 import RestClient from "../../services/RestClient";
-import {LOGOUT_URL, NOT_AUTHENTICATED, OK, USER_URL} from "../../constants/RestConstants";
+import {LOGOUT_URL, NOT_AUTHENTICATED, OK, PRODUCT_URL, USER_URL} from "../../constants/RestConstants";
 import Redirect from "react-router-dom/es/Redirect";
 import {Link} from "react-router-dom";
 import {BOY, FEMALE, GIRL, MALE} from "../../constants/AppConstants";
@@ -15,7 +15,8 @@ import {BOY, FEMALE, GIRL, MALE} from "../../constants/AppConstants";
 class Header extends Component {
 
     state = {
-        redirectURL: false //меняется по нажатию кнопок, на url редиректа
+        redirectURL: false, //меняется по нажатию кнопок, на url редиректа
+        searchByNameParam: ''
     };
 
     render() {
@@ -39,6 +40,7 @@ class Header extends Component {
 
                 <span className={"userBlock"}>
                     <Button onClickAction={this.onClickSearch} classes={"search"}><img src="images/search.svg"/><br/>Поиск</Button>
+                    <input value={this.state.searchByNameParam} id="searchByName" style={{width: '30px'}} onChange={event => this.searchByName(event.target.value)}/>
 
                     {this.props.appState.isAuthenticated && <span className={"username"}> {this.props.appState.userInfo.username}</span>}
 
@@ -58,7 +60,19 @@ class Header extends Component {
         )
     }
 
-    onClickSearch = () => {//TODO поменять
+    searchByName = async (value) => {
+        this.setState({...this.state, searchByNameParam: value});
+        let params = {name: value}
+        const response = await RestClient.get(PRODUCT_URL + 'searchbyname', params);
+        if (response.code === OK) {
+            this.props.changeAppState.setProducts(response.data);
+            this.setState({...this.state, redirectURL: '/product-table'})
+        }
+        document.getElementById("searchByName").focus();
+    }
+
+
+    onClickSearch = async () => {
 
     };
 

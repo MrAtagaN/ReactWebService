@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.constraints.NotNull;
 
-import static java.lang.String.format;
+import static java.text.MessageFormat.format;
 
 
 /**
