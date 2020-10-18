@@ -40,7 +40,7 @@ class Header extends Component {
 
                 <span className={"userBlock"}>
                     <Button onClickAction={this.onClickSearch} classes={"search"}><img src="images/search.svg"/><br/>Поиск</Button>
-                    <input value={this.state.searchByNameParam} id="searchByName" style={{width: '30px'}} onChange={event => this.searchByName(event.target.value)}/>
+                    <input value={this.state.searchByNameParam} id="searchByName" className={"inputSearch"} onChange={event => this.searchByName(event.target.value)}/>
 
                     {this.props.appState.isAuthenticated && <span className={"username"}> {this.props.appState.userInfo.username}</span>}
 
@@ -52,7 +52,6 @@ class Header extends Component {
 
                     {this.props.appState.isAuthenticated && <Button classes={"logout"} onClickAction={this.onClickLogout} ><img src="images/login2.svg"/><br/>Выход</Button>}
                     {!this.props.appState.isAuthenticated && <Button classes={"login"} onClickAction={this.onClickLogin}><img src="images/login2.svg"/><br/>Вход</Button>}
-                    <Button onClickAction={this.onClickRegistration}><img src="images/bag.svg"/><br/>Регистрация</Button>
                 </span>
 
 
@@ -75,10 +74,6 @@ class Header extends Component {
     onClickSearch = async () => {
 
     };
-
-    onClickRegistration = () => {
-        this.props.changeAppState.setIsOpenRegistrationModal(true);
-    }
 
     onClickLogout = () => {
         RestClient.get(LOGOUT_URL);

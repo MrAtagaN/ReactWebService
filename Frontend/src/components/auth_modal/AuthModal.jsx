@@ -39,6 +39,7 @@ class AuthModal extends Component {
                                 <div>{this.state.message}</div>
                             </div>
                             <div className="modalFooter">
+                                <Button onClickAction={this.handleRegistration} classes={"registrationButton"}>Регистрация</Button>
                                 <Button onClickAction={this.handleCancelAuth}>Cancel</Button>
                                 <Button onClickAction={this.handleSubmitAuth}>Submit</Button>
                             </div>
@@ -49,6 +50,13 @@ class AuthModal extends Component {
             </>
         );
     };
+
+
+    handleRegistration  = async () => {
+        this.props.changeAppState.setIsOpenAuthModal(false);
+        this.setState({message: ''});
+        this.props.changeAppState.setIsOpenRegistrationModal(true);
+    }
 
     /**
      * Выполняется при нажатии на кнопку Submit

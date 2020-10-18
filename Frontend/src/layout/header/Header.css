@@ -20,6 +20,12 @@
     float: left;
 }
 
+.inputSearch {
+    width: 100px;
+    float: left;
+    margin-top: 10px;
+}
+
 .login {
     width: 45px;
     text-align: center;
