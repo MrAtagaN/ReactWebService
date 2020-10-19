@@ -60,9 +60,22 @@ class Header extends Component {
     }
 
     searchByName = async (value) => {
+        let sizeFrom = this.props.appState.searchParams.sizeFrom;
+        let sizeTo = this.props.appState.searchParams.sizeTo;
+
+        let nameParam = {name: value};
+
+        if (sizeFrom !== undefined) {
+            nameParam = {...nameParam, sizeFrom: sizeFrom};
+        }
+
+        if (sizeTo !== undefined) {
+            nameParam = {...nameParam, sizeTo: sizeTo};
+        }
+
+        this.props.changeAppState.setSearchParams(nameParam);
         this.setState({...this.state, searchByNameParam: value});
-        let params = {name: value}
-        const response = await RestClient.get(PRODUCT_URL + 'searchbyname', params);
+        const response = await RestClient.get(PRODUCT_URL + 'search', nameParam);
         if (response.code === OK) {
             this.props.changeAppState.setProducts(response.data);
             this.setState({...this.state, redirectURL: '/product-table'})

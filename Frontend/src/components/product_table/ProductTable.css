@@ -5,6 +5,17 @@
 
 }
 
+.productTableHeader {
+    width: 600px;
+    display:flex;
+}
+
+.inputStyle {
+    width: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
 .product-information {
     height: 450px;
     width: 300px;

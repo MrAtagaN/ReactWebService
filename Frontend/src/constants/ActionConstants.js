@@ -7,5 +7,5 @@ export const TITLE ='title';
 export const USER_INFO ='userInfo';
 export const CHOSEN_GENDER ='chosenGender';
 export const ON_CHOSEN_GENDER ='onChosenGender';
-export const SET_CLOTHES_SEARCH_PARAMS = 'setClothesSearchParams';
+export const SET_SEARCH_PARAMS = 'setSearchParams';
 export const SET_PRODUCTS = 'setProducts';

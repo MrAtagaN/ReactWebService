@@ -5,7 +5,7 @@ import {
     setIsOpenAuthModal,
     setIsOpenRegistrationModal,
     setOnChosenGender,
-    setOnSuccessAuth, setClothesSearchParams, setSuccessRegistrationRequest,
+    setOnSuccessAuth, setSearchParams, setSuccessRegistrationRequest,
     setTitle,
     setUserInfo, setProducts
 } from './Actions';
@@ -26,7 +26,7 @@ export const putStateFieldsToProps = (state) => {
             onSuccessAuth: state.onSuccessAuth,
             chosenGender: state.chosenGender,
             onChosenGender: state.onChosenGender,
-            clothesSearchParams: state.clothesSearchParams,
+            searchParams: state.searchParams,
             products: state.products
         }
     };
@@ -48,7 +48,7 @@ export const putActionsToProps = (dispatch) => {
             setOnSuccessAuth: bindActionCreators(setOnSuccessAuth, dispatch), //действие при успешной авторизации
             setChosenGender: bindActionCreators(setChosenGender, dispatch),
             setOnChosenGender: bindActionCreators(setOnChosenGender, dispatch), //действие при выборе пола
-            setClothesSearchParams: bindActionCreators(setClothesSearchParams, dispatch),
+            setSearchParams: bindActionCreators(setSearchParams, dispatch),
             setProducts: bindActionCreators(setProducts, dispatch)
         }
     };

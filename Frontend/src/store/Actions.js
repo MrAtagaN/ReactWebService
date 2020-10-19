@@ -2,7 +2,7 @@ import {
     CHOSEN_GENDER,
     IS_AUTHENTICATED,
     IS_OPEN_AUTH_MODAL, IS_OPEN_REGISTRATION_MODAL, ON_CHOSEN_GENDER,
-    ON_SUCCESS_AUTH, SET_CLOTHES_SEARCH_PARAMS, SET_PRODUCTS, SUCCESS_REGISTRATION_REQUEST,
+    ON_SUCCESS_AUTH, SET_SEARCH_PARAMS, SET_PRODUCTS, SUCCESS_REGISTRATION_REQUEST,
     TITLE,
     USER_INFO
 } from "../constants/ActionConstants";
@@ -76,9 +76,9 @@ export const setOnChosenGender = (newValue) => {
     }
 };
 
-export const setClothesSearchParams = (newValue) => {
+export const setSearchParams = (newValue) => {
     return {
-        type: SET_CLOTHES_SEARCH_PARAMS,
+        type: SET_SEARCH_PARAMS,
         value: newValue
     }
 };

@@ -18,7 +18,7 @@ import java.util.List;
 public interface ProductDao extends JpaRepository<Product, Integer> {
 
     @Query("SELECT distinct p FROM Product p inner join p.size s WHERE " +
-            "(:name is null or p.name = :name) and " +
+            "(:name is null or p.name like concat('%', :name,'%')) and " +
             "(:typeId is null or p.type = :typeId) and " +
             "(:subType is null or p.subType = :subType) and " +
             "(:brand is null or p.brand = :brand) and " +
@@ -50,6 +50,4 @@ public interface ProductDao extends JpaRepository<Product, Integer> {
                                    @Param("isSales") Boolean isSales,
                                    Pageable pageRequest);
 
-    // IgnoreCase не работает с sqlLite с русскими буквами (не работают функции upper и lower),
-    List<Product> findByNameContainingIgnoreCase(String name);
 }

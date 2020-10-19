@@ -56,15 +56,16 @@ class ProductTable extends Component {
         //TODO сделать отображение таблицей
         return (
             <div className={'rightContent'}>
-                <div>
+                <div className={'productTableHeader'}>
                         Размер от
                     <form>
-                        <input style={{width: '30px'}} onChange={event => this.setSizeFromValue(event.target.value)}/>
+                        <input value={this.props.appState.searchParams.sizeFrom} className={'inputStyle'} onChange={event => this.setSizeFromValue(event.target.value)}/>
                     </form>
                             до
                     <form>
-                        <input style={{width: '30px'}} onChange={event => this.setSizeToValue(event.target.value)}/>
+                        <input value={this.props.appState.searchParams.sizeTo} className={'inputStyle'} onChange={event => this.setSizeToValue(event.target.value)}/>
                     </form>
+                    {this.props.appState.searchParams.name && <div>Поиск по названию '{this.props.appState.searchParams.name}'</div>}
                 </div>
                 <div>{listProducts}</div>
 
@@ -74,18 +75,18 @@ class ProductTable extends Component {
     }
 
     setSizeFromValue = async (value) => {
-        let params = this.props.appState.clothesSearchParams;
+        let params = this.props.appState.searchParams;
         params = {...params, sizeFrom: value}
-        this.props.changeAppState.setClothesSearchParams(params);
+        this.props.changeAppState.setSearchParams(params);
         const response = await RestClient.get(PRODUCT_URL + 'search', params);
         this.props.changeAppState.setProducts(response.data)
         this.setState({ state: this.state});
     }
 
     setSizeToValue = async (value) => {
-        let params = this.props.appState.clothesSearchParams;
+        let params = this.props.appState.searchParams;
         params = {...params, sizeTo: value}
-        this.props.changeAppState.setClothesSearchParams(params);
+        this.props.changeAppState.setSearchParams(params);
         const response = await RestClient.get(PRODUCT_URL + 'search', params);
         this.props.changeAppState.setProducts(response.data)
         this.setState({ state: this.state});

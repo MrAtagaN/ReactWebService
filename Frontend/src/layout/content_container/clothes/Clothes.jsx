@@ -59,7 +59,7 @@ class Clothes extends Component {
     fetchClothesByType = async (type) => {
         if (type !== null) {
             const gender = this.props.appState.chosenGender;
-            let searchParams = this.props.appState.clothesSearchParams;
+            let searchParams = this.props.appState.searchParams;
             searchParams = {...searchParams, type: type}
             if (gender === FEMALE) {
                 searchParams = {...searchParams, category: 'clothes', age:'adult', gender: 'female'}
@@ -74,7 +74,7 @@ class Clothes extends Component {
                 searchParams = {...searchParams, category: 'clothes', age:'kids', gender: 'male'}
             }
             const response = await RestClient.get(PRODUCT_URL + 'search', searchParams);
-            this.props.changeAppState.setClothesSearchParams(searchParams);
+            this.props.changeAppState.setSearchParams(searchParams);
             this.props.changeAppState.setProducts(response.data);
         }
     };
