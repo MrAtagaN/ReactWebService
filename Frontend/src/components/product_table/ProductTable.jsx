@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {connectToStore} from "../../store/Connect";
 import './ProductTable.css';
 import RestClient from "../../services/RestClient";
-import {PRODUCT_URL} from "../../constants/RestConstants";
+import {DELETE_PRODUCT, OK, PRODUCT_URL} from "../../constants/RestConstants";
 
 /**
  * Таблица отображения продуктов
@@ -49,6 +49,10 @@ class ProductTable extends Component {
                 <div className='product-description'>
                     <div className='product-name'>{product.name}</div>
                     <div className='product-price'>{product.price}</div>
+
+                    {this.props.appState.userInfo.authorities &&
+                    this.props.appState.userInfo.authorities.some(a => a === 'ADMIN')
+                    && <button onClick={() => {this.deleteProduct(product.id)}}>Удалить товар</button>}
                 </div>
             </div>
         );
@@ -72,6 +76,21 @@ class ProductTable extends Component {
             </div>
         );
 
+    }
+
+    deleteProduct = async (id) => {
+        let params = {'productId': id};
+        const response = await RestClient.get(DELETE_PRODUCT, params);
+
+        if (response.code === OK) {
+            alert('Товар удалён');
+        } else {
+            alert('Неизвестная ошибка');
+        }
+        let products = this.props.appState.products;
+        products = products.filter(p => p.id !== id);
+        this.props.changeAppState.setProducts(products);
+        this.setState({ state: this.state});
     }
 
     setSizeFromValue = async (value) => {

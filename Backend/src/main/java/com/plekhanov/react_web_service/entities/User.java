@@ -41,7 +41,7 @@ public class User {
     @ElementCollection(fetch = EAGER)
     @Enumerated(STRING)
     @CollectionTable(name = "authorities", joinColumns = @JoinColumn(name = "user_id"))
-    @Column(name = "role")
+    @Column(name = "authority")
     Set<Authority> authorities;
 
     @Column(name = "account_non_expired")

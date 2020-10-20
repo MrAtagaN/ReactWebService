@@ -6,6 +6,7 @@ export const CONFIRM_REQUEST = 'public/api/v1/user-registration/confirm-email';
 export const USER_URL = 'api/v1/user/';
 export const PRODUCT_TYPE_URL = 'public/api/v1/product-type/';
 export const PRODUCT_URL = 'public/api/v1/product/';
+export const DELETE_PRODUCT = 'admin/api/v1/product/delete';
 
 export const OK = 0;
 export const NOT_AUTHENTICATED = 1;

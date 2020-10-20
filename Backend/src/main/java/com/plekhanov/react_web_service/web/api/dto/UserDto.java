@@ -1,5 +1,6 @@
 package com.plekhanov.react_web_service.web.api.dto;
 
+import com.plekhanov.react_web_service.config.security.Authority;
 import com.plekhanov.react_web_service.entities.Product;
 import com.plekhanov.react_web_service.entities.User;
 import com.plekhanov.react_web_service.entities.UserFavoriteProduct;
@@ -26,6 +27,7 @@ public class UserDto {
     LocalDateTime lastEnter;
     Map<ProductDto, Integer> bagProducts;
     Set<ProductDto> favoriteProducts;
+    Set<Authority> authorities;
 
 
     /**
@@ -42,6 +44,7 @@ public class UserDto {
                 .lastEnter(user.getLastEnter())
                 .bagProducts(fromBagProducts(user.getBagProducts()))
                 .favoriteProducts(fromFavoriteProducts(user.getFavoriteProducts()))
+                .authorities(user.getAuthorities())
                 .build();
     }
 

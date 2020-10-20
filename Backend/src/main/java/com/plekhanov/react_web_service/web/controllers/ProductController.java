@@ -105,7 +105,7 @@ public class ProductController {
     /**
      * Удалить {@link Product}
      */
-    @PostMapping(ADMIN + API_VERSION + "delete")
+    @GetMapping(ADMIN + API_VERSION + "delete")
     public ApiResponse<String> deleteProduct(@RequestParam("productId") @NotNull final Integer productId) {
         productService.deleteById(productId);
         return ApiResponse.ok("product deleted");
