@@ -22,7 +22,6 @@ public class ProductDto {
     Integer id;
     String name;
     String description;
-    String subType;
     String brand;
     BigDecimal price;
     Set<Integer> size;
@@ -62,7 +61,6 @@ public class ProductDto {
                 .id(product.getId())
                 .name(product.getName())
                 .description(product.getDescription())
-                .subType(product.getSubType())
                 .brand(product.getBrand())
                 .price(product.getPrice())
                 .size(product.getSize())

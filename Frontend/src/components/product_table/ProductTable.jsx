@@ -15,7 +15,6 @@ import {DELETE_PRODUCT, OK, PRODUCT_URL} from "../../constants/RestConstants";
  * Integer id;
  * String name;
  * String description;
- * String subType;
  * String brand;
  * BigDecimal price;
  * Set<Integer> size;
@@ -51,8 +50,12 @@ class ProductTable extends Component {
                     <div className='product-price'>{product.price}</div>
 
                     {this.props.appState.userInfo.authorities &&
-                    this.props.appState.userInfo.authorities.some(a => a === 'ADMIN')
-                    && <button onClick={() => {this.deleteProduct(product.id)}}>Удалить товар</button>}
+                    this.props.appState.userInfo.authorities.some(a => a === 'ADMIN') &&
+                        <div>
+                            <button onClick={() => {this.deleteProduct(product.id)}}>Удалить товар</button>
+                            <button onClick={() => {this.updateProduct(product)}}>Редактировать товар</button>
+                        </div>
+                    }
                 </div>
             </div>
         );
@@ -78,18 +81,23 @@ class ProductTable extends Component {
 
     }
 
+    updateProduct = async (product) => {
+        this.props.changeAppState.setIsOpenUpdateProductModal(true);
+        this.props.changeAppState.setUpdatingProduct(product);
+    }
+
     deleteProduct = async (id) => {
         let params = {'productId': id};
         const response = await RestClient.get(DELETE_PRODUCT, params);
 
         if (response.code === OK) {
             alert('Товар удалён');
+            let products = this.props.appState.products;
+            products = products.filter(p => p.id !== id);
+            this.props.changeAppState.setProducts(products);
         } else {
             alert('Неизвестная ошибка');
         }
-        let products = this.props.appState.products;
-        products = products.filter(p => p.id !== id);
-        this.props.changeAppState.setProducts(products);
         this.setState({ state: this.state});
     }
 

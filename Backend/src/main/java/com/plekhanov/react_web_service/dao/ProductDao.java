@@ -20,7 +20,6 @@ public interface ProductDao extends JpaRepository<Product, Integer> {
     @Query("SELECT distinct p FROM Product p inner join p.size s WHERE " +
             "(:name is null or p.name like concat('%', :name,'%')) and " +
             "(:typeId is null or p.type = :typeId) and " +
-            "(:subType is null or p.subType = :subType) and " +
             "(:brand is null or p.brand = :brand) and " +
             "(:priceFrom is null or p.price >= :priceFrom) and " +
             "(:priceTo is null or p.price <= :priceTo) and " +
@@ -35,7 +34,6 @@ public interface ProductDao extends JpaRepository<Product, Integer> {
             "(:isSales is null or p.isSales = :isSales)")
     List<Product> findByParameters(@Param("name") String name,
                                    @Param("typeId") Integer typeId,
-                                   @Param("subType") String subType,
                                    @Param("brand") String brand,
                                    @Param("priceFrom") BigDecimal priceFrom,
                                    @Param("priceTo") BigDecimal priceTo,

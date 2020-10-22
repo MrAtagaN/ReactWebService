@@ -20,6 +20,19 @@
     justify-content: space-between;
 }
 
+.updateProductModalWindow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #FFF;
+    min-height: 200px;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 .modalRegistrationWindow {
     position: absolute;
     top: 35%;
@@ -78,4 +91,9 @@
 
 .modalFooter button:last-child {
     margin-left: 10px;
+}
+
+.productProperty {
+    margin-top: 10px;
+    margin-bottom: 10px;
 }

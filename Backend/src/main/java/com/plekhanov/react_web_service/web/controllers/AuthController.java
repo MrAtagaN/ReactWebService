@@ -26,10 +26,12 @@ import static java.text.MessageFormat.format;
  * Эндпойнт для аутентификации
  */
 @RestController
-@RequestMapping("/api/v1")
 @Validated
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class AuthController {
+
+    private static final String PUBLIC = "public/";
+    private static final String API_VERSION = "api/v1/login";
 
     JwtService jwtService;
     String cookieTemplate;
@@ -50,7 +52,7 @@ public class AuthController {
      * @param request email and password
      * @return JWT token in cookie
      */
-    @PostMapping("/login")
+    @PostMapping(PUBLIC + API_VERSION)
     public ResponseEntity<ApiResponse<UserDto>> login(@RequestBody @NotNull final AuthenticationRequestDto request) {
         final String email = request.getEmail();
         final User user = emailPasswordAuthService.authenticate(email, request.getPassword());

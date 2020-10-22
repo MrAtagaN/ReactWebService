@@ -1,11 +1,12 @@
 package com.plekhanov.react_web_service.config.security;
 
 import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jws;
+import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
@@ -19,6 +20,7 @@ import java.util.Date;
  */
 @Service
 @Validated
+@Slf4j
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class JwtService {
 
@@ -48,8 +50,14 @@ public class JwtService {
 
 
     public boolean validateToken(@NotNull final String token) {
-        final Jws<Claims> claimsJws = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
-        return !claimsJws.getBody().getExpiration().before(new Date());
+        try {
+            Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
+        } catch (ExpiredJwtException e) {
+            // если jwt token протух возвращаем false, а не кидаем ошибку, чтобы был работали открытые эндпоинты
+            log.error("ExpiredJwtException");
+            return false;
+        }
+        return true;
     }
 
 

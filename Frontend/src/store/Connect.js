@@ -7,7 +7,7 @@ import {
     setOnChosenGender,
     setOnSuccessAuth, setSearchParams, setSuccessRegistrationRequest,
     setTitle,
-    setUserInfo, setProducts
+    setUserInfo, setProducts, setIsOpenUpdateModal, setUpdatingProduct
 } from './Actions';
 import {connect} from "react-redux";
 
@@ -21,13 +21,15 @@ export const putStateFieldsToProps = (state) => {
             title: state.title,
             userInfo: state.userInfo,
             isOpenAuthModal: state.isOpenAuthModal,
+            isOpenUpdateProductModal: state.isOpenUpdateProductModal,
             isOpenRegistrationModal: state.isOpenRegistrationModal,
             isSuccessRegistrationRequest: state.isSuccessRegistrationRequest,
             onSuccessAuth: state.onSuccessAuth,
             chosenGender: state.chosenGender,
             onChosenGender: state.onChosenGender,
             searchParams: state.searchParams,
-            products: state.products
+            products: state.products,
+            updatingProduct: state.updatingProduct
         }
     };
 };
@@ -43,13 +45,15 @@ export const putActionsToProps = (dispatch) => {
             setTitle: bindActionCreators(setTitle, dispatch),
             setUserInfo: bindActionCreators(setUserInfo, dispatch),
             setIsOpenAuthModal: bindActionCreators(setIsOpenAuthModal, dispatch), //открыто модальное окно авторизации
+            setIsOpenUpdateProductModal: bindActionCreators(setIsOpenUpdateModal, dispatch),
             setIsOpenRegistrationModal: bindActionCreators(setIsOpenRegistrationModal, dispatch),
             setSuccessRegistrationRequest: bindActionCreators(setSuccessRegistrationRequest, dispatch),
             setOnSuccessAuth: bindActionCreators(setOnSuccessAuth, dispatch), //действие при успешной авторизации
             setChosenGender: bindActionCreators(setChosenGender, dispatch),
             setOnChosenGender: bindActionCreators(setOnChosenGender, dispatch), //действие при выборе пола
             setSearchParams: bindActionCreators(setSearchParams, dispatch),
-            setProducts: bindActionCreators(setProducts, dispatch)
+            setProducts: bindActionCreators(setProducts, dispatch),
+            setUpdatingProduct: bindActionCreators(setUpdatingProduct, dispatch)
         }
     };
 };

@@ -45,7 +45,6 @@ public class ProductController {
     public ApiResponse<?> search(
             @RequestParam(value = "name", required = false) final String name,
             @RequestParam(value = "typeId", required = false) final Integer typeId,
-            @RequestParam(value = "subType", required = false) final String subType,
             @RequestParam(value = "brand", required = false) final String brand,
             @RequestParam(value = "priceFrom", required = false) final BigDecimal priceFrom,
             @RequestParam(value = "priceTo", required = false) final BigDecimal priceTo,
@@ -68,7 +67,6 @@ public class ProductController {
         final ProductSearchParams productSearchParams = ProductSearchParams.builder()
                 .name(name)
                 .typeId(typeId)
-                .subType(subType)
                 .brand(brand)
                 .priceFrom(priceFrom)
                 .priceTo(priceTo)
@@ -96,8 +94,9 @@ public class ProductController {
      * Добавить или изменить {@link Product}
      */
     @PostMapping(ADMIN + API_VERSION + "save-or-update")
-    public ApiResponse<String> saveOrUpdateProduct(@RequestBody @NotNull final Product product) {
-        productService.saveOrUpdate(product);
+    public ApiResponse<String> saveOrUpdateProduct(@RequestBody @NotNull final ProductDto productDto) {
+
+        //productService.saveOrUpdate(product);
         return ApiResponse.ok("product saved or updated");
     }
 

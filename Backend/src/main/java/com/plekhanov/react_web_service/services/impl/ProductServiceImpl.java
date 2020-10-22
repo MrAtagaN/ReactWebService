@@ -37,7 +37,6 @@ public class ProductServiceImpl implements ProductService {
         return productDao.findByParameters(
                 productSearchParams.getName(),
                 productSearchParams.getTypeId(),
-                productSearchParams.getSubType(),
                 productSearchParams.getBrand(),
                 productSearchParams.getPriceFrom(),
                 productSearchParams.getPriceTo(),

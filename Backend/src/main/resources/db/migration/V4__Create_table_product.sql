@@ -4,7 +4,6 @@ CREATE TABLE product
     name            TEXT collate nocase NOT NULL,
     description     TEXT,
     type_id         INTEGER NOT NULL CONSTRAINT product_type_id_fk REFERENCES product_type (id),
-    sub_type        TEXT,
     brand           TEXT,
     price           NUMERIC NOT NULL,
     color           TEXT,

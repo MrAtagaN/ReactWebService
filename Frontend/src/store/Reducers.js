@@ -4,7 +4,7 @@ import {
     IS_OPEN_AUTH_MODAL, IS_OPEN_REGISTRATION_MODAL, ON_CHOSEN_GENDER,
     ON_SUCCESS_AUTH, SET_SEARCH_PARAMS, SET_PRODUCTS, SUCCESS_REGISTRATION_REQUEST,
     TITLE,
-    USER_INFO
+    USER_INFO, IS_OPEN_UPDATE_PRODUCT_MODAL, SET_UPDATING_PRODUCT
 } from "../constants/ActionConstants";
 import {FEMALE} from "../constants/AppConstants";
 
@@ -14,6 +14,7 @@ import {FEMALE} from "../constants/AppConstants";
 const initialState = {
     isAuthenticated: false,
     isOpenAuthModal: false, //открыто модальное окно авторизации
+    isOpenUpdateProductModal: false, // открыто окно редактирования товара
     isOpenRegistrationModal: false, // открыто модальное окно регистрации
     isSuccessRegistrationRequest: false, // успешный ответ решистрации нового пользователя
     onSuccessAuth: ()=>{}, //действие при успешной авторизации
@@ -22,7 +23,8 @@ const initialState = {
     chosenGender: FEMALE,
     onChosenGender: ()=>{}, //действие при выборе пола
     searchParams: {},
-    products: []
+    products: [],
+    updatingProduct: {} // продукт который мы редактируем
 };
 
 
@@ -50,6 +52,10 @@ export const rootReducer = (state = initialState, action) => {
             return {...state, searchParams: action.value}
         case SET_PRODUCTS:
             return {...state, products: action.value}
+        case IS_OPEN_UPDATE_PRODUCT_MODAL:
+            return {...state, isOpenUpdateProductModal: action.value}
+        case SET_UPDATING_PRODUCT:
+            return {...state, updatingProduct: action.value}
     }
 
     return state;

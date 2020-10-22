@@ -9,3 +9,5 @@ export const CHOSEN_GENDER ='chosenGender';
 export const ON_CHOSEN_GENDER ='onChosenGender';
 export const SET_SEARCH_PARAMS = 'setSearchParams';
 export const SET_PRODUCTS = 'setProducts';
+export const IS_OPEN_UPDATE_PRODUCT_MODAL = 'isOpenUpdateProductModal';
+export const SET_UPDATING_PRODUCT = 'setUpdatingProduct';

@@ -4,7 +4,7 @@ import {
     IS_OPEN_AUTH_MODAL, IS_OPEN_REGISTRATION_MODAL, ON_CHOSEN_GENDER,
     ON_SUCCESS_AUTH, SET_SEARCH_PARAMS, SET_PRODUCTS, SUCCESS_REGISTRATION_REQUEST,
     TITLE,
-    USER_INFO
+    USER_INFO, IS_OPEN_UPDATE_PRODUCT_MODAL, SET_UPDATING_PRODUCT
 } from "../constants/ActionConstants";
 
 export const setIsAuthenticated = (newValue) => {
@@ -89,3 +89,17 @@ export const setProducts = (newValue) => {
         value: newValue
     }
 };
+
+export const setIsOpenUpdateModal = (newValue) => {
+    return {
+        type: IS_OPEN_UPDATE_PRODUCT_MODAL,
+        value: newValue
+    }
+}
+
+export const setUpdatingProduct = (newValue) => {
+    return {
+        type: SET_UPDATING_PRODUCT,
+        value: newValue
+    }
+}

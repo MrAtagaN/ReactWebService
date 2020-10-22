@@ -17,7 +17,6 @@ public class ProductSearchParams {
 
     String name;
     Integer typeId;
-    String subType;
     String brand;
     BigDecimal priceFrom;
     BigDecimal priceTo;

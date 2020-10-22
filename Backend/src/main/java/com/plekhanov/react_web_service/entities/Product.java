@@ -32,9 +32,6 @@ public class Product {
     @JoinColumn(name = "type_id", nullable = false)
     ProductType type;
 
-    @Column(name = "sub_type")
-    String subType;
-
     @Column(name = "brand")
     String brand;
 
