@@ -26,6 +26,7 @@ public class ProductDto {
     BigDecimal price;
     Set<Integer> size;
     Set<String> namedSize;
+    Integer productTypeId;
     Gender gender;
     String type;
     Category category;
@@ -50,11 +51,13 @@ public class ProductDto {
         String type = null;
         Category category = null;
         Age age = null;
+        Integer productTypeId = null;
         if (productType != null) {
             gender = productType.getGender();
             type = productType.getType();
             category = productType.getCategory();
             age =  productType.getAge();
+            productTypeId = productType.getId();
         }
 
         return ProductDto.builder()
@@ -69,6 +72,7 @@ public class ProductDto {
                 .type(type)
                 .category(category)
                 .age(age)
+                .productTypeId(productTypeId)
                 .color(product.getColor())
                 .isNew(product.getIsNew())
                 .isSales(product.getIsSales())

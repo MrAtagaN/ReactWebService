@@ -55,7 +55,7 @@ public class AuthControllerTest {
         Mockito.when(jwtService.createJwtToken(email)).thenReturn(token);
         Mockito.when(emailPasswordAuthService.authenticate(email, password)).thenReturn(user);
 
-        this.mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/login")
+        this.mockMvc.perform(MockMvcRequestBuilders.post("/public/api/v1/login")
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .content(objectMapper.writeValueAsString(authenticationRequestDto)))
                 .andExpect(content().string(objectMapper.writeValueAsString(

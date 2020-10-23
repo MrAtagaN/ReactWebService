@@ -7,11 +7,13 @@ import com.plekhanov.react_web_service.services.ProductService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -22,6 +24,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product saveOrUpdate(final Product product) {
+        log.info("Save product {}", product);
         return productDao.save(product);
     }
 
@@ -54,6 +57,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void deleteById(int id) {
+        log.info("Delete product with id {}", id);
         productDao.deleteById(id);
     }
 

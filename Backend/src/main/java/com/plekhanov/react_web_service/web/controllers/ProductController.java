@@ -4,6 +4,7 @@ import com.plekhanov.react_web_service.entities.Product;
 import com.plekhanov.react_web_service.entities.ProductType.Age;
 import com.plekhanov.react_web_service.entities.ProductType.Gender;
 import com.plekhanov.react_web_service.entities.search_params.ProductSearchParams;
+import com.plekhanov.react_web_service.mapper.ProductMapper;
 import com.plekhanov.react_web_service.services.ProductService;
 import com.plekhanov.react_web_service.web.api.ApiResponse;
 import com.plekhanov.react_web_service.web.api.dto.ProductDto;
@@ -31,6 +32,7 @@ import static com.plekhanov.react_web_service.web.api.ApiResponse.ResponseCode.V
 public class ProductController {
 
     private final ProductService productService;
+    private final ProductMapper productMapper;
 
     private static final String PUBLIC = "public/";
     private static final String ADMIN = "admin/";
@@ -95,8 +97,8 @@ public class ProductController {
      */
     @PostMapping(ADMIN + API_VERSION + "save-or-update")
     public ApiResponse<String> saveOrUpdateProduct(@RequestBody @NotNull final ProductDto productDto) {
-
-        //productService.saveOrUpdate(product);
+         Product product = productMapper.productDtoToProduct(productDto);
+        productService.saveOrUpdate(product);
         return ApiResponse.ok("product saved or updated");
     }
 

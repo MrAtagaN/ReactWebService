@@ -3,7 +3,7 @@ import Portal from "../portal/Portal";
 import Button from "../button/Button";
 import {connectToStore} from "../../store/Connect";
 import RestClient from "../../services/RestClient";
-import {SAVE_PRODUCT} from "../../constants/RestConstants";
+import {OK, SAVE_PRODUCT} from "../../constants/RestConstants";
 
 
 class UpdateProductModal extends Component {
@@ -131,6 +131,7 @@ class UpdateProductModal extends Component {
                 type: this.props.appState.updatingProduct.type,
                 category: this.props.appState.updatingProduct.category,
                 age: this.props.appState.updatingProduct.age,
+                productTypeId: this.props.appState.updatingProduct.productTypeId,
                 color: this.props.appState.updatingProduct.color,
                 isNew: this.props.appState.updatingProduct.isNew,
                 isSales: this.props.appState.updatingProduct.isSales,
@@ -138,8 +139,18 @@ class UpdateProductModal extends Component {
                 mainImageNumber: this.props.appState.updatingProduct.mainImageNumber
             };
 
-        const response = RestClient.sendForm(SAVE_PRODUCT, product);
+        const response = await RestClient.sendForm(SAVE_PRODUCT, product);
+        if (response.code === OK) {
+            alert('Продукт сохранён')
+        } else {
+            alert('Неизвестная ошибка')
+        }
 
+        let products = this.props.appState.products.filter(product => product.id !== this.props.appState.updatingProduct.id);
+        products.push(product);
+        this.props.changeAppState.setProducts(products);
+
+        this.cancelUpdateProduct();
     }
 
     handleChangeName = (event) => {

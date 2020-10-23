@@ -23,6 +23,7 @@ import {DELETE_PRODUCT, OK, PRODUCT_URL} from "../../constants/RestConstants";
  * String type;
  * Category category;
  * Age age;
+ * Integer productTypeId;
  * String color;
  * Boolean isNew;
  * Boolean isSales;
