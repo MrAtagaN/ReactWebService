@@ -6,7 +6,7 @@ import com.plekhanov.react_web_service.web.api.dto.ProductDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = FavoriteProductMapper.class)
 public interface ProductMapper {
 
     @Mapping(source = "productDto.type", target = "type.type")
@@ -16,5 +16,12 @@ public interface ProductMapper {
     @Mapping(source = "productDto.productTypeId", target = "type.id")
     Product productDtoToProduct(ProductDto productDto);
 
+
+    @Mapping(source = "product.type.type", target = "type")
+    @Mapping(source = "product.type.category", target = "category")
+    @Mapping(source = "product.type.age", target = "age")
+    @Mapping(source = "product.type.gender", target = "gender")
+    @Mapping(source = "product.type.id", target = "productTypeId")
+    ProductDto productToProductDto(Product product);
 
 }

@@ -1,14 +1,12 @@
 package com.plekhanov.react_web_service.controllers;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.plekhanov.react_web_service.config.security.EmailPasswordAuthService;
 import com.plekhanov.react_web_service.config.security.JwtService;
-import com.plekhanov.react_web_service.config.security.JwtTokenFilter;
 import com.plekhanov.react_web_service.entities.User;
+import com.plekhanov.react_web_service.mapper.UserMapper;
 import com.plekhanov.react_web_service.web.api.ApiResponse;
 import com.plekhanov.react_web_service.web.api.dto.AuthenticationRequestDto;
-import com.plekhanov.react_web_service.web.api.dto.UserDto;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +14,10 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -38,6 +34,9 @@ public class AuthControllerTest {
 
     @MockBean
     JwtService jwtService;
+
+    @Autowired
+    UserMapper userMapper;
 
     @Test
     public void loginTest() throws Exception {
@@ -59,6 +58,6 @@ public class AuthControllerTest {
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .content(objectMapper.writeValueAsString(authenticationRequestDto)))
                 .andExpect(content().string(objectMapper.writeValueAsString(
-                        ApiResponse.ok(UserDto.fromUser(user)))));
+                        ApiResponse.ok(userMapper.userToUserDto(user)))));
     }
 }

@@ -1,6 +1,7 @@
 package com.plekhanov.react_web_service.web.controllers;
 
 import com.plekhanov.react_web_service.entities.User;
+import com.plekhanov.react_web_service.mapper.UserMapper;
 import com.plekhanov.react_web_service.services.UserService;
 import com.plekhanov.react_web_service.web.api.ApiResponse;
 import com.plekhanov.react_web_service.web.api.dto.UserDto;
@@ -19,6 +20,7 @@ import javax.validation.constraints.NotNull;
 public class UserController {
 
     private final UserService userService;
+    private final UserMapper userMapper;
 
     private static final String API_VERSION = "api/v1/user/";
 
@@ -29,7 +31,7 @@ public class UserController {
     @GetMapping(API_VERSION + "info")
     public ApiResponse<UserDto> getInfo() {
         final User currentUser = userService.getCurrentUser();
-        return ApiResponse.ok(UserDto.fromUser(currentUser));
+        return ApiResponse.ok(userMapper.userToUserDto(currentUser));
     }
 
 

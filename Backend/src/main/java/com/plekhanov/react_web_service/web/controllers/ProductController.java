@@ -87,7 +87,7 @@ public class ProductController {
 
         final List<Product> products = productService.search(productSearchParams);
         final Set<ProductDto> productsDto = products.stream()
-                .map(ProductDto::fromProduct).sorted(Comparator.comparing(ProductDto::getName))
+                .map(productMapper::productToProductDto).sorted(Comparator.comparing(ProductDto::getName))
                 .collect(Collectors.toCollection(LinkedHashSet::new));
         return ApiResponse.ok(productsDto);
     }
