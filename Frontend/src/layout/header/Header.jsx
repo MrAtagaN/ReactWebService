@@ -120,14 +120,16 @@ class Header extends Component {
     };
 
     onClickBag = async () => {
-        const response = await RestClient.get(USER_URL + 'info');//TODO поменять
-        if (response.code === OK) {
 
-
-        } else if (response.code === NOT_AUTHENTICATED) {
-            this.props.changeAppState.setIsOpenAuthModal(true);
-            this.props.changeAppState.setIsAuthenticated(false);
-        }
+        this.setState({...this.state, redirectURL: '/bagProductTable'});
+        // const response = await RestClient.get(USER_URL + 'info');//TODO поменять
+        // if (response.code === OK) {
+        //
+        //
+        // } else if (response.code === NOT_AUTHENTICATED) {
+        //     this.props.changeAppState.setIsOpenAuthModal(true);
+        //     this.props.changeAppState.setIsAuthenticated(false);
+        // }
     };
 
 

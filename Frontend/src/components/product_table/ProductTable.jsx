@@ -38,6 +38,14 @@ class ProductTable extends Component {
 
 
     render() {
+
+        let MakeSizeItem = function (size, searchParams) {
+            if (searchParams.sizeFrom > size || searchParams.sizeTo < size) {
+                return null;
+            }
+            return <option value={size}>{size}</option>;
+        };
+
         let listProducts = this.props.appState.products.map((product) =>
             <div className='product-information'>
                 <div className='product-image'>
@@ -49,6 +57,13 @@ class ProductTable extends Component {
                 <div className='product-description'>
                     <div className='product-name'>{product.name}</div>
                     <div className='product-price'>{product.price}</div>
+
+                    <button onClick={() => {this.putProductInBag(product)}}>Положить в корзину</button>
+                    <div> размер </div>
+                    {product.size.length > 1 && <select id={'size' + product.id}>
+                        {product.size.map(size =>  MakeSizeItem(size, this.props.appState.searchParams))}
+                    </select>}
+                    {product.size.length === 1 && product.size}
 
                     {this.props.appState.userInfo.authorities &&
                     this.props.appState.userInfo.authorities.some(a => a === 'ADMIN') &&
@@ -82,6 +97,17 @@ class ProductTable extends Component {
 
     }
 
+    putProductInBag = async (product) => {
+        const size = document.getElementById('size' + product.id).value;
+
+        let selectedProduct = Object.assign({}, product);
+        selectedProduct.size = size;
+
+        let productsInBag = this.props.appState.productsInBag;
+        productsInBag.push(selectedProduct);
+        this.props.changeAppState.setProductsInBag(productsInBag);
+    }
+
     updateProduct = async (product) => {
         this.props.changeAppState.setIsOpenUpdateProductModal(true);
         this.props.changeAppState.setUpdatingProduct(product);
@@ -108,7 +134,6 @@ class ProductTable extends Component {
         this.props.changeAppState.setSearchParams(params);
         const response = await RestClient.get(PRODUCT_URL + 'search', params);
         this.props.changeAppState.setProducts(response.data)
-        this.setState({ state: this.state});
     }
 
     setSizeToValue = async (value) => {
@@ -117,7 +142,6 @@ class ProductTable extends Component {
         this.props.changeAppState.setSearchParams(params);
         const response = await RestClient.get(PRODUCT_URL + 'search', params);
         this.props.changeAppState.setProducts(response.data)
-        this.setState({ state: this.state});
     }
 }
 

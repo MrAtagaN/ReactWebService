@@ -4,7 +4,7 @@ import {
     IS_OPEN_AUTH_MODAL, IS_OPEN_REGISTRATION_MODAL, ON_CHOSEN_GENDER,
     ON_SUCCESS_AUTH, SET_SEARCH_PARAMS, SET_PRODUCTS, SUCCESS_REGISTRATION_REQUEST,
     TITLE,
-    USER_INFO, IS_OPEN_UPDATE_PRODUCT_MODAL, SET_UPDATING_PRODUCT
+    USER_INFO, IS_OPEN_UPDATE_PRODUCT_MODAL, SET_UPDATING_PRODUCT, SET_PRODUCTS_IN_BAG
 } from "../constants/ActionConstants";
 import {FEMALE} from "../constants/AppConstants";
 
@@ -24,7 +24,8 @@ const initialState = {
     onChosenGender: ()=>{}, //действие при выборе пола
     searchParams: {},
     products: [],
-    updatingProduct: {} // продукт который мы редактируем
+    updatingProduct: {}, // продукт который мы редактируем
+    productsInBag: []
 };
 
 
@@ -56,6 +57,8 @@ export const rootReducer = (state = initialState, action) => {
             return {...state, isOpenUpdateProductModal: action.value}
         case SET_UPDATING_PRODUCT:
             return {...state, updatingProduct: action.value}
+        case SET_PRODUCTS_IN_BAG:
+            return {...state, productsInBag: action.value}
     }
 
     return state;

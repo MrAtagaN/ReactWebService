@@ -7,7 +7,7 @@ import {
     setOnChosenGender,
     setOnSuccessAuth, setSearchParams, setSuccessRegistrationRequest,
     setTitle,
-    setUserInfo, setProducts, setIsOpenUpdateModal, setUpdatingProduct
+    setUserInfo, setProducts, setIsOpenUpdateModal, setUpdatingProduct, setProductsInBag
 } from './Actions';
 import {connect} from "react-redux";
 
@@ -29,7 +29,8 @@ export const putStateFieldsToProps = (state) => {
             onChosenGender: state.onChosenGender,
             searchParams: state.searchParams,
             products: state.products,
-            updatingProduct: state.updatingProduct
+            updatingProduct: state.updatingProduct,
+            productsInBag: state.productsInBag
         }
     };
 };
@@ -53,7 +54,8 @@ export const putActionsToProps = (dispatch) => {
             setOnChosenGender: bindActionCreators(setOnChosenGender, dispatch), //действие при выборе пола
             setSearchParams: bindActionCreators(setSearchParams, dispatch),
             setProducts: bindActionCreators(setProducts, dispatch),
-            setUpdatingProduct: bindActionCreators(setUpdatingProduct, dispatch)
+            setUpdatingProduct: bindActionCreators(setUpdatingProduct, dispatch),
+            setProductsInBag: bindActionCreators(setProductsInBag, dispatch)
         }
     };
 };
