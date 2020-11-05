@@ -16,6 +16,24 @@ public class Main {
         SpringApplication.run(Main.class, args);
     }
 
+//    /**
+//     * Aspect for profiling method execution time
+//     */
+//    @Aspect
+//    @Component
+//    @ConditionalOnProperty(name = "application.profiling.enabled", havingValue = "true")
+//    @Slf4j
+//    public class ProfilingAspect {
+//        @Around("@annotation(ru.sbrf.callcenter.stat.aspect.Profiling)")
+//        public Object profiling(ProceedingJoinPoint pjp) throws Throwable {
+//            long start = System.currentTimeMillis();
+//            final String methodName = pjp.getStaticPart().toShortString();
+//            final Object proceed = pjp.proceed();
+//            log.info("[Profiling] Completed {} method in {} ms", methodName, System.currentTimeMillis() - start);
+//            return proceed;
+//        }
+//    }
+
 
 
     //текущее: На фронте отображать товар
