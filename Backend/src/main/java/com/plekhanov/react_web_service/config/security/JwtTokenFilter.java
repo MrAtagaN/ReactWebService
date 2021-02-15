@@ -66,7 +66,7 @@ public class JwtTokenFilter extends GenericFilterBean {
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             }
         } catch (Exception e) {
-            log.error("Exception in authenticateProcessJwt", e);
+            log.error("[AUTHENTICATION] Exception in authenticateProcessJwt", e);
             SecurityContextHolder.clearContext();
         }
     }

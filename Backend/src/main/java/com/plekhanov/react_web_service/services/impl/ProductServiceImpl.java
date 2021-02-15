@@ -24,7 +24,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product saveOrUpdate(final Product product) {
-        log.info("Save or update product {}", product);
+        log.info("[PRODUCT] Save or update product {}", product);
         return productDao.save(product);
     }
 
@@ -59,7 +59,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void deleteById(int id) {
-        log.info("Delete product with id {}", id);
+        log.info("[PRODUCT] Delete product with id {}", id);
         productDao.deleteById(id);
     }
 

@@ -48,7 +48,7 @@ class ErrorHandlerControllerAdvice {
      */
     @ExceptionHandler({ValidationException.class})
     public ResponseEntity<ApiResponse<String>> onValidationExceptionHandler(final ValidationException e, final WebRequest webRequest) {
-        log.error("Validation exception during handling request {} , {}.", e, webRequest);
+        log.error("[VALIDATION] Validation exception during handling request {} , {}.", e, webRequest);
         final ApiResponse<String> apiResponse = ApiResponse.error(VALIDATION_ERROR, "Validation error");
         return ResponseEntity
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -61,7 +61,7 @@ class ErrorHandlerControllerAdvice {
      */
     @ExceptionHandler({ConstraintViolationException.class})
     public ResponseEntity<ApiResponse<String>> validationException(final ConstraintViolationException e, final WebRequest webRequest) {
-        log.error("Validation exception during handling request {} , {}.", e.getMessage(), webRequest);
+        log.error("[VALIDATION] Validation exception during handling request {} , {}.", e.getMessage(), webRequest);
         final ApiResponse<String> apiResponse = ApiResponse.error(VALIDATION_ERROR, "Validation error");
         return ResponseEntity
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -79,7 +79,7 @@ class ErrorHandlerControllerAdvice {
             final WebRequest webRequest) {
 
         final String missingParameter = e.getParameterName();
-        log.debug("MissingServletRequestParameter: {}, in request {}.", missingParameter, webRequest);
+        log.debug("[VALIDATION] MissingServletRequestParameter: {}, in request {}.", missingParameter, webRequest);
         final ApiResponse<String> apiResponse =
                 ApiResponse.error(VALIDATION_ERROR, "Missing mandatory request parameter: " + missingParameter);
         return ResponseEntity
@@ -98,7 +98,7 @@ class ErrorHandlerControllerAdvice {
             final WebRequest webRequest) {
 
         final String invalidParameter = e.getName();
-        log.debug("MissingServletRequestParameter: {}, in request {}.", invalidParameter, webRequest);
+        log.debug("[VALIDATION] MissingServletRequestParameter: {}, in request {}.", invalidParameter, webRequest);
         final ApiResponse<String> apiResponse =
                 ApiResponse.error(VALIDATION_ERROR, "Invalid type in request parameter: " + invalidParameter);
         return ResponseEntity
@@ -113,7 +113,7 @@ class ErrorHandlerControllerAdvice {
      */
     @ExceptionHandler({AccessDeniedException.class})
     public ResponseEntity<ApiResponse<String>> onAccessDeniedExceptionHandler(final Exception e, final WebRequest webRequest) {
-        log.error("Access denied during handling request {}.", webRequest);
+        log.warn("[AUTHENTICATION] Access denied during handling request {}.", webRequest);
         final ApiResponse<String> apiResponse = ApiResponse.error(ACCESS_DENIED, "Access denied");
         return ResponseEntity
                 .status(HttpStatus.FORBIDDEN)
@@ -127,7 +127,7 @@ class ErrorHandlerControllerAdvice {
      */
     @ExceptionHandler({AuthenticationException.class})
     public ResponseEntity<ApiResponse<String>> onAuthenticationExceptionHandler(final Exception e, final WebRequest webRequest) {
-        log.error("Authentication failure during handling request {}.", webRequest);
+        log.warn("[AUTHENTICATION] Authentication failure during handling request {}.", webRequest);
         final ApiResponse<String> apiResponse = ApiResponse.error(AUTHENTICATION_FAILURE, "Authentication failure");
         return ResponseEntity
                 .status(HttpStatus.FORBIDDEN)
@@ -141,7 +141,7 @@ class ErrorHandlerControllerAdvice {
      */
     @ExceptionHandler({WrongConfirmCodeException.class})
     public ResponseEntity<ApiResponse<String>> confirmCodeException(final WrongConfirmCodeException e) {
-        log.error(e.getMessage());
+        log.warn("[REGISTRATION] {}", e.getMessage());
         final ApiResponse<String> apiResponse = ApiResponse.error(WRONG_CONFIRM_CODE, e.getMessage());
         return ResponseEntity
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -155,7 +155,7 @@ class ErrorHandlerControllerAdvice {
      */
     @ExceptionHandler({UserEmailAlreadyExistException.class})
     public ResponseEntity<ApiResponse<String>> userEmailAlreadyExistException(final UserEmailAlreadyExistException e) {
-        log.error(e.getMessage());
+        log.error("[REGISTRATION] {}", e.getMessage());
         final ApiResponse<String> apiResponse = ApiResponse.error(USER_EMAIL_ALREADY_EXIST, e.getMessage());
         return ResponseEntity
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -169,7 +169,7 @@ class ErrorHandlerControllerAdvice {
      */
     @ExceptionHandler({UserRequestNotFoundException.class})
     public ResponseEntity<ApiResponse<String>> UserRequestTimeOutException(final UserRequestNotFoundException e) {
-        log.error(e.getMessage());
+        log.error("[REGISTRATION] {}", e.getMessage());
         final ApiResponse<String> apiResponse = ApiResponse.error(USER_REQUEST_TIME_OUT, e.getMessage());
         return ResponseEntity
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)

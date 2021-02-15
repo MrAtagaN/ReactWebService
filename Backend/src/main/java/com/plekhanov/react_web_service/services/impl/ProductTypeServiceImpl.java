@@ -29,11 +29,13 @@ public class ProductTypeServiceImpl implements ProductTypeService {
 
     @Override
     public void deleteById(final int id) {
+        log.info("[PRODUCT_TYPE] Delete productType with id {}", id);
         productTypeDao.deleteById(id);
     }
 
     @Override
     public ProductType saveOrUpdate(final ProductType productType) {
+        log.info("[PRODUCT_TYPE] Save or update productType {}", productType);
         return productTypeDao.save(productType);
     }
 }
