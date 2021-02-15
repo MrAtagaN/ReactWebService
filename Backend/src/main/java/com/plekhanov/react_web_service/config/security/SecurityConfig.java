@@ -24,8 +24,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import static com.plekhanov.react_web_service.web.api.ApiResponse.ResponseCode.ACCESS_DENIED;
-import static com.plekhanov.react_web_service.web.api.ApiResponse.ResponseCode.NOT_AUTHENTICATED;
+import static com.plekhanov.react_web_service.web.api.ResponseCode.ACCESS_DENIED;
+import static com.plekhanov.react_web_service.web.api.ResponseCode.NOT_AUTHENTICATED;
 import static org.springframework.http.HttpStatus.*;
 
 /**

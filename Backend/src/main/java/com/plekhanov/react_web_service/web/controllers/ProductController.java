@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static com.plekhanov.react_web_service.web.api.ApiResponse.ResponseCode.VALIDATION_ERROR;
+import static com.plekhanov.react_web_service.web.api.ResponseCode.VALIDATION_ERROR;
 
 /**
  * Эндпойты для действий с {@link Product}

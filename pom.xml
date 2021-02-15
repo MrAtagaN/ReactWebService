@@ -11,7 +11,7 @@
     <modules>
         <module>Backend</module>
         <module>Frontend</module>
-        <module>DemoDataUploader</module>
+<!--        <module>DemoDataUploader</module>-->
     </modules>
 
 

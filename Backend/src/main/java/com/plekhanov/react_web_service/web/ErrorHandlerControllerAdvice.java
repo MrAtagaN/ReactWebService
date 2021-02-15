@@ -18,8 +18,9 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import javax.validation.ConstraintViolationException;
+import javax.validation.ValidationException;
 
-import static com.plekhanov.react_web_service.web.api.ApiResponse.ResponseCode.*;
+import static com.plekhanov.react_web_service.web.api.ResponseCode.*;
 
 /**
  * Обработчик ошибок контроллеров
@@ -34,8 +35,34 @@ class ErrorHandlerControllerAdvice {
     @ExceptionHandler({Exception.class})
     public ResponseEntity<ApiResponse<String>> onExceptionHandler(final Exception e, final WebRequest webRequest) {
         log.error("Internal error during handling request {} , {}.", e, webRequest);
-        e.printStackTrace();
         final ApiResponse<String> apiResponse = ApiResponse.error(UNKNOWN_ERROR, "Internal server error");
+        return ResponseEntity
+                .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                .body(apiResponse);
+    }
+
+
+    /**
+     * Обработка ValidationException
+     */
+    @ExceptionHandler({ValidationException.class})
+    public ResponseEntity<ApiResponse<String>> onValidationExceptionHandler(final ValidationException e, final WebRequest webRequest) {
+        log.error("Validation exception during handling request {} , {}.", e, webRequest);
+        final ApiResponse<String> apiResponse = ApiResponse.error(VALIDATION_ERROR, "Validation error");
+        return ResponseEntity
+                .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                .body(apiResponse);
+    }
+
+    /**
+     * Ошибка валидации javax.validation
+     */
+    @ExceptionHandler({ConstraintViolationException.class})
+    public ResponseEntity<ApiResponse<String>> validationException(final ConstraintViolationException e, final WebRequest webRequest) {
+        log.error("Validation exception during handling request {} , {}.", e.getMessage(), webRequest);
+        final ApiResponse<String> apiResponse = ApiResponse.error(VALIDATION_ERROR, "Validation error");
         return ResponseEntity
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
@@ -104,20 +131,6 @@ class ErrorHandlerControllerAdvice {
         final ApiResponse<String> apiResponse = ApiResponse.error(AUTHENTICATION_FAILURE, "Authentication failure");
         return ResponseEntity
                 .status(HttpStatus.FORBIDDEN)
-                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                .body(apiResponse);
-    }
-
-
-    /**
-     * Ошибка валидации javax.validation
-     */
-    @ExceptionHandler({ConstraintViolationException.class})
-    public ResponseEntity<ApiResponse<String>> validationException(final ConstraintViolationException e, final WebRequest webRequest) {
-        log.error("Validation exception during handling request {} , {}.", e.getMessage(), webRequest);
-        final ApiResponse<String> apiResponse = ApiResponse.error(VALIDATION_ERROR, "Validation error");
-        return ResponseEntity
-                .status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .body(apiResponse);
     }

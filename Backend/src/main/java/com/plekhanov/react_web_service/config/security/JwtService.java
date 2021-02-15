@@ -1,7 +1,6 @@
 package com.plekhanov.react_web_service.config.security;
 
 import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.AccessLevel;
@@ -49,20 +48,9 @@ public class JwtService {
     }
 
 
-    public boolean validateToken(@NotNull final String token) {
-        try {
-            Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
-        } catch (ExpiredJwtException e) {
-            //TODO че за хрень написана ниже?
-            // если jwt token протух возвращаем false, а не кидаем ошибку, чтобы был работали открытые эндпоинты
-            log.error("ExpiredJwtException");
-            return false;
-        }
-        return true;
-    }
-
-
-    public String getEmailFromToken(@NotNull final String token) {
+    public String validateTokenAndGetEmail(@NotNull final String token) {
         return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject();
     }
+
+
 }

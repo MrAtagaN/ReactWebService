@@ -54,16 +54,16 @@ public class JwtTokenFilter extends GenericFilterBean {
      */
     private void authenticateProcessJwt(final ServletRequest servletRequest) {
         final String token = getTokenFromCookie(servletRequest);
-        if (token != null && jwtService.validateToken(token)) {
-            if (SecurityContextHolder.getContext().getAuthentication() == null) {
-                final String email = jwtService.getEmailFromToken(token);
-                final User user = userService.findByEmail(email);
-                final Authentication authentication =
-                        new UsernamePasswordAuthenticationToken(user, "", user.getAuthorities());
-                SecurityContextHolder.getContext().setAuthentication(authentication);
-            }
-        } else {
-            SecurityContextHolder.clearContext();
+
+        if (token != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+           try{
+               final String email = jwtService.validateTokenAndGetEmail(token);
+               final User user = userService.findByEmail(email);
+               final Authentication authentication = new UsernamePasswordAuthenticationToken(user, "", user.getAuthorities());
+               SecurityContextHolder.getContext().setAuthentication(authentication);
+           } catch (Exception e) {
+               SecurityContextHolder.clearContext();
+           }
         }
     }
 
