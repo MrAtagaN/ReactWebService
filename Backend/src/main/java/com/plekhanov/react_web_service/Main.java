@@ -57,6 +57,7 @@ public class Main {
     // Добавить в базу больше товара
     // Заполнение данных в базе вынести в скрипты или сделать модуль common
     // Добавить актуатор
+    // Убрать @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 
 
     /**

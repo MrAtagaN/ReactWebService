@@ -6,6 +6,9 @@ import com.plekhanov.react_web_service.web.api.dto.ProductDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
+/**
+ * //TODO
+ */
 @Mapper(componentModel = "spring", uses = FavoriteProductMapper.class)
 public interface ProductMapper {
 
