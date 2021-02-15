@@ -36,7 +36,7 @@ public class EmailPasswordAuthServiceImpl implements EmailPasswordAuthService {
      *
      * Возвращает аутентифицированного {@link User}
      */
-    public User authenticate(@NotBlank final String email, @NotBlank final String password) {
+    public User authenticate(final String email, final String password) {
         final User user = userDao.findByEmail(email);
         if (user != null) {
             if (!user.isEnabled()) {
