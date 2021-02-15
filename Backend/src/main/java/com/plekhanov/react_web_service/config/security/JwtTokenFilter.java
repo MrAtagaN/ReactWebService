@@ -5,6 +5,7 @@ import com.plekhanov.react_web_service.services.JwtService;
 import com.plekhanov.react_web_service.services.UserService;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -25,6 +26,7 @@ import java.io.IOException;
  * Фильтр запросов. Валидирурет JWT токен, который приходит в cookie.
  */
 @Component
+@Slf4j
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class JwtTokenFilter extends GenericFilterBean {
 
@@ -54,17 +56,18 @@ public class JwtTokenFilter extends GenericFilterBean {
      * Валидирует JWT токен, кладет {@link Authentication} в {@link SecurityContext}
      */
     private void authenticateProcessJwt(final ServletRequest servletRequest) {
-        final String token = getTokenFromCookie(servletRequest);
+        try {
+            final String token = getTokenFromCookie(servletRequest);
+            final String email = jwtService.validateTokenAndGetEmail(token);
 
-        if (token != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-           try{
-               final String email = jwtService.validateTokenAndGetEmail(token);
-               final User user = userService.findByEmail(email);
-               final Authentication authentication = new UsernamePasswordAuthenticationToken(user, "", user.getAuthorities());
-               SecurityContextHolder.getContext().setAuthentication(authentication);
-           } catch (Exception e) {
-               SecurityContextHolder.clearContext();
-           }
+            if (SecurityContextHolder.getContext().getAuthentication() == null) {
+                final User user = userService.findByEmail(email);
+                final Authentication authentication = new UsernamePasswordAuthenticationToken(user, "", user.getAuthorities());
+                SecurityContextHolder.getContext().setAuthentication(authentication);
+            }
+        } catch (Exception e) {
+            log.error("Exception in authenticateProcessJwt", e);
+            SecurityContextHolder.clearContext();
         }
     }
 
