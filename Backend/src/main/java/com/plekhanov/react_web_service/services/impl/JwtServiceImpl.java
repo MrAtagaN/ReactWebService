@@ -1,5 +1,6 @@
-package com.plekhanov.react_web_service.config.security;
+package com.plekhanov.react_web_service.services.impl;
 
+import com.plekhanov.react_web_service.services.JwtService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -10,32 +11,29 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
-import javax.validation.constraints.NotNull;
 import java.util.Base64;
 import java.util.Date;
 
-/**
- * Создание и обработка JWT токена
- */
+
 @Service
 @Validated
 @Slf4j
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-public class JwtService {
+public class JwtServiceImpl implements JwtService {
 
     long validityTokenInMilliseconds;
     String secretKey;
 
 
-    public JwtService(@Value("${jwt.validityTokenInMilliseconds}") long validityTokenInMilliseconds,
-                      @Value("${jwt.secretkey}") String secretKey) {
+    public JwtServiceImpl(@Value("${jwt.validityTokenInMilliseconds}") long validityTokenInMilliseconds,
+                          @Value("${jwt.secretkey}") String secretKey) {
 
         this.validityTokenInMilliseconds = validityTokenInMilliseconds;
         this.secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
     }
 
 
-    public String createJwtToken(@NotNull final String email) {
+    public String createJwtToken(final String email) {
         final Claims claims = Jwts.claims().setSubject(email);
         final Date now = new Date();
         final Date validity = new Date(now.getTime() + validityTokenInMilliseconds);
@@ -48,7 +46,7 @@ public class JwtService {
     }
 
 
-    public String validateTokenAndGetEmail(@NotNull final String token) {
+    public String validateTokenAndGetEmail(final String token) {
         return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject();
     }
 

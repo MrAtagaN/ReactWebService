@@ -1,7 +1,8 @@
-package com.plekhanov.react_web_service.config.security;
+package com.plekhanov.react_web_service.services.impl;
 
 import com.plekhanov.react_web_service.dao.UserDao;
 import com.plekhanov.react_web_service.entities.User;
+import com.plekhanov.react_web_service.services.EmailPasswordAuthService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -18,14 +19,12 @@ import java.time.LocalDateTime;
 import static java.text.MessageFormat.format;
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
-/**
- * Аутентификация по email и паролю.
- */
+
 @Service
 @RequiredArgsConstructor
 @Validated
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-public class EmailPasswordAuthService {
+public class EmailPasswordAuthServiceImpl implements EmailPasswordAuthService {
 
     UserDao userDao;
     BCryptPasswordEncoder bCryptPasswordEncoder;

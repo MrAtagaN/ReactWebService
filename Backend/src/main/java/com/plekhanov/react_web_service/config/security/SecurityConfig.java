@@ -37,7 +37,6 @@ import static org.springframework.http.HttpStatus.*;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    String loginUrl = "/api/v1/login"; //TODO уже не нужен, удалить
     String logoutUrl = "/api/v1/logout";
     String logoutSuccessUrl = "/";
 
@@ -77,7 +76,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers("/admin/**").hasAuthority(Authority.ADMIN.name())
-                .antMatchers(loginUrl).permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .cors()

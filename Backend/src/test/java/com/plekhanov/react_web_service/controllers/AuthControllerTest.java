@@ -1,8 +1,8 @@
 package com.plekhanov.react_web_service.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.plekhanov.react_web_service.config.security.EmailPasswordAuthService;
-import com.plekhanov.react_web_service.config.security.JwtService;
+import com.plekhanov.react_web_service.services.impl.EmailPasswordAuthServiceImpl;
+import com.plekhanov.react_web_service.services.impl.JwtServiceImpl;
 import com.plekhanov.react_web_service.entities.User;
 import com.plekhanov.react_web_service.mapper.UserMapper;
 import com.plekhanov.react_web_service.web.api.ApiResponse;
@@ -30,10 +30,10 @@ public class AuthControllerTest {
     ObjectMapper objectMapper;
 
     @MockBean
-    EmailPasswordAuthService emailPasswordAuthService;
+    EmailPasswordAuthServiceImpl emailPasswordAuthService;
 
     @MockBean
-    JwtService jwtService;
+    JwtServiceImpl jwtService;
 
     @Autowired
     UserMapper userMapper;
