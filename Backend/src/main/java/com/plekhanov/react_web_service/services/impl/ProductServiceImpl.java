@@ -24,7 +24,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product saveOrUpdate(final Product product) {
-        log.info("Save product {}", product);
+        log.info("Save or update product {}", product);
         return productDao.save(product);
     }
 

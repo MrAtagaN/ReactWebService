@@ -36,7 +36,9 @@ public class ProductController {
     private static final String PUBLIC = "public/";
     private static final String ADMIN = "admin/";
     private static final String API_VERSION = "api/v1/product/";
+    private static final String DEFAULT_VALUE_PAGE = "0";
     private static final String DEFAULT_VALUE_ITEMS_IN_PAGE = "9";
+    private static final int MAX_VALUE_ITEMS_IN_PAGE = 100;
 
 
     /**
@@ -58,10 +60,10 @@ public class ProductController {
             @RequestParam(value = "color", required = false) final String color,
             @RequestParam(value = "isNew", required = false) final Boolean isNew,
             @RequestParam(value = "isSales", required = false) final Boolean isSales,
-            @RequestParam(value = "page", required = false, defaultValue = "0") final Integer page,
+            @RequestParam(value = "page", required = false, defaultValue = DEFAULT_VALUE_PAGE) final Integer page,
             @RequestParam(value = "itemsInPage", required = false, defaultValue = DEFAULT_VALUE_ITEMS_IN_PAGE) final Integer itemsInPage) {
 
-        if (itemsInPage != null && itemsInPage > 100) {
+        if (itemsInPage != null && itemsInPage > MAX_VALUE_ITEMS_IN_PAGE) {
             return ApiResponse.error(VALIDATION_ERROR, "value of parameter 'itemsInPage' is very big");
         }
 
