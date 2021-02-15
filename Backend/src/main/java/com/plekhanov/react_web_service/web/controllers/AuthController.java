@@ -38,6 +38,7 @@ public class AuthController {
     String cookieTemplate;
     EmailPasswordAuthService emailPasswordAuthService;
 
+
     public AuthController(final JwtService jwtService,
                           final @Value("${jwt.cookie.name}") String jwtCookieName,
                           final EmailPasswordAuthService emailPasswordAuthService,

@@ -21,7 +21,7 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProductDto {
+public class ProductDto {//TODO выкинуть ненужные аннотации
 
     Integer id;
     String name;

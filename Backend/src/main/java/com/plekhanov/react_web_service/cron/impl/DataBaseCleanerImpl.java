@@ -21,7 +21,7 @@ public class DataBaseCleanerImpl implements DataBaseCleaner {
    UserRegistrationDao userRegistrationDao;
 
 
-    @Scheduled(cron="0 * * * * *", zone="Europe/Istanbul") //TODO вынести в параметр
+    @Scheduled(cron = "0 * * * * *", zone = "Europe/Istanbul") //TODO вынести в параметр
     @Async
     public void cleanUserRegistrationRequest() {
         final List<UserRegistrationRequest> userRegistrationRequests = userRegistrationDao.findAll();

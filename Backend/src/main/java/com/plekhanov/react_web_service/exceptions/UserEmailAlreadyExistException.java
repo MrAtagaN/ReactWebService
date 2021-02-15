@@ -1,8 +1,8 @@
 package com.plekhanov.react_web_service.exceptions;
 
-public class UserEmailAlreadyExist extends RuntimeException {
+public class UserEmailAlreadyExistException extends RuntimeException {
 
-    public UserEmailAlreadyExist() {
+    public UserEmailAlreadyExistException() {
         super("User with that email already exists");
     }
 

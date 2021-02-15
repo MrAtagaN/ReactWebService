@@ -37,7 +37,7 @@ import static org.springframework.http.HttpStatus.*;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    String loginUrl = "/api/v1/login";
+    String loginUrl = "/api/v1/login"; //TODO уже не нужен, удалить
     String logoutUrl = "/api/v1/logout";
     String logoutSuccessUrl = "/";
 

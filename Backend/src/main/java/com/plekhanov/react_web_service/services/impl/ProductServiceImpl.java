@@ -28,6 +28,7 @@ public class ProductServiceImpl implements ProductService {
         return productDao.save(product);
     }
 
+
     @Override
     public List<Product> search(final ProductSearchParams productSearchParams) {
         PageRequest pageRequest = null;
@@ -54,6 +55,7 @@ public class ProductServiceImpl implements ProductService {
                 productSearchParams.getIsSales(),
                 pageRequest);
     }
+
 
     @Override
     public void deleteById(int id) {

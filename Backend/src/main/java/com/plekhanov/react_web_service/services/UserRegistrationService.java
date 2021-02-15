@@ -17,7 +17,7 @@ public interface UserRegistrationService {
 
 
     /**
-     * Подтверждение ранее созданого {@link User} кодом
+     * Подтверждение email пользователя c помощью кода высланного на email
      * @param email пользователя в Base64
      * @param confirmCode в Base64
      */

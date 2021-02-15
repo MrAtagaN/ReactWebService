@@ -1,8 +1,8 @@
 package com.plekhanov.react_web_service.web;
 
-import com.plekhanov.react_web_service.exceptions.ConfirmCodeException;
-import com.plekhanov.react_web_service.exceptions.UserEmailAlreadyExist;
-import com.plekhanov.react_web_service.exceptions.UserRequestTimeOutException;
+import com.plekhanov.react_web_service.exceptions.WrongConfirmCodeException;
+import com.plekhanov.react_web_service.exceptions.UserEmailAlreadyExistException;
+import com.plekhanov.react_web_service.exceptions.UserRequestNotFoundException;
 import com.plekhanov.react_web_service.web.api.ApiResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
@@ -42,6 +42,7 @@ class ErrorHandlerControllerAdvice {
                 .body(apiResponse);
     }
 
+
     /**
      * Отсутствие обязательных входных параметров
      */
@@ -59,6 +60,7 @@ class ErrorHandlerControllerAdvice {
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .body(apiResponse);
     }
+
 
     /**
      * Неверный тип входящего параметра
@@ -78,6 +80,7 @@ class ErrorHandlerControllerAdvice {
                 .body(apiResponse);
     }
 
+
     /**
      * Отказ доступа
      */
@@ -90,6 +93,7 @@ class ErrorHandlerControllerAdvice {
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .body(apiResponse);
     }
+
 
     /**
      * Ошибка аутентификации
@@ -104,6 +108,7 @@ class ErrorHandlerControllerAdvice {
                 .body(apiResponse);
     }
 
+
     /**
      * Ошибка валидации javax.validation
      */
@@ -117,11 +122,12 @@ class ErrorHandlerControllerAdvice {
                 .body(apiResponse);
     }
 
+
     /**
      *
      */
-    @ExceptionHandler({ConfirmCodeException.class})
-    public ResponseEntity<ApiResponse<String>> confirmCodeException(final ConfirmCodeException e) {
+    @ExceptionHandler({WrongConfirmCodeException.class})
+    public ResponseEntity<ApiResponse<String>> confirmCodeException(final WrongConfirmCodeException e) {
         log.error(e.getMessage());
         final ApiResponse<String> apiResponse = ApiResponse.error(WRONG_CONFIRM_CODE, e.getMessage());
         return ResponseEntity
@@ -130,11 +136,12 @@ class ErrorHandlerControllerAdvice {
                 .body(apiResponse);
     }
 
+
     /**
      *
      */
-    @ExceptionHandler({UserEmailAlreadyExist.class})
-    public ResponseEntity<ApiResponse<String>> userEmailAlreadyExistException(final UserEmailAlreadyExist e) {
+    @ExceptionHandler({UserEmailAlreadyExistException.class})
+    public ResponseEntity<ApiResponse<String>> userEmailAlreadyExistException(final UserEmailAlreadyExistException e) {
         log.error(e.getMessage());
         final ApiResponse<String> apiResponse = ApiResponse.error(USER_EMAIL_ALREADY_EXIST, e.getMessage());
         return ResponseEntity
@@ -143,11 +150,12 @@ class ErrorHandlerControllerAdvice {
                 .body(apiResponse);
     }
 
+
     /**
      *
      */
-    @ExceptionHandler({UserRequestTimeOutException.class})
-    public ResponseEntity<ApiResponse<String>> UserRequestTimeOutException(final UserRequestTimeOutException e) {
+    @ExceptionHandler({UserRequestNotFoundException.class})
+    public ResponseEntity<ApiResponse<String>> UserRequestTimeOutException(final UserRequestNotFoundException e) {
         log.error(e.getMessage());
         final ApiResponse<String> apiResponse = ApiResponse.error(USER_REQUEST_TIME_OUT, e.getMessage());
         return ResponseEntity

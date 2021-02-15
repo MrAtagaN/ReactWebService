@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -92,6 +91,7 @@ public class ProductController {
         return ApiResponse.ok(productsDto);
     }
 
+
     /**
      * Добавить или изменить {@link Product}
      */
@@ -104,7 +104,7 @@ public class ProductController {
 
 
     /**
-     * Удалить {@link Product}
+     * Удалить {@link Product} по id
      */
     @GetMapping(ADMIN + API_VERSION + "delete")
     public ApiResponse<String> deleteProduct(@RequestParam("productId") @NotNull final Integer productId) {

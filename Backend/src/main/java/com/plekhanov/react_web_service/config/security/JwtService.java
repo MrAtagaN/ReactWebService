@@ -53,6 +53,7 @@ public class JwtService {
         try {
             Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
         } catch (ExpiredJwtException e) {
+            //TODO че за хрень написана ниже?
             // если jwt token протух возвращаем false, а не кидаем ошибку, чтобы был работали открытые эндпоинты
             log.error("ExpiredJwtException");
             return false;

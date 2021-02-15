@@ -3,9 +3,9 @@ package com.plekhanov.react_web_service.services.impl;
 import com.plekhanov.react_web_service.config.security.Authority;
 import com.plekhanov.react_web_service.dao.UserDao;
 import com.plekhanov.react_web_service.dao.UserRegistrationDao;
-import com.plekhanov.react_web_service.exceptions.ConfirmCodeException;
-import com.plekhanov.react_web_service.exceptions.UserEmailAlreadyExist;
-import com.plekhanov.react_web_service.exceptions.UserRequestTimeOutException;
+import com.plekhanov.react_web_service.exceptions.WrongConfirmCodeException;
+import com.plekhanov.react_web_service.exceptions.UserEmailAlreadyExistException;
+import com.plekhanov.react_web_service.exceptions.UserRequestNotFoundException;
 import com.plekhanov.react_web_service.services.MailSender;
 import com.plekhanov.react_web_service.services.UserRegistrationService;
 import com.plekhanov.react_web_service.entities.UserRegistrationRequest;
@@ -33,6 +33,7 @@ public class UserEmailRegistrationService implements UserRegistrationService {
     MailSender mailSender;
     UserDao userDao;
 
+
     /**
      * Создает в базе запись {@link UserRegistrationRequest}, посылает на почту код для подтверждения email
      */
@@ -41,11 +42,11 @@ public class UserEmailRegistrationService implements UserRegistrationService {
     public void userRegistrationRequest(final String username, final String email, final String password) {
         final UserRegistrationRequest found = userRegistrationDao.findByEmail(email);
         if (found != null) {
-            throw new UserEmailAlreadyExist();
+            throw new UserEmailAlreadyExistException();
         }
         final User user = userDao.findByEmail(email);
         if (user != null) {
-            throw new UserEmailAlreadyExist();
+            throw new UserEmailAlreadyExistException();
         }
         final UserRegistrationRequest userRegistrationRequest = new UserRegistrationRequest();
         userRegistrationRequest.setEmail(email);
@@ -69,11 +70,11 @@ public class UserEmailRegistrationService implements UserRegistrationService {
         final UserRegistrationRequest userRegistrationRequest = userRegistrationDao.findByEmail(email);
 
         if (userRegistrationRequest == null) {
-            throw new UserRequestTimeOutException();
+            throw new UserRequestNotFoundException();
         }
 
         if (!userRegistrationRequest.getConfirmCode().equals(confirmCode)) {
-            throw new ConfirmCodeException();
+            throw new WrongConfirmCodeException();
         }
 
         final User user = new User();

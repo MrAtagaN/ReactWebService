@@ -11,6 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.validation.ValidationException;
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 
 import static java.text.MessageFormat.format;
@@ -34,7 +35,7 @@ public class EmailPasswordAuthService {
      *
      * Возвращает аутентифицированного {@link User}
      */
-    public User authenticate(final String email, final String password) {
+    public User authenticate(final String email, final String password) { //TODO @NotBlank
         if (isNotBlank(email) && isNotBlank(password)) {
             final User user = userDao.findByEmail(email);
             if (user != null) {

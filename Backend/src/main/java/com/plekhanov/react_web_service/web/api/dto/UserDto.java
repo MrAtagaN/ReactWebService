@@ -18,7 +18,7 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserDto {
+public class UserDto {//TODO выкинуть ненужные аннотации
 
     Integer id;
     String username;

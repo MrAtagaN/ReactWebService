@@ -31,7 +31,7 @@ public class ProductTypeController {
 
 
     /**
-     * Возвращает {@link ProductType}, по выбранным параметрам
+     * Возвращает {@link ProductType} по выбранным параметрам
      */
     @GetMapping(PUBLIC + API_VERSION + "search")
     public ApiResponse<Set<ProductTypeDto>> getTypes(
@@ -59,7 +59,7 @@ public class ProductTypeController {
 
 
     /**
-     * Удалить {@link ProductType}
+     * Удалить {@link ProductType} по id
      */
     @PostMapping(ADMIN + API_VERSION + "delete")
     public ApiResponse<String> deleteProductType(@RequestParam("productId") @NotNull final Integer productTypeId) {

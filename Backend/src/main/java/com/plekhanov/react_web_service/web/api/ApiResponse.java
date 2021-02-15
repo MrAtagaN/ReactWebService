@@ -38,6 +38,7 @@ public class ApiResponse<T> {
     }
 
 
+    //TODO вынести в отдельный класс
     public enum ResponseCode {
         OK(0),
         NOT_AUTHENTICATED(1),
