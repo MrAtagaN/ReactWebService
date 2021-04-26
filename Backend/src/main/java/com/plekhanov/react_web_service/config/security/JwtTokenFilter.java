@@ -58,12 +58,14 @@ public class JwtTokenFilter extends GenericFilterBean {
     private void authenticateProcessJwt(final ServletRequest servletRequest) {
         try {
             final String token = getTokenFromCookie(servletRequest);
-            final String email = jwtService.validateTokenAndGetEmail(token);
+            if (token != null) {
+                final String email = jwtService.validateTokenAndGetEmail(token);
 
-            if (SecurityContextHolder.getContext().getAuthentication() == null) {
-                final User user = userService.findByEmail(email);
-                final Authentication authentication = new UsernamePasswordAuthenticationToken(user, "", user.getAuthorities());
-                SecurityContextHolder.getContext().setAuthentication(authentication);
+                if (SecurityContextHolder.getContext().getAuthentication() == null) {
+                    final User user = userService.findByEmail(email);
+                    final Authentication authentication = new UsernamePasswordAuthenticationToken(user, "", user.getAuthorities());
+                    SecurityContextHolder.getContext().setAuthentication(authentication);
+                }
             }
         } catch (Exception e) {
             log.error("[AUTHENTICATION] Exception in authenticateProcessJwt", e);
