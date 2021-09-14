@@ -24,7 +24,7 @@ public class Main {
 //    @ConditionalOnProperty(name = "application.profiling.enabled", havingValue = "true")
 //    @Slf4j
 //    public class ProfilingAspect {
-//        @Around("@annotation(ru.sbrf.callcenter.stat.aspect.Profiling)")
+//        @Around("@annotation(com.plekhanov.stat.aspect.Profiling)")
 //        public Object profiling(ProceedingJoinPoint pjp) throws Throwable {
 //            long start = System.currentTimeMillis();
 //            final String methodName = pjp.getStaticPart().toShortString();
