@@ -73,20 +73,26 @@ public class UserServiceImpl implements UserService {
 
 
     /**
-     * Удаляется из списка только один продукт
+     * Удаляется из корзины пользователя только один продукт //TODO тест
      */
     @Override
     public void deleteProductFromBag(final Integer productIdToDelete, final User user) {
         final Map<Product, Integer> bagProducts = user.getBagProducts();
+        Product productToDelete=null;
+        int count = 0;
 
-        final Product productToRemove = new Product();
-        productToRemove.setId(productIdToDelete);
+        for (Map.Entry<Product, Integer>  entry : bagProducts.entrySet()) {
+            Product product = entry.getKey();
+            if (productIdToDelete.equals(product.getId())) {
+                productToDelete = product;
+                count = entry.getValue();
+            }
+        }
 
-        final Integer count = bagProducts.getOrDefault(productToRemove, 0);
         if (count <= 1) {
-            bagProducts.remove(productToRemove);
+            bagProducts.remove(productToDelete);
         } else {
-            bagProducts.put(productToRemove, count - 1);
+            bagProducts.put(productToDelete, count - 1);
         }
 
         userDao.save(user);
