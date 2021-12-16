@@ -59,6 +59,8 @@ public class Main {
     // Заполнение данных в базе вынести в скрипты или сделать модуль common
     // Добавить актуатор
     // Убрать @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
+    // Сделать файл для Postman c запросами к сервису
+
 
 
     /**
