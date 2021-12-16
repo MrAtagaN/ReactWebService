@@ -78,10 +78,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteProductFromBag(final Integer productIdToDelete, final User user) {
         final Map<Product, Integer> bagProducts = user.getBagProducts();
-        Product productToDelete=null;
+        Product productToDelete = null;
         int count = 0;
 
-        for (Map.Entry<Product, Integer>  entry : bagProducts.entrySet()) {
+        for (Map.Entry<Product, Integer> entry : bagProducts.entrySet()) {
             Product product = entry.getKey();
             if (productIdToDelete.equals(product.getId())) {
                 productToDelete = product;
