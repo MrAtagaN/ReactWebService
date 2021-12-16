@@ -12,6 +12,9 @@ import javax.validation.constraints.NotNull;
 @Validated
 public interface UserService {
 
+    /**
+     * Получить текущего авторизованного пользователя
+     */
     User getCurrentUser();
 
     User saveOrUpdate(@NotNull User user);
@@ -22,6 +25,9 @@ public interface UserService {
 
     void addProductToBag(@NotNull Integer productId, @NotNull User user);
 
+    /**
+     * В корзине пользователя снизить количество товара на 1  //TODO тест
+     */
     void deleteProductFromBag(@NotNull Integer productId, @NotNull User user);
 
     void addProductToFavorite(@NotNull Integer productId, @NotNull User user);

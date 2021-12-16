@@ -29,15 +29,12 @@ public class UserServiceImpl implements UserService {
     UserDao userDao;
 
 
-    /**
-     * Получить текущего авторизованного пользователя
-     */
     @Override
     public User getCurrentUser() {
         final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null) {
             User user = (User) authentication.getPrincipal();
-            return findById(user.getId());
+            return findById(user.getId()); //TODO можем ли мы не искать в базе пользователя, а получить из SecurityContextHolder, если нет то написать почему
         }
         return null;
     }
@@ -72,9 +69,6 @@ public class UserServiceImpl implements UserService {
     }
 
 
-    /**
-     * Удаляется из корзины пользователя только один продукт //TODO тест
-     */
     @Override
     public void deleteProductFromBag(final Integer productIdToDelete, final User user) {
         final Map<Product, Integer> bagProducts = user.getBagProducts();
