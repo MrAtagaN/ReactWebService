@@ -6,7 +6,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
 /**
- * //TODO
+ * //TODO сделать тест
  */
 @Mapper(componentModel = "spring", uses = {FavoriteProductMapper.class, ProductMapper.class})
 public interface UserMapper {
