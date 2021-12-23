@@ -1,6 +1,6 @@
 package com.plekhanov.react_web_service.config.security;
 
-import com.plekhanov.react_web_service.entities.User;
+import com.plekhanov.react_web_service.model.entities.User;
 import com.plekhanov.react_web_service.services.JwtService;
 import com.plekhanov.react_web_service.services.UserService;
 import lombok.AccessLevel;

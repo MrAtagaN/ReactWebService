@@ -1,9 +1,9 @@
 package com.plekhanov.react_web_service.web.controllers;
 
-import com.plekhanov.react_web_service.entities.ProductType;
-import com.plekhanov.react_web_service.entities.ProductType.Category;
-import com.plekhanov.react_web_service.entities.ProductType.Gender;
-import com.plekhanov.react_web_service.entities.ProductType.Age;
+import com.plekhanov.react_web_service.model.entities.ProductType;
+import com.plekhanov.react_web_service.model.entities.ProductType.Category;
+import com.plekhanov.react_web_service.model.entities.ProductType.Gender;
+import com.plekhanov.react_web_service.model.entities.ProductType.Age;
 import com.plekhanov.react_web_service.services.ProductTypeService;
 import com.plekhanov.react_web_service.web.api.ApiResponse;
 import com.plekhanov.react_web_service.web.api.dto.ProductTypeDto;

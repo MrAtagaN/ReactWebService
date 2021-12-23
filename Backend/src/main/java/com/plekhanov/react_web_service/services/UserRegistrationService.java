@@ -1,7 +1,7 @@
 package com.plekhanov.react_web_service.services;
 
 import org.springframework.validation.annotation.Validated;
-import com.plekhanov.react_web_service.entities.User;
+import com.plekhanov.react_web_service.model.entities.User;
 import javax.validation.constraints.NotNull;
 
 /**

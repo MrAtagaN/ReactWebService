@@ -1,8 +1,8 @@
 package com.plekhanov.react_web_service.demoDataUploader.uploaders;
 
-import com.plekhanov.react_web_service.entities.Product;
-import com.plekhanov.react_web_service.entities.ProductType;
-import com.plekhanov.react_web_service.entities.search_params.ProductSearchParams;
+import com.plekhanov.react_web_service.model.entities.Product;
+import com.plekhanov.react_web_service.model.entities.ProductType;
+import com.plekhanov.react_web_service.model.entities.search_params.ProductSearchParams;
 import com.plekhanov.react_web_service.services.ProductService;
 import com.plekhanov.react_web_service.services.ProductTypeService;
 import lombok.AccessLevel;
@@ -19,9 +19,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static com.plekhanov.react_web_service.entities.ProductType.Age.adult;
-import static com.plekhanov.react_web_service.entities.ProductType.Category.clothes;
-import static com.plekhanov.react_web_service.entities.ProductType.Gender.*;
+import static com.plekhanov.react_web_service.model.entities.ProductType.Age.adult;
+import static com.plekhanov.react_web_service.model.entities.ProductType.Category.clothes;
+import static com.plekhanov.react_web_service.model.entities.ProductType.Gender.*;
 
 /**
  * Загрузка в базу тестовых {@link Product}

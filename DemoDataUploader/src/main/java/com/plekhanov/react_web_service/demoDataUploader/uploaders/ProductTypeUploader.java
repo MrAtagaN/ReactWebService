@@ -1,6 +1,6 @@
 package com.plekhanov.react_web_service.demoDataUploader.uploaders;
 
-import com.plekhanov.react_web_service.entities.ProductType;
+import com.plekhanov.react_web_service.model.entities.ProductType;
 import com.plekhanov.react_web_service.services.ProductTypeService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -9,10 +9,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
-import static com.plekhanov.react_web_service.entities.ProductType.Category.*;
-import static com.plekhanov.react_web_service.entities.ProductType.Gender.female;
-import static com.plekhanov.react_web_service.entities.ProductType.Gender.male;
-import static com.plekhanov.react_web_service.entities.ProductType.Age.*;
+import static com.plekhanov.react_web_service.model.entities.ProductType.Category.*;
+import static com.plekhanov.react_web_service.model.entities.ProductType.Gender.female;
+import static com.plekhanov.react_web_service.model.entities.ProductType.Gender.male;
+import static com.plekhanov.react_web_service.model.entities.ProductType.Age.*;
 
 /**
  * Загрузка в базу {@link ProductType}

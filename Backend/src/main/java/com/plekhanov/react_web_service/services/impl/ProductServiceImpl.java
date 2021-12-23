@@ -1,8 +1,8 @@
 package com.plekhanov.react_web_service.services.impl;
 
 import com.plekhanov.react_web_service.dao.ProductDao;
-import com.plekhanov.react_web_service.entities.Product;
-import com.plekhanov.react_web_service.entities.search_params.ProductSearchParams;
+import com.plekhanov.react_web_service.model.entities.Product;
+import com.plekhanov.react_web_service.model.entities.search_params.ProductSearchParams;
 import com.plekhanov.react_web_service.services.ProductService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;

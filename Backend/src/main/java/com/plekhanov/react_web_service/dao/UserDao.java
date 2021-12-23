@@ -1,6 +1,7 @@
 package com.plekhanov.react_web_service.dao;
 
 import com.plekhanov.react_web_service.entities.*;
+import com.plekhanov.react_web_service.model.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.validation.annotation.Validated;
 

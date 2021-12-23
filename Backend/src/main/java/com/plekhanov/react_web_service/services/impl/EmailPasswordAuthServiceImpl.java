@@ -1,7 +1,7 @@
 package com.plekhanov.react_web_service.services.impl;
 
 import com.plekhanov.react_web_service.dao.UserDao;
-import com.plekhanov.react_web_service.entities.User;
+import com.plekhanov.react_web_service.model.entities.User;
 import com.plekhanov.react_web_service.services.EmailPasswordAuthService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -12,12 +12,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
-import javax.validation.ValidationException;
-import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 
 import static java.text.MessageFormat.format;
-import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
 
 @Service

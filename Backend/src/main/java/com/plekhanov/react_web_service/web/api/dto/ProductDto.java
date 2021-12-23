@@ -1,9 +1,9 @@
 package com.plekhanov.react_web_service.web.api.dto;
 
-import com.plekhanov.react_web_service.entities.Product;
-import com.plekhanov.react_web_service.entities.ProductType.Gender;
-import com.plekhanov.react_web_service.entities.ProductType.Category;
-import com.plekhanov.react_web_service.entities.ProductType.Age;
+import com.plekhanov.react_web_service.model.entities.Product;
+import com.plekhanov.react_web_service.model.entities.ProductType.Gender;
+import com.plekhanov.react_web_service.model.entities.ProductType.Category;
+import com.plekhanov.react_web_service.model.entities.ProductType.Age;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

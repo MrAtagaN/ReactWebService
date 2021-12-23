@@ -1,7 +1,7 @@
 package com.plekhanov.react_web_service.dao;
 
-import com.plekhanov.react_web_service.entities.Product;
-import com.plekhanov.react_web_service.entities.ProductType;
+import com.plekhanov.react_web_service.model.entities.Product;
+import com.plekhanov.react_web_service.model.entities.ProductType;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

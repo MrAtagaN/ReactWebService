@@ -1,8 +1,8 @@
 package com.plekhanov.react_web_service.web;
 
-import com.plekhanov.react_web_service.exceptions.WrongConfirmCodeException;
-import com.plekhanov.react_web_service.exceptions.UserEmailAlreadyExistException;
-import com.plekhanov.react_web_service.exceptions.UserRequestNotFoundException;
+import com.plekhanov.react_web_service.model.exceptions.WrongConfirmCodeException;
+import com.plekhanov.react_web_service.model.exceptions.UserEmailAlreadyExistException;
+import com.plekhanov.react_web_service.model.exceptions.UserRequestNotFoundException;
 import com.plekhanov.react_web_service.web.api.ApiResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;

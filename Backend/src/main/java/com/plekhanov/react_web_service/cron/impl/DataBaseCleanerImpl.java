@@ -2,7 +2,7 @@ package com.plekhanov.react_web_service.cron.impl;
 
 import com.plekhanov.react_web_service.cron.DataBaseCleaner;
 import com.plekhanov.react_web_service.dao.UserRegistrationDao;
-import com.plekhanov.react_web_service.entities.UserRegistrationRequest;
+import com.plekhanov.react_web_service.model.entities.UserRegistrationRequest;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;

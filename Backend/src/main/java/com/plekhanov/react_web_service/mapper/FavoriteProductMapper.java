@@ -1,6 +1,6 @@
 package com.plekhanov.react_web_service.mapper;
 
-import com.plekhanov.react_web_service.entities.UserFavoriteProduct;
+import com.plekhanov.react_web_service.model.entities.UserFavoriteProduct;
 import com.plekhanov.react_web_service.web.api.dto.ProductDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

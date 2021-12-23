@@ -1,4 +1,4 @@
-package com.plekhanov.react_web_service.entities;
+package com.plekhanov.react_web_service.model.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

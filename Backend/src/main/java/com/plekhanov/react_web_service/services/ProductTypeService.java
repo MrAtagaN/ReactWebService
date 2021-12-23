@@ -1,7 +1,7 @@
 package com.plekhanov.react_web_service.services;
 
-import com.plekhanov.react_web_service.entities.ProductType;
-import com.plekhanov.react_web_service.entities.ProductType.*;
+import com.plekhanov.react_web_service.model.entities.ProductType;
+import com.plekhanov.react_web_service.model.entities.ProductType.*;
 import org.springframework.validation.annotation.Validated;
 
 import javax.annotation.Nullable;

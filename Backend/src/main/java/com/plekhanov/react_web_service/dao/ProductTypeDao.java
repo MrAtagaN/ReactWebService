@@ -1,9 +1,9 @@
 package com.plekhanov.react_web_service.dao;
 
-import com.plekhanov.react_web_service.entities.ProductType;
-import com.plekhanov.react_web_service.entities.ProductType.Category;
-import com.plekhanov.react_web_service.entities.ProductType.Gender;
-import com.plekhanov.react_web_service.entities.ProductType.Age;
+import com.plekhanov.react_web_service.model.entities.ProductType;
+import com.plekhanov.react_web_service.model.entities.ProductType.Category;
+import com.plekhanov.react_web_service.model.entities.ProductType.Gender;
+import com.plekhanov.react_web_service.model.entities.ProductType.Age;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

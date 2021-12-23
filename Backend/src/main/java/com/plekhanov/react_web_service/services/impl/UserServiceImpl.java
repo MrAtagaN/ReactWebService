@@ -2,9 +2,9 @@ package com.plekhanov.react_web_service.services.impl;
 
 import com.plekhanov.react_web_service.dao.ProductDao;
 import com.plekhanov.react_web_service.dao.UserDao;
-import com.plekhanov.react_web_service.entities.Product;
-import com.plekhanov.react_web_service.entities.User;
-import com.plekhanov.react_web_service.entities.UserFavoriteProduct;
+import com.plekhanov.react_web_service.model.entities.Product;
+import com.plekhanov.react_web_service.model.entities.User;
+import com.plekhanov.react_web_service.model.entities.UserFavoriteProduct;
 import com.plekhanov.react_web_service.services.UserService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;

@@ -3,7 +3,7 @@ package com.plekhanov.react_web_service.controllers;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.plekhanov.react_web_service.services.impl.EmailPasswordAuthServiceImpl;
 import com.plekhanov.react_web_service.services.impl.JwtServiceImpl;
-import com.plekhanov.react_web_service.entities.User;
+import com.plekhanov.react_web_service.model.entities.User;
 import com.plekhanov.react_web_service.mapper.UserMapper;
 import com.plekhanov.react_web_service.web.api.ApiResponse;
 import com.plekhanov.react_web_service.web.api.dto.AuthenticationRequestDto;

@@ -1,4 +1,4 @@
-package com.plekhanov.react_web_service.exceptions;
+package com.plekhanov.react_web_service.model.exceptions;
 
 public class WrongConfirmCodeException extends RuntimeException {
     //TODO добавить параметр

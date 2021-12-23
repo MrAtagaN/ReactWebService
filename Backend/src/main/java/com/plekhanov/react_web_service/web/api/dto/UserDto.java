@@ -1,7 +1,7 @@
 package com.plekhanov.react_web_service.web.api.dto;
 
 import com.plekhanov.react_web_service.config.security.Authority;
-import com.plekhanov.react_web_service.entities.User;
+import com.plekhanov.react_web_service.model.entities.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
