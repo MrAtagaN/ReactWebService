@@ -37,8 +37,8 @@ spring:
   mail:
     host: smtp.rambler.ru
     port: 465
-    username: ${MAIL_USERNAME} # взять из переменных окружения
-    password: ${MAIL_PASSWORD} # взять из переменных окружения
+    username: ${MAIL_USERNAME:test_username} # взять из переменных окружения
+    password: ${MAIL_PASSWORD:test_password} # взять из переменных окружения
     properties:
       mail:
         transport:
