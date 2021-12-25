@@ -8,7 +8,7 @@ import com.plekhanov.react_web_service.mapper.ProductMapper;
 import com.plekhanov.react_web_service.services.ProductService;
 import com.plekhanov.react_web_service.web.api.ApiResponse;
 import com.plekhanov.react_web_service.web.api.dto.ProductDto;
-import io.swagger.annotations.ApiParam;
+//import io.swagger.annotations.ApiParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -47,7 +47,7 @@ public class ProductController {
      */
     @GetMapping(PUBLIC + API_VERSION + "search")
     public ApiResponse<?> search(
-            @ApiParam(value = "Название товара")
+            //@ApiParam(value = "Название товара")
             @RequestParam(value = "name", required = false) final String name,
             @RequestParam(value = "typeId", required = false) final Integer typeId,
             @RequestParam(value = "brand", required = false) final String brand,
