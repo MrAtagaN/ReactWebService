@@ -175,7 +175,6 @@
                             <goal>repackage</goal>
                         </goals>
                         <configuration>
-<!--                            <classifier>exec</classifier>-->
                             <outputDirectory>../../</outputDirectory>
                             <mainClass>
                                 com.plekhanov.react_web_service.Main
