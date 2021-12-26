@@ -55,6 +55,15 @@ jwt:
   secretkey: atagan
   cookie.name: JWTToken
 
+taskExecutor:
+  poolSize: 4
+  threadNamePrefix: "ThreadPoolTaskScheduler-"
+
+dataBaseCleaner:
+  cron: "0 * * * * *"
+  zone: "Europe/Istanbul"
+  userRegistrationRequestTimeLive: 5 # время жизни в минутах запроса на регистрацию от пользователя
+
 
 
 

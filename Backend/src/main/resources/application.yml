@@ -55,6 +55,9 @@ jwt:
   secretkey: atagan
   cookie.name: JWTToken
 
+taskExecutor:
+  poolSize: 4
+  threadNamePrefix: "ThreadPoolTaskScheduler-"
 
 dataBaseCleaner:
   cron: "0 * * * * *"
