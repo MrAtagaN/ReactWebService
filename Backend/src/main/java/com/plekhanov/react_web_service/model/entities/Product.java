@@ -1,6 +1,9 @@
 package com.plekhanov.react_web_service.model.entities;
 
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.experimental.FieldDefaults;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.*;
@@ -14,6 +17,7 @@ import static javax.persistence.GenerationType.IDENTITY;
  * name, type, price - обязательные
  */
 @Data
+@FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity(name = "Product")
 @Table(name = "product")
 public class Product {

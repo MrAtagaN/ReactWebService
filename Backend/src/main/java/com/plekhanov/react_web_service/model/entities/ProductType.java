@@ -1,6 +1,8 @@
 package com.plekhanov.react_web_service.model.entities;
 
 import lombok.*;
+import lombok.experimental.FieldDefaults;
+
 import javax.persistence.*;
 
 import static javax.persistence.EnumType.STRING;
@@ -12,6 +14,7 @@ import static javax.persistence.GenerationType.IDENTITY;
  * Комбинация name, gender, age, category,  полей должна быть уникальной
  */
 @Data
+@FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity(name = "ProductType")
 @Table(name = "product_type")
 public class ProductType {

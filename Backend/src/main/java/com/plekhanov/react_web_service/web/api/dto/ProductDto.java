@@ -4,10 +4,8 @@ import com.plekhanov.react_web_service.model.entities.Product;
 import com.plekhanov.react_web_service.model.entities.ProductType.Gender;
 import com.plekhanov.react_web_service.model.entities.ProductType.Category;
 import com.plekhanov.react_web_service.model.entities.ProductType.Age;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -17,10 +15,10 @@ import java.util.Set;
  * Dto для {@link Product}
  */
 
-@Builder
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class ProductDto {//TODO выкинуть ненужные аннотации
 
     Integer id;

@@ -1,7 +1,9 @@
 package com.plekhanov.react_web_service.model.entities;
 
+import lombok.AccessLevel;
 import lombok.Data;
 import lombok.ToString;
+import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 
@@ -16,6 +18,7 @@ import static javax.persistence.GenerationType.IDENTITY;
  * username, password, creationTime, confirmCode - обязательные
  */
 @Data
+@FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity(name = "UserRegistrationRequest")
 @Table(name = "user_registration_request")
 public class UserRegistrationRequest {

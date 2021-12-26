@@ -1,9 +1,11 @@
 package com.plekhanov.react_web_service.model.entities;
 
 import com.plekhanov.react_web_service.config.security.Authority;
+import lombok.AccessLevel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
+import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.Fetch;
 
 import javax.persistence.*;
@@ -23,6 +25,7 @@ import static org.hibernate.annotations.FetchMode.SUBSELECT;
  * username, password, creationTime - обязательные
  */
 @Data
+@FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity(name = "User")
 @Table(name = "users")
 public class User {

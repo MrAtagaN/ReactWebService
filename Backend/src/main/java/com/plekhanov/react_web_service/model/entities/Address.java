@@ -1,6 +1,5 @@
 package com.plekhanov.react_web_service.model.entities;
 
-import lombok.Data;
 
 import javax.annotation.Nullable;
 import javax.validation.constraints.Size;
@@ -8,7 +7,6 @@ import javax.validation.constraints.Size;
 /**
  * Адрес //TODO
  */
-@Data
 public class Address {
 
 //    private Long id;

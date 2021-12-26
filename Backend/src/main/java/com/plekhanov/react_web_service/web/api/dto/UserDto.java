@@ -2,10 +2,8 @@ package com.plekhanov.react_web_service.web.api.dto;
 
 import com.plekhanov.react_web_service.config.security.Authority;
 import com.plekhanov.react_web_service.model.entities.User;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDateTime;
 import java.util.Map;
@@ -14,10 +12,10 @@ import java.util.Set;
 /**
  * Dto для {@link User}
  */
-@Builder
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class UserDto {//TODO выкинуть ненужные аннотации
 
     Integer id;

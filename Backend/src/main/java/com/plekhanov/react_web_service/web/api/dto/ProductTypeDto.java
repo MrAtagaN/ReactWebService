@@ -23,6 +23,7 @@ public class ProductTypeDto {
 
     /**
      * Фабричный метод. Возвращает {@link ProductTypeDto} из переданного {@link ProductType}
+     * //TODO перенести в mapper
      */
     public static ProductTypeDto fromProductType(final ProductType productType) {
         if (productType == null) {
