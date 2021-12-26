@@ -1,5 +1,8 @@
 package com.plekhanov.react_web_service;
 
+import com.plekhanov.react_web_service.dao.ProductDao;
+import com.plekhanov.react_web_service.dao.ProductTypeDao;
+import com.plekhanov.react_web_service.dao.UserDao;
 import com.plekhanov.react_web_service.uploaders.ProductTypeUploader;
 import com.plekhanov.react_web_service.uploaders.ProductUploader;
 import com.plekhanov.react_web_service.uploaders.UserUploader;
@@ -30,7 +33,11 @@ public class DemoDataUploader {
     @Bean
     public CommandLineRunner commandLineRunner(ApplicationContext context) {
         return (args) -> {
-            System.setProperty("file.encoding", "UTF-8");
+            context.getBean(ProductDao.class).deleteAll();
+            context.getBean(ProductTypeDao.class).deleteAll();
+            context.getBean(UserDao.class).deleteAll();
+
+
             context.getBean(UserUploader.class).uploadData();
             //сначала загружается тип продуктов, затем продукты
             context.getBean(ProductTypeUploader.class).uploadData();

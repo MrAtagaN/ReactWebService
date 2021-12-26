@@ -1,7 +1,7 @@
 CREATE TABLE user_favorite_product
 (
-    user_id       INTEGER CONSTRAINT user_favorite_product_user_id_fk REFERENCES users (id),
-    product_id    INTEGER CONSTRAINT user_favorite_product_product_id_fk REFERENCES product (id),
+    user_id       INTEGER CONSTRAINT user_favorite_product_user_id_fk REFERENCES users (id) ON DELETE CASCADE,
+    product_id    INTEGER CONSTRAINT user_favorite_product_product_id_fk REFERENCES product (id) ON DELETE CASCADE,
 
     CONSTRAINT user_favorite_product_user_id_product_id_unique UNIQUE (user_id, product_id)
 );

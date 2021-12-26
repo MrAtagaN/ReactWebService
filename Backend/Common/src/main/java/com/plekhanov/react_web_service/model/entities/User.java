@@ -1,6 +1,5 @@
 package com.plekhanov.react_web_service.model.entities;
 
-import com.plekhanov.react_web_service.config.security.Authority;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

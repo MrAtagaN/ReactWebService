@@ -1,4 +1,4 @@
-//package com.plekhanov.react_web_service.dao;
+package com.plekhanov.react_web_service.dao;//package com.plekhanov.react_web_service.dao;
 //
 //
 //import com.plekhanov.react_web_service.entities.User;

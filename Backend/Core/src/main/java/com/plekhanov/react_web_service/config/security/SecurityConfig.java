@@ -1,6 +1,7 @@
 package com.plekhanov.react_web_service.config.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.plekhanov.react_web_service.model.entities.Authority;
 import com.plekhanov.react_web_service.web.api.ApiResponse;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;

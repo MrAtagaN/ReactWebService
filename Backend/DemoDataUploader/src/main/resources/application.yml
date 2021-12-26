@@ -1,0 +1,20 @@
+
+spring:
+  jmx:
+    enabled: false
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.SQLiteDialect    # диалект sql для подключения hibernate к базе данных
+  datasource:
+    url: jdbc:sqlite:Backend/Common/src/main/resources/webService.db    # путь до базы данных
+    driver-class-name: org.sqlite.JDBC    # класс драйвера для подключения к базе данных
+  flyway:
+    baseline-on-migrate: true    # применять схемы миграции, если они не применены
+    outOfOrder: true    # позволяет добавлять схемы миграции с номером не по-порядку
+    schemas:    # схема, в которую flyway будет делать миграцию
+
+
+

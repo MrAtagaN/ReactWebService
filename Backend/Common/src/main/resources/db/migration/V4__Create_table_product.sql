@@ -3,7 +3,7 @@ CREATE TABLE product
     id              INTEGER PRIMARY KEY AUTOINCREMENT,
     name            TEXT collate nocase NOT NULL,
     description     TEXT,
-    type_id         INTEGER NOT NULL CONSTRAINT product_type_id_fk REFERENCES product_type (id),
+    type_id         INTEGER NOT NULL CONSTRAINT product_type_id_fk REFERENCES product_type (id) ON DELETE CASCADE,
     brand           TEXT,
     price           NUMERIC NOT NULL,
     color           TEXT,

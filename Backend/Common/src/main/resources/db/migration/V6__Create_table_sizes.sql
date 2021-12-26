@@ -1,6 +1,6 @@
 CREATE TABLE sizes
 (
-    product_id      INTEGER CONSTRAINT size_product_id_fk REFERENCES product (id),
+    product_id      INTEGER CONSTRAINT size_product_id_fk REFERENCES product (id) ON DELETE CASCADE,
     value           INTEGER
 );
 

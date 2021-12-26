@@ -1,6 +1,6 @@
 package com.plekhanov.react_web_service.services.impl;
 
-import com.plekhanov.react_web_service.config.security.Authority;
+import com.plekhanov.react_web_service.model.entities.Authority;
 import com.plekhanov.react_web_service.dao.UserDao;
 import com.plekhanov.react_web_service.dao.UserRegistrationDao;
 import com.plekhanov.react_web_service.model.exceptions.WrongConfirmCodeException;

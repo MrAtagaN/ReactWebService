@@ -26,7 +26,7 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.SQLiteDialect    # диалект sql для подключения hibernate к базе данных
   datasource:
-    url: jdbc:sqlite:Backend/Common/src/main/resources/webService.db    # путь до базы данных
+    url: jdbc:sqlite:src/main/resources/webService.db    # путь до базы данных
     driver-class-name: org.sqlite.JDBC    # класс драйвера для подключения к базе данных
   flyway:
     baseline-on-migrate: true    # применять схемы миграции, если они не применены
@@ -63,5 +63,7 @@ dataBaseCleaner:
   cron: "0 * * * * *"
   zone: "Europe/Istanbul"
   userRegistrationRequestTimeLive: 5 # время жизни в минутах запроса на регистрацию от пользователя
+
+
 
 

@@ -1,6 +1,6 @@
 package com.plekhanov.react_web_service.web.api.dto;
 
-import com.plekhanov.react_web_service.config.security.Authority;
+import com.plekhanov.react_web_service.model.entities.Authority;
 import com.plekhanov.react_web_service.model.entities.User;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
