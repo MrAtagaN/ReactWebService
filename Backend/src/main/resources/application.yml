@@ -8,11 +8,11 @@ server:
       charset: UTF-8
       force: true
   ssl:
+    enabled: false
     key-store-type: JKS
     key-store: classpath:keystore.jks
     key-password: changeit
     key-alias: react-web-service
-    enabled: false
     protocol: TLS
     client-auth: want # не аутентифицировать клиента, поставить need если надо аутентифицировать
 
@@ -56,5 +56,9 @@ jwt:
   cookie.name: JWTToken
 
 
+dataBaseCleaner:
+  cron: "0 * * * * *"
+  zone: "Europe/Istanbul"
+  userRegistrationRequestTimeLive: 5 # время жизни в минутах запроса на регистрацию от пользователя
 
 
