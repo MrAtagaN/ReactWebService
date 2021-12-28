@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService {
         final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null) {
             User user = (User) authentication.getPrincipal();
-            return findById(user.getId()); //TODO можем ли мы не искать в базе пользователя, а получить из SecurityContextHolder, если нет то написать почему
+            return findById(user.getId()); //получаем актуальное состояние из базы
         }
         return null;
     }
