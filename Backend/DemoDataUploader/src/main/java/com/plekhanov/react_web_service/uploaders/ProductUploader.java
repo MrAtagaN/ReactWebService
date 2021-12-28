@@ -42,7 +42,6 @@ public class ProductUploader {
         ProductType maleJeans = maleJeansSet.stream().findFirst().get();
 
         //модель 123
-
         Product product = new Product();
         product.setName("модель 123");
         product.setDescription("джинсы классические, прямые");
@@ -56,7 +55,6 @@ public class ProductUploader {
 
 
         //Ultra-Comfort
-
         Product product2 = new Product();
         product2.setName("Ultra-Comfort");
         product2.setDescription("Джинсовая коллекция. Линия Casual. Экологичный хлопок. Ткань ultra-comfort cashmere " +
@@ -71,7 +69,6 @@ public class ProductUploader {
 
 
         //Джинсы-скинни sculpt
-
         Product product3 = new Product();
         product3.setName("Джинсы-скинни sculpt");
         product3.setDescription("Укороченная длина. Крой скинни. Посадка на талии. Ткань из экологичного хлопка. По " +
@@ -90,7 +87,6 @@ public class ProductUploader {
         ProductType maleShirts = maleShirtsSet.stream().findFirst().get();
 
         //Рубашка regular-fit из светлого денима
-
         Product product4 = new Product();
         product4.setName("Рубашка regular-fit из светлого денима");
         product4.setDescription("Линия Casual. Regular fit. Светлый цвет. Воротник \"Акула\". На груди накладной " +
@@ -105,7 +101,6 @@ public class ProductUploader {
 
 
         //Хлопковая рубашка regular fit с принтом
-
         Product product5 = new Product();
         product5.setName("Хлопковая рубашка regular fit с принтом");
         product5.setDescription("Линия Casual. Изделие выполнено из хлопка. Дизайн с фактурной выделкой. Принт. " +
@@ -120,7 +115,6 @@ public class ProductUploader {
 
 
         //Топ со сборками и принтом
-
         Product product6 = new Product();
         product6.setName("Топ со сборками и принтом");
         product6.setDescription("100% органический хлопок. Цветочный принт. Присборенная вставка. Рукава-фонарики " +
@@ -153,7 +147,6 @@ public class ProductUploader {
 
 
         //Хлопковая футболка с V-образной горловиной
-
         Product product8 = new Product();
         product8.setName("Хлопковая футболка с V-образной горловиной");
         product8.setDescription("Линия Casual. Базовый дизайн. Изделие выполнено из хлопка. V-образный вырез " +
@@ -168,7 +161,6 @@ public class ProductUploader {
 
 
         //Футболка из органического хлопка с принтом
-
         Product product9 = new Product();
         product9.setName("Футболка из органического хлопка с принтом");
         product9.setDescription("100% органический хлопок. Набивной рисунок. Круглый вырез горловины. Короткие рукава.");
@@ -182,7 +174,6 @@ public class ProductUploader {
 
 
         //Футболка из органического хлопка с принтом
-
         Product product10 = new Product();
         product10.setName("Футболка с принтом");
         product10.setDescription("Футболка из хлопкового трикотажа с принтом");

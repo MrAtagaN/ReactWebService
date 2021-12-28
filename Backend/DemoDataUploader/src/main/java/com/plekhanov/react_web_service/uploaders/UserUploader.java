@@ -27,7 +27,6 @@ public class UserUploader {
 
 
     public void uploadData() {
-        userDao.deleteAll();
 
         //admin@gmail.com
         User admin = new User();

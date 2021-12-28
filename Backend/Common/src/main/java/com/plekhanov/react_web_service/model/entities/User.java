@@ -77,8 +77,7 @@ public class User {
     @Column(name = "count")
     Map<Product, Integer> bagProducts = new HashMap<>();
 
-
-    @ToString.Exclude          // чтобы не было кругового вызова toString, Equals, HashCode ломбоком,
+                               // чтобы не было кругового вызова, Equals, HashCode ломбоком,
     @EqualsAndHashCode.Exclude // т.к. User и UserFavoriteProduct имеют двунаправленную связь
     @OneToMany(mappedBy = "user", cascade = ALL, orphanRemoval = true, fetch = EAGER)
     @Fetch(SUBSELECT)

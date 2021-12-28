@@ -11,6 +11,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>Core</artifactId>
+    <version>1.0-SNAPSHOT</version>
 
     <dependencies>
         <!-- FRONTEND BUILD FIRST -->
@@ -55,7 +56,6 @@
         </dependency>
 
 
-
         <!-- APACHE COMMONS -->
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -77,6 +77,12 @@
             <version>1.3.1.Final</version>
         </dependency>
 
+        <!-- FLYWAY -->
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+            <version>5.2.2</version>
+        </dependency>
 
 
         <!-- Mail -->
@@ -106,13 +112,9 @@
             </exclusions>
         </dependency>
 
-
-
-
-
     </dependencies>
 
-
+    <!-- BUILD-->
     <build>
         <finalName>ReactWebService</finalName>
         <plugins>
