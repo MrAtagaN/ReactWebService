@@ -23,10 +23,12 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Table(name = "user_favorite_product")
 public class UserFavoriteProduct implements Serializable {
 
-    //раньше был составной ключ из полей user и product,
-    //но в таком случае hibernate не сохраняет новые обекты
-    //user.getFavoriteProducts().add(new UserFavoriteProduct(admin, products));
-    //а ищет их в базе. И т.к. такого объекта нет, создает UserFavoriteProduct с null полями
+    // раньше был составной ключ из полей user и product,
+    // но в таком случае hibernate при каскадном сохранении
+    // user.getFavoriteProducts().add(new UserFavoriteProduct(user, products));
+    //
+    // сначала ищет объект в базе. И т.к. такого объекта нет, создает UserFavoriteProduct с null полями
+    // т.к это первичные ключи
     @Id
     @GeneratedValue(strategy = IDENTITY)
     Integer id;
