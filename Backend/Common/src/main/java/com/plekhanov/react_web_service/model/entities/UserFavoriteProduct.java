@@ -10,7 +10,6 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 import static javax.persistence.FetchType.EAGER;
-import static javax.persistence.GenerationType.IDENTITY;
 
 /**
  * Связка {@link User} и понравившегося ему {@link Product}
@@ -19,38 +18,28 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity(name = "UserFavoriteProduct")
 @Table(name = "user_favorite_product")
 public class UserFavoriteProduct implements Serializable {
 
-    //раньше был составной ключ из полей user и product,
-    //но в таком случае hibernate не сохраняет новые обекты
-    //user.getFavoriteProducts().add(new UserFavoriteProduct(admin, products));
-    //а ищет их в базе. И т.к. такого объекта нет, создает UserFavoriteProduct с null полями
     @Id
-    @GeneratedValue(strategy = IDENTITY)
-    Integer id;
-
     @ManyToOne(fetch = EAGER)
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false) //TODO добавить в базу ограничение not null
     User user;
 
+    @Id
     @ManyToOne(fetch = EAGER)
     @JoinColumn(name = "product_id", nullable = false)
     Product product;
 
-
-    public UserFavoriteProduct(User user, Product product) {
-        this.user = user;
-        this.product = product;
-    }
-
     @Override
     public String toString() {
-        return "UserFavoriteProduct{" +
+        String string = "UserFavoriteProduct{" +
                 (user == null ? "user == null" : "user id: " + user.getId()) +
                 ", " +
                 (product == null ? "product == null" : "product id: " + product.getId()) +
                 "}";
+        return string;
     }
 }
