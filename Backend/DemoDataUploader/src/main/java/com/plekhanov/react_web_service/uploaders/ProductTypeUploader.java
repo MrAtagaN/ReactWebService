@@ -26,7 +26,6 @@ public class ProductTypeUploader {
 
 
     public void uploadData() {
-        productTypeDao.deleteAll();
 
         //одежда джинсы
         Set<ProductType> maleJeansSet = productTypeDao.findByParameters("джинсы", male, adult, clothes);
