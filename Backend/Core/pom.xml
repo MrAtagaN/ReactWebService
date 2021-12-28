@@ -84,6 +84,7 @@
             <version>5.2.2</version>
         </dependency>
 
+
         <!-- Mail -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
