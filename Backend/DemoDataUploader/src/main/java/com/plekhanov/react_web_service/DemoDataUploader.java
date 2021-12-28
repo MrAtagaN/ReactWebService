@@ -33,9 +33,10 @@ public class DemoDataUploader {
     @Bean
     public CommandLineRunner commandLineRunner(ApplicationContext context) {
         return (args) -> {
+            //для правильного удаления не менять порядок
+            context.getBean(UserDao.class).deleteAll();
             context.getBean(ProductDao.class).deleteAll();
             context.getBean(ProductTypeDao.class).deleteAll();
-            context.getBean(UserDao.class).deleteAll();
 
 
             context.getBean(UserUploader.class).uploadData();
