@@ -93,13 +93,14 @@ public class UserServiceImpl implements UserService {
     }
 
 
+
     @Override
     public void addProductToFavorite(final Integer productId, final User user) {
         final Product product = productDao.findById(productId).orElseThrow(() ->
                 new ValidationException(format("No product with id: {0}", productId)));
         Set<UserFavoriteProduct> favoriteProducts = user.getFavoriteProducts();
-        favoriteProducts.add(new UserFavoriteProduct(user, product));
-        userDao.save(user);
+        favoriteProducts.add(new UserFavoriteProduct(user, product)); //TODO запись в базе null, null. Разобраться
+        userDao.saveAndFlush(user);
     }
 
 
