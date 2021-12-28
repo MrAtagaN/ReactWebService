@@ -25,11 +25,21 @@ public class UserFavoriteProduct implements Serializable {
 
     @Id
     @ManyToOne(fetch = EAGER)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false) //TODO добавить в базу ограничение not null
     User user;
 
     @Id
     @ManyToOne(fetch = EAGER)
-    @JoinColumn(name = "product_id")
+    @JoinColumn(name = "product_id", nullable = false)
     Product product;
+
+    @Override
+    public String toString() {
+        String string = "UserFavoriteProduct{" +
+                (user == null ? "user == null" : "user id: " + user.getId()) +
+                ", " +
+                (product == null ? "product == null" : "product id: " + product.getId()) +
+                "}";
+        return string;
+    }
 }
