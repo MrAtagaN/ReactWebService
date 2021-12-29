@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public User getCurrentUser() {
+    public User getCurrentUser() { //TODO переделать. возвращать только id из контекста, в других методах получать User c ленивыми полями
         final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null) {
             User user = (User) authentication.getPrincipal();
